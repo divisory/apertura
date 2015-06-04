@@ -23,7 +23,7 @@ Apertura – это целый копмлекс инструментов и ре
 
 <h4 id="aStructure">Структура</h4>
 `
-|- Current project<br>
+|- Current project\n
 |- coffee/<br>
 |  |- main.coffee<br>
 |- dev-tools/<br>
