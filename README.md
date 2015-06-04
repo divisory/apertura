@@ -8,8 +8,11 @@ Apertura
 * Gulp.js (Сборщик проектов) >= 3.0.8
 * NPM (Node Package Manager) >= 1.4.28
 
+<a href="#ddd">sss</a>
+
+
 Модули дял установки: 
 coffee-script gulp-coffee gulp-connect gulp-clean gulp-uglify gulp-sass colors gulp-include gulp-cssmin gulp-rename gulp-filelist gulp-using map-stream gulp-plumber
 
-Описание, достоинства, документация:
-<a href="https://gist.github.com/Divisory-Frontend/906d713aa2eba435fd18" title="Документация">Документация</a>
+
+<div id="ddd">daas</div>
