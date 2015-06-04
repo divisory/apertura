@@ -72,7 +72,6 @@ figure {
 .fixed {
   position: fixed; }
 
-.unstyled-textarea,
 .unstyled-input {
   background: none;
   box-sizing: border-box;
@@ -81,7 +80,7 @@ figure {
   margin: 0;
   width: auto; }
 
-.unstyled-textarea {
+.noresize {
   resize: none; }
 
 .clear-list {
@@ -118,7 +117,7 @@ figure {
   content: 'This page requires JavaScript for correct performance'; }
 
 .disable-hover,
-.disable-hover * {
+.disable-hover-childs * {
   pointer-events: none !important; }
 
 .ir {
@@ -135,6 +134,7 @@ img.r {
   height: auto;
   display: block; }
 
+/*text*/
 .center {
   text-align: center; }
 
@@ -144,6 +144,7 @@ img.r {
 .left {
   text-align: left; }
 
+/*inline-blocks*/
 .v-top {
   vertical-align: top; }
 
@@ -153,38 +154,101 @@ img.r {
 .v-bottom {
   vertical-align: bottom; }
 
+/*floats*/
 .pull-left {
   float: left; }
 
 .pull-right {
   float: right; }
 
-.pull-clear {
+.clearfix {
   clear: both; }
-  .pull-clear:after {
+  .clearfix:after {
     display: table;
     content: '';
     clear: both; }
 
+/*display*/
 .block {
-  display: block !important; }
+  display: block; }
 
 .inline {
+  display: inline-block; }
+
+.block-extra {
+  display: block !important; }
+
+.inline-extra {
   display: inline-block !important; }
 
+/*tables*/
 .table {
   display: table; }
 
-.list-item {
-  display: list-item; }
+.row {
+  display: table-row; }
+
+.thead {
+  display: table-header-group; }
+
+.tfoot {
+  display: table-footer-group; }
+
+.tbody {
+  display: table-column-group; }
 
 .cell {
   display: table-cell; }
 
-.black {
+.list-item {
+  display: list-item; }
+
+/*overflow*/
+.o-hidden {
+  overflow: hidden; }
+
+.o-hidden-y {
+  overflow: hidden; }
+
+.o-hidden-x {
+  overflow-x: hidden; }
+
+.o-hidden-auto {
+  overflow: auto; }
+
+.o-hidden-auto-x {
+  overflow-x: auto; }
+
+.o-hidden-auto-y {
+  overflow-y: auto; }
+
+.o-visible {
+  overflow: visible; }
+
+.o-visible-x {
+  overflow-x: visible; }
+
+.o-visible-y {
+  overflow-y: visible; }
+
+/*background*/
+.bg-none {
+  background: none; }
+
+.bg-cover {
+  background-size: cover; }
+
+.bg-contain {
+  background-size: contain; }
+
+/*border-radius*/
+.circle-item {
+  border-radius: 50%; }
+
+.cl-black {
   color: #000000; }
 
-.white {
+.cl-white {
   color: #ffffff; }
 
 .bg-black {

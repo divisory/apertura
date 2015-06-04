@@ -1,4 +1,4 @@
-html{
+html {
 	font-size: $font_size;
 	font-family: $font_family;
 }
@@ -29,7 +29,7 @@ figure {
 .fixed {
 	position: fixed;
 }
-.unstyled-textarea,
+
 .unstyled-input {
 	background: none;
 	box-sizing: border-box;
@@ -39,7 +39,7 @@ figure {
 	width: auto;
 }
 
-.unstyled-textarea {
+.noresize {
 	resize: none;
 }
 
@@ -80,11 +80,11 @@ figure {
 }
 
 .disable-hover,
-.disable-hover * {
+.disable-hover-childs * {
 	pointer-events: none !important;
 }
 
-.ir{
+.ir {
 	position: absolute;
 	overflow: hidden;
 	width: 1px;
@@ -94,14 +94,14 @@ figure {
 	text-indent: -1000%;
 }
 
-img.r{
+img.r {
 	width: 100%;
 	height: auto;
 	display: block;
 }
 
 
-
+/*text*/
 .center {
 	text-align: center;
 }
@@ -111,6 +111,8 @@ img.r{
 .left {
 	text-align: left;
 }
+
+/*inline-blocks*/
 .v-top {
 	vertical-align: top;
 }
@@ -120,13 +122,15 @@ img.r{
 .v-bottom {
 	vertical-align: bottom;
 }
+
+/*floats*/
 .pull-left {
 	float: left;
 }
 .pull-right {
 	float: right;
 }
-.pull-clear {
+.clearfix {
 	clear: both;
 	&:after {
 		display: table;
@@ -135,25 +139,91 @@ img.r{
 	}
 }
 
+/*display*/
 .block {
-	display: block !important;
+	display: block;
 }
 .inline {
+	display: inline-block;
+}
+.block-extra {
+	display: block !important;
+}
+.inline-extra {
 	display: inline-block !important;
 }
+
+/*tables*/
 .table {
 	display: table;
 }
-.list-item {
-	display: list-item;
+.row {
+	display: table-row;
+}
+.thead {
+	display: table-header-group;
+}
+.tfoot {
+	display: table-footer-group;
+}
+.tbody {
+	display: table-column-group;
 }
 .cell {
 	display: table-cell;
 }
 
+.list-item {
+	display: list-item;
+}
+
+/*overflow*/
+.o-hidden {
+	overflow: hidden;
+}
+.o-hidden-y {
+	overflow: hidden;
+}
+.o-hidden-x {
+	overflow-x: hidden;
+}
+.o-hidden-auto {
+	overflow: auto;
+}
+.o-hidden-auto-x {
+	overflow-x: auto;
+}
+.o-hidden-auto-y {
+	overflow-y: auto;
+}
+.o-visible {
+	overflow: visible;
+}
+.o-visible-x {
+	overflow-x: visible;
+}
+.o-visible-y {
+	overflow-y: visible;
+}
+
+/*background*/
+.bg-none {
+	background: none;
+}
+.bg-cover {
+	background-size: cover;
+}
+.bg-contain {
+	background-size: contain;
+}
+
+/*border-radius*/
+.circle-item {
+	border-radius: 50%;
+}
 
 @each $color in $colors_list {
-    .#{nth($color,1)} {
+    .cl-#{nth($color,1)} {
         color: #{nth($color,2)};
     }
 }

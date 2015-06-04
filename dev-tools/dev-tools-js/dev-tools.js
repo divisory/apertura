@@ -16,7 +16,7 @@
     return elem;
   };
 
-  files = ["dist/index.html", "dist/css/grid.min.css", "dist/css/skin.min.css", "dist/css/full/grid.css", "dist/css/full/skin.css", "dist/js/dev-tools.js", "dist/js/main.js", "dist/js/script.js", "dist/js/vendor/html5shiv.js", "dist/js/vendor/jquery-2.1.0.min.js", "dist/js/vendor/minify.min.js", "dist/js/vendor/modernizr-2.7.1.min.js", "dist/js/vendor/no-hover.min.js"];
+  files = ["dist/index.html", "dist/css/full/grid.css", "dist/css/full/skin.css", "dist/css/grid.min.css", "dist/css/skin.min.css", "dist/js/dev-tools.js", "dist/js/main.js", "dist/js/script.js", "dist/js/vendor/html5shiv.js", "dist/js/vendor/jquery-2.1.0.min.js", "dist/js/vendor/minify.min.js", "dist/js/vendor/modernizr-2.7.1.min.js", "dist/js/vendor/no-hover.min.js"];
 
   config = "	/* ----------------------------------------------------- CONFIG */ // GRID:: padding $gutter: 							10px; // GRID:: padding $grid_line_height: 		20px; // GRID:: boxes widths $grid_sizes:					(720, 960, 1140); // GRID:: boxes widths $grid_prefixes: 			(480, '--m') (640, '--t') (768, '--d'); // GRID:: grid calc $grid_calc: 					(1 2 3 4 6 8 12); // GRID:: fixed widths $fixed_widths:        (50,100,150,200,250,300); // indents $islands: 						(5,10,15,20,25,30,35,40); $vertical_indents: 		(5,10,15,20,25,30,35,40); $horizontal_indents: 	(5,10,15,20,25,30,35,40); // FONTS:: min font size $min_font_size: 			6; // FONTS:: max font size $max_font_size: 			60; // SKIN:: Colors $colors_list: 				(black, #000000) (white, #ffffff); // SKIN:: background colors $colors_list_bg: 			(black, #000000) (white, #ffffff); // SKIN:: font size $font_size: 					14px; // SKIN:: font-family $font_family: 				'Open Sans', sans-serif;";
 
