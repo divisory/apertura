@@ -1,0 +1,88 @@
+/* -----------------------------------------------------
+	sizes array of indents
+*/
+
+@each $indent in $islands {
+	.island-#{$indent} {
+		padding: #{$indent}px;
+	}
+}
+
+/* -----------------------------------------------------
+	PADDINGS
+*/
+
+@each $indent in $horizontal_indents {
+	.pad-h#{$indent} {
+		padding-left: #{$indent}px;
+		padding-right: #{$indent}px;
+	}
+}
+@each $indent in $vertical_indents {
+	.pad-v#{$indent} {
+		padding-top: #{$indent}px;
+		padding-bottom: #{$indent}px;
+	}
+}
+@each $indent in $vertical_indents {
+	.pad-top-#{$indent} {
+		padding-top: #{$indent}px;
+	}
+}
+@each $indent in $vertical_indents {
+	.pad-bot-#{$indent} {
+		padding-bottom: #{$indent}px;
+	}
+}
+@each $indent in $horizontal_indents {
+	.pad-left-#{$indent} {
+		padding-left: #{$indent}px;
+	}
+}
+@each $indent in $horizontal_indents {
+	.pad-right-#{$indent} {
+		padding-right: #{$indent}px;
+	}
+}
+
+/* -----------------------------------------------------
+	MARGINS
+*/
+
+@each $indent in $islands {
+	.marg-#{$indent} {
+		margin: #{$indent}px;
+	}
+}
+@each $indent in $horizontal_indents {
+	.marg-h#{$indent} {
+		margin-left: #{$indent}px;
+		margin-right: #{$indent}px;
+	}
+}
+@each $indent in $vertical_indents {
+	.marg-v#{$indent} {
+		margin-top: #{$indent}px;
+		margin-bottom: #{$indent}px;
+	}
+}
+@each $indent in $vertical_indents {
+	.marg-top-#{$indent} {
+		margin-top: #{$indent}px;
+	}
+}
+@each $indent in $vertical_indents {
+	.marg-bot-#{$indent} {
+		margin-bottom: #{$indent}px;
+	}
+}
+@each $indent in $horizontal_indents {
+	.marg-left-#{$indent} {
+		margin-left: #{$indent}px;
+	}
+}
+@each $indent in $horizontal_indents {
+	.marg-right-#{$indent} {
+		margin-right: #{$indent}px;
+	}
+}

@@ -1,0 +1,293 @@
+/* -----------------------------------------------------
+	include 'calc' function and config
+*/
+/* -----------------------------------------------------
+	CONFIG
+*/
+/*-------------------------------------------------------
+	Color Properties
+*/
+/*-------------------------------------------------------
+	Background and Border Properties
+*/
+/*-------------------------------------------------------
+	Basic Box Properties
+*/
+/*-------------------------------------------------------
+	Flexible Box Layout
+*/
+/*-------------------------------------------------------
+	Text Properties
+*/
+/*-------------------------------------------------------
+	Text Decoration Properties
+*/
+/*-------------------------------------------------------
+	Animation Properties
+*/
+/*-------------------------------------------------------
+	Transform Properties
+*/
+/*-------------------------------------------------------
+	Transitions Properties
+*/
+/*-------------------------------------------------------
+	Basic User Interface Properties
+*/
+/*-------------------------------------------------------
+	Multi-column Layout Properties
+*/
+/*-------------------------------------------------------
+	Filter Effects Properties
+*/
+.g, .g--rev {
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0;
+  list-style-type: none; }
+
+.g {
+  direction: ltr; }
+
+.g--rev {
+  direction: rtl; }
+
+.g.w720, .g--rev.w720 {
+  max-width: 720px; }
+
+.g.w960, .g--rev.w960 {
+  max-width: 960px; }
+
+.g.w1140, .g--rev.w1140 {
+  max-width: 1140px; }
+
+.c, .cc, .c-c {
+  box-sizing: border-box;
+  display: inline-block;
+  vertical-align: top;
+  width: 100%;
+  padding: 0 10px; }
+
+.cc {
+  padding: 0; }
+
+.c-c {
+  padding: 0 20px; }
+
+.lt-ie9 .c, .lt-ie9 .cc, .no-js .c, .no-js .cc, .no-js .c-c {
+  display: block !important;
+  width: 100% !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important; }
+
+.lt-ie9 .g.w720, .lt-ie9 .g--rev.w720 {
+  max-width: 720px; }
+
+.no-js .g.w720, .no-js .g--rev.w720 {
+  max-width: 720px; }
+
+.lt-ie9 .g.w960, .lt-ie9 .g--rev.w960 {
+  max-width: 960px; }
+
+.no-js .g.w960, .no-js .g--rev.w960 {
+  max-width: 960px; }
+
+.lt-ie9 .g.w1140, .lt-ie9 .g--rev.w1140 {
+  max-width: 1140px; }
+
+.no-js .g.w1140, .no-js .g--rev.w1140 {
+  max-width: 1140px; }
+
+/* -----------------------------------------------------
+	grid calc
+*/
+.x1d1 {
+  width: 100%; }
+
+.x0d1 {
+  width: 0%; }
+
+.x1d2, .x2d4, .x3d6, .x4d8, .x6d12 {
+  width: 50%; }
+
+.x1d3, .x2d6, .x4d12 {
+  width: 33.33333%; }
+
+.x2d3, .x4d6, .x8d12 {
+  width: 66.66667%; }
+
+.x1d4, .x2d8, .x3d12 {
+  width: 25%; }
+
+.x3d4, .x6d8, .x9d12 {
+  width: 75%; }
+
+.x1d6, .x2d12 {
+  width: 16.66667%; }
+
+.x5d6, .x10d12 {
+  width: 83.33333%; }
+
+.x1d8 {
+  width: 12.5%; }
+
+.x3d8 {
+  width: 37.5%; }
+
+.x5d8 {
+  width: 62.5%; }
+
+.x7d8 {
+  width: 87.5%; }
+
+.x1d12 {
+  width: 8.33333%; }
+
+.x5d12 {
+  width: 41.66667%; }
+
+.x7d12 {
+  width: 58.33333%; }
+
+.x11d12 {
+  width: 91.66667%; }
+
+/* -----------------------------------------------------
+	fixed widths
+*/
+.w-fixed-50 {
+  width: 50px; }
+
+.w-fixed-100 {
+  width: 100px; }
+
+.w-fixed-150 {
+  width: 150px; }
+
+.w-fixed-200 {
+  width: 200px; }
+
+.w-fixed-250 {
+  width: 250px; }
+
+.w-fixed-300 {
+  width: 300px; }
+
+/* -----------------------------------------------------
+	MEDIA queries
+*/
+@media (max-width: 480px) {
+  .x1--m {
+    width: 100%; }
+  .x1d1--m {
+    width: 100%; }
+  .x0d1--m {
+    width: 0%; }
+  .x1d2--m, .x2d4--m, .x3d6--m, .x4d8--m, .x6d12--m {
+    width: 50%; }
+  .x1d3--m, .x2d6--m, .x4d12--m {
+    width: 33.33333%; }
+  .x2d3--m, .x4d6--m, .x8d12--m {
+    width: 66.66667%; }
+  .x1d4--m, .x2d8--m, .x3d12--m {
+    width: 25%; }
+  .x3d4--m, .x6d8--m, .x9d12--m {
+    width: 75%; }
+  .x1d6--m, .x2d12--m {
+    width: 16.66667%; }
+  .x5d6--m, .x10d12--m {
+    width: 83.33333%; }
+  .x1d8--m {
+    width: 12.5%; }
+  .x3d8--m {
+    width: 37.5%; }
+  .x5d8--m {
+    width: 62.5%; }
+  .x7d8--m {
+    width: 87.5%; }
+  .x1d12--m {
+    width: 8.33333%; }
+  .x5d12--m {
+    width: 41.66667%; }
+  .x7d12--m {
+    width: 58.33333%; }
+  .x11d12--m {
+    width: 91.66667%; } }
+
+@media (max-width: 640px) {
+  .x1--t {
+    width: 100%; }
+  .x1d1--t {
+    width: 100%; }
+  .x0d1--t {
+    width: 0%; }
+  .x1d2--t, .x2d4--t, .x3d6--t, .x4d8--t, .x6d12--t {
+    width: 50%; }
+  .x1d3--t, .x2d6--t, .x4d12--t {
+    width: 33.33333%; }
+  .x2d3--t, .x4d6--t, .x8d12--t {
+    width: 66.66667%; }
+  .x1d4--t, .x2d8--t, .x3d12--t {
+    width: 25%; }
+  .x3d4--t, .x6d8--t, .x9d12--t {
+    width: 75%; }
+  .x1d6--t, .x2d12--t {
+    width: 16.66667%; }
+  .x5d6--t, .x10d12--t {
+    width: 83.33333%; }
+  .x1d8--t {
+    width: 12.5%; }
+  .x3d8--t {
+    width: 37.5%; }
+  .x5d8--t {
+    width: 62.5%; }
+  .x7d8--t {
+    width: 87.5%; }
+  .x1d12--t {
+    width: 8.33333%; }
+  .x5d12--t {
+    width: 41.66667%; }
+  .x7d12--t {
+    width: 58.33333%; }
+  .x11d12--t {
+    width: 91.66667%; } }
+
+@media (max-width: 768px) {
+  .x1--d {
+    width: 100%; }
+  .x1d1--d {
+    width: 100%; }
+  .x0d1--d {
+    width: 0%; }
+  .x1d2--d, .x2d4--d, .x3d6--d, .x4d8--d, .x6d12--d {
+    width: 50%; }
+  .x1d3--d, .x2d6--d, .x4d12--d {
+    width: 33.33333%; }
+  .x2d3--d, .x4d6--d, .x8d12--d {
+    width: 66.66667%; }
+  .x1d4--d, .x2d8--d, .x3d12--d {
+    width: 25%; }
+  .x3d4--d, .x6d8--d, .x9d12--d {
+    width: 75%; }
+  .x1d6--d, .x2d12--d {
+    width: 16.66667%; }
+  .x5d6--d, .x10d12--d {
+    width: 83.33333%; }
+  .x1d8--d {
+    width: 12.5%; }
+  .x3d8--d {
+    width: 37.5%; }
+  .x5d8--d {
+    width: 62.5%; }
+  .x7d8--d {
+    width: 87.5%; }
+  .x1d12--d {
+    width: 8.33333%; }
+  .x5d12--d {
+    width: 41.66667%; }
+  .x7d12--d {
+    width: 58.33333%; }
+  .x11d12--d {
+    width: 91.66667%; } }

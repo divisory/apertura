@@ -1,0 +1,94 @@
+/* -----------------------------------------------------
+	include 'calc' function and config
+*/
+
+@import "config.scss";
+@import "_mixins/_mixins.scss";
+@import "_calc.scss";
+
+.g,
+.g--rev {
+	box-sizing:border-box;
+	display: block;
+	width: 100%;
+	margin: 0 auto;
+	padding: 0;
+	list-style-type: none;
+}
+.g {
+	direction: ltr;
+}
+.g--rev {
+	direction: rtl;
+}
+
+@each $greed in $grid_sizes {
+	.g.w#{$greed},
+	.g--rev.w#{$greed}{
+		max-width: #{$greed}px;
+	}
+}
+
+.c,
+.cc,
+.c-c {
+	box-sizing:border-box;
+	display: inline-block;
+	vertical-align: top;
+	width: 100%;
+	padding: 0 $gutter;
+}
+.cc {
+	padding: 0;
+}
+.c-c {
+	padding: 0 $gutter*2;
+}
+
+.lt-ie9 .c,
+.lt-ie9 .cc,
+.no-js .c,
+.no-js .cc,
+.no-js .c-c{
+	display: block !important;
+	width: 100% !important;
+	padding-left: 0 !important;
+	padding-right: 0 !important;
+}
+
+@each $greed in $grid_sizes {
+	.lt-ie9 .g.w#{$greed},
+	.lt-ie9 .g--rev.w#{$greed}{
+		max-width: #{$greed}px;
+	}
+	.no-js .g.w#{$greed},
+	.no-js .g--rev.w#{$greed}{
+		max-width: #{$greed}px;
+	}
+}
+
+/* -----------------------------------------------------
+	grid calc
+*/
+
+@include grid-calc($grid_calc);
+
+/* -----------------------------------------------------
+	fixed widths
+*/
+
+@each $width in $fixed_widths {
+	.w-fixed-#{$width} {
+		width: #{$width}px;
+	}
+}
+
+/* -----------------------------------------------------
+	MEDIA queries
+*/
+
+@each $prefix in $grid_prefixes {
+	@media (max-width: #{nth($prefix,1)}px) {
+		@include grid-calc($grid-calc, #{nth($prefix,2)});
+	}
+}

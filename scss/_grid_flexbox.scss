@@ -1,0 +1,74 @@
+/*flexbox init*/
+.flexbox {
+	.g, .g-rev {
+		display: flex;
+		@include justify-content(flex-start);
+		@include flex-direction(row);
+		@include align-items(stretch);
+	}
+	.c, .cc, .c-c {
+		display: inline-flex;
+		@include box-sizing(border-box);
+		padding: 0 $gutter;
+	}
+}
+
+/*flex-direction*/
+.flex-row {
+	@include flex-direction(row);
+}
+.flex-row-reverse {
+	@include flex-direction(row-reverse);
+}
+.flex-column {
+	@include flex-direction(column);
+}
+.flex-column-reverse {
+	@include flex-direction(column-reverse);
+}
+
+/*justify content*/
+.flex-start {
+	@include justify-content(flex-start);
+}
+.flex-end {
+	@include justify-content(flex-end);
+}
+.flex-center {
+	@include justify-content(flex-center);
+}
+.flex-space-between {
+	@include justify-content(flex-space-between);
+}
+.flex-space-around {
+	@include justify-content(flex-space-around);
+}
+
+/*align items*/
+.flex-align-start {
+	@include align-items(flex-start);
+}
+.flex-align-end {
+	@include align-items(flex-end);
+}
+.flex-align-center {
+	@include align-items(center);
+}
+.flex-align-baceline {
+	@include align-items(baceline);
+}
+.flex-align-stretch {
+	@include align-items(stretch);
+}
+
+/*wraps*/
+
+.flex-nowrap {
+	@include flex-wrap(nowrap);
+}
+.flex-wrap {
+	@include flex-wrap(wrap);
+}
+.flex-wrap-reverse {
+	@include flex-wrap(wrap-reverse);
+}

@@ -1,0 +1,49 @@
+/* -----------------------------------------------------
+	fonts weight
+*/
+
+.light {
+	font-weight: 100;
+}
+.semilight {
+	font-weight: 300;
+}
+.regular {
+	font-weight: 400;
+}
+.bold {
+	font-weight: 600;
+}
+.boldest {
+	font-weight: 900;
+}
+
+.lowercase {
+	text-transform: lowercase;
+}
+.uppercase {
+	text-transform: uppercase;
+}
+
+.underline {
+	text-decoration: underline;
+}
+a.underline:hover {
+	text-decoration: none;
+}
+.rev-underline {
+	text-decoration: none;
+}
+a.rev-underline:hover {
+	text-decoration: underline;
+}
+
+/* -----------------------------------------------------
+	fonts size
+*/
+
+@for $i from $min_font_size through $max_font_size {
+  .font-#{$i} {
+    font-size: #{$i}px;
+  }
+}

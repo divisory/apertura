@@ -1,0 +1,783 @@
+/* -----------------------------------------------------
+	include function 'calc' and Compass-like mixins
+*/
+/* -----------------------------------------------------
+	CONFIG
+*/
+/*-------------------------------------------------------
+	Color Properties
+*/
+/*-------------------------------------------------------
+	Background and Border Properties
+*/
+/*-------------------------------------------------------
+	Basic Box Properties
+*/
+/*-------------------------------------------------------
+	Flexible Box Layout
+*/
+/*-------------------------------------------------------
+	Text Properties
+*/
+/*-------------------------------------------------------
+	Text Decoration Properties
+*/
+/*-------------------------------------------------------
+	Animation Properties
+*/
+/*-------------------------------------------------------
+	Transform Properties
+*/
+/*-------------------------------------------------------
+	Transitions Properties
+*/
+/*-------------------------------------------------------
+	Basic User Interface Properties
+*/
+/*-------------------------------------------------------
+	Multi-column Layout Properties
+*/
+/*-------------------------------------------------------
+	Filter Effects Properties
+*/
+/* -----------------------------------------------------
+	include default styles, fonts, indents, and so on...
+*/
+/*@import "_default/_normalize.scss";*/
+html {
+  font-size: 14px;
+  font-family: 'Open Sans', sans-serif; }
+
+html, body {
+  margin: 0;
+  height: 100%;
+  width: 100%; }
+
+button, input, textarea {
+  font-family: 'Open Sans', sans-serif; }
+
+figure {
+  margin: 0;
+  padding: 0; }
+
+.relative {
+  position: relative; }
+
+.absolute {
+  position: absolute; }
+
+.fixed {
+  position: fixed; }
+
+.unstyled-textarea, .unstyled-input {
+  background: none;
+  box-sizing: border-box;
+  border: none;
+  padding: 0;
+  margin: 0;
+  width: auto; }
+
+.unstyled-textarea {
+  resize: none; }
+
+.clear-list {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  list-style: none; }
+
+.no-marg {
+  margin: 0; }
+
+.no-pad {
+  padding: 0; }
+
+.exact-fit {
+  margin: 0;
+  padding: 0; }
+
+.no-js body:after {
+  display: block;
+  position: fixed;
+  top: 5px;
+  left: 5%;
+  right: 5%;
+  padding: 10px 0;
+  background: firebrick;
+  color: lightyellow;
+  text-align: center;
+  font-weight: bold;
+  z-index: 100500;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  content: 'This page requires JavaScript for correct performance'; }
+
+.disable-hover, .disable-hover * {
+  pointer-events: none !important; }
+
+.ir {
+  position: absolute;
+  overflow: hidden;
+  width: 1px;
+  height: 1px;
+  left: -1000%;
+  top: -1000%;
+  text-indent: -1000%; }
+
+img.r {
+  width: 100%;
+  height: auto;
+  display: block; }
+
+.center {
+  text-align: center; }
+
+.right {
+  text-align: right; }
+
+.left {
+  text-align: left; }
+
+.v-top {
+  vertical-align: top; }
+
+.v-middle {
+  vertical-align: middle; }
+
+.v-bottom {
+  vertical-align: bottom; }
+
+.pull-left {
+  float: left; }
+
+.pull-right {
+  float: right; }
+
+.pull-clear {
+  clear: both; }
+  .pull-clear:after {
+    display: table;
+    content: '';
+    clear: both; }
+
+.block {
+  display: block !important; }
+
+.inline {
+  display: inline-block !important; }
+
+.table {
+  display: table; }
+
+.list-item {
+  display: list-item; }
+
+.cell {
+  display: table-cell; }
+
+.black {
+  color: #000000; }
+
+.white {
+  color: #ffffff; }
+
+.bg-black {
+  background-color: #000000; }
+
+.bg-white {
+  background-color: #ffffff; }
+
+/* -----------------------------------------------------
+	fonts weight
+*/
+.light {
+  font-weight: 100; }
+
+.semilight {
+  font-weight: 300; }
+
+.regular {
+  font-weight: 400; }
+
+.bold {
+  font-weight: 600; }
+
+.boldest {
+  font-weight: 900; }
+
+.lowercase {
+  text-transform: lowercase; }
+
+.uppercase {
+  text-transform: uppercase; }
+
+.underline {
+  text-decoration: underline; }
+
+a.underline:hover {
+  text-decoration: none; }
+
+.rev-underline {
+  text-decoration: none; }
+
+a.rev-underline:hover {
+  text-decoration: underline; }
+
+/* -----------------------------------------------------
+	fonts size
+*/
+.font-6 {
+  font-size: 6px; }
+
+.font-7 {
+  font-size: 7px; }
+
+.font-8 {
+  font-size: 8px; }
+
+.font-9 {
+  font-size: 9px; }
+
+.font-10 {
+  font-size: 10px; }
+
+.font-11 {
+  font-size: 11px; }
+
+.font-12 {
+  font-size: 12px; }
+
+.font-13 {
+  font-size: 13px; }
+
+.font-14 {
+  font-size: 14px; }
+
+.font-15 {
+  font-size: 15px; }
+
+.font-16 {
+  font-size: 16px; }
+
+.font-17 {
+  font-size: 17px; }
+
+.font-18 {
+  font-size: 18px; }
+
+.font-19 {
+  font-size: 19px; }
+
+.font-20 {
+  font-size: 20px; }
+
+.font-21 {
+  font-size: 21px; }
+
+.font-22 {
+  font-size: 22px; }
+
+.font-23 {
+  font-size: 23px; }
+
+.font-24 {
+  font-size: 24px; }
+
+.font-25 {
+  font-size: 25px; }
+
+.font-26 {
+  font-size: 26px; }
+
+.font-27 {
+  font-size: 27px; }
+
+.font-28 {
+  font-size: 28px; }
+
+.font-29 {
+  font-size: 29px; }
+
+.font-30 {
+  font-size: 30px; }
+
+.font-31 {
+  font-size: 31px; }
+
+.font-32 {
+  font-size: 32px; }
+
+.font-33 {
+  font-size: 33px; }
+
+.font-34 {
+  font-size: 34px; }
+
+.font-35 {
+  font-size: 35px; }
+
+.font-36 {
+  font-size: 36px; }
+
+.font-37 {
+  font-size: 37px; }
+
+.font-38 {
+  font-size: 38px; }
+
+.font-39 {
+  font-size: 39px; }
+
+.font-40 {
+  font-size: 40px; }
+
+.font-41 {
+  font-size: 41px; }
+
+.font-42 {
+  font-size: 42px; }
+
+.font-43 {
+  font-size: 43px; }
+
+.font-44 {
+  font-size: 44px; }
+
+.font-45 {
+  font-size: 45px; }
+
+.font-46 {
+  font-size: 46px; }
+
+.font-47 {
+  font-size: 47px; }
+
+.font-48 {
+  font-size: 48px; }
+
+.font-49 {
+  font-size: 49px; }
+
+.font-50 {
+  font-size: 50px; }
+
+.font-51 {
+  font-size: 51px; }
+
+.font-52 {
+  font-size: 52px; }
+
+.font-53 {
+  font-size: 53px; }
+
+.font-54 {
+  font-size: 54px; }
+
+.font-55 {
+  font-size: 55px; }
+
+.font-56 {
+  font-size: 56px; }
+
+.font-57 {
+  font-size: 57px; }
+
+.font-58 {
+  font-size: 58px; }
+
+.font-59 {
+  font-size: 59px; }
+
+.font-60 {
+  font-size: 60px; }
+
+/* -----------------------------------------------------
+	sizes array of indents
+*/
+.island-5 {
+  padding: 5px; }
+
+.island-10 {
+  padding: 10px; }
+
+.island-15 {
+  padding: 15px; }
+
+.island-20 {
+  padding: 20px; }
+
+.island-25 {
+  padding: 25px; }
+
+.island-30 {
+  padding: 30px; }
+
+.island-35 {
+  padding: 35px; }
+
+.island-40 {
+  padding: 40px; }
+
+/* -----------------------------------------------------
+	PADDINGS
+*/
+.pad-h5 {
+  padding-left: 5px;
+  padding-right: 5px; }
+
+.pad-h10 {
+  padding-left: 10px;
+  padding-right: 10px; }
+
+.pad-h15 {
+  padding-left: 15px;
+  padding-right: 15px; }
+
+.pad-h20 {
+  padding-left: 20px;
+  padding-right: 20px; }
+
+.pad-h25 {
+  padding-left: 25px;
+  padding-right: 25px; }
+
+.pad-h30 {
+  padding-left: 30px;
+  padding-right: 30px; }
+
+.pad-h35 {
+  padding-left: 35px;
+  padding-right: 35px; }
+
+.pad-h40 {
+  padding-left: 40px;
+  padding-right: 40px; }
+
+.pad-v5 {
+  padding-top: 5px;
+  padding-bottom: 5px; }
+
+.pad-v10 {
+  padding-top: 10px;
+  padding-bottom: 10px; }
+
+.pad-v15 {
+  padding-top: 15px;
+  padding-bottom: 15px; }
+
+.pad-v20 {
+  padding-top: 20px;
+  padding-bottom: 20px; }
+
+.pad-v25 {
+  padding-top: 25px;
+  padding-bottom: 25px; }
+
+.pad-v30 {
+  padding-top: 30px;
+  padding-bottom: 30px; }
+
+.pad-v35 {
+  padding-top: 35px;
+  padding-bottom: 35px; }
+
+.pad-v40 {
+  padding-top: 40px;
+  padding-bottom: 40px; }
+
+.pad-top-5 {
+  padding-top: 5px; }
+
+.pad-top-10 {
+  padding-top: 10px; }
+
+.pad-top-15 {
+  padding-top: 15px; }
+
+.pad-top-20 {
+  padding-top: 20px; }
+
+.pad-top-25 {
+  padding-top: 25px; }
+
+.pad-top-30 {
+  padding-top: 30px; }
+
+.pad-top-35 {
+  padding-top: 35px; }
+
+.pad-top-40 {
+  padding-top: 40px; }
+
+.pad-bot-5 {
+  padding-bottom: 5px; }
+
+.pad-bot-10 {
+  padding-bottom: 10px; }
+
+.pad-bot-15 {
+  padding-bottom: 15px; }
+
+.pad-bot-20 {
+  padding-bottom: 20px; }
+
+.pad-bot-25 {
+  padding-bottom: 25px; }
+
+.pad-bot-30 {
+  padding-bottom: 30px; }
+
+.pad-bot-35 {
+  padding-bottom: 35px; }
+
+.pad-bot-40 {
+  padding-bottom: 40px; }
+
+.pad-left-5 {
+  padding-left: 5px; }
+
+.pad-left-10 {
+  padding-left: 10px; }
+
+.pad-left-15 {
+  padding-left: 15px; }
+
+.pad-left-20 {
+  padding-left: 20px; }
+
+.pad-left-25 {
+  padding-left: 25px; }
+
+.pad-left-30 {
+  padding-left: 30px; }
+
+.pad-left-35 {
+  padding-left: 35px; }
+
+.pad-left-40 {
+  padding-left: 40px; }
+
+.pad-right-5 {
+  padding-right: 5px; }
+
+.pad-right-10 {
+  padding-right: 10px; }
+
+.pad-right-15 {
+  padding-right: 15px; }
+
+.pad-right-20 {
+  padding-right: 20px; }
+
+.pad-right-25 {
+  padding-right: 25px; }
+
+.pad-right-30 {
+  padding-right: 30px; }
+
+.pad-right-35 {
+  padding-right: 35px; }
+
+.pad-right-40 {
+  padding-right: 40px; }
+
+/* -----------------------------------------------------
+	MARGINS
+*/
+.marg-5 {
+  margin: 5px; }
+
+.marg-10 {
+  margin: 10px; }
+
+.marg-15 {
+  margin: 15px; }
+
+.marg-20 {
+  margin: 20px; }
+
+.marg-25 {
+  margin: 25px; }
+
+.marg-30 {
+  margin: 30px; }
+
+.marg-35 {
+  margin: 35px; }
+
+.marg-40 {
+  margin: 40px; }
+
+.marg-h5 {
+  margin-left: 5px;
+  margin-right: 5px; }
+
+.marg-h10 {
+  margin-left: 10px;
+  margin-right: 10px; }
+
+.marg-h15 {
+  margin-left: 15px;
+  margin-right: 15px; }
+
+.marg-h20 {
+  margin-left: 20px;
+  margin-right: 20px; }
+
+.marg-h25 {
+  margin-left: 25px;
+  margin-right: 25px; }
+
+.marg-h30 {
+  margin-left: 30px;
+  margin-right: 30px; }
+
+.marg-h35 {
+  margin-left: 35px;
+  margin-right: 35px; }
+
+.marg-h40 {
+  margin-left: 40px;
+  margin-right: 40px; }
+
+.marg-v5 {
+  margin-top: 5px;
+  margin-bottom: 5px; }
+
+.marg-v10 {
+  margin-top: 10px;
+  margin-bottom: 10px; }
+
+.marg-v15 {
+  margin-top: 15px;
+  margin-bottom: 15px; }
+
+.marg-v20 {
+  margin-top: 20px;
+  margin-bottom: 20px; }
+
+.marg-v25 {
+  margin-top: 25px;
+  margin-bottom: 25px; }
+
+.marg-v30 {
+  margin-top: 30px;
+  margin-bottom: 30px; }
+
+.marg-v35 {
+  margin-top: 35px;
+  margin-bottom: 35px; }
+
+.marg-v40 {
+  margin-top: 40px;
+  margin-bottom: 40px; }
+
+.marg-top-5 {
+  margin-top: 5px; }
+
+.marg-top-10 {
+  margin-top: 10px; }
+
+.marg-top-15 {
+  margin-top: 15px; }
+
+.marg-top-20 {
+  margin-top: 20px; }
+
+.marg-top-25 {
+  margin-top: 25px; }
+
+.marg-top-30 {
+  margin-top: 30px; }
+
+.marg-top-35 {
+  margin-top: 35px; }
+
+.marg-top-40 {
+  margin-top: 40px; }
+
+.marg-bot-5 {
+  margin-bottom: 5px; }
+
+.marg-bot-10 {
+  margin-bottom: 10px; }
+
+.marg-bot-15 {
+  margin-bottom: 15px; }
+
+.marg-bot-20 {
+  margin-bottom: 20px; }
+
+.marg-bot-25 {
+  margin-bottom: 25px; }
+
+.marg-bot-30 {
+  margin-bottom: 30px; }
+
+.marg-bot-35 {
+  margin-bottom: 35px; }
+
+.marg-bot-40 {
+  margin-bottom: 40px; }
+
+.marg-left-5 {
+  margin-left: 5px; }
+
+.marg-left-10 {
+  margin-left: 10px; }
+
+.marg-left-15 {
+  margin-left: 15px; }
+
+.marg-left-20 {
+  margin-left: 20px; }
+
+.marg-left-25 {
+  margin-left: 25px; }
+
+.marg-left-30 {
+  margin-left: 30px; }
+
+.marg-left-35 {
+  margin-left: 35px; }
+
+.marg-left-40 {
+  margin-left: 40px; }
+
+.marg-right-5 {
+  margin-right: 5px; }
+
+.marg-right-10 {
+  margin-right: 10px; }
+
+.marg-right-15 {
+  margin-right: 15px; }
+
+.marg-right-20 {
+  margin-right: 20px; }
+
+.marg-right-25 {
+  margin-right: 25px; }
+
+.marg-right-30 {
+  margin-right: 30px; }
+
+.marg-right-35 {
+  margin-right: 35px; }
+
+.marg-right-40 {
+  margin-right: 40px; }
+
+/* -----------------------------------------------------
+	<HEADER> styles
+*/
+/* -----------------------------------------------------
+	<MAIN> styles
+*/
+/* -----------------------------------------------------
+	<FOOTER> styles
+*/
+/* -----------------------------------------------------
+	media queries
+*/

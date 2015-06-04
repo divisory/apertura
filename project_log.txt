@@ -1,0 +1,31 @@
+﻿
+
+################################################################# 
+Gulp.js started at 05. 05. 2015 :: 22: 50: 06 
+----------------------------------------------------------------- 
+USER       undefined 
+OS         undefined 
+PLATFORM   linux 
+node -v    0.10.37 
+v8 -v      3.14.5.9 
+#################################################################
+[22: 50: 06] !! ./coffee/main.coffee
+[22: 50: 06] !! ./dev-tools/dev-tools-css/scss/dev-tools-skin.scss
+[22: 50: 06] !! ./dist/index.html
+[22: 50: 06] !! ./html/index.html
+[22: 50: 06] !! ./dist/css/grid.min.css
+[22: 50: 06] !! ./dist/js/dev-tools.js
+[22: 50: 06] !! ./dev-tools/dev-tools-js/coffee/dev-tools.coffee
+[22: 50: 06] !! ./scss/_calc.scss
+[22: 50: 06] !! ./scss/_calc.scss !! ./scss/_config.scss
+[22: 50: 06] !! ./dist/css/grid.min.css !! ./dist/css/skin.min.css
+[22: 50: 06] !! ./dist/js/dev-tools.js !! ./dist/js/main.js
+[22: 50: 06] !! ./scss/_calc.scss !! ./scss/_config.scss !! ./scss/_func.scss
+[22: 50: 06] !! ./dist/js/dev-tools.js !! ./dist/js/main.js !! ./dist/js/script.js
+[22: 50: 06] !! ./scss/_calc.scss !! ./scss/_config.scss !! ./scss/_func.scss !! ./scss/_grid_flexbox.scss
+[22: 50: 06] !! ./scss/_calc.scss !! ./scss/_config.scss !! ./scss/_func.scss !! ./scss/_grid_flexbox.scss !! ./scss/grid.scss
+[22: 50: 06] !! ./scss/_calc.scss !! ./scss/_config.scss !! ./scss/_func.scss !! ./scss/_grid_flexbox.scss !! ./scss/grid.scss !! ./scss/skin.scss
+[22: 50: 07] !! ./dist/index.html
+[22: 50: 07] !! ./dist/js/dev-tools.js
+[22: 50: 07] !! ./dist/js/dev-tools.js !! ./dist/js/main.js
+[22: 50: 07] !! ./dist/js/dev-tools.js !! ./dist/js/main.js !! ./dist/js/script.js

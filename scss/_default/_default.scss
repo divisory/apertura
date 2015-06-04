@@ -1,0 +1,164 @@
+html{
+	font-size: $font_size;
+	font-family: $font_family;
+}
+
+html,
+body {
+	margin: 0;
+	height: 100%;
+	width: 100%;
+}
+
+button,
+input,
+textarea {
+	font-family: $font_family;
+}
+figure {
+	margin: 0;
+	padding: 0;
+}
+
+.relative {
+	position: relative;
+}
+.absolute {
+	position: absolute;
+}
+.fixed {
+	position: fixed;
+}
+.unstyled-textarea,
+.unstyled-input {
+	background: none;
+	box-sizing: border-box;
+	border: none;
+	padding: 0;
+	margin: 0;
+	width: auto;
+}
+
+.unstyled-textarea {
+	resize: none;
+}
+
+.clear-list {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+	list-style: none;
+}
+.no-marg {
+	margin: 0;
+}
+.no-pad {
+	padding: 0;
+}
+
+.exact-fit {
+	margin: 0;
+	padding: 0;
+}
+
+.no-js body:after{
+	display: block;
+	position: fixed;
+	top: 5px;
+	left: 5%;
+	right: 5%;
+	padding: 10px 0;
+	background: firebrick;
+	color: lightyellow;
+	text-align: center;
+	font-weight: bold;
+	z-index: 100500;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	content: 'This page requires JavaScript for correct performance';
+}
+
+.disable-hover,
+.disable-hover * {
+	pointer-events: none !important;
+}
+
+.ir{
+	position: absolute;
+	overflow: hidden;
+	width: 1px;
+	height: 1px;
+	left: -1000%;
+	top: -1000%;
+	text-indent: -1000%;
+}
+
+img.r{
+	width: 100%;
+	height: auto;
+	display: block;
+}
+
+
+
+.center {
+	text-align: center;
+}
+.right {
+	text-align: right;
+}
+.left {
+	text-align: left;
+}
+.v-top {
+	vertical-align: top;
+}
+.v-middle {
+	vertical-align: middle;
+}
+.v-bottom {
+	vertical-align: bottom;
+}
+.pull-left {
+	float: left;
+}
+.pull-right {
+	float: right;
+}
+.pull-clear {
+	clear: both;
+	&:after {
+		display: table;
+		content: '';
+		clear: both;
+	}
+}
+
+.block {
+	display: block !important;
+}
+.inline {
+	display: inline-block !important;
+}
+.table {
+	display: table;
+}
+.list-item {
+	display: list-item;
+}
+.cell {
+	display: table-cell;
+}
+
+
+@each $color in $colors_list {
+    .#{nth($color,1)} {
+        color: #{nth($color,2)};
+    }
+}
+@each $color in $colors_list_bg {
+    .bg-#{nth($color,1)} {
+        background-color: #{nth($color,2)};
+    }
+}

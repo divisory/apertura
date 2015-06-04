@@ -1,0 +1,410 @@
+/*-------------------------------------------------------
+	Color Properties
+*/
+
+@mixin opacity($type){
+	opacity: $type;
+}
+
+/*-------------------------------------------------------
+	Background and Border Properties
+*/
+
+@mixin background-clip($type){
+	-webkit-background-clip: $type;
+	-moz-background-clip: $type;
+	-ms-background-clip: $type;
+	-o-background-clip: $type;
+	background-clip: $type;
+}
+@mixin background-origin($type){
+	-webkit-background-origin: $type;
+	-moz-background-origin: $type;
+	-ms-background-origin: $type;
+	-o-background-origin: $type;
+	background-origin: $type;
+}
+@mixin background-size($type){
+	-webkit-background-size: $type;
+	-moz-background-size: $type;
+	-ms-background-size: $type;
+	-o-background-size: $type;
+	background-size: $type;
+}
+@mixin border-bottom-left-radius($type){
+	-webkit-border-bottom-left-radius: $type;
+	-moz-border-bottom-left-radius: $type;
+	-ms-border-bottom-left-radius: $type;
+	border-bottom-left-radius: $type;
+}
+@mixin border-bottom-right-radius($type){
+	-webkit-border-bottom-right-radius: $type;
+	-moz-border-bottom-right-radius: $type;
+	-ms-border-bottom-right-radius: $type;
+	border-bottom-right-radius: $type;
+}
+@mixin border-image-outset($type){
+	border-image-outset: $type;
+}
+@mixin border-image-repeat($type){
+	border-image-repeat: $type;
+}
+@mixin border-image-slice($type){
+	border-image-slice: $type;
+}
+@mixin border-image-source($type){
+	border-image-source: $type;
+}
+@mixin border-image-width($type){
+	border-image-width: $type;
+}
+@mixin border-radius($type){
+	-webkit-border-radius: $type;
+	-moz-border-radius: $type;
+	border-radius: $type;
+}
+@mixin border-top-right-radius($type){
+	-webkit-border-top-right-radius: $type;
+	-moz-border-top-right-radius: $type;
+	-ms-border-top-right-radius: $type;
+	border-top-right-radius: $type;
+}
+@mixin border-top-left-radius($type){
+	-webkit-border-top-left-radius: $type;
+	-moz-border-top-left-radius: $type;
+	-ms-border-top-left-radius: $type;
+	border-top-left-radius: $type;
+}
+@mixin box-shadow($type){
+	-webkit-box-shadow: $type;
+	-moz-box-shadow: $type;
+	box-shadow: $type;
+}
+
+/*-------------------------------------------------------
+	Basic Box Properties
+*/
+
+@mixin overflow-x($type){
+	overflow-x: $type;
+}
+@mixin overflow-y($type){
+	overflow-y: $type;
+}
+
+/*-------------------------------------------------------
+	Flexible Box Layout
+*/
+
+@mixin align-content($type){
+	-webkit-align-content: $type;
+	align-content: $type;
+}
+@mixin align-items($type){
+	-webkit-align-items: $type;
+	align-items: $type;
+}
+@mixin align-self($type){
+	-webkit-align-self: $type;
+	align-self: $type;
+}
+@mixin flex($type){
+	-webkit-flex: $type;
+	-moz-flex: $type;
+	-ms-flex: $type;
+	flex: $type;
+}
+@mixin flex-basis($type){
+	-webkit-flex-basis: $type;
+	-moz-flex-basis: $type;
+	flex-basis: $type;
+}
+@mixin flex-direction($type){
+	-webkit-flex-direction: $type;
+	-moz-flex-direction: $type;
+	flex-direction: $type;
+}
+@mixin flex-flow($type){
+	-webkit-flex-flow: $type;
+	-moz-flex-flow: $type;
+	flex-flow: $type;
+}
+@mixin flex-grow($type){
+	-webkit-flex-grow: $type;
+	-moz-flex-grow: $type;
+	flex-grow: $type;
+}
+@mixin flex-shirk($type){
+	-webkit-flex-shirk: $type;
+	-moz-flex-shirk: $type;
+	flex-shirk: $type;
+}
+@mixin flex-wrap($type){
+	-webkit-flex-wrap: $type;
+	-moz-flex-wrap: $type;
+	flex-wrap: $type;
+}
+@mixin justify-content($type){
+	-webkit-justify-content: $type;
+	-moz-justify-content: $type;
+	justify-content: $type;
+}
+@mixin order($type){
+	-webkit-order: $type;
+	-moz-order: $type;
+	order: $type;
+}
+
+/*-------------------------------------------------------
+	Text Properties
+*/
+
+@mixin tab-size($type){
+	-o-tab-size: $type;
+	-moz-tab-size: $type;
+	tab-size: $type;
+	// IMPORTANT: not supported in IE!
+}
+@mixin word-break($type){
+	word-break: $type;
+}
+@mixin word-wrap($type){
+	word-wrap: $type;
+}
+
+/*-------------------------------------------------------
+	Text Decoration Properties
+*/
+
+@mixin text-shadow($type){
+	text-shadow: $type;
+}
+
+/*-------------------------------------------------------
+	Animation Properties
+*/
+
+@mixin keyframes($name){
+	@-webkit-keyframes $name {
+		@content;
+	}
+	@-moz-keyframes $name {
+		@content;
+	}
+	@-o-keyframes $name {
+		@content;
+	}
+	@keyframes $name {
+		@content;
+	}
+}
+@mixin animation($type){
+	-webkit-animation: $type;
+	-moz-animation: $type;
+	-o-animation: $type;
+	animation: $type;
+}
+@mixin animation-delay($type){
+	-webkit-animation-delay: $type;
+	-moz-animation-delay: $type;
+	-o-animation-delay: $type;
+	animation-delay: $type;
+}
+@mixin animation-direction($type){
+	-webkit-animation-direction: $type;
+	-moz-animation-direction: $type;
+	-o-animation-direction: $type;
+	animation-direction: $type;
+}
+@mixin animation-duration($type){
+	-webkit-animation-duration: $type;
+	-moz-animation-duration: $type;
+	-o-animation-duration: $type;
+	animation-duration: $type;
+}
+@mixin animation-fill-mode($type){
+	-webkit-animation-fill-mode: $type;
+	-moz-animation-fill-mode: $type;
+	-o-animation-fill-mode: $type;
+	animation-fill-mode: $type;
+}
+@mixin animation-iteration-count($type){
+	-webkit-animation-iteration-count: $type;
+	-moz-animation-iteration-count: $type;
+	-o-animation-iteration-count: $type;
+	animation-iteration-count: $type;
+}
+@mixin animation-name($type){
+	-webkit-animation-name: $type;
+	-moz-animation-name: $type;
+	-o-animation-name: $type;
+	animation-name: $type;
+}
+@mixin animation-timing-function($type){
+	-webkit-animation-timing-function: $type;
+	-moz-animation-timing-function: $type;
+	-o-animation-timing-function: $type;
+	animation-timing-function: $type;
+}
+@mixin animation-play-state($type){
+	-webkit-animation-play-state: $type;
+	-moz-animation-play-state: $type;
+	-o-animation-play-state: $type;
+	animation-play-state: $type;
+}
+
+/*-------------------------------------------------------
+	Transform Properties
+*/
+
+@mixin backface-visibility($type){
+	-webkit-backface-visibility: $type;
+	-moz-backface-visibility: $type;
+	backface-visibility: $type;
+}
+@mixin perspective($type){
+	-webkit-perspective: $type;
+	-moz-perspective: $type;
+	perspective: $type;
+}
+@mixin perspective-origin($type){
+	-webkit-perspective-origin: $type;
+	-moz-perspective-origin: $type;
+	perspective-origin: $type;
+}
+@mixin transform($type){
+	-webkit-transform: $type;
+	-moz-transform: $type;
+	-ms-transform: $type;
+	-o-transform: $type;
+	transform: $type;
+}
+@mixin transform-origin($type){
+	-webkit-transform-origin: $type;
+	-moz-transform-origin: $type;
+	-ms-transform-origin: $type;
+	-o-transform-origin: $type;
+	transform-origin: $type;
+}
+@mixin transform-style($type){
+	-webkit-transform-style: $type;
+	-moz-transform-style: $type;
+	transform-style: $type;
+}
+
+/*-------------------------------------------------------
+	Transitions Properties
+*/
+
+@mixin transition($type){
+	-webkit-transition: $type;
+	-moz-transition: $type;
+	-o-transition: $type;
+	transition: $type;
+}
+@mixin transition-property($type){
+	-webkit-transition-property: $type;
+	-moz-transition-property: $type;
+	-o-transition-property: $type;
+	transition-property: $type;
+}
+@mixin transition-duration($type){
+	-webkit-transition-duration: $type;
+	-moz-transition-duration: $type;
+	-o-transition-duration: $type;
+	transition-duration: $type;
+}
+@mixin transition-timing-function($type){
+	-webkit-transition-timing-function: $type;
+	-moz-transition-timing-function: $type;
+	-o-transition-timing-function: $type;
+	transition-timing-function: $type;
+}
+@mixin transition-delay($type){
+	-webkit-transition-delay: $type;
+	-moz-transition-delay: $type;
+	-o-transition-delay: $type;
+	transition-delay: $type;
+}
+
+/*-------------------------------------------------------
+	Basic User Interface Properties
+*/
+
+@mixin box-sizing($type){
+	-webkit-box-sizing: $type;
+	-moz-box-sizing: $type;
+	box-sizing: $type;
+}
+@mixin outline-offset($type){
+	outline-offset: $type;
+}
+@mixin resize($type){
+	-moz-resize: $type;
+	resize: $type;
+}
+@mixin text-overflow($type){
+	-o-text-overflow: $type;
+	text-overflow: $type;
+}
+
+/*-------------------------------------------------------
+	Multi-column Layout Properties
+*/
+
+@mixin column-count($type){
+	-webkit-column-count: $type;
+	-moz-column-count: $type;
+	column-count: $type;
+}
+@mixin column-gap($type){
+	-webkit-column-gap: $type;
+	-moz-column-gap: $type;
+	column-gap: $type;
+}
+@mixin column-rule($type){
+	-webkit-column-rule: $type;
+	-moz-column-rule: $type;
+	column-rule: $type;
+}
+@mixin column-rule-color($type){
+	-webkit-column-rule-color: $type;
+	-moz-column-rule-color: $type;
+	column-rule-color: $type;
+}
+@mixin column-rule-style($type){
+	-webkit-column-rule-style: $type;
+	-moz-column-rule-style: $type;
+	column-rule-style: $type;
+}
+@mixin column-rule-width($type){
+	-webkit-column-rule-width: $type;
+	-moz-column-rule-width: $type;
+	column-rule-width: $type;
+}
+@mixin column-rule-span($type){
+	-webkit-column-rule-span: $type;
+	column-rule-span: $type;
+	// IMPORTANT: Not supported in Firefox
+}
+@mixin column-width($type){
+	-webkit-column-width: $type;
+	-moz-column-width: $type;
+	column-width: $type;
+}
+@mixin columns ($type){
+	-webkit-columns : $type;
+	-moz-columns : $type;
+	columns : $type;
+}
+
+/*-------------------------------------------------------
+	Filter Effects Properties
+*/
+
+@mixin filter($type){
+	-webkit-filter: $type;
+	-moz-filter: $type;
+	-o-filter: $type;
+	filter: $type;
+}
