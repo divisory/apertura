@@ -40,7 +40,8 @@
 /*-------------------------------------------------------
 	Filter Effects Properties
 */
-.g, .g--rev {
+.g,
+.g--rev {
   box-sizing: border-box;
   display: block;
   width: 100%;
@@ -54,16 +55,21 @@
 .g--rev {
   direction: rtl; }
 
-.g.w720, .g--rev.w720 {
+.g.w720,
+.g--rev.w720 {
   max-width: 720px; }
 
-.g.w960, .g--rev.w960 {
+.g.w960,
+.g--rev.w960 {
   max-width: 960px; }
 
-.g.w1140, .g--rev.w1140 {
+.g.w1140,
+.g--rev.w1140 {
   max-width: 1140px; }
 
-.c, .cc, .c-c {
+.c,
+.cc,
+.c-c {
   box-sizing: border-box;
   display: inline-block;
   vertical-align: top;
@@ -76,28 +82,38 @@
 .c-c {
   padding: 0 20px; }
 
-.lt-ie9 .c, .lt-ie9 .cc, .no-js .c, .no-js .cc, .no-js .c-c {
+.lt-ie9 .c,
+.lt-ie9 .cc,
+.no-js .c,
+.no-js .cc,
+.no-js .c-c {
   display: block !important;
   width: 100% !important;
   padding-left: 0 !important;
   padding-right: 0 !important; }
 
-.lt-ie9 .g.w720, .lt-ie9 .g--rev.w720 {
+.lt-ie9 .g.w720,
+.lt-ie9 .g--rev.w720 {
   max-width: 720px; }
 
-.no-js .g.w720, .no-js .g--rev.w720 {
+.no-js .g.w720,
+.no-js .g--rev.w720 {
   max-width: 720px; }
 
-.lt-ie9 .g.w960, .lt-ie9 .g--rev.w960 {
+.lt-ie9 .g.w960,
+.lt-ie9 .g--rev.w960 {
   max-width: 960px; }
 
-.no-js .g.w960, .no-js .g--rev.w960 {
+.no-js .g.w960,
+.no-js .g--rev.w960 {
   max-width: 960px; }
 
-.lt-ie9 .g.w1140, .lt-ie9 .g--rev.w1140 {
+.lt-ie9 .g.w1140,
+.lt-ie9 .g--rev.w1140 {
   max-width: 1140px; }
 
-.no-js .g.w1140, .no-js .g--rev.w1140 {
+.no-js .g.w1140,
+.no-js .g--rev.w1140 {
   max-width: 1140px; }
 
 /* -----------------------------------------------------

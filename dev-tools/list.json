@@ -1,9 +1,9 @@
 [
   "dist/index.html",
-  "dist/css/grid.min.css",
-  "dist/css/skin.min.css",
   "dist/css/full/grid.css",
   "dist/css/full/skin.css",
+  "dist/css/grid.min.css",
+  "dist/css/skin.min.css",
   "dist/js/dev-tools.js",
   "dist/js/main.js",
   "dist/js/script.js",
