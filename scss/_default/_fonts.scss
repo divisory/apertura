@@ -12,16 +12,19 @@
 	font-weight: 400;
 }
 .bold {
-	font-weight: 600;
+	font-weight: 500;
 }
 .boldest {
+	font-weight: 700;
+}
+.extrabold {
 	font-weight: 900;
 }
 
-.lowercase {
+.lower {
 	text-transform: lowercase;
 }
-.uppercase {
+.upper {
 	text-transform: uppercase;
 }
 

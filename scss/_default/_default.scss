@@ -29,9 +29,16 @@ figure {
 .fixed {
 	position: fixed;
 }
+.static {
+	position: static;
+}
 
-.unstyled-input {
+.clear-input {
 	background: none;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	-o-box-sizing: border-box;
 	box-sizing: border-box;
 	border: none;
 	padding: 0;
@@ -49,17 +56,7 @@ figure {
 	list-style-type: none;
 	list-style: none;
 }
-.no-marg {
-	margin: 0;
-}
-.no-pad {
-	padding: 0;
-}
 
-.exact-fit {
-	margin: 0;
-	padding: 0;
-}
 
 .no-js body:after{
 	display: block;
@@ -111,6 +108,9 @@ img.r {
 .left {
 	text-align: left;
 }
+.justify {
+	text-align: justify;
+}
 
 /*inline-blocks*/
 .v-top {
@@ -121,6 +121,9 @@ img.r {
 }
 .v-bottom {
 	vertical-align: bottom;
+}
+.v-baseline {
+	vertical-align: baseline;
 }
 
 /*floats*/
@@ -153,6 +156,9 @@ img.r {
 	display: inline-block !important;
 }
 
+.none {
+	display: none;
+}
 /*tables*/
 .table {
 	display: table;
@@ -178,31 +184,31 @@ img.r {
 }
 
 /*overflow*/
-.o-hidden {
+.o-hid {
 	overflow: hidden;
 }
-.o-hidden-y {
+.o-hid-y {
 	overflow: hidden;
 }
-.o-hidden-x {
+.o-hid-x {
 	overflow-x: hidden;
 }
-.o-hidden-auto {
+.o-auto {
 	overflow: auto;
 }
-.o-hidden-auto-x {
+.o-auto-x {
 	overflow-x: auto;
 }
-.o-hidden-auto-y {
+.o-auto-y {
 	overflow-y: auto;
 }
-.o-visible {
+.o-visbl {
 	overflow: visible;
 }
-.o-visible-x {
+.o-visbl-x {
 	overflow-x: visible;
 }
-.o-visible-y {
+.o-visbl-y {
 	overflow-y: visible;
 }
 
@@ -211,9 +217,17 @@ img.r {
 	background: none;
 }
 .bg-cover {
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	-ms-background-size: cover;
 	background-size: cover;
 }
 .bg-contain {
+	-webkit-background-size: contain;
+	-moz-background-size: contain;
+	-o-background-size: contain;
+	-ms-background-size: contain;
 	background-size: contain;
 }
 

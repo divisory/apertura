@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<!--[if lt ie 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if ie 7]> <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if ie 8]> <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt ie 8]><!--> <html class="no-js"> <!--<![endif]-->
+  <head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    
+    <title>Apertura | Divisory</title>
+
+    <link href="css/grid.min.css" rel="stylesheet">
+    <link href="css/skin.min.css" rel="stylesheet">
+
+    <script src="js/vendor/modernizr-2.7.1.min.js"></script>
+    
+    <!--[if gt ie 8]><!-->
+    <script src="js/vendor/minify.min.js"></script>
+    <script src="js/vendor/jquery-2.1.0.min.js"></script>
+    <!--<![endif]-->
+    
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+    <![endif]-->
+
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900&subset=latin,cyrillic,cyrillic-ext,latin-ext' rel='stylesheet' type='text/css'>
+
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:400,300,700&subset=latin,cyrillic,cyrillic-ext,latin-ext' rel='stylesheet' type='text/css'>
+  </head>
+  <body>
+
+    <div class="page-wrapper">
+
+      <header class="main-header">
+        <div class="g w720">
+          <div class="c x1d4">
+            <a href="index.html" class="logo"><img src="img/logo.png" alt="">pertura</a>
+          </div>
+          <div class="c x3d4">
+            <nav class="main-nav">
+              <ul class="clear-list">
+                <li><a href="index.html">about</a></li>
+                <li><a href="structure.html">structure</a></li>
+                <li><a href="config.html">config</a></li>
+                <li><a href="grid.html">grid</a></li>
+                <li class="active"><a href="defaults.html">defaults</a></li>
+                <li><a href="adk.html">adk</a></li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+        <div>
+          <a href="#" class="show-menu none"><i></i><i></i><i></i></a>
+        </div>
+      </header>
+
+      <div class="content">
+        <div class="g w720 island-20">
+
+          <div class="paper">
+            <h4>Классы</h4>
+
+            <ul class="anchors">
+              <li><a href="#positions">Позиционирование элементов</a></li>
+              <li><a href="#align">Выравнивание элементов</a></li>
+              <li><a href="#floats">Плавающие элементы</a></li>
+              <li><a href="#display">Отображение элементов</a></li>
+              <li><a href="#overflow">Видимость контента</a></li>
+              <li><a href="#background">Фон блока</a></li>
+              <li><a href="#colors">Цвета</a></li>
+              <li><a href="#indents">Отступы</a></li>
+              <li><a href="#text">Шрифты, текст</a></li>
+              <li><a href="#other">Другие классы</a></li>
+            </ul>
+
+            <p id="positions">
+              <h5>Позиционирование элементов</h5>
+              <ul>
+                <li><span class="code">.relative</span> - относительное</li>
+                <li><span class="code">.absolute</span> - абсолютное</li>
+                <li><span class="code">.fixed</span> - фиксированный блок</li>
+                <li><span class="code">.static</span> - статический блок</li>
+                <!--<li><span class="code"></span></li>-->
+              </ul>
+            </p>
+
+            <p id="align">
+              <h5>Выравнивание элементов</h5>
+              <ul>
+                <li><span class="code">.left</span> - слева (по горизонтали)</li>
+                <li><span class="code">.center</span> - по центру (по горизонтали)</li>
+                <li><span class="code">.right</span> - справа (по горизонтали)</li>
+                <li><span class="code">.justify</span> - по ширине(по горизонтали)</li>
+                <li><span class="code">.v-top</span> - вверх (по вертикали)</li>
+                <li><span class="code">.v-bottom</span> - вниз (по вертикали)</li>
+                <li><span class="code">.v-middle</span> - по центру (по вертикали)</li>
+                <li><span class="code">.v-baseline</span> - baseline (по вертикали)</li>
+              </ul>
+            </p>
+
+            <p id="floats">
+              <h5>Плавающие элементы</h5>
+              <ul>
+                <li><span class="code">.pull-left</span> - обтекание элемента слева (float:left)</li>
+                <li><span class="code">.pull-right</span> - обтекание элемента справа (float:right)</li>
+                <li><span class="code">.clearfix</span> -  очищение флоатов (заимствовано из Twitter Bootstrap)</li>
+              </ul>
+            </p>
+
+            <p id="display">
+              <h5>Отображение элементов</h5>
+              <ul>
+                <li><span class="code">.block</span> - блочный элемент</li>
+                <li><span class="code">.inline</span> - инлайн-блок</li>
+                <li><span class="code">.none</span> - не показывать блок (display:none)</li>
+                <li><span class="code">.block-extra</span> - блочный элемент (но +!important)</li>
+                <li><span class="code">.inline-extra</span> - инлайн блок (но +!important)</li>
+                <li><span class="code">.table</span> - таблица</li>
+                <li><span class="code">.row</span> - строчка таблицы</li>
+                <li><span class="code">.thead</span> - шапка таблицы</li>
+                <li><span class="code">.tfoot</span> - подвал таблицы</li>
+                <li><span class="code">.tbody</span> - тело таблицы</li>
+                <li><span class="code">.cell</span> - ячейка таблицы</li>
+                <li><span class="code">.list-item</span> - элемент списка</li>
+              </ul>
+            </p>
+
+            <p id="overflow">
+              <h5>Видимость контента</h5>
+              <ul>
+                <li><span class="code">.o-hid</span> - обрезать со всех сторон (overflow:hidden)</li>
+                <li><span class="code">.o-hid-y</span> - обрезать по вертикали</li>
+                <li><span class="code">.o-hid-x</span> - обрезать по горизонтали</li>
+                <li><span class="code">.o-auto</span> - автоматически показывать скролл (overflow:auto)</li>
+                <li><span class="code">.o-auto-x</span> - автоматически показывать скролл по горизонтали</li>
+                <li><span class="code">.o-auto-y</span> - автоматически показывать скролл по вертикали</li>
+                <li><span class="code">.o-visbl</span> - не обрезать ничего (overflow:visible)</li>
+                <li><span class="code">.o-visbl-x</span> - не обрезать ничего по горизонтали</li>
+                <li><span class="code">.o-visbl-y</span> - не обрезать ничего по вертикали</li>
+              </ul>
+            </p>
+
+            <p id="background">
+              <h5>Фон блока</h5>
+              <blockquote class="marg-bot-10">при условии, что картинка фона задана</blockquote>
+              <ul>
+                <li><span class="code">.bg-none</span> - без фона</li>
+                <li><span class="code">.bg-cover</span> - картинка увеличивается или уменьшается до состояния, когда полностью помещается в блок</li>
+                <li><span class="code">.bg-contain</span> - заполнение, картинка заполняет собой пространство блока</li>
+              </ul>
+            </p>
+
+            <p id="colors">
+              <h5>Цвета</h5>
+              <ul>
+                <li><span class="code">.cl-*****</span> - цвет текста элемента. Параметры задаются в конфиге, в переменной <span class="span code imp"> $colors_list</span></li>
+                <li><span class="code">.bg-*****</span> - цвет фона элемента. Параметры задаются в конфиге, в переменной <span class="span code imp"> $colors_list_bg</span></li>
+              </ul>
+            </p>
+
+            <p id="indents">
+              <h5>Отступы</h5>
+              <ul>
+                <li><span class="code">.island-**</span> - (от сл. “остров”) внутренний отступ (padding) блока с четырех сторон сразу (.island-20 – внутренний отступ со всех сторон по 20 пикселей);</li>
+                <li><span class="code">.pad-v**</span> - внутренний отступ по вертикали, то же, что и предыдущее, но по горизонтали (аналог padding: 20px 0;);</li>
+                <li><span class="code">.pad-h-**</span> - внутренний отступ по горизонтали (слева и справа одновременно “.pad-020″ означает padding: 0 20px;);</li>
+                <li><span class="code">.pad-top-**</span> - внутренний отступ сверху;</li>
+                <li><span class="code">.pad-bot-**</span> - внутренний отступ снизу;</li>
+                <li><span class="code">.pad-left-**</span> - внутренний отступ слева;</li>
+                <li><span class="code">.pad-right-**</span> - внутренний отступ справа;</li>
+                <li><span class="code">.marg-v**</span> - внешний отступ по вертикали, то же, что и предыдущее, но по горизонтали (аналог margin: 20px 0;);</li>
+                <li><span class="code">.marg-h-**</span> - внешний отступ по горизонтали (слева и справа одновременно “.marg-020″ означает margin: 0 20px;);</li>
+                <li><span class="code">.marg-top-**</span> - внешний отступ сверху;</li>
+                <li><span class="code">.marg-bot-**</span> - внешний отступ снизу;</li>
+                <li><span class="code">.marg-left-**</span> - внешний отступ слева;</li>
+                <li><span class="code">.marg-right-**</span> - внешний отступ справа;</li>
+                <li><span class="code">.no-pad</span> - сбрасывает внутренние отступы;</li>
+                <li><span class="code">.no-marg</span> - сбрасывает внешние отступы;</li>
+                <li><span class="code">.extra-fit</span> - сбрасывает и внешние и внутренние отступы;</li>
+              </ul>
+            </p>
+
+            <p id="text">
+              <h5>Шрифты, текст</h5>
+              <ul>
+                <li><span class="code">.light</span> - тонкое начертание (100)</li>
+                <li><span class="code">.semilight</span> - полутонкое (300)</li>
+                <li><span class="code">.regular</span> - нормальное начертание (400)</li>
+                <li><span class="code">.bold</span> - жирный (500)</li>
+                <li><span class="code">.boldest</span> - очень жирный (700)</li>
+                <li><span class="code">.extrabold</span> - black (900)</li>
+                <li><span class="code">.lower</span> - приведеие к нижнему регистру</li>
+                <li><span class="code">.upper</span> - приведеие к верхнему регистру</li>
+                <li><span class="code">.underline</span> - подчеркивание снизу (для ссылки ховер - убирает подчеркивание)</li>
+                <li><span class="code">.rev-underline</span> - убирает подчеркивание снизу (для ссылки ховер - показывает подчеркивание)</li>
+                <li><span class="code">.font-**</span> - высота шрифта в пикселях (.font-10 – 10px, .font-24 – 24px;)</li>
+              </ul>
+            </p>
+
+            <p id="other">
+              <h5>Другие классы</h5>
+              <ul>
+                <li><span class="code">.circle-item</span> - круглый элемент (border-radius:50%)</li>
+                <li><span class="code">.clear-list</span> - чистый список, без отступов и маркеров. Обычно используется для вывода контента не в виде списка в его стандартном виде.</li>
+                <li><span class="code">.clear-input</span> - "чистое" поле ввода. Убирается рамка, отступы, фон</li>
+                <li><span class="code">.r</span> - (reponsive), добавляется преимущественно изображениям. Картинка отображается как блочный элемент с шириной в 100% от родителя, высота при этом подстраивается автоматически исходя из пропорций изображения</li>
+                <li><span class="code">.noresize</span> - запрещает ресайз текстового поля ввода</li>
+                <li><span class="code">.disable-hover</span> - убирает все ховер-эффекты для элемента</li>
+                <li><span class="code">.disable-hover-childs</span> - убирает все ховер-эффекты для ВСЕХ потомков элемента</li>
+              </ul>
+            </p>
+
+
+            <div class="pat-top-20 center">
+              <a href="adk.html" class="btn">Apertura Development Kit (beta)</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <!-- scripts -->
+    <script src="js/main.js"></script>
+
+  </body>
+</html>

@@ -38,12 +38,6 @@
 	media queries
 */
 
-@media (max-width: 480px) {
-	@import "_media/_480.scss";
-}
-@media (max-width: 1024px) {
-	@import "_media/_1024.scss";
-}
-@media (max-width: 1280px) {
-	@import "_media/_1280.scss";
+@media (max-width: 768px) {
+	@import "_media/_768.scss";
 }

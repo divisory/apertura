@@ -14,15 +14,15 @@ $grid_sizes:					(720, 960, 1140);
 $grid_prefixes: 			(480, '--m') (640, '--t') (768, '--d');
 
 // GRID:: grid calc
-$grid_calc: 					(1 2 3 4 6 8 12);
+$grid_calc: 					(1 2 3 4 5 6 7 8 9 10 11 12);
 
 // GRID:: fixed widths
 $fixed_widths:        (50,100,150,200,250,300);
 
 // indents
-$islands: 						(5,10,15,20,25,30,35,40);
-$vertical_indents: 		(5,10,15,20,25,30,35,40);
-$horizontal_indents: 	(5,10,15,20,25,30,35,40);
+$islands: 						(5,10,15,20,25,30,35,40,45,50);
+$vertical_indents: 		(5,10,15,20,25,30,35,40,45,50);
+$horizontal_indents: 	(5,10,15,20,25,30,35,40,45,50);
 
 // FONTS:: min font size
 $min_font_size: 			6;
@@ -41,3 +41,13 @@ $font_size: 					14px;
 
 // SKIN:: font-family
 $font_family: 				'Open Sans', sans-serif;
+
+$Roboto: 							'Roboto', sans-serif;
+$RobotoSlab: 					'Roboto Slab', serif;
+
+$orange: #DD4814;
+$white: #fff;
+$black: #000;
+$aulight: #77216F;
+$aumid: #5E2750;
+$audark: #2C001E;

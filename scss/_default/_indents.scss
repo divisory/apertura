@@ -86,3 +86,15 @@
 		margin-right: #{$indent}px;
 	}
 }
+
+
+.no-marg {
+	margin: 0;
+}
+.no-pad {
+	padding: 0;
+}
+.exact-fit {
+	margin: 0;
+	padding: 0;
+}
