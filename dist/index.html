@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     
-    <title>Apertura | Divisory</title>
+    <title>Page title here</title>
 
     <link href="css/grid.min.css" rel="stylesheet">
     <link href="css/skin.min.css" rel="stylesheet">
@@ -25,95 +25,75 @@
     <!--[if lt IE 9]>
     <script src="js/html5shiv.js"></script>
     <![endif]-->
-
-    <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900&subset=latin,cyrillic,cyrillic-ext,latin-ext' rel='stylesheet' type='text/css'>
-
-    <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:400,300,700&subset=latin,cyrillic,cyrillic-ext,latin-ext' rel='stylesheet' type='text/css'>
   </head>
   <body>
 
-    <div class="page-wrapper">
-      <header class="main-header">
-        <div class="g w720">
-          <div class="c x1d4">
-            <a href="index.html" class="logo"><img src="img/logo.png" alt="">pertura</a>
-          </div>
-          <div class="c x3d4">
-            <nav class="main-nav">
-              <ul class="clear-list">
-                <li class="active"><a href="index.html">about</a></li>
-                <li><a href="structure.html">structure</a></li>
-                <li><a href="config.html">config</a></li>
-                <li><a href="grid.html">grid</a></li>
-                <li><a href="defaults.html">defaults</a></li>
-                <li><a href="adk.html">adk</a></li>
-              </ul>
-            </nav>
-          </div>
-        </div>
-        <div>
-          <a href="#" class="show-menu none"><i></i><i></i><i></i></a>
-        </div>
-      </header>
+    <header class="page-header">
 
+    </header>
 
-      <div class="content">
-        <div class="g w720 island-20">
+    <div class="page-main">
+      <style>
+        .demo{
+          padding: 10px 0;
+          color: #444;
+        }
+        .demo-cell{
+          background-color: #999;
+          padding: 10px 0;
+          margin: 0 0 5px 0;
+          color: #fff;
+          text-align: center;
+        }
+      </style>
 
-          <div class="paper marg-bot-20">
+      <article class="demo">
 
-            <p>
-              Мир веб-разработки растет с каждым днем. Наверное каждый верстальщик имел опыт использования сеток или фреймворков при разработке того или иного проекта. До определенного момента времени мы именно так и делали.
-            </p>
+        <section class="g w1140">
+          <h2 class="c">Regular demo-cells</h2>
+          <div class="c x1d4 x1d3--d x1d2--t x1--m"><p class="demo-cell">Regular demo-cell 1</p></div>
+          <div class="c x1d4 x1d3--d x1d2--t x1--m"><p class="demo-cell">Regular demo-cell 2</p></div>
+          <div class="c x1d4 x1d3--d x1d2--t x1--m"><p class="demo-cell">Regular demo-cell 3</p></div>
+          <div class="c x1d4 x1d3--d x1d2--t x1--m"><p class="demo-cell">Regular demo-cell 4</p></div>
+          <div class="c x1d4 x1d3--d x1d2--t x1--m"><p class="demo-cell">Regular demo-cell 5</p></div>
+          <div class="c x1d4 x1d3--d x1d2--t x1--m"><p class="demo-cell">Regular demo-cell 6</p></div>
+          <div class="c x1d4 x1d3--d x1d2--t x1--m"><p class="demo-cell">Regular demo-cell 7</p></div>
+          <div class="c x1d4 x1d3--d x1d2--t x1--m"><p class="demo-cell">Regular demo-cell 8</p></div>
+          <div class="c x1d4 x1d3--d x1d2--t x1--m"><p class="demo-cell">Regular demo-cell 9</p></div>
+          <div class="c x1d4 x1d3--d x1d2--t x1--m"><p class="demo-cell">Regular demo-cell a</p></div>
+          <div class="c x1d4 x1d3--d x1d2--t x1--m"><p class="demo-cell">Regular demo-cell b</p></div>
+          <div class="c x1d4 x1d3--d x1d2--t x1--m"><p class="demo-cell">Regular demo-cell c</p></div>
+        </section>
 
-            <p>
-              Но, со временем мы стали замечать явные недостатки таких продуктов, и ошибки, которые они вызывали тяжело было исправить без “костылей”:
-            </p>
+        <section class="g w1140">
+          <h2 class="c">Breakpointed demo-cells</h2>
+          <div class="c x1d2--m x1d4--t x1d6--d"><p class="demo-cell">Breakpointed demo-cell</p></div>
+          <div class="c x1d2--m x1d4--t x1d6--d"><p class="demo-cell">Breakpointed demo-cell</p></div>
+          <div class="c x1d2--m x1d4--t x1d6--d"><p class="demo-cell">Breakpointed demo-cell</p></div>
+          <div class="c x1d2--m x1d4--t x1d6--d"><p class="demo-cell">Breakpointed demo-cell</p></div>
+          <div class="c x1d2--m x1d4--t x1d6--d"><p class="demo-cell">Breakpointed demo-cell</p></div>
+          <div class="c x1d2--m x1d4--t x1d6--d"><p class="demo-cell">Breakpointed demo-cell</p></div>
+        </section>
 
-            <ul class="font-14">
-              <li class="pad-top-15">
-                <b class="bold">Повторяемость.</b> Сайты, которые разрабатываются на фреймворках (например Bootstrap) очень похожи друг на друга, и поэтому такие сайты мало запоминаются пользователем, следственно эффективность ресурса падает;
-              </li>
-              <li class="pad-top-15">
-                <b class="bold">Негибкость</b>. Если нам нужен интерфейс (Bootstrap|Foundation|etc.), тогда все хорошо. Если требуется что-либо более-менее отличное, то приходится с самых первых шагов бороться со стилями по умолчанию. На практике получается двойной труд:
-                верстаем то, что требуется
-                заставляем это работать поверх стандартных стилей.
-              </li>
-              <li class="pad-top-15">
-                <b class="bold">Избыточный код.</b> То, что реально сделать двумя вложенными блоками, зачастую делается пятью. Любые изменения влекут за собой часы мучений.
-              </li>
-              <li class="pad-top-15">
-                <b class="bold">Floats.</b> Флоаты – это отдельная тема. Конечно, это хорошо, когда все дробится ровненько и прорисовывается сразу. Но обтекания зачастую ведут себя непредсказуемо: стоит одному блоку остаться с контентом, меньше чем нужно и все последующие блоки разваливаются и прорисовываются в неожиданных местах. Ко всему – флоаты нужно каждый раз очищать, что не очень-то и хорошо.
-              </li>
-              <li class="pad-top-15">
-                <b class="bold">Выравнивание.</b> Выровнять блоки по вертикали – представляет не всегда легкую задачу. А учитывая “артефакты” выше – и подавно.
-              </li>
-              <li class="pad-top-15">
-                Фреймворки не используют брейк-поинты, аесли используют – крайне мало и это не очень-то гибко. А зачастую дизайнеры присылают макеты в произвольном воображении больного человека.
-              </li>
-            </ul>
-          </div>
-
-          <div class="paper marg-bot-20">
-            <h4>Apertura</h4>
-            <p>
-              Apertura – это целый копмлекс инструментов и решений, которые направлены на упрощение жизни разработчика при работе с новым проектом. Мы собрали самые нужные дополнения по разработке и отладке для FrontEnd-разработчика и  запаковали это все в единую крепкую систему.
-            </p>
-            <p>
-              Обдумав эти факты хорошенько, мы занялись разработкой собственной сетки, и решили сделать это с замашкой на будущее. Мы учли многие аспекты, учли каждую неожиданность, и собрав опыт всей команды мы выпустили в свет Divisory Grid.
-              <div class="center pad-top-20">
-                <a href="structure.html" class="btn orange">Начать знакомство</a>
-              </div>
-            </p>
-          </div>
-
-        </div>
-      </div>
-
+        <section class="g w960">
+          <h2 class="c">Breakpointed demo-cells</h2>
+          <div class="c x1d1"><p class="demo-cell">x1d40</p></div>
+          <div class="c x1d1"><p class="demo-cell">x1d40</p></div>
+          <div class="c x1d1"><p class="demo-cell">x1d40</p></div>
+        </section>
+      </article>
     </div>
+    <footer class="page-footer">
+
+    </footer>
 
     <!-- scripts -->
     <script src="js/main.js"></script>
+
+    <!-- Divisory Developer Tools -->
+    <script src="dev-tools-js/dev-tools.js"></script>
+    <link rel="stylesheet" href="dev-tools-css/dev-tools-skin.css">
+    <!-- Divisory Developer Tools -->
 
   </body>
 </html>

@@ -9,9 +9,10 @@ $grid_line_height: 		20px;
 
 // GRID:: boxes widths
 $grid_sizes:					(720, 960, 1140);
+$primary_grid: 				1140;
 
 // GRID:: boxes widths
-$grid_prefixes: 			(480, '--m') (640, '--t') (768, '--d');
+$grid_prefixes: 			(768, '--t') (640, '--sm') (480, '--m');
 
 // GRID:: grid calc
 $grid_calc: 					(1 2 3 4 5 6 7 8 9 10 11 12);
@@ -40,7 +41,4 @@ $colors_list_bg: 			(black, #000000) (white, #ffffff);
 $font_size: 					14px;
 
 // SKIN:: font-family
-$font_family: 				'Open Sans', sans-serif;
-
-$Roboto: 							'Roboto', sans-serif;
-$RobotoSlab: 					'Roboto Slab', serif;
+$font_family: 				sans-serif;

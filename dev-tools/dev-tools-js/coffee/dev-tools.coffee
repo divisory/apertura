@@ -17,12 +17,11 @@ append = (elem) ->
 #
 
 files =
-#= include '../../list.json'
+#=require '../../list.json'
 
 config = "
-	#= include '../../../scss/_config.scss'
+#=require '../../../scss/_config.scss'
 "
-
 gridColor 			= 'rgba(200,20,20,.2)'
 gridColorVerical = 'rgba(200,20,20,.2)'
 
@@ -44,6 +43,12 @@ _g = config.substr config.indexOf "$gutter"
 _g = _g.substr(_g.indexOf(":")+1)
 _g = _g.substr 0, _g.indexOf "px;"
 gridGutter2 = parseInt _g
+
+# get the config from _config.scss
+_g = config.substr config.indexOf "$primary_grid"
+_g = _g.substr(_g.indexOf(":")+1)
+_g = _g.substr 0, _g.indexOf ";"
+gridWidth  = parseInt _g
 
 
 
@@ -288,8 +293,6 @@ gridBlock = select '#dev-grid-block'
 createGridLayer = ->
 	clientHeight 	= document.body.clientHeight
 	clientWidth 	= document.body.clientWidth
-	# console.log width, height
-	gridWidth 	= 1140
 	if clientWidth < gridWidth
 		gridWidth = clientWidth
 	gridColumns	= gridCalc
@@ -303,6 +306,7 @@ createGridLayer = ->
 		Line: <b>#{gridLineHeight}</b>px
 		</div>
 		"
+
 	# create box shadow
 	s = 'box-shadow:'
 	for i in [0...gridColumns]
@@ -417,20 +421,9 @@ op = select '#dev-tools-pixel-input'
 op
 	.onkeydown = (e) ->
 		e = e || event
+		e.preventDefault()
 		if e.keyCode is 40
 			op.value = if op.value > 10 then parseInt(op.value)-5 else parseInt(op.value)
 		else if e.keyCode is 38
 			op.value = if op.value < 90 then parseInt(op.value)+5 else parseInt(op.value)
 		do insertOpacity
-		# e.preventDefault()
-
-
-
-# body.scrollHeight,
-# body.offsetHeight,
-# html.clientHeight,
-# html.scrollHeight,
-# html.offsetHeight
-
-body = document.body
-console.log document.body.scrollHeight

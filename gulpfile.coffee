@@ -19,21 +19,23 @@
 # path for current project
 # by default - ''
 
-_PATH 		= ''
-_OPTIONS 	=
+PATH 		= ''
+OPTIONS 	=
 	# server
-	serverHost: 		'localhost'
-	serverPort: 		1111
+	serverHost: 				'localhost'
+	serverPort: 				1111
 	serverLivereload: 	on
+	# coffee
+	coffeeWraping: 			false
 
 # -----------------------------------------------------------------------------
 # MODULES
 # -----------------------------------------------------------------------------
 
 # include fs
-fs 				= require 'fs'
+fs 					= require 'fs'
 # include gulp
-gulp 			= require 'gulp'
+gulp 				= require 'gulp'
 # include module for local server
 connect 		= require 'gulp-connect'
 # *.coffee compilling
@@ -43,11 +45,11 @@ clean 			= require 'gulp-clean'
 # clearing
 uglify 			= require 'gulp-uglify'
 # SASS compilator
-sass 			= require 'gulp-sass'
+sass 				= require 'gulp-sass'
 # colors
 colors 			= require 'colors'
 # files
-fileinclude 	= require 'gulp-include'
+fileinclude = require 'gulp-include'
 # cssmin
 cssmin 			= require 'gulp-cssmin'
 # rename
@@ -57,16 +59,13 @@ filelist 		= require 'gulp-filelist'
 # using
 using 			= require 'gulp-using'
 # map
-map 			= require 'map-stream'
+map 				= require 'map-stream'
 # plumber
-plumber 			= require 'gulp-plumber'
+plumber 		= require 'gulp-plumber'
 
 # -----------------------------------------------------------------------------
 # CONSOLE
 # -----------------------------------------------------------------------------
-
-str = "Gulp.js was started."
-console.log colors.gray str
 
 consol = (str, str2, str3) ->
 	console.log "
@@ -138,78 +137,88 @@ writeLog = (element, type, str) ->
 	else
 		do using.write
 
-writeLog gulp.src(_PATH), 'start'
+writeLog gulp.src(PATH), 'start'
 
 # create localhost:1111
 gulp.task '  Connection', ->
 	connect.server
-		host: 			_OPTIONS.serverHost
-		port: 			_OPTIONS.serverPort
-		livereload: _OPTIONS.serverLivereload
-		root: 			[_PATH+'dist',_PATH+'dev-tools',_PATH+'scss']
+		host: 			OPTIONS.serverHost
+		port: 			OPTIONS.serverPort
+		livereload: OPTIONS.serverLivereload
+		root: 			[PATH+'dist',PATH+'dev-tools',PATH+'scss']
 
 # TASK:: coffeescript
 gulp.task 'CoffeeScript', ->
-	log = gulp.src _PATH+'coffee/*coffee'
+	log = gulp.src PATH+'coffee/*coffee'
 	writeLog log, 'file'
 	log
 		.pipe plumber
 			errorHandler: (err)->
 				_CoffeeConsole err
 		.pipe do fileinclude
-		.pipe do coffee
-		.pipe gulp.dest _PATH+'dist/js'
+	if OPTIONS.coffeeWraping is true
+		log
+			.pipe coffee
+				bare: true
+			.pipe gulp.dest PATH+'dist/js'
+	else
+		log
+			.pipe do coffee
+			.pipe gulp.dest PATH+'dist/js'
+	log
 		.pipe do connect.reload
-	log = gulp.src _PATH+'dev-tools/dev-tools-js/coffee/*coffee'
+	log = gulp.src PATH+'dev-tools/dev-tools-js/coffee/*coffee'
 	writeLog log, 'file'
-	log.pipe do fileinclude
-		.pipe do coffee
-		.pipe gulp.dest _PATH+'dev-tools/dev-tools-js/'
+	log
+		.pipe do fileinclude
+		.pipe coffee
+			bare: true
+		.pipe gulp.dest PATH+'dev-tools/dev-tools-js/'
 		.pipe do connect.reload
 
 # sass
 gulp.task '        SASS', ->
-	log = gulp.src _PATH+'scss/*.scss'
+	log = gulp.src PATH+'scss/*.scss'
 	writeLog log, 'file'
 	log
 		.pipe plumber
 			errorHandler: (err)->
 				_SASSConsole err
 		.pipe do sass
-		.pipe gulp.dest _PATH+'dist/css/full'
+		.pipe gulp.dest PATH+'dist/css/full'
 		.pipe do cssmin
 		.pipe rename
 			suffix: '.min'
-		.pipe gulp.dest _PATH+'dist/css'
+		.pipe gulp.dest PATH+'dist/css'
 		.pipe do connect.reload
-	log = gulp.src _PATH+'dev-tools/dev-tools-css/scss/*.scss'
+	log = gulp.src PATH+'dev-tools/dev-tools-css/scss/*.scss'
 	writeLog log, 'file'
 	log.pipe do sass
-		.pipe gulp.dest _PATH+'dev-tools/dev-tools-css/'
+		.pipe gulp.dest PATH+'dev-tools/dev-tools-css/'
 		.pipe do cssmin
 		.pipe do connect.reload
 
 # html-including
 gulp.task 'IncludedHTML', ->
-	log = gulp.src _PATH+'html/*.html'
+	log = gulp.src PATH+'html/*.html'
 	writeLog log, 'file'
 	log
 		.pipe plumber
 			errorHandler: (err)->
 				# _includedHTMLConsole err
 		.pipe do fileinclude
-		.pipe gulp.dest _PATH+'dist/'
+		.pipe gulp.dest PATH+'dist/'
 		.pipe do connect.reload
 
 # autosave *.css
 gulp.task '         CSS', ->
-	log = gulp.src _PATH+'dist/css/*.css'
+	log = gulp.src PATH+'dist/css/*.css'
 	writeLog log, 'file'
 	log.pipe do connect.reload
 
 # autosave *.html
 gulp.task '        HTML', ->
-	log = gulp.src _PATH+'dist/*.html'
+	log = gulp.src PATH+'dist/*.html'
 	writeLog log, 'file'
 	log
 		.pipe do plumber
@@ -217,39 +226,39 @@ gulp.task '        HTML', ->
 
 # autosave *.html
 gulp.task '  Javascript', ->
-	log = gulp.src _PATH+'dist/js/*.js'
+	log = gulp.src PATH+'dist/js/*.js'
 	writeLog log, 'file'
 	log.pipe do connect.reload
 
 # filelist
 gulp.task ' ListOfFiles', ->
-	log = gulp.src _PATH+'list.json'
+	log = gulp.src PATH+'list.json'
 	writeLog log, 'file'
 	log.pipe do clean
 	gulp.src [
-			_PATH+'dist/*html',
-			_PATH+'dist/*txt',
-			_PATH+'dist/*json',
-			_PATH+'dist/css/**/*css',
-			_PATH+'dist/js/**/*js'
+			PATH+'dist/*html',
+			PATH+'dist/*txt',
+			PATH+'dist/*json',
+			PATH+'dist/css/**/*css',
+			PATH+'dist/js/**/*js'
 		]
 		.pipe filelist 'list.json'
-		.pipe gulp.dest _PATH+'dev-tools/'
+		.pipe gulp.dest PATH+'dev-tools/'
 
 # autoreload localhost
 gulp.task ' WatchModule', ->
-	gulp.watch _PATH+'coffee/*coffee', 			['CoffeeScript']
-	gulp.watch _PATH+'coffee/*/*coffee',		['CoffeeScript']
-	gulp.watch _PATH+'dev-tools/*/*/*coffee',	['CoffeeScript']
-	gulp.watch _PATH+'scss/*.scss', 			['        SASS']
-	gulp.watch _PATH+'scss/*/*scss', 			['        SASS']
-	gulp.watch _PATH+'dev-tools/*/*/*scss', 	['        SASS']
-	gulp.watch _PATH+'dist/*html', 				['        HTML']
-	gulp.watch _PATH+'html/*html', 				['IncludedHTML']
-	gulp.watch _PATH+'html/includes/*html', 	['IncludedHTML']
-	gulp.watch _PATH+'dist/css/*css', 			['         CSS']
-	gulp.watch _PATH+'dist/js/*js', 			['  Javascript']
-	gulp.watch _PATH+'dist/**/*', 				[' ListOfFiles']
+	gulp.watch PATH+'coffee/*coffee', 			['CoffeeScript']
+	gulp.watch PATH+'coffee/*/*coffee',		['CoffeeScript']
+	gulp.watch PATH+'dev-tools/*/*/*coffee',	['CoffeeScript']
+	gulp.watch PATH+'scss/*.scss', 			['        SASS']
+	gulp.watch PATH+'scss/*/*scss', 			['        SASS']
+	gulp.watch PATH+'dev-tools/*/*/*scss', 	['        SASS']
+	gulp.watch PATH+'dist/*html', 				['        HTML']
+	gulp.watch PATH+'html/*html', 				['IncludedHTML']
+	gulp.watch PATH+'html/includes/*html', 	['IncludedHTML']
+	gulp.watch PATH+'dist/css/*css', 			['         CSS']
+	gulp.watch PATH+'dist/js/*js', 			['  Javascript']
+	gulp.watch PATH+'dist/**/*', 				[' ListOfFiles']
 
 #  ----------------------------------------------------------------------------
 # MAIN TASK

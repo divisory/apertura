@@ -1,10 +1,5 @@
 [
-  "dist/adk.html",
-  "dist/config.html",
-  "dist/defaults.html",
-  "dist/grid.html",
   "dist/index.html",
-  "dist/structure.html",
   "dist/css/full/grid.css",
   "dist/css/full/skin.css",
   "dist/css/grid.min.css",
