@@ -1,4 +1,40 @@
 @import url(http://fonts.googleapis.com/css?family=Exo+2:400,300,700,100&subset=latin,cyrillic);
+/*-------------------------------------------------------
+	Color Properties
+*/
+/*-------------------------------------------------------
+	Background and Border Properties
+*/
+/*-------------------------------------------------------
+	Basic Box Properties
+*/
+/*-------------------------------------------------------
+	Flexible Box Layout
+*/
+/*-------------------------------------------------------
+	Text Properties
+*/
+/*-------------------------------------------------------
+	Text Decoration Properties
+*/
+/*-------------------------------------------------------
+	Animation Properties
+*/
+/*-------------------------------------------------------
+	Transform Properties
+*/
+/*-------------------------------------------------------
+	Transitions Properties
+*/
+/*-------------------------------------------------------
+	Basic User Interface Properties
+*/
+/*-------------------------------------------------------
+	Multi-column Layout Properties
+*/
+/*-------------------------------------------------------
+	Filter Effects Properties
+*/
 #dev-pixel-perfect {
   font-family: 'Exo 2', sans-serif;
   position: absolute;
@@ -79,9 +115,11 @@
   text-align: left;
   position: relative;
   z-index: 2;
-  overflow: hidden; }
-  .__link:hover div {
-    color: #fff; }
+  overflow: hidden;
+  text-decoration: none; }
+  .__link:hover {
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.1); }
   .__link:hover img {
     border-color: #fff !important;
     transition: 0.2s cubic-bezier(0, 0, 0, 1); }
@@ -92,10 +130,10 @@
     width: 22px;
     margin-right: 20px;
     transition: 1s cubic-bezier(0, 0, 0, 1); }
-  .__link div {
+  .__link > span {
     display: inline-block;
     vertical-align: middle;
-    width: 360px;
+    width: 320px;
     color: #bbb;
     font-weight: 100;
     font-size: 22px;
@@ -142,3 +180,155 @@
     display: inline-block;
     vertical-align: middle;
     font-weight: 100; }
+
+.dev-tools-boxer-hint {
+  background: rgba(238, 68, 85, 0.6);
+  color: #fff;
+  position: absolute;
+  border: 1px solid #ea152b;
+  /*margin-top: 10px;*/ }
+  .dev-tools-boxer-hint:before, .dev-tools-boxer-hint:after {
+    content: '';
+    height: 1000px;
+    position: absolute;
+    width: 0;
+    bottom: 100%; }
+  .dev-tools-boxer-hint:before {
+    left: -1px;
+    border-left: 1px dashed #ee4455; }
+  .dev-tools-boxer-hint:after {
+    right: -1px;
+    border-right: 1px dashed #ee4455; }
+  .dev-tools-boxer-hint .dev-tools-boxer-hint-border {
+    position: absolute;
+    background: rgba(235, 231, 122, 0.6);
+    border: 1px solid #e4df4e; }
+    .dev-tools-boxer-hint .dev-tools-boxer-hint-border:before, .dev-tools-boxer-hint .dev-tools-boxer-hint-border:after {
+      content: '';
+      height: 1000px;
+      position: absolute;
+      width: 0;
+      bottom: 100%; }
+    .dev-tools-boxer-hint .dev-tools-boxer-hint-border:before {
+      left: -1px;
+      border-left: 1px dashed #EBE77A; }
+    .dev-tools-boxer-hint .dev-tools-boxer-hint-border:after {
+      right: -1px;
+      border-right: 1px dashed #EBE77A; }
+    .dev-tools-boxer-hint .dev-tools-boxer-hint-border .dev-tools-boxer-hint-padding {
+      position: absolute;
+      background: rgba(122, 235, 143, 0.6);
+      border: 1px solid #4ee46a; }
+      .dev-tools-boxer-hint .dev-tools-boxer-hint-border .dev-tools-boxer-hint-padding:before, .dev-tools-boxer-hint .dev-tools-boxer-hint-border .dev-tools-boxer-hint-padding:after {
+        content: '';
+        height: 1000px;
+        position: absolute;
+        width: 0;
+        bottom: 100%; }
+      .dev-tools-boxer-hint .dev-tools-boxer-hint-border .dev-tools-boxer-hint-padding:before {
+        left: -1px;
+        border-left: 1px dashed #7AEB8F; }
+      .dev-tools-boxer-hint .dev-tools-boxer-hint-border .dev-tools-boxer-hint-padding:after {
+        right: -1px;
+        border-right: 1px dashed #7AEB8F; }
+      .dev-tools-boxer-hint .dev-tools-boxer-hint-border .dev-tools-boxer-hint-padding .dev-tools-boxer-hint-content {
+        position: absolute;
+        background: rgba(122, 188, 235, 0.6);
+        border: 1px solid #4ea6e4; }
+        .dev-tools-boxer-hint .dev-tools-boxer-hint-border .dev-tools-boxer-hint-padding .dev-tools-boxer-hint-content:before, .dev-tools-boxer-hint .dev-tools-boxer-hint-border .dev-tools-boxer-hint-padding .dev-tools-boxer-hint-content:after {
+          content: '';
+          height: 1000px;
+          position: absolute;
+          width: 0;
+          bottom: 100%; }
+        .dev-tools-boxer-hint .dev-tools-boxer-hint-border .dev-tools-boxer-hint-padding .dev-tools-boxer-hint-content:before {
+          left: -1px;
+          border-left: 1px dashed #7ABCEB; }
+        .dev-tools-boxer-hint .dev-tools-boxer-hint-border .dev-tools-boxer-hint-padding .dev-tools-boxer-hint-content:after {
+          right: -1px;
+          border-right: 1px dashed #7ABCEB; }
+  .dev-tools-boxer-hint hr {
+    display: block;
+    height: 0;
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2); }
+  .dev-tools-boxer-hint .dev-tools-boxer-hint-info {
+    position: absolute;
+    top: 100%;
+    left: -1px;
+    right: -1px;
+    min-height: 10px;
+    background: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    padding: 10px; }
+    .dev-tools-boxer-hint .dev-tools-boxer-hint-info div:not(.dev-tools-info-path) {
+      display: block; }
+    .dev-tools-boxer-hint .dev-tools-boxer-hint-info .dev-tools-info-margin {
+      color: #ee4455; }
+      .dev-tools-boxer-hint .dev-tools-boxer-hint-info .dev-tools-info-margin span {
+        width: 15%;
+        max-width: 50px;
+        display: inline-block;
+        font-size: 10px; }
+      .dev-tools-boxer-hint .dev-tools-boxer-hint-info .dev-tools-info-margin b {
+        font-weight: 400;
+        font-size: 14px;
+        display: inline-block; }
+    .dev-tools-boxer-hint .dev-tools-boxer-hint-info .dev-tools-info-border {
+      color: #EBE77A; }
+      .dev-tools-boxer-hint .dev-tools-boxer-hint-info .dev-tools-info-border span {
+        width: 15%;
+        max-width: 50px;
+        display: inline-block;
+        font-size: 10px; }
+      .dev-tools-boxer-hint .dev-tools-boxer-hint-info .dev-tools-info-border b {
+        font-weight: 400;
+        font-size: 14px;
+        display: inline-block; }
+    .dev-tools-boxer-hint .dev-tools-boxer-hint-info .dev-tools-info-padding {
+      color: #7AEB8F; }
+      .dev-tools-boxer-hint .dev-tools-boxer-hint-info .dev-tools-info-padding span {
+        width: 15%;
+        max-width: 50px;
+        display: inline-block;
+        font-size: 10px; }
+      .dev-tools-boxer-hint .dev-tools-boxer-hint-info .dev-tools-info-padding b {
+        font-weight: 400;
+        font-size: 14px;
+        display: inline-block; }
+    .dev-tools-boxer-hint .dev-tools-boxer-hint-info .dev-tools-info-content {
+      color: #7ABCEB; }
+      .dev-tools-boxer-hint .dev-tools-boxer-hint-info .dev-tools-info-content span {
+        width: 15%;
+        max-width: 50px;
+        display: inline-block;
+        font-size: 10px; }
+      .dev-tools-boxer-hint .dev-tools-boxer-hint-info .dev-tools-info-content b {
+        font-weight: 400;
+        font-size: 14px;
+        display: inline-block; }
+  .dev-tools-boxer-hint .dev-tools-info-path {
+    position: fixed;
+    z-index: 999999;
+    bottom: 0;
+    left: 0;
+    white-space: nowrap;
+    font-size: 14px;
+    color: #EBE77A;
+    padding: 7px 12px;
+    background: rgba(0, 0, 0, 0.7); }
+    .dev-tools-boxer-hint .dev-tools-info-path b {
+      font-weight: normal;
+      color: #7AEB8F; }
+    .dev-tools-boxer-hint .dev-tools-info-path s {
+      font-style: normal;
+      text-decoration: none;
+      color: #7ABCEB; }
+    .dev-tools-boxer-hint .dev-tools-info-path i {
+      font-style: normal;
+      text-decoration: none;
+      color: #7ABCEB;
+      padding: 0 2px; }
+
+.dev-tools-active {
+  opacity: .5 !important; }
