@@ -1,4 +1,4 @@
-var _g, addControl, append, block, blockHeight, c, cacheHoverColor, config, counter, counterStyle, createGridLayer, createLinkToFile, file, files, filesBlock, getClassOfLink, getColorOfLink, getHeight, getImageOfLink, getPixelperfect, gridBlock, gridBlockVertical, gridBlockVerticalStyle, gridCalc, gridColor, gridColorVerical, gridGutter2, gridLineHeight, gridWidth, i, images, insertOpacity, j, k, len, len1, linkStyle, linkStyleHover, n, op, pixelPerfect, renameHref, renameStr, s, select, str, style, sumStyle, sums, sumsBlock, unbindEvent;
+var _g, addClass, addControl, append, bindHandler, block, blockHeight, c, cacheHoverColor, config, counter, counterStyle, createGridLayer, createLinkToFile, file, files, filesBlock, getClassOfLink, getColorOfLink, getHeight, getImageOfLink, getPath, getPixelperfect, gridBlock, gridBlockVertical, gridBlockVerticalStyle, gridCalc, gridColor, gridColorVerical, gridGutter2, gridLineHeight, gridWidth, i, images, insertOpacity, j, k, len, len1, linkStyle, linkStyleHover, moveHandler, n, op, pixelPerfect, removeClass, renameHref, renameStr, s, select, str, style, sumStyle, sums, sumsBlock, unbindEvent, unbindHandler;
 
 select = function(str) {
   var elem;
@@ -15,7 +15,66 @@ append = function(elem) {
   return elem;
 };
 
-files = ["dist/index.html", "dist/css/full/grid.css", "dist/css/full/skin.css", "dist/css/grid.min.css", "dist/css/skin.min.css", "dist/js/dev-tools.js", "dist/js/main.js", "dist/js/script.js", "dist/js/vendor/html5shiv.js", "dist/js/vendor/jquery-2.1.0.min.js", "dist/js/vendor/minify.min.js", "dist/js/vendor/modernizr-2.7.1.min.js", "dist/js/vendor/no-hover.min.js"];
+addClass = function(o, c) {
+  var re;
+  re = new RegExp("(^|\\s)" + c + "(\\s|$)", "g");
+  if (re.test(o.className)) {
+    return o.className = (o.className + " " + c).replace(/\s+/g, " ").replace(/(^ | $)/g, "");
+  }
+};
+
+removeClass = function(o, c) {
+  var re;
+  re = new RegExp("(^|\\s)" + c + "(\\s|$)", "g");
+  return o.className = o.className.replace(re, "$1").replace(/\s+/g, " ").replace(/(^ | $)/g, "");
+};
+
+getPath = function(node) {
+  var count;
+  var count;
+  var sibling;
+  var count, path, sibling;
+  path = path || [];
+  if (node.parentNode) {
+    path = getPath(node.parentNode, path);
+  }
+  if (node.previousSibling) {
+    count = 1;
+    sibling = node.previousSibling;
+    while (true) {
+      if (sibling.nodeType === 1 && sibling.nodeName === node.nodeName) {
+        count++;
+      }
+      sibling = sibling.previousSibling;
+      if (!sibling) {
+        break;
+      }
+    }
+    if (count === 1) {
+      count = null;
+    }
+  } else if (node.nextSibling) {
+    sibling = node.nextSibling;
+    while (true) {
+      if (sibling.nodeType === 1 && sibling.nodeName === node.nodeName) {
+        count = 1;
+        sibling = null;
+      } else {
+        count = null;
+        sibling = sibling.previousSibling;
+      }
+      if (!sibling) {
+        break;
+      }
+    }
+  }
+  if (node.nodeType === 1 && node.nodeName.toLowerCase() !== 'html' && node.nodeName.toLowerCase() !== 'body') {
+    path.push(node.nodeName.toLowerCase() + (node.id ? '<s>#' + node.id + '</s>' : node.classList.toString().length >= 1 && node.nodeName.toLowerCase() !== 'html' ? '<b>.' + node.classList.toString().replace(/\s/gim, '.') + '</b>' : ''));
+  }
+  return path;
+};
+
+files = ["dist/index.html", "dist/css/full/grid.css", "dist/css/full/skin.css", "dist/css/grid.min.css", "dist/css/skin.min.css", "dist/js/dev-tools.js", "dist/js/main.js", "dist/js/vendor/html5shiv.js", "dist/js/vendor/jquery-2.1.0.min.js", "dist/js/vendor/minify.min.js", "dist/js/vendor/modernizr-2.7.1.min.js", "dist/js/vendor/no-hover.min.js"];
 
 config = "/* ----------------------------------------------------- CONFIG */ // GRID:: padding $gutter: 							10px; // GRID:: padding $grid_line_height: 		20px; // GRID:: boxes widths $grid_sizes:					(720, 960, 1140); $primary_grid: 				1140; // GRID:: boxes widths $grid_prefixes: 			(768, '--t') (640, '--sm') (480, '--m'); // GRID:: grid calc $grid_calc: 					(1 2 3 4 5 6 7 8 9 10 11 12); // GRID:: fixed widths $fixed_widths:        (50,100,150,200,250,300); // indents $islands: 						(5,10,15,20,25,30,35,40,45,50); $vertical_indents: 		(5,10,15,20,25,30,35,40,45,50); $horizontal_indents: 	(5,10,15,20,25,30,35,40,45,50); // FONTS:: min font size $min_font_size: 			6; // FONTS:: max font size $max_font_size: 			60; // SKIN:: Colors $colors_list: 				(black, #000000) (white, #ffffff); // SKIN:: background colors $colors_list_bg: 			(black, #000000) (white, #ffffff); // SKIN:: font size $font_size: 					14px; // SKIN:: font-family $font_family: 				sans-serif;";
 
@@ -201,7 +260,7 @@ createLinkToFile = function(f) {
   var l;
   l = document.createElement('a');
   l.href = renameHref(f);
-  l.innerHTML = (getImageOfLink(renameStr(f))) + " <div>" + (renameStr(f)) + "</div>";
+  l.innerHTML = (getImageOfLink(renameStr(f))) + " <span>" + (renameStr(f)) + "</span>";
   l.className = "__link " + (getClassOfLink(f));
   l.setAttribute('target', '_blank');
   l.addEventListener('mousedown', function() {
@@ -241,7 +300,7 @@ counter = document.body.getElementsByClassName('dev-counter');
 
 addControl = function(c, i) {
   return c.onclick = function() {
-    var e, k, len1, len2, len3, len4, len5, len6, m, n, o, p, q, r, ref, ref1, ref2, ref3, ref4, ref5;
+    var e, k, len1, len2, len3, len4, len5, len6, m, n, q, r, ref, ref1, ref2, ref3, ref4, ref5, t, u;
     ref = document.getElementsByClassName('__link');
     for (m = k = 0, len1 = ref.length; k < len1; m = ++k) {
       e = ref[m];
@@ -256,29 +315,29 @@ addControl = function(c, i) {
     }
     if (i === 1) {
       ref2 = document.getElementsByClassName('css');
-      for (o = 0, len3 = ref2.length; o < len3; o++) {
-        e = ref2[o];
+      for (q = 0, len3 = ref2.length; q < len3; q++) {
+        e = ref2[q];
         e.style.display = 'block';
       }
     }
     if (i === 2) {
       ref3 = document.getElementsByClassName('js');
-      for (p = 0, len4 = ref3.length; p < len4; p++) {
-        e = ref3[p];
+      for (r = 0, len4 = ref3.length; r < len4; r++) {
+        e = ref3[r];
         e.style.display = 'block';
       }
     }
     if (i === 3) {
       ref4 = document.getElementsByClassName('other');
-      for (q = 0, len5 = ref4.length; q < len5; q++) {
-        e = ref4[q];
+      for (t = 0, len5 = ref4.length; t < len5; t++) {
+        e = ref4[t];
         e.style.display = 'block';
       }
     }
     if (i === 4) {
       ref5 = document.getElementsByClassName('__link');
-      for (r = 0, len6 = ref5.length; r < len6; r++) {
-        e = ref5[r];
+      for (u = 0, len6 = ref5.length; u < len6; u++) {
+        e = ref5[u];
         e.style.display = 'block';
       }
     }
@@ -411,3 +470,70 @@ op.onkeydown = function(e) {
   }
   return insertOpacity();
 };
+
+bindHandler = function(e) {
+  var border, content, hint, info, len2, margin, p, padding, path, q, rect, ref;
+  if (!e) {
+    e = new MouseEvent('mouseover');
+  }
+  if (e.ctrlKey) {
+    hint = document.createElement('div');
+    hint.setAttribute('class', 'dev-tools-boxer-hint');
+    document.body.appendChild(hint);
+    hint = document.getElementsByClassName('dev-tools-boxer-hint')[0];
+    if (e.ctrlKey && hint !== void 0) {
+      e.target.style.opacity = '0.8';
+      style = getComputedStyle(e.target);
+      rect = e.target.getBoundingClientRect();
+      margin = {
+        w: rect.width + parseFloat(style.marginLeft) + parseFloat(style.marginRight),
+        h: rect.height + parseFloat(style.marginTop) + parseFloat(style.marginBottom)
+      };
+      hint.setAttribute('style', "top:" + (rect.top + rect.height + parseFloat(style.marginBottom) + document.body.scrollTop) + "px; left:" + (rect.left + document.body.scrollLeft - parseFloat(style.marginLeft)) + "px; width:" + margin.w + "px; height:" + margin.h + "px;");
+      border = document.createElement('div');
+      border.setAttribute('class', 'dev-tools-boxer-hint-border');
+      border.setAttribute('style', "top:" + (parseFloat(style.marginTop) - 2) + "px; left:" + (parseFloat(style.marginLeft) - 2) + "px; width:" + (margin.w - parseFloat(style.marginLeft) - parseFloat(style.marginRight)) + "px; height:" + (margin.h - parseFloat(style.marginTop) - parseFloat(style.marginBottom)) + "px;");
+      padding = document.createElement('div');
+      padding.setAttribute('class', 'dev-tools-boxer-hint-padding');
+      padding.setAttribute('style', "top:" + (parseFloat(style.borderTopWidth) - 1) + "px; left:" + (parseFloat(style.borderLeftWidth) - 1) + "px; width:" + (margin.w - parseFloat(style.marginLeft) - parseFloat(style.marginRight) - parseFloat(style.borderLeftWidth) - parseFloat(style.borderRightWidth)) + "px; height:" + (margin.h - parseFloat(style.marginTop) - parseFloat(style.marginBottom) - parseFloat(style.borderTopWidth) - parseFloat(style.borderBottomWidth)) + "px;");
+      content = document.createElement('div');
+      content.setAttribute('class', 'dev-tools-boxer-hint-content');
+      content.setAttribute('style', "top:" + (parseFloat(style.paddingTop) - 1) + "px; left:" + (parseFloat(style.paddingLeft) - 1) + "px; width:" + (margin.w - parseFloat(style.marginLeft) - parseFloat(style.marginRight) - parseFloat(style.borderLeftWidth) - parseFloat(style.borderRightWidth) - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight)) + "px; height:" + (margin.h - parseFloat(style.marginTop) - parseFloat(style.marginBottom) - parseFloat(style.borderTopWidth) - parseFloat(style.borderBottomWidth) - parseFloat(style.paddingTop) - parseFloat(style.paddingBottom)) + "px;");
+      padding.appendChild(content);
+      border.appendChild(padding);
+      hint.appendChild(border);
+      info = document.createElement('div');
+      info.setAttribute('class', 'dev-tools-boxer-hint-info');
+      path = '<b>body</b>';
+      ref = getPath(e.target);
+      for (q = 0, len2 = ref.length; q < len2; q++) {
+        p = ref[q];
+        path += '<i>&gt;</i>' + p.toString();
+      }
+      info.innerHTML = "<div class='dev-tools-info-path'>" + path + "</div> <div class='dev-tools-info-margin'> <span>&uarr;<b>" + (parseFloat(style.marginTop)) + "</b></span> <span>&rarr;<b>" + (parseFloat(style.marginRight)) + "</b></span> <span>&darr;<b>" + (parseFloat(style.marginBottom)) + "</b></span> <span>&larr;<b>" + (parseFloat(style.marginLeft)) + "</b></span> </div> <div class='dev-tools-info-border'> <span>&uarr;<b>" + (parseFloat(style.borderTopWidth)) + "</b></span> <span>&rarr;<b>" + (parseFloat(style.borderRightWidth)) + "</b></span> <span>&darr;<b>" + (parseFloat(style.borderBottomWidth)) + "</b></span> <span>&larr;<b>" + (parseFloat(style.borderLeftWidth)) + "</b></span> </div> <div class='dev-tools-info-padding'> <span>&uarr;<b>" + (parseFloat(style.paddingTop)) + "</b></span> <span>&rarr;<b>" + (parseFloat(style.paddingRight)) + "</b></span> <span>&darr;<b>" + (parseFloat(style.paddingBottom)) + "</b></span> <span>&larr;<b>" + (parseFloat(style.paddingLeft)) + "</b></span> <hr> <div> " + (margin.w - parseFloat(style.marginLeft) - parseFloat(style.marginRight) - parseFloat(style.borderLeftWidth) - parseFloat(style.borderRightWidth) - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight)) + "x" + (margin.h - parseFloat(style.borderTopWidth) - parseFloat(style.borderBottomWidth)) + " </div> </div> <div class='dev-tools-info-content'> " + (margin.w - parseFloat(style.marginLeft) - parseFloat(style.marginRight) - parseFloat(style.borderLeftWidth) - parseFloat(style.borderRightWidth) - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight)) + "x" + (margin.h - parseFloat(style.marginTop) - parseFloat(style.marginBottom) - parseFloat(style.borderTopWidth) - parseFloat(style.borderBottomWidth) - parseFloat(style.paddingTop) - parseFloat(style.paddingBottom)) + " </div>";
+      return hint.appendChild(info);
+    }
+  }
+};
+
+moveHandler = function(e) {};
+
+unbindHandler = function(e) {
+  var h, hint, len2, q;
+  hint = document.getElementsByClassName('dev-tools-boxer-hint');
+  e.target.style.opacity = '';
+  for (i = q = 0, len2 = hint.length; q < len2; i = ++q) {
+    h = hint[i];
+    if (h !== void 0) {
+      h.parentNode.removeChild(h);
+    }
+  }
+};
+
+document.addEventListener('mouseover', bindHandler);
+
+document.addEventListener('mouseout', unbindHandler);
+
+document.addEventListener('keyup', unbindHandler);
+
+document.addEventListener('keydown', bindHandler);
