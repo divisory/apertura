@@ -6,11 +6,11 @@
 @import "_mixins/_mixins.scss";
 @import "_calc.scss";
 
+
 .g,
 .g--rev {
 	box-sizing:border-box;
 	display: block;
-	width: 100%;
 	margin: 0 auto;
 	padding: 0;
 	list-style-type: none;
@@ -22,20 +22,12 @@
 	direction: rtl;
 }
 
-@each $greed in $grid_sizes {
-	.g.w#{$greed},
-	.g--rev.w#{$greed}{
-		max-width: #{$greed}px;
-	}
-}
-
 .c,
 .cc,
 .c-c {
 	box-sizing:border-box;
 	display: inline-block;
 	vertical-align: top;
-	width: 100%;
 	padding: 0 $gutter;
 }
 .cc {
@@ -54,6 +46,28 @@
 	width: 100% !important;
 	padding-left: 0 !important;
 	padding-right: 0 !important;
+}
+
+/*flexbox (with modernizr.js)*/
+html.flexbox {
+	.g, .g-rev {
+		margin: 0 auto;
+		display: flex;
+		flex-wrap: wrap;
+	}
+	.c, .cc, .c-c {
+		display: inline-flex;
+		flex-wrap: wrap;
+		@include box-sizing(border-box);
+		/*padding: 0 $gutter;*/
+	}
+}
+
+@each $greed in $grid_sizes {
+	.g.w#{$greed},
+	.g--rev.w#{$greed}{
+		max-width: #{$greed}px;
+	}
 }
 
 @each $greed in $grid_sizes {
