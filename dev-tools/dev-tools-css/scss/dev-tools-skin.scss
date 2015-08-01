@@ -196,6 +196,7 @@ $content: #7ABCEB;
 	background: transparentize($margin,.4);
 	color: #fff;
 	position: absolute;
+	z-index: 9999999;
 	border: 1px solid darken($margin,10);
 	/*margin-top: 10px;*/
 	@include borders($margin);
