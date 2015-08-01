@@ -9,6 +9,51 @@ select = (str) ->
 append = (elem) ->
 	document.body.appendChild elem
 	return elem
+addClass = (o, c) ->
+	re = new RegExp("(^|\\s)" + c + "(\\s|$)", "g")
+	o.className = (o.className + " " + c).replace(/\s+/g, " ").replace(/(^ | $)/g, "")  if re.test(o.className)
+removeClass = (o, c) ->
+	re = new RegExp("(^|\\s)" + c + "(\\s|$)", "g")
+	o.className = o.className.replace(re, "$1").replace(/\s+/g, " ").replace(/(^ | $)/g, "")
+
+getPath = (node)->
+  `var count`
+  `var count`
+  `var sibling`
+  path = path or []
+  if node.parentNode
+    path = getPath(node.parentNode, path)
+  if node.previousSibling
+    count = 1
+    sibling = node.previousSibling
+    loop
+      if sibling.nodeType == 1 and sibling.nodeName == node.nodeName
+        count++
+      sibling = sibling.previousSibling
+      unless sibling
+        break
+    if count == 1
+      count = null
+  else if node.nextSibling
+    sibling = node.nextSibling
+    loop
+      if sibling.nodeType == 1 and sibling.nodeName == node.nodeName
+        count = 1
+        sibling = null
+      else
+        count = null
+        sibling = sibling.previousSibling
+      unless sibling
+        break
+  if node.nodeType == 1 and node.nodeName.toLowerCase() isnt 'html' and node.nodeName.toLowerCase() isnt 'body'
+    path.push node.nodeName.toLowerCase() + (
+    	if node.id
+    		'<s>#'+node.id+'</s>'
+    	else if node.classList.toString().length >= 1 and node.nodeName.toLowerCase() isnt 'html'
+    		'<b>.'+node.classList.toString().replace(/\s/gim, '.')+'</b>'
+    	else ''
+    )
+  path
 
 #
 # --------------------------------------------------------
@@ -49,9 +94,6 @@ _g = config.substr config.indexOf "$primary_grid"
 _g = _g.substr(_g.indexOf(":")+1)
 _g = _g.substr 0, _g.indexOf ";"
 gridWidth  = parseInt _g
-
-
-
 
 renameHref = (str) ->
 	str = str.replace /\\/gim, '/'
@@ -203,7 +245,7 @@ createLinkToFile = (f) ->
 	l.href 				= renameHref f
 	l.innerHTML 	= "
 		#{getImageOfLink renameStr(f)}
-		<div>#{renameStr f}</div>
+		<span>#{renameStr f}</span>
 	"
 	l.className = "__link #{getClassOfLink f}"
 	l.setAttribute 'target', '_blank'
@@ -291,6 +333,7 @@ append gridBlock
 gridBlock = select '#dev-grid-block'
 
 createGridLayer = ->
+
 	clientHeight 	= document.body.clientHeight
 	clientWidth 	= document.body.clientWidth
 	if clientWidth < gridWidth
@@ -427,3 +470,116 @@ op
 		else if e.keyCode is 38
 			op.value = if op.value < 90 then parseInt(op.value)+5 else parseInt(op.value)
 		do insertOpacity
+
+
+#
+# --------------------------------------------------------
+# BLOCK MODEL HIGHTLIGHTER
+# --------------------------------------------------------
+#
+
+
+
+bindHandler = (e)->
+	if !e then e = new MouseEvent 'mouseover'
+	if e.ctrlKey
+		hint = document.createElement 'div'
+		hint.setAttribute 'class', 'dev-tools-boxer-hint'
+		document.body.appendChild hint
+		hint = document.getElementsByClassName('dev-tools-boxer-hint')[0]
+		if e.ctrlKey and hint isnt undefined
+			e.target.style.opacity = '0.8'
+			style = getComputedStyle e.target
+			rect = e.target.getBoundingClientRect()
+			margin =
+				w: rect.width+parseFloat(style.marginLeft)+parseFloat(style.marginRight)
+				h: rect.height+parseFloat(style.marginTop)+parseFloat(style.marginBottom)
+			# console.log style
+			hint.setAttribute 'style', "
+				top:#{rect.top+rect.height+parseFloat(style.marginBottom)+document.body.scrollTop}px;
+				left:#{rect.left+document.body.scrollLeft-parseFloat(style.marginLeft)}px;
+				width:#{margin.w}px;
+				height:#{margin.h}px;
+			"
+			border = document.createElement 'div'
+			border.setAttribute 'class', 'dev-tools-boxer-hint-border'
+			border.setAttribute 'style', "
+				top:#{parseFloat(style.marginTop)-2}px;
+				left:#{parseFloat(style.marginLeft)-2}px;
+				width:#{margin.w-parseFloat(style.marginLeft)-parseFloat(style.marginRight)}px;
+				height:#{margin.h-parseFloat(style.marginTop)-parseFloat(style.marginBottom)}px;
+			"
+			padding = document.createElement 'div'
+			padding.setAttribute 'class', 'dev-tools-boxer-hint-padding'
+			padding.setAttribute 'style', "
+				top:#{parseFloat(style.borderTopWidth)-1}px;
+				left:#{parseFloat(style.borderLeftWidth)-1}px;
+				width:#{margin.w-parseFloat(style.marginLeft)-parseFloat(style.marginRight)-parseFloat(style.borderLeftWidth)-parseFloat(style.borderRightWidth)}px;
+				height:#{margin.h-parseFloat(style.marginTop)-parseFloat(style.marginBottom)-parseFloat(style.borderTopWidth)-parseFloat(style.borderBottomWidth)}px;
+			"
+			content = document.createElement 'div'
+			content.setAttribute 'class', 'dev-tools-boxer-hint-content'
+			content.setAttribute 'style', "
+				top:#{parseFloat(style.paddingTop)-1}px;
+				left:#{parseFloat(style.paddingLeft)-1}px;
+				width:#{margin.w-parseFloat(style.marginLeft)-parseFloat(style.marginRight)-parseFloat(style.borderLeftWidth)-parseFloat(style.borderRightWidth)-parseFloat(style.paddingLeft)-parseFloat(style.paddingRight)}px;
+				height:#{margin.h-parseFloat(style.marginTop)-parseFloat(style.marginBottom)-parseFloat(style.borderTopWidth)-parseFloat(style.borderBottomWidth)-parseFloat(style.paddingTop)-parseFloat(style.paddingBottom)}px;
+			"
+			padding.appendChild content
+			border.appendChild padding
+			hint.appendChild border
+			info = document.createElement 'div'
+			info.setAttribute 'class', 'dev-tools-boxer-hint-info'
+			path = '<b>body</b>'
+			for p in getPath e.target
+				path += '<i>&gt;</i>'+p.toString()
+
+			info.innerHTML = "
+				<div class='dev-tools-info-path'>#{path}</div>
+				<div class='dev-tools-info-margin'>
+					<span>&uarr;<b>#{parseFloat(style.marginTop)}</b></span>
+					<span>&rarr;<b>#{parseFloat(style.marginRight)}</b></span>
+					<span>&darr;<b>#{parseFloat(style.marginBottom)}</b></span>
+					<span>&larr;<b>#{parseFloat(style.marginLeft)}</b></span>
+				</div>
+				<div class='dev-tools-info-border'>
+					<span>&uarr;<b>#{parseFloat(style.borderTopWidth)}</b></span>
+					<span>&rarr;<b>#{parseFloat(style.borderRightWidth)}</b></span>
+					<span>&darr;<b>#{parseFloat(style.borderBottomWidth)}</b></span>
+					<span>&larr;<b>#{parseFloat(style.borderLeftWidth)}</b></span>
+				</div>
+				<div class='dev-tools-info-padding'>
+					<span>&uarr;<b>#{parseFloat(style.paddingTop)}</b></span>
+					<span>&rarr;<b>#{parseFloat(style.paddingRight)}</b></span>
+					<span>&darr;<b>#{parseFloat(style.paddingBottom)}</b></span>
+					<span>&larr;<b>#{parseFloat(style.paddingLeft)}</b></span>
+					<hr>
+					<div>
+						#{margin.w-parseFloat(style.marginLeft)-parseFloat(style.marginRight)-parseFloat(style.borderLeftWidth)-parseFloat(style.borderRightWidth)-parseFloat(style.paddingLeft)-parseFloat(style.paddingRight)}x#{margin.h-parseFloat(style.borderTopWidth)-parseFloat(style.borderBottomWidth)}
+					</div>
+				</div>
+				<div class='dev-tools-info-content'>
+					#{margin.w-parseFloat(style.marginLeft)-parseFloat(style.marginRight)-parseFloat(style.borderLeftWidth)-parseFloat(style.borderRightWidth)-parseFloat(style.paddingLeft)-parseFloat(style.paddingRight)}x#{margin.h-parseFloat(style.marginTop)-parseFloat(style.marginBottom)-parseFloat(style.borderTopWidth)-parseFloat(style.borderBottomWidth)-parseFloat(style.paddingTop)-parseFloat(style.paddingBottom)}
+				</div>
+			"
+			hint.appendChild info
+
+moveHandler = (e)->
+	# hint = document.getElementsByClassName('dev-tools-boxer-hint')[0]
+	# if e.ctrlKey and hint isnt undefined
+	# 	hint.setAttribute 'style', "top: #{e.pageY}px;left: #{e.pageX}px;"
+
+unbindHandler = (e)->
+	# removeClass e.target, 'dev-tools-active'
+	hint = document.getElementsByClassName 'dev-tools-boxer-hint'
+	e.target.style.opacity = ''
+	for h,i in hint
+		if h isnt undefined
+			h.parentNode.removeChild h
+	return
+
+document.addEventListener 'mouseover', bindHandler
+# document.addEventListener 'mousemove', bindHandler
+document.addEventListener 'mouseout', unbindHandler
+document.addEventListener 'keyup', unbindHandler
+document.addEventListener 'keydown', bindHandler
