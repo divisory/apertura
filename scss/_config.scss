@@ -1,0 +1,44 @@
+/* -----------------------------------------------------
+	CONFIG
+*/
+
+// GRID:: padding
+$gutter: 							10px;
+// GRID:: padding
+$grid_line_height: 		20px;
+
+// GRID:: boxes widths
+$grid_sizes:					(720, 960, 1140);
+$primary_grid: 				1140;
+
+// GRID:: boxes widths
+$grid_prefixes: 			(768, '--t') (640, '--sm') (480, '--m');
+
+// GRID:: grid calc
+$grid_calc: 					(1 2 3 4 5 6 7 8 9 10 11 12);
+
+// GRID:: fixed widths
+$fixed_widths:        (50,100,150,200,250,300);
+
+// indents
+$islands: 						(5,10,15,20,25,30,35,40,45,50);
+$vertical_indents: 		(5,10,15,20,25,30,35,40,45,50);
+$horizontal_indents: 	(5,10,15,20,25,30,35,40,45,50);
+
+// FONTS:: min font size
+$min_font_size: 			6;
+
+// FONTS:: max font size
+$max_font_size: 			60;
+
+// SKIN:: Colors
+$colors_list: 				(black, #000000) (white, #ffffff);
+
+// SKIN:: background colors
+$colors_list_bg: 			(black, #000000) (white, #ffffff);
+
+// SKIN:: font size
+$font_size: 					14px;
+
+// SKIN:: font-family
+$font_family: 				sans-serif;
