@@ -1,49 +1,389 @@
+@charset "UTF-8";
+/*
+	@module
+		title: skin *n
+		type: scss *n
+		caption:
+			p{ Модуль формирует файл скина, собиая во едино все 
+			файлы сетки и вспомогательные классы. }p
+			p{ Если Вам нужно вручную менять стили при разных 
+			разрешениях дисплея, - создайте нужный файл в папке 
+			bd{ _media/ } и добавтье свои медиа-запросы 
+			в конец этого файла. }p
+		*n
+*/
 /* -----------------------------------------------------
 	include function 'calc' and Compass-like mixins
 */
-/* -----------------------------------------------------
-	CONFIG
+/*
+	@module
+		title: defaults *n
+		type: scss *n
+		caption:
+			p{ Конфигом системы служит .scss-файл, который содержит 
+			в себе настройки для всей системы вцелом. Он находится 
+			в папке bd{ scss/_config.scss }. }p
+		*n
 */
-/*-------------------------------------------------------
-	Color Properties
+/*--------------------------------------------------------------
+													КОНФИГ
+--------------------------------------------------------------*/
+/*@property
+		name: $gutter *n
+		caption: Отступ по бокам внутри ячейки сетки. 
+			[$gutter|<content here>|$gutter]. Если параметр равен 0 - 
+			контент прижимается вплотную к соронам блока. По умолчанию 
+			задано 10пикс. *n
 */
-/*-------------------------------------------------------
+/*@property
+		name: $grid_line_height *n
+		caption: Высота строки или междустрочный интервал. Применяется 
+			для bd{ <body> } *n
+*/
+/*@property
+		name: $grid_sizes *n
+		caption: Это массив с размерами шаблона. Если Вам дают макет 
+			шириной в 1400 пикселей, то вы указываете 1400. Если в одном 
+			шаблоне есть разные ширины сетки, к примеру 1400 и 960 пикселей, 
+			то вы указываете их оба через запятую, при чем от меньшего к 
+			большему. Допускается произвольное количество размеров 
+			(если они Вам нужны). *n
+*/
+/*@property
+		name: $primary_grid *n
+		caption: Основная ширина сетки. *n
+*/
+/*@property
+		name: $grid_prefixes *n
+		caption: p{ Это массив, содержащий ассоциативные массивы с 
+			брейкпоинтами. Брейкпоинты помогают Вам добиться отображения 
+			при разных ширинах дисплея (адаптивный дизайн) иной ширины 
+			блоков. }p 
+			p{ Здесь x1d4 – ширина ячейки по умолчанию (1/4). на мобильном 
+			телефоне мы хотим чтобы она отображалась по-другому (1/2), для 
+			этого мы используем брейк-поинт x1d2--m, который на мобильном 
+			устройстиве отобразит ячейку шире (1/2). }p
+			p{ Массив состоит из ассоциативных массивов (480, ‘--m’), в 
+			которых передается ширина, при которой брейкпоинт должен 
+			сработать и префикс, по которому к брейкпоинту можно обратиться. 
+			Вы сами можете создать сколько угодно брейкпоинтов. }p *n
+			p{ Создает набор классов типа bd{.x<X>d<D>--<BRAKEPOINT>} }p *n
+*/
+/*@property
+		name: $grid_calc *n
+		caption: p{ Это части, на которые можно “дробить” ячейки в 
+			сетке. Мощнейшим преимуществом сетки есть дробление на 
+			произвольное количество ячеек, и сетка может разбиваться не 
+			на 12 колонок (как в Bootstrap), а на произвольное количество ячеек
+			(например на 100, если это Вам нужно). }p 
+			p{ Эти части являются как ширинами блока, так и ширинами ячеек.
+			Это значит, что вам не обязательно указывать постоянную ширину 
+			знаменателя (bd{x1d12}, bd{x3d12} и т.д). Это выражение - формирует 
+			процент от ширины, соответственно, bd{x1d2} и bd{x6d12} - это 
+			одно и то же (50%)) }p
+			p{ Создает набор классов типа bd{.x<X>d<D>} }p *n
+*/
+/*@property
+		name: $fixed_widths *n
+		caption: p{ Содержит массив с фиксированными размерами (в пикселях). }p 
+			p{ Аналогично bd{$grid_calc}. }p*n
+			p{ Создает набор классов типа bd{.w-fixed-<WIDTH>} }p *n
+*/
+/*@property
+		name: $islands *n
+		caption: p{ Массив с размерами отступов. Эти отступы означают 
+			равные отступы со всех сторон блока (от слова island, остров). 
+			То есть указывая 10px – Вы указываете отступ в 10 пикселей со 
+			всех сторон. Это есть padding и margin. }p 
+			p{ Создает набор классов типа bd{.island-<NUMBER>} }p *n
+*/
+/*@property
+		name: $vertical_indents *n
+		caption: p{ Массив с размерами отступов. Аналогично bd{$islands},
+			за исключением того, что отступы указываются только по вертикали. }p 
+			p{ Создает набор классов типа: 
+				ul{
+					li{ bd{.pad-v<NUMBER>} - внутренний отступ сверху и снизу }li
+					li{ bd{.pad-top-<NUMBER>} - внутренний отступ сверху }li
+					li{ bd{.pad-bot-<NUMBER>} - внутренний отступ снизу }li
+					li{ bd{.marg-v<NUMBER>} - внешний отступ сверху и снизу }li
+					li{ bd{.marg-top-<NUMBER>} - внешний отступ сверху }li
+					li{ bd{.marg-bot-<NUMBER>} - внешний отступ снизу }li
+				}ul
+			}p *n
+*/
+/*@property
+		name: $vertical_indents *n
+		caption: p{ Массив с размерами отступов. Аналогично bd{$islands},
+			за исключением того, что отступы указываются только по горизонтали. }p 
+			p{ Создает набор классов типа: 
+				ul{
+					li{ bd{.pad-h<NUMBER>} - внутренний отступ слева и справа }li
+					li{ bd{.pad-left-<NUMBER>} - внутренний отступ слева }li
+					li{ bd{.pad-right-<NUMBER>} - внутренний отступ справа }li
+					li{ bd{.marg-h<NUMBER>} - внешний отступ слева и справа }li
+					li{ bd{.marg-left-<NUMBER>} - внешний отступ слева }li
+					li{ bd{.marg-right-<NUMBER>} - внешний отступ справа }li
+				}ul
+			}p *n
+		*n
+*/
+/*@property
+		name: $min_font_size, $max_font_size *n
+		caption: p{ Размеры шрифта. Применяются к блоку. }p*n
+			p{ Создает набор классов типа bd{.font-<NUMBER>}, где <NUMBER> -
+			это диапазон от bd{$min_font_size} до bd{$max_font_size} }p *n
+*/
+/*@property
+		name: .YourColor *n
+		caption: Устанавливает цвет текста с названием YourColor.
+		Параметры задаются в bd{ _config.scss }, в объекте 
+		bd{ $colors_list } *n
+*/
+/*@property
+		name: .bg-YourColor *n
+		caption: Устанавливает фона блока с названием YourColor.
+		Параметры задаются в bd{ _config.scss }, в объекте 
+		bd{ $colors_list_bg } *n
+*/
+/*--------------------------------------------------------------
+												ПЕРЕМЕННЫЕ
+--------------------------------------------------------------*/
+/*@property
+		name: $font_size *n
+		caption: Устанавливает размер шрифта по умолчанию для <body> *n
+*/
+/*@property
+		name: $font_family *n
+		caption: Устанавливает шрифт по умолчанию для <body> *n
+*/
+/*
+	Приватный модуль для генерации брейкпоинтов.
+*/
+/*
+	@module
+		title: mixins *n
+		type: scss *n
+		caption:
+			p{ Модуль добавляет в систему заранее подготовленные
+			миксины, которые используются в коде. }p
+			p{ Чтобы использовать миксины - вставвьте нужный миксин
+			в код при помощи директивы bd{ @include my-mixin(mixin-values); }}p
+		*n
+*/
+/*--------------------------------------------------------------------------
 	Background and Border Properties
-*/
-/*-------------------------------------------------------
-	Basic Box Properties
-*/
-/*-------------------------------------------------------
+--------------------------------------------------------------------------*/
+/*@mixin
+		name: background-clip() *n caption: *n arguments: $clip *n
+		return: -webkit-, -moz-, -ms-, -o- *n */
+/*@mixin
+		name: background-origin() *n caption: *n arguments: $origin *n
+		return: -webkit-, -moz-, -ms-, -o- *n */
+/*@mixin
+		name: background-size() *n caption: *n arguments: $size *n
+		return: -webkit-, -moz-, -ms-, -o- *n */
+/*@mixin
+		name: border-bottom-left-radius() *n caption: *n arguments: $radius *n
+		return: -webkit-, -moz-, -ms- *n */
+/*@mixin
+		name: border-bottom-right-radius() *n caption: *n arguments: $radius *n
+		return: -webkit-, -moz-, -ms- *n */
+/*@mixin
+		name: border-top-right-radius() *n caption: *n arguments: $radius *n
+		return: -webkit-, -moz-, -ms- *n */
+/*@mixin
+		name: border-top-left-radius() *n caption: *n arguments: $radius *n
+		return: -webkit-, -moz-, -ms- *n */
+/*@mixin
+		name: border-radius() *n caption: *n arguments: $radius *n
+		return: -webkit-, -moz-, -ms- *n */
+/*@mixin
+		name: box-shadow() *n caption: *n arguments: $shadow *n
+		return: -webkit-, -moz- *n */
+/*--------------------------------------------------------------------------
 	Flexible Box Layout
-*/
-/*-------------------------------------------------------
+--------------------------------------------------------------------------*/
+/*@mixin
+		name: align-content() *n caption: bd{flexbox} *n arguments: $type *n
+		return: -webkit- *n */
+/*@mixin
+		name: align-items() *n caption: bd{flexbox} *n arguments: $type *n
+		return: -webkit- *n */
+/*@mixin
+		name: align-self() *n caption: bd{flexbox} *n arguments: $type *n
+		return: -webkit- *n */
+/*@mixin
+		name: flex() *n caption: bd{flexbox} *n arguments: $type *n
+		return: -webkit-, -moz-, -ms- *n */
+/*@mixin
+		name: flex-basis() *n caption: bd{flexbox} *n arguments: $type *n
+		return: -webkit-, -moz- *n */
+/*@mixin
+		name: flex-direction() *n caption: bd{flexbox} *n arguments: $direction *n
+		return: -webkit-, -moz- *n */
+/*@mixin
+		name: flex-flow() *n caption: bd{flexbox} *n arguments: $flow *n
+		return: -webkit-, -moz- *n */
+/*@mixin
+		name: flex-grow() *n caption: bd{flexbox} *n arguments: $grow *n
+		return: -webkit-, -moz- *n */
+/*@mixin
+		name: flex-shirk() *n caption: bd{flexbox} *n arguments: $shirk *n
+		return: -webkit-, -moz- *n */
+/*@mixin
+		name: flex-wrap() *n caption: bd{flexbox} *n arguments: $wrap *n
+		return: -webkit-, -moz- *n */
+/*@mixin
+		name: justify-content() *n caption: bd{flexbox} *n arguments: $type *n
+		return: -webkit-, -moz- *n */
+/*@mixin
+		name: order() *n caption: bd{flexbox} *n arguments: $type *n
+		return: -webkit-, -moz- *n */
+/*--------------------------------------------------------------------------
 	Text Properties
-*/
-/*-------------------------------------------------------
-	Text Decoration Properties
-*/
-/*-------------------------------------------------------
+--------------------------------------------------------------------------*/
+/*@mixin
+		name: tab-size() *n caption: bd{flexbox} *n arguments: $type *n
+		return: -o-, -moz- *n */
+/*--------------------------------------------------------------------------
 	Animation Properties
-*/
-/*-------------------------------------------------------
+--------------------------------------------------------------------------*/
+/*@mixin
+		name: keyframes() *n caption: animations *n arguments: $name *n
+		return: -webkit-, -moz-, -o- *n */
+/*@mixin
+		name: animation() *n caption: animations *n arguments: $type *n
+		return: -webkit-, -moz-, -o- *n */
+/*@mixin
+		name: animation-delay() *n caption: animations *n arguments: $type *n
+		return: -webkit-, -moz-, -o- *n */
+/*@mixin
+		name: animation-direction() *n caption: animations *n arguments: $type *n
+		return: -webkit-, -moz-, -o- *n */
+/*@mixin
+		name: animation-duration() *n caption: animations *n arguments: $type *n
+		return: -webkit-, -moz-, -o- *n */
+/*@mixin
+		name: animation-fill-mode() *n caption: animations *n arguments: $type *n
+		return: -webkit-, -moz-, -o- *n */
+/*@mixin
+		name: animation-iteration-count() *n caption: animations *n arguments: $type *n
+		return: -webkit-, -moz-, -o- *n */
+/*@mixin
+		name: animation-timing-function() *n caption: animations *n arguments: $type *n
+		return: -webkit-, -moz-, -o- *n */
+/*@mixin
+		name: animation-play-state() *n caption: animations *n arguments: $type *n
+		return: -webkit-, -moz-, -o- *n */
+/*--------------------------------------------------------------------------
 	Transform Properties
-*/
-/*-------------------------------------------------------
+--------------------------------------------------------------------------*/
+/*@mixin
+		name: backface-visibility() *n caption: transformations *n arguments: $type *n
+		return: -webkit-, -moz- *n */
+/*@mixin
+		name: perspective() *n caption: transformations *n arguments: $type *n
+		return: -webkit-, -moz- *n */
+/*@mixin
+		name: perspective-origin() *n caption: transformations *n arguments: $type *n
+		return: -webkit-, -moz- *n */
+/*@mixin
+		name: transform() *n caption: transformations *n arguments: $type *n
+		return: -webkit-, -moz-, -ms-, -o- *n */
+/*@mixin
+		name: transform-origin() *n caption: transformations *n arguments: $type *n
+		return: -webkit-, -moz-, -ms-, -o- *n */
+/*@mixin
+		name: transform-style() *n caption: transformations *n arguments: $type *n
+		return: -webkit-, -moz- *n */
+/*--------------------------------------------------------------------------
 	Transitions Properties
-*/
-/*-------------------------------------------------------
+--------------------------------------------------------------------------*/
+/*@mixin
+		name: transition() *n caption: transitions *n arguments: $type *n
+		return: -webkit-, -moz-, -o- *n */
+/*@mixin
+		name: transition-property() *n caption: transitions *n arguments: $type *n
+		return: -webkit-, -moz-, -o- *n */
+/*@mixin
+		name: transition-duration() *n caption: transitions *n arguments: $type *n
+		return: -webkit-, -moz-, -o- *n */
+/*@mixin
+		name: transition-timing-function() *n caption: transitions *n arguments: $type *n
+		return: -webkit-, -moz-, -o- *n */
+/*@mixin
+		name: transition-delay() *n caption: transitions *n arguments: $type *n
+		return: -webkit-, -moz-, -o- *n */
+/*--------------------------------------------------------------------------
 	Basic User Interface Properties
-*/
-/*-------------------------------------------------------
+--------------------------------------------------------------------------*/
+/*@mixin
+		name: box-sizing() *n caption: UI *n arguments: $type *n
+		return: -webkit-, -moz- *n */
+/*@mixin
+		name: outline-offset() *n caption: UI *n arguments: $type *n
+		return: -webkit- *n */
+/*@mixin
+		name: resize() *n caption: UI *n arguments: $type *n
+		return: -moz- *n */
+/*@mixin
+		name: text-overflow() *n caption: UI *n arguments: $type *n
+		return: -o- *n */
+/*--------------------------------------------------------------------------
 	Multi-column Layout Properties
-*/
-/*-------------------------------------------------------
+--------------------------------------------------------------------------*/
+/*@mixin
+		name: column-count() *n caption: UI *n arguments: $type *n
+		return: -webkit-, -moz- *n */
+/*@mixin
+		name: column-gap() *n caption: UI *n arguments: $type *n
+		return: -webkit-, -moz- *n */
+/*@mixin
+		name: column-rule() *n caption: UI *n arguments: $type *n
+		return: -webkit-, -moz- *n */
+/*@mixin
+		name: column-rule-color() *n caption: UI *n arguments: $type *n
+		return: -webkit-, -moz- *n */
+/*@mixin
+		name: column-rule-style() *n caption: UI *n arguments: $type *n
+		return: -webkit-, -moz- *n */
+/*@mixin
+		name: column-rule-width() *n caption: UI *n arguments: $type *n
+		return: -webkit-, -moz- *n */
+/*@mixin
+		name: column-rule-span() *n caption: UI *n arguments: $type *n
+		return: -webkit-, -moz- *n */
+/*@mixin
+		name: column-width() *n caption: UI *n arguments: $type *n
+		return: -webkit-, -moz- *n */
+/*@mixin
+		name: columns() *n caption: UI *n arguments: $type *n
+		return: -webkit-, -moz- *n */
+/*--------------------------------------------------------------------------
 	Filter Effects Properties
-*/
+--------------------------------------------------------------------------*/
+/*@mixin
+		name: filter() *n caption: UI *n arguments: $properties *n
+		return: -webkit-, -moz-, -o- *n */
 /* -----------------------------------------------------
 	include default styles, fonts, indents, and so on...
 */
 /*@import "_default/_normalize.scss";*/
+/*
+	@module
+		title: defaults *n
+		type: scss *n
+		caption:
+			p{ Модуль по минимуму сбрасывает глобальные стили (по 
+			типу normalize.css), указывает начальные настройки для
+			шрифтов, а так же вносит ряд заранее щаготовленных классов
+			для манипуляции и кастомизации элементов. }p
+		*n
+*/
+/*--------------------------------------------------------------
+													M A I N
+--------------------------------------------------------------*/
 html {
   font-size: 14px;
   font-family: sans-serif; }
@@ -63,18 +403,45 @@ figure {
   margin: 0;
   padding: 0; }
 
+/*--------------------------------------------------------------
+													ПОЗИЦИОНИРОВАНИЕ
+--------------------------------------------------------------*/
+/*@property
+		name: relative *n
+		caption: Относительное позиционирование *n
+*/
 .relative {
   position: relative; }
 
+/*@property
+		name: absolute *n
+		caption: Абсолютное позиционирование *n
+*/
 .absolute {
   position: absolute; }
 
+/*@property
+		name: fixed *n
+		caption: Фиксированный блок *n
+*/
 .fixed {
   position: fixed; }
 
+/*@property
+		name: static *n
+		caption: Относительное позиционирование *n
+*/
 .static {
   position: static; }
 
+/*--------------------------------------------------------------
+													СБРОС
+--------------------------------------------------------------*/
+/*@property
+		name: clear-input *n
+		caption: Сброс стилей bd{<input>}. Убирает рамку, фон
+		отступы, устанавливает ширину в 100%. *n
+*/
 .clear-input {
   background: none;
   -webkit-box-sizing: border-box;
@@ -85,17 +452,33 @@ figure {
   border: none;
   padding: 0;
   margin: 0;
-  width: auto; }
+  width: 100%; }
 
+/*@property
+		name: noresize *n
+		caption: Убирает возможность изменения размера для
+		 bd{<textarea>}. *n
+*/
 .noresize {
   resize: none; }
 
-.clear-list {
+/*@property
+		name: clear-list, unstyled-list, clear-ul *n
+		caption: Убирает отступы для bd{<ul>}, как внешние, так
+		и внутренние. Убирает маркеры списка. *n
+*/
+.clear-list,
+.unstyled-list,
+.clear-ul {
   margin: 0;
   padding: 0;
   list-style-type: none;
   list-style: none; }
 
+/*
+	для броузеров, которые не поддерживают javascript 
+	выводится сообщение.
+*/
 .no-js body:after {
   display: block;
   position: fixed;
@@ -113,11 +496,41 @@ figure {
   border-radius: 3px;
   content: 'This page requires JavaScript for correct performance. 						You must enable Javascript, or update your browser.'; }
 
-.disable-hover,
-.disable-hover-childs * {
+/*@property
+		name: disable-hover *n
+		caption: Убирает pointer-events (события ховера, 
+		фокуса и т.д) для элемента, которому непосредственно 
+		добавляется класс. *n
+*/
+.disable-hover {
   pointer-events: none !important; }
 
-.ir {
+/*@property
+		name: disable-hover-childs *n
+		caption: Убирает pointer-events (события ховера, 
+		фокуса и т.д) для элементов, строго лежащим внутри 
+		элемента, которому добавляется класс. *n
+*/
+.disable-hover-childs > * {
+  pointer-events: none !important; }
+
+/*@property
+		name: disable-hover-allchilds *n
+		caption: Убирает pointer-events (события ховера, 
+		фокуса и т.д) для любых потомков, лежащих внутри 
+		элемента, которому добавляется класс. *n
+*/
+.disable-hover-allchilds * {
+  pointer-events: none !important; }
+
+/*@property
+		name: ultra-hide *n
+		caption: Устанавливает для элемента абсолютное 
+		позиционирование, задает ширину и высоту в 1пикс,
+		и скрывает элемент со страницы путем отрицательного
+		отступа вверх-влево. *n
+*/
+.ultra-hide {
   position: absolute;
   overflow: hidden;
   width: 1px;
@@ -126,44 +539,112 @@ figure {
   top: -1000%;
   text-indent: -1000%; }
 
+/*@property
+		name: r *n
+		caption: Применяется для <img>, указывает ширину 100%. 
+		Картинка будет автоматически увеличивать высоту, в 
+		зависимости от своей ширины. *n
+*/
 img.r {
   width: 100%;
   height: auto;
   display: block; }
 
-/*text*/
+/*--------------------------------------------------------------
+													ВЫРАВНИВАНИЕ
+--------------------------------------------------------------*/
+/*@property
+		name: center *n
+		caption: Выравнивает текст по центру блока. Выравнивает
+		bd{inline-block}-элементы по центру родителя. Выравнивает 
+		bd{inline-flex}-элементы по центру bd{flex}-родителя. *n
+*/
 .center {
   text-align: center; }
 
+/*@property
+		name: right *n
+		caption: Выравнивает текст по правой стороне блока. 
+		Выравнивает bd{inline-block}-элементы по правой стороне 
+		родителя. Выравнивает bd{inline-flex}-элементы по правой 
+		стороне bd{flex}-родителя. *n
+*/
 .right {
   text-align: right; }
 
+/*@property
+		name: left *n
+		caption: Выравнивает текст по левой стороне блока. 
+		Выравнивает bd{inline-block}-элементы по левой стороне 
+		родителя. Выравнивает bd{inline-flex}-элементы по левой 
+		стороне bd{flex}-родителя. *n
+*/
 .left {
   text-align: left; }
 
+/*@property
+		name: justify *n
+		caption: Выравнивает текст по краям для блока. 
+		Выравнивает bd{inline-flex}-элементы по краям 
+		bd{flex}-родителя. *n
+*/
 .justify {
   text-align: justify; }
 
-/*inline-blocks*/
+/*@property
+		name: v-top *n
+		caption: Выравнивает bd{inline-block}-элементы 
+		по верхней грани. Выравнивает bd{inline-flex}-элементы 
+		по верхней грани.*n
+*/
 .v-top {
   vertical-align: top; }
 
+/*@property
+		name: v-middle *n
+		caption: Выравнивает bd{inline-block}-элементы 
+		вертикально по середине. Выравнивает bd{inline-flex}-элементы 
+		вертикально по середине.*n
+*/
 .v-middle {
   vertical-align: middle; }
 
+/*@property
+		name: v-bottom *n
+		caption: Выравнивает bd{inline-block}-элементы 
+		по нижней грани. Выравнивает bd{inline-flex}-элементы 
+		по нижней грани.*n
+*/
 .v-bottom {
   vertical-align: bottom; }
 
+/*@property
+		name: v-baseline *n
+		caption: Выравнивает bd{inline-block}-элементы 
+		базовой линии текста. Выравнивает bd{inline-flex}-элементы 
+		базовой линии текста.*n
+*/
 .v-baseline {
   vertical-align: baseline; }
 
-/*floats*/
+/*@property
+		name: pull-left *n
+		caption: Обтекание блока слева (float).*n
+*/
 .pull-left {
   float: left; }
 
+/*@property
+		name: pull-right *n
+		caption: Обтекание блока справа (float).*n
+*/
 .pull-right {
   float: right; }
 
+/*@property
+		name: clearfix, pull-clear *n
+		caption: Очистка обтеканий (floats).*n
+*/
 .clearfix, .pull-clear {
   clear: both; }
   .clearfix:after, .pull-clear:after {
@@ -171,141 +652,62 @@ img.r {
     content: '';
     clear: both; }
 
-/*display*/
-.block {
-  display: block; }
-
-.inline {
-  display: inline-block; }
-
-.block-extra {
-  display: block !important; }
-
-.inline-extra {
-  display: inline-block !important; }
-
-.flex {
-  display: flex;
-  flex-wrap: wrap;
-  width: 100%;
-  -webkit-justify-content: flex-start;
-  -moz-justify-content: flex-start;
-  justify-content: flex-start;
-  -webkit-flex-direction: row;
-  -moz-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-items: stretch;
-  align-items: stretch; }
-
-.inline-flex {
-  display: inline-flex;
-  flex-wrap: wrap;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box; }
-
-.none {
-  display: none; }
-
-/*tables*/
-.table {
-  display: table; }
-
-.row {
-  display: table-row; }
-
-.thead {
-  display: table-header-group; }
-
-.tfoot {
-  display: table-footer-group; }
-
-.tbody {
-  display: table-column-group; }
-
-.cell {
-  display: table-cell; }
-
-.list-item {
-  display: list-item; }
-
-/*overflow*/
-.o-hid {
-  overflow: hidden; }
-
-.o-hid-y {
-  overflow: hidden; }
-
-.o-hid-x {
-  overflow-x: hidden; }
-
-.o-auto {
-  overflow: auto; }
-
-.o-auto-x {
-  overflow-x: auto; }
-
-.o-auto-y {
-  overflow-y: auto; }
-
-.o-visbl {
-  overflow: visible; }
-
-.o-visbl-x {
-  overflow-x: visible; }
-
-.o-visbl-y {
-  overflow-y: visible; }
-
-/*background*/
-.bg-none {
-  background: none; }
-
-.bg-cover {
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  -ms-background-size: cover;
-  background-size: cover; }
-
-.bg-contain {
-  -webkit-background-size: contain;
-  -moz-background-size: contain;
-  -o-background-size: contain;
-  -ms-background-size: contain;
-  background-size: contain; }
-
-/*border-radius*/
-.circle-item {
-  border-radius: 50%; }
-
-/*flexbox*/
-/*flex-direction*/
+/*@property
+		name: flex-row *n
+		caption: Строка flexbox.*n */
 .flex-row {
   -webkit-flex-direction: row;
   -moz-flex-direction: row;
   flex-direction: row; }
 
+/*@property
+		name: flex-row-rev *n
+		caption: Строка flexbox с обратным отображением. *n */
 .flex-row-rev {
   -webkit-flex-direction: row-reverse;
   -moz-flex-direction: row-reverse;
   flex-direction: row-reverse; }
 
+/*@property
+		name: flex-col *n
+		caption: Ячейка flexbox. *n */
 .flex-col {
   -webkit-flex-direction: column;
   -moz-flex-direction: column;
   flex-direction: column; }
 
+/*@property
+		name: flex-col-rev *n
+		caption: Ячейка flexbox с обратным отображением. *n */
 .flex-col-rev {
   -webkit-flex-direction: column-reverse;
   -moz-flex-direction: column-reverse;
   flex-direction: column-reverse; }
 
-/*justify content*/
+/*--------------------------------------------------------------
+											FLEXIBLE BOX LAYOUT
+--------------------------------------------------------------*/
 .flexbox {
-  /*only for flexbox*/
-  /*align items*/
-  /*wraps*/ }
+  /*@property
+		name: around *n
+		caption: Выравнивает bd{inline-flex}-элементы с 
+		отутупами снаружи по краям bd{flex}-родителя. *n */
+  /*@property
+		name: around *n
+		caption: Выравнивает bd{inline-flex}-элементы 
+		по одинкаовой высоте. *n */
+  /*@property
+		name: flex-nowrap *n
+		caption: Отключает оборачивание bd{inline-flex}-элементов, 
+		лежащих внутри блока. *n */
+  /*@property
+		name: flex-wrap *n
+		caption: Включает оборачивание bd{inline-flex}-элементов, 
+		лежащих внутри блока. *n */
+  /*@property
+		name: flex-wrap-rev *n
+		caption: Включает оборачивание bd{inline-flex}-элементов, 
+		лежащих внутри блока изменяя порядок отображения. *n */ }
   .flexbox .left {
     -webkit-justify-content: start;
     -moz-justify-content: start;
@@ -354,56 +756,392 @@ img.r {
     -moz-flex-wrap: wrap-reverse;
     flex-wrap: wrap-reverse; }
 
-.cl-black {
+/*--------------------------------------------------------------
+													ОТОБРАЖЕНИЕ
+--------------------------------------------------------------*/
+/*@property
+		name: block *n
+		caption: Блочный элемент. *n
+*/
+.block {
+  display: block; }
+
+/*@property
+		name: block *n
+		caption: Строчный блок (inline-block) *n
+*/
+.inline {
+  display: inline-block; }
+
+/*@property
+		name: block *n
+		caption: Блочный элемент (!important). *n
+*/
+.block-extra {
+  display: block !important; }
+
+/*@property
+		name: block *n
+		caption: Строчный блок (inline-block !important) *n
+*/
+.inline-extra {
+  display: inline-block !important; }
+
+/*@property
+		name: flex *n
+		caption: Flex-блок. По умолчанию ширина 100%, потомки 
+		выравниваются по левому краю.*n
+*/
+.flex {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  -webkit-justify-content: flex-start;
+  -moz-justify-content: flex-start;
+  justify-content: flex-start;
+  -webkit-flex-direction: row;
+  -moz-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: stretch;
+  align-items: stretch; }
+
+/*@property
+		name: inline-flex *n
+		caption: Inline-flex-блок.*n
+*/
+.inline-flex {
+  display: inline-flex;
+  flex-wrap: wrap;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; }
+
+/*@property
+		name: none *n
+		caption: Скрытый блок.*n
+*/
+.none {
+  display: none; }
+
+/*@property
+		name: table *n
+		caption: Таблица. По умолчанию ширина 100%. *n
+*/
+.table {
+  width: 100%;
+  display: table; }
+
+/*@property
+		name: row *n
+		caption: Строка таблицы. *n
+*/
+.row {
+  display: table-row; }
+
+/*@property
+		name: thead *n
+		caption: Шапка таблицы (table-header-group). *n
+*/
+.thead {
+  display: table-header-group; }
+
+/*@property
+		name: tfoot *n
+		caption: Подвал таблицы (table-footer-group). *n
+*/
+.tfoot {
+  display: table-footer-group; }
+
+/*@property
+		name: tbody *n
+		caption: Контент таблицы (table-column-group). *n
+*/
+.tbody {
+  display: table-column-group; }
+
+/*@property
+		name: table-cell *n
+		caption: Ячейка таблицы. *n
+*/
+.cell {
+  display: table-cell; }
+
+/*@property
+		name: list-item *n
+		caption: Элемент списка. *n
+*/
+.list-item {
+  display: list-item; }
+
+/*--------------------------------------------------------------
+													ОБРЕЗАНИЕ
+--------------------------------------------------------------*/
+/*@property
+		name: o-hid *n
+		caption: Скрывает содержимое блока, выходящее за 
+		его грани. *n
+*/
+.o-hid {
+  overflow: hidden; }
+
+/*@property
+		name: o-hid-y *n
+		caption: Скрывает содержимое блока, выходящее за 
+		его грани по вертикали. *n
+*/
+.o-hid-y {
+  overflow: hidden; }
+
+/*@property
+		name: o-hid-x *n
+		caption: Скрывает содержимое блока, выходящее за 
+		его грани по горизонтали. *n
+*/
+.o-hid-x {
+  overflow-x: hidden; }
+
+/*@property
+		name: o-hid-x *n
+		caption: Автоматически добавляет прокрутку, если 
+		содержимое блока выходит за грани. *n
+*/
+.o-auto {
+  overflow: auto; }
+
+/*@property
+		name: o-auto-x *n
+		caption: Автоматически добавляет прокрутку, если 
+		содержимое блока выходит за грани по горизонтали. *n
+*/
+.o-auto-x {
+  overflow-x: auto; }
+
+/*@property
+		name: o-auto-y *n
+		caption: Автоматически добавляет прокрутку, если 
+		содержимое блока выходит за грани по вертикали. *n
+*/
+.o-auto-y {
+  overflow-y: auto; }
+
+/*@property
+		name: o-visbl *n
+		caption: Не обрезает содержимое, если оно выходит 
+		за грани блока. *n
+*/
+.o-visbl {
+  overflow: visible; }
+
+/*@property
+		name: o-visbl-x *n
+		caption: Не обрезает содержимое, если оно выходит 
+		за грани блока по горизонтали. *n
+*/
+.o-visbl-x {
+  overflow-x: visible; }
+
+/*@property
+		name: o-visbl-y *n
+		caption: Не обрезает содержимое, если оно выходит 
+		за грани блока по вертикали. *n
+*/
+.o-visbl-y {
+  overflow-y: visible; }
+
+/*@property
+		name: bg-none *n
+		caption: Удаляет фон блока. *n
+*/
+.bg-none {
+  background: none; }
+
+/*--------------------------------------------------------------
+													ФОН БЛОКА
+--------------------------------------------------------------*/
+/*@property
+		name: bg-cover *n
+		caption: Устанавливает заполнение фоновым изображением 
+		фона блока таким образом, чтобы изображение полностью 
+		заполняло фон по вертикали и по горизонтали. *n
+*/
+.bg-cover {
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  -ms-background-size: cover;
+  background-size: cover; }
+
+/*@property
+		name: bg-contain *n
+		caption: Устанавливает заполнение фоновым изображением 
+		фона блока таким образом, чтобы изображение равнялось
+		по ширине или высоте блока. *n
+*/
+.bg-contain {
+  -webkit-background-size: contain;
+  -moz-background-size: contain;
+  -o-background-size: contain;
+  -ms-background-size: contain;
+  background-size: contain; }
+
+/*@property
+		name: circle-item *n
+		caption: Устанавливает скругление блока в 50%. *n
+*/
+.circle-item {
+  border-radius: 50%; }
+
+/*--------------------------------------------------------------
+												ЦВЕТА ТЕКСТА И ФОНА
+--------------------------------------------------------------*/
+/*@property
+		name: .YourColor *n
+		caption: Устанавливает цвет текста с названием YourColor.
+		Параметры задаются в bd{ _config.scss }, в объекте 
+		bd{ $colors_list } *n
+*/
+.black {
   color: #000000; }
 
-.cl-white {
+.white {
   color: #ffffff; }
 
+/*@property
+		name: .bg-YourColor *n
+		caption: Устанавливает фона блока с названием YourColor.
+		Параметры задаются в bd{ _config.scss }, в объекте 
+		bd{ $colors_list_bg } *n
+*/
 .bg-black {
   background-color: #000000; }
 
 .bg-white {
   background-color: #ffffff; }
 
-/* -----------------------------------------------------
-	fonts weight
+/*
+	@module
+		title: fonts *n
+		type: scss *n
+		caption:
+			p{ Модуль формирует вспомогательные классы преимущественно
+			для работы с текстом. }p
+		*n
+*/
+/*@property
+		name: light *n
+		caption: Тонкое начертание шрифта (100) *n
 */
 .light {
   font-weight: 100; }
 
+/*@property
+		name: semilight *n
+		caption: Тонкое начертание шрифта (300) *n
+*/
 .semilight {
   font-weight: 300; }
 
+/*@property
+		name: regular *n
+		caption: Нормальное начертание шрифта (400) *n
+*/
 .regular {
   font-weight: 400; }
 
-.bold {
+/*@property
+		name: semibold *n
+		caption: Полужирное начертание шрифта (500) *n
+*/
+.semibold {
   font-weight: 500; }
 
-.boldest {
+/*@property
+		name: bold *n
+		caption: Жирное начертание шрифта (700) *n
+*/
+.bold {
   font-weight: 700; }
 
+/*@property
+		name: extrabold *n
+		caption: Очень жирный текст ('black', 900) *n
+*/
 .extrabold {
   font-weight: 900; }
 
+/*@property
+		name: lower *n
+		caption: Приведение к нижнему регистру *n
+*/
 .lower {
   text-transform: lowercase; }
 
+/*@property
+		name: upper *n
+		caption: Приведение к верхнему регистру *n
+*/
 .upper {
   text-transform: uppercase; }
 
+/*@property
+		name: underline *n
+		caption: Подчеркивание текста. Для <a> - по умолчанию 
+		показывается подчеркивание, при наведении - убирается. *n
+*/
 .underline {
   text-decoration: underline; }
 
 a.underline:hover {
   text-decoration: none; }
 
+/*@property
+		name: rev-underline *n
+		caption: Подчеркивание текста. Для <a> - по умолчанию 
+		убирается подчеркивание, при наведении - показывается. *n
+*/
 .rev-underline {
   text-decoration: none; }
 
 a.rev-underline:hover {
   text-decoration: underline; }
+
+/*@property
+		name: rev-underline *n
+		caption: Курсивный шрифт. *n
+*/
+.italic {
+  font-style: italic; }
+
+/*@property
+		name: oblique *n
+		caption: Курсив и наклонный шрифт при всей их похожести не 
+		одно и то же. Курсив это специальный шрифт имитирующий 
+		рукописный, наклонный же образуется путем наклона обычных 
+		знаков вправо. *n
+*/
+.oblique {
+  font-style: oblique; }
+
+/*@property
+		name: blink *n
+		caption: Мигающий текст *n
+*/
+.blink {
+  text-decoration: blink; }
+
+/*@property
+		name: strike *n
+		caption: Зачеркнутый текст. *n
+*/
+.strike {
+  text-decoration: line-through; }
+
+/*@property
+		name: overline *n
+		caption: Надчеркнуты йшрифт. *n
+*/
+.overline {
+  text-decoration: overline; }
 
 /* -----------------------------------------------------
 	fonts size
@@ -573,8 +1311,19 @@ a.rev-underline:hover {
 .font-60 {
   font-size: 60px; }
 
-/* -----------------------------------------------------
-	sizes array of indents
+/*
+	@module
+		title: indents *n
+		type: scss *n
+		caption:
+			p{ Модуль добавляет классы для работы с 
+			внешними и внутренними отступами. }p
+		*n
+*/
+/*@property
+		name: island-** *n
+		caption: Добавляет внутренние отступы со всех сторон.
+		Парметры указываются в bd{ $islands } *n
 */
 .island-5 {
   padding: 5px; }
@@ -606,8 +1355,13 @@ a.rev-underline:hover {
 .island-50 {
   padding: 50px; }
 
-/* -----------------------------------------------------
-	PADDINGS
+/*--------------------------------------------------------
+												PADDINGS
+--------------------------------------------------------*/
+/*@property
+		name: pad-h** *n
+		caption: Добавляет внутренние отступы по горизонтали.
+		Парметры указываются в bd{ $horizontal_indents } *n
 */
 .pad-h5 {
   padding-left: 5px;
@@ -649,6 +1403,11 @@ a.rev-underline:hover {
   padding-left: 50px;
   padding-right: 50px; }
 
+/*@property
+		name: pad-v** *n
+		caption: Добавляет внутренние отступы по вертикали.
+		Парметры указываются в bd{ $vertical_indents } *n
+*/
 .pad-v5 {
   padding-top: 5px;
   padding-bottom: 5px; }
@@ -689,6 +1448,11 @@ a.rev-underline:hover {
   padding-top: 50px;
   padding-bottom: 50px; }
 
+/*@property
+		name: pad-top-** *n
+		caption: Добавляет внутренний отступ сверху.
+		Парметры указываются в bd{ $vertical_indents } *n
+*/
 .pad-top-5 {
   padding-top: 5px; }
 
@@ -719,6 +1483,11 @@ a.rev-underline:hover {
 .pad-top-50 {
   padding-top: 50px; }
 
+/*@property
+		name: pad-bot-** *n
+		caption: Добавляет внутренний отступ снизу.
+		Парметры указываются в bd{ $vertical_indents } *n
+*/
 .pad-bot-5 {
   padding-bottom: 5px; }
 
@@ -749,6 +1518,11 @@ a.rev-underline:hover {
 .pad-bot-50 {
   padding-bottom: 50px; }
 
+/*@property
+		name: pad-left-** *n
+		caption: Добавляет внутренний отступ слева.
+		Парметры указываются в bd{ $horizontal_indents } *n
+*/
 .pad-left-5 {
   padding-left: 5px; }
 
@@ -779,6 +1553,11 @@ a.rev-underline:hover {
 .pad-left-50 {
   padding-left: 50px; }
 
+/*@property
+		name: pad-right-** *n
+		caption: Добавляет внутренний отступ справа.
+		Парметры указываются в bd{ $horizontal_indents } *n
+*/
 .pad-right-5 {
   padding-right: 5px; }
 
@@ -809,7 +1588,17 @@ a.rev-underline:hover {
 .pad-right-50 {
   padding-right: 50px; }
 
+/*--------------------------------------------------------
+								PADDINGS - MEDIA QUERIES
+--------------------------------------------------------*/
 @media (max-width: 768px) {
+  /*@property
+				name: pad-h**--<BRAKEPOINT> *n
+				caption: Добавляет внутренние отступы по горизонтали 
+				при разрешении <BRAKEPOINT>.
+				Парметры указываются в bd{ $horizontal_indents } и 
+				bd{ $grid_prefixes } *n
+		*/
   .pad-h5--t {
     padding-left: 5px;
     padding-right: 5px; }
@@ -840,6 +1629,13 @@ a.rev-underline:hover {
   .pad-h50--t {
     padding-left: 50px;
     padding-right: 50px; }
+  /*@property
+				name: pad-v**--<BRAKEPOINT> *n
+				caption: Добавляет внутренние отступы по вертикали
+				при разрешении <BRAKEPOINT>.
+				Парметры указываются в bd{ $vertical_indents } и 
+				bd{ $grid_prefixes } *n
+		*/
   .pad-v5--t {
     padding-top: 5px;
     padding-bottom: 5px; }
@@ -870,6 +1666,13 @@ a.rev-underline:hover {
   .pad-v50--t {
     padding-top: 50px;
     padding-bottom: 50px; }
+  /*@property
+				name: pad-top-**--<BRAKEPOINT> *n
+				caption: Добавляет внутренний отступ сверху
+				при разрешении <BRAKEPOINT>.
+				Парметры указываются в bd{ $vertical_indents } и 
+				bd{ $grid_prefixes } *n
+		*/
   .pad-top-5--t {
     padding-top: 5px; }
   .pad-top-10--t {
@@ -890,6 +1693,13 @@ a.rev-underline:hover {
     padding-top: 45px; }
   .pad-top-50--t {
     padding-top: 50px; }
+  /*@property
+				name: pad-bot-**--<BRAKEPOINT> *n
+				caption: Добавляет внутренний отступ снизу
+				при разрешении <BRAKEPOINT>.
+				Парметры указываются в bd{ $vertical_indents } и 
+				bd{ $grid_prefixes } *n
+		*/
   .pad-bot-5--t {
     padding-bottom: 5px; }
   .pad-bot-10--t {
@@ -910,6 +1720,13 @@ a.rev-underline:hover {
     padding-bottom: 45px; }
   .pad-bot-50--t {
     padding-bottom: 50px; }
+  /*@property
+				name: pad-left-**--<BRAKEPOINT> *n
+				caption: Добавляет внутренний отступ слева
+				при разрешении <BRAKEPOINT>.
+				Парметры указываются в bd{ $horizontal_indents } и 
+				bd{ $grid_prefixes } *n
+		*/
   .pad-left-5--t {
     padding-left: 5px; }
   .pad-left-10--t {
@@ -930,6 +1747,13 @@ a.rev-underline:hover {
     padding-left: 45px; }
   .pad-left-50--t {
     padding-left: 50px; }
+  /*@property
+				name: pad-right-**--<BRAKEPOINT> *n
+				caption: Добавляет внутренний отступ справа
+				при разрешении <BRAKEPOINT>.
+				Парметры указываются в bd{ $horizontal_indents } и 
+				bd{ $grid_prefixes } *n
+		*/
   .pad-right-5--t {
     padding-right: 5px; }
   .pad-right-10--t {
@@ -952,6 +1776,13 @@ a.rev-underline:hover {
     padding-right: 50px; } }
 
 @media (max-width: 640px) {
+  /*@property
+				name: pad-h**--<BRAKEPOINT> *n
+				caption: Добавляет внутренние отступы по горизонтали 
+				при разрешении <BRAKEPOINT>.
+				Парметры указываются в bd{ $horizontal_indents } и 
+				bd{ $grid_prefixes } *n
+		*/
   .pad-h5--sm {
     padding-left: 5px;
     padding-right: 5px; }
@@ -982,6 +1813,13 @@ a.rev-underline:hover {
   .pad-h50--sm {
     padding-left: 50px;
     padding-right: 50px; }
+  /*@property
+				name: pad-v**--<BRAKEPOINT> *n
+				caption: Добавляет внутренние отступы по вертикали
+				при разрешении <BRAKEPOINT>.
+				Парметры указываются в bd{ $vertical_indents } и 
+				bd{ $grid_prefixes } *n
+		*/
   .pad-v5--sm {
     padding-top: 5px;
     padding-bottom: 5px; }
@@ -1012,6 +1850,13 @@ a.rev-underline:hover {
   .pad-v50--sm {
     padding-top: 50px;
     padding-bottom: 50px; }
+  /*@property
+				name: pad-top-**--<BRAKEPOINT> *n
+				caption: Добавляет внутренний отступ сверху
+				при разрешении <BRAKEPOINT>.
+				Парметры указываются в bd{ $vertical_indents } и 
+				bd{ $grid_prefixes } *n
+		*/
   .pad-top-5--sm {
     padding-top: 5px; }
   .pad-top-10--sm {
@@ -1032,6 +1877,13 @@ a.rev-underline:hover {
     padding-top: 45px; }
   .pad-top-50--sm {
     padding-top: 50px; }
+  /*@property
+				name: pad-bot-**--<BRAKEPOINT> *n
+				caption: Добавляет внутренний отступ снизу
+				при разрешении <BRAKEPOINT>.
+				Парметры указываются в bd{ $vertical_indents } и 
+				bd{ $grid_prefixes } *n
+		*/
   .pad-bot-5--sm {
     padding-bottom: 5px; }
   .pad-bot-10--sm {
@@ -1052,6 +1904,13 @@ a.rev-underline:hover {
     padding-bottom: 45px; }
   .pad-bot-50--sm {
     padding-bottom: 50px; }
+  /*@property
+				name: pad-left-**--<BRAKEPOINT> *n
+				caption: Добавляет внутренний отступ слева
+				при разрешении <BRAKEPOINT>.
+				Парметры указываются в bd{ $horizontal_indents } и 
+				bd{ $grid_prefixes } *n
+		*/
   .pad-left-5--sm {
     padding-left: 5px; }
   .pad-left-10--sm {
@@ -1072,6 +1931,13 @@ a.rev-underline:hover {
     padding-left: 45px; }
   .pad-left-50--sm {
     padding-left: 50px; }
+  /*@property
+				name: pad-right-**--<BRAKEPOINT> *n
+				caption: Добавляет внутренний отступ справа
+				при разрешении <BRAKEPOINT>.
+				Парметры указываются в bd{ $horizontal_indents } и 
+				bd{ $grid_prefixes } *n
+		*/
   .pad-right-5--sm {
     padding-right: 5px; }
   .pad-right-10--sm {
@@ -1094,6 +1960,13 @@ a.rev-underline:hover {
     padding-right: 50px; } }
 
 @media (max-width: 480px) {
+  /*@property
+				name: pad-h**--<BRAKEPOINT> *n
+				caption: Добавляет внутренние отступы по горизонтали 
+				при разрешении <BRAKEPOINT>.
+				Парметры указываются в bd{ $horizontal_indents } и 
+				bd{ $grid_prefixes } *n
+		*/
   .pad-h5--m {
     padding-left: 5px;
     padding-right: 5px; }
@@ -1124,6 +1997,13 @@ a.rev-underline:hover {
   .pad-h50--m {
     padding-left: 50px;
     padding-right: 50px; }
+  /*@property
+				name: pad-v**--<BRAKEPOINT> *n
+				caption: Добавляет внутренние отступы по вертикали
+				при разрешении <BRAKEPOINT>.
+				Парметры указываются в bd{ $vertical_indents } и 
+				bd{ $grid_prefixes } *n
+		*/
   .pad-v5--m {
     padding-top: 5px;
     padding-bottom: 5px; }
@@ -1154,6 +2034,13 @@ a.rev-underline:hover {
   .pad-v50--m {
     padding-top: 50px;
     padding-bottom: 50px; }
+  /*@property
+				name: pad-top-**--<BRAKEPOINT> *n
+				caption: Добавляет внутренний отступ сверху
+				при разрешении <BRAKEPOINT>.
+				Парметры указываются в bd{ $vertical_indents } и 
+				bd{ $grid_prefixes } *n
+		*/
   .pad-top-5--m {
     padding-top: 5px; }
   .pad-top-10--m {
@@ -1174,6 +2061,13 @@ a.rev-underline:hover {
     padding-top: 45px; }
   .pad-top-50--m {
     padding-top: 50px; }
+  /*@property
+				name: pad-bot-**--<BRAKEPOINT> *n
+				caption: Добавляет внутренний отступ снизу
+				при разрешении <BRAKEPOINT>.
+				Парметры указываются в bd{ $vertical_indents } и 
+				bd{ $grid_prefixes } *n
+		*/
   .pad-bot-5--m {
     padding-bottom: 5px; }
   .pad-bot-10--m {
@@ -1194,6 +2088,13 @@ a.rev-underline:hover {
     padding-bottom: 45px; }
   .pad-bot-50--m {
     padding-bottom: 50px; }
+  /*@property
+				name: pad-left-**--<BRAKEPOINT> *n
+				caption: Добавляет внутренний отступ слева
+				при разрешении <BRAKEPOINT>.
+				Парметры указываются в bd{ $horizontal_indents } и 
+				bd{ $grid_prefixes } *n
+		*/
   .pad-left-5--m {
     padding-left: 5px; }
   .pad-left-10--m {
@@ -1214,6 +2115,13 @@ a.rev-underline:hover {
     padding-left: 45px; }
   .pad-left-50--m {
     padding-left: 50px; }
+  /*@property
+				name: pad-right-**--<BRAKEPOINT> *n
+				caption: Добавляет внутренний отступ справа
+				при разрешении <BRAKEPOINT>.
+				Парметры указываются в bd{ $horizontal_indents } и 
+				bd{ $grid_prefixes } *n
+		*/
   .pad-right-5--m {
     padding-right: 5px; }
   .pad-right-10--m {
@@ -1235,8 +2143,13 @@ a.rev-underline:hover {
   .pad-right-50--m {
     padding-right: 50px; } }
 
-/* -----------------------------------------------------
-	MARGINS
+/*--------------------------------------------------------
+												MARGINS
+--------------------------------------------------------*/
+/*@property
+		name: marg-** *n
+		caption: Добавляет внешние отступы со всех сторон.
+		Парметры указываются в bd{ $islands } *n
 */
 .marg-5 {
   margin: 5px; }
@@ -1268,6 +2181,11 @@ a.rev-underline:hover {
 .marg-50 {
   margin: 50px; }
 
+/*@property
+		name: marg-h** *n
+		caption: Добавляет внешние отступы по горизонтали.
+		Парметры указываются в bd{ $horizontal_indents } *n
+*/
 .marg-h5 {
   margin-left: 5px;
   margin-right: 5px; }
@@ -1308,6 +2226,11 @@ a.rev-underline:hover {
   margin-left: 50px;
   margin-right: 50px; }
 
+/*@property
+		name: marg-v** *n
+		caption: Добавляет внешние отступы по вертикали.
+		Парметры указываются в bd{ $vertical_indents } *n
+*/
 .marg-v5 {
   margin-top: 5px;
   margin-bottom: 5px; }
@@ -1348,6 +2271,11 @@ a.rev-underline:hover {
   margin-top: 50px;
   margin-bottom: 50px; }
 
+/*@property
+		name: marg-top-** *n
+		caption: Добавляет внешние отступы сверху.
+		Парметры указываются в bd{ $vertical_indents } *n
+*/
 .marg-top-5 {
   margin-top: 5px; }
 
@@ -1378,6 +2306,11 @@ a.rev-underline:hover {
 .marg-top-50 {
   margin-top: 50px; }
 
+/*@property
+		name: marg-bot-** *n
+		caption: Добавляет внешние отступы снизу.
+		Парметры указываются в bd{ $vertical_indents } *n
+*/
 .marg-bot-5 {
   margin-bottom: 5px; }
 
@@ -1408,6 +2341,11 @@ a.rev-underline:hover {
 .marg-bot-50 {
   margin-bottom: 50px; }
 
+/*@property
+		name: marg-left-** *n
+		caption: Добавляет внешние отступы слева.
+		Парметры указываются в bd{ $horizontal_indents } *n
+*/
 .marg-left-5 {
   margin-left: 5px; }
 
@@ -1438,6 +2376,11 @@ a.rev-underline:hover {
 .marg-left-50 {
   margin-left: 50px; }
 
+/*@property
+		name: marg-right-** *n
+		caption: Добавляет внешние отступы справа.
+		Парметры указываются в bd{ $horizontal_indents } *n
+*/
 .marg-right-5 {
   margin-right: 5px; }
 
@@ -1468,7 +2411,17 @@ a.rev-underline:hover {
 .marg-right-50 {
   margin-right: 50px; }
 
+/*--------------------------------------------------------
+									MARGINS MEDIA QUERIES
+--------------------------------------------------------*/
 @media (max-width: 768px) {
+  /*@property
+				name: marg-h**--<BRAKEPOINT> *n
+				caption: Добавляет внешние отступы по горизонтали
+				при разрешении <BRAKEPOINT>.
+				Парметры указываются в bd{ $horizontal_indents } и 
+				bd{ $grid_prefixes } *n
+		*/
   .marg-h5--t {
     margin-left: 5px;
     margin-right: 5px; }
@@ -1499,6 +2452,13 @@ a.rev-underline:hover {
   .marg-h50--t {
     margin-left: 50px;
     margin-right: 50px; }
+  /*@property
+				name: marg-v**--<BRAKEPOINT> *n
+				caption: Добавляет внешние отступы по вертикали
+				при разрешении <BRAKEPOINT>.
+				Парметры указываются в bd{ $vertical_indents } и 
+				bd{ $grid_prefixes } *n
+		*/
   .marg-v5--t {
     margin-top: 5px;
     margin-bottom: 5px; }
@@ -1529,6 +2489,13 @@ a.rev-underline:hover {
   .marg-v50--t {
     margin-top: 50px;
     margin-bottom: 50px; }
+  /*@property
+				name: marg-top-**--<BRAKEPOINT> *n
+				caption: Добавляет внешние отступы сверху
+				при разрешении <BRAKEPOINT>.
+				Парметры указываются в bd{ $vertical_indents } и 
+				bd{ $grid_prefixes } *n
+		*/
   .marg-top-5--t {
     margin-top: 5px; }
   .marg-top-10--t {
@@ -1549,6 +2516,13 @@ a.rev-underline:hover {
     margin-top: 45px; }
   .marg-top-50--t {
     margin-top: 50px; }
+  /*@property
+				name: marg-bot-**--<BRAKEPOINT> *n
+				caption: Добавляет внешние отступы снизу
+				при разрешении <BRAKEPOINT>.
+				Парметры указываются в bd{ $vertical_indents } и 
+				bd{ $grid_prefixes } *n
+		*/
   .marg-bot-5--t {
     margin-bottom: 5px; }
   .marg-bot-10--t {
@@ -1569,6 +2543,13 @@ a.rev-underline:hover {
     margin-bottom: 45px; }
   .marg-bot-50--t {
     margin-bottom: 50px; }
+  /*@property
+				name: marg-left-**--<BRAKEPOINT> *n
+				caption: Добавляет внешние отступы слева
+				при разрешении <BRAKEPOINT>.
+				Парметры указываются в bd{ $horizontal_indents } и 
+				bd{ $grid_prefixes } *n
+		*/
   .marg-left-5--t {
     margin-left: 5px; }
   .marg-left-10--t {
@@ -1589,6 +2570,13 @@ a.rev-underline:hover {
     margin-left: 45px; }
   .marg-left-50--t {
     margin-left: 50px; }
+  /*@property
+				name: marg-right-**--<BRAKEPOINT> *n
+				caption: Добавляет внешние отступы справа
+				при разрешении <BRAKEPOINT>.
+				Парметры указываются в bd{ $horizontal_indents } и 
+				bd{ $grid_prefixes } *n
+		*/
   .marg-right-5--t {
     margin-right: 5px; }
   .marg-right-10--t {
@@ -1611,6 +2599,13 @@ a.rev-underline:hover {
     margin-right: 50px; } }
 
 @media (max-width: 640px) {
+  /*@property
+				name: marg-h**--<BRAKEPOINT> *n
+				caption: Добавляет внешние отступы по горизонтали
+				при разрешении <BRAKEPOINT>.
+				Парметры указываются в bd{ $horizontal_indents } и 
+				bd{ $grid_prefixes } *n
+		*/
   .marg-h5--sm {
     margin-left: 5px;
     margin-right: 5px; }
@@ -1641,6 +2636,13 @@ a.rev-underline:hover {
   .marg-h50--sm {
     margin-left: 50px;
     margin-right: 50px; }
+  /*@property
+				name: marg-v**--<BRAKEPOINT> *n
+				caption: Добавляет внешние отступы по вертикали
+				при разрешении <BRAKEPOINT>.
+				Парметры указываются в bd{ $vertical_indents } и 
+				bd{ $grid_prefixes } *n
+		*/
   .marg-v5--sm {
     margin-top: 5px;
     margin-bottom: 5px; }
@@ -1671,6 +2673,13 @@ a.rev-underline:hover {
   .marg-v50--sm {
     margin-top: 50px;
     margin-bottom: 50px; }
+  /*@property
+				name: marg-top-**--<BRAKEPOINT> *n
+				caption: Добавляет внешние отступы сверху
+				при разрешении <BRAKEPOINT>.
+				Парметры указываются в bd{ $vertical_indents } и 
+				bd{ $grid_prefixes } *n
+		*/
   .marg-top-5--sm {
     margin-top: 5px; }
   .marg-top-10--sm {
@@ -1691,6 +2700,13 @@ a.rev-underline:hover {
     margin-top: 45px; }
   .marg-top-50--sm {
     margin-top: 50px; }
+  /*@property
+				name: marg-bot-**--<BRAKEPOINT> *n
+				caption: Добавляет внешние отступы снизу
+				при разрешении <BRAKEPOINT>.
+				Парметры указываются в bd{ $vertical_indents } и 
+				bd{ $grid_prefixes } *n
+		*/
   .marg-bot-5--sm {
     margin-bottom: 5px; }
   .marg-bot-10--sm {
@@ -1711,6 +2727,13 @@ a.rev-underline:hover {
     margin-bottom: 45px; }
   .marg-bot-50--sm {
     margin-bottom: 50px; }
+  /*@property
+				name: marg-left-**--<BRAKEPOINT> *n
+				caption: Добавляет внешние отступы слева
+				при разрешении <BRAKEPOINT>.
+				Парметры указываются в bd{ $horizontal_indents } и 
+				bd{ $grid_prefixes } *n
+		*/
   .marg-left-5--sm {
     margin-left: 5px; }
   .marg-left-10--sm {
@@ -1731,6 +2754,13 @@ a.rev-underline:hover {
     margin-left: 45px; }
   .marg-left-50--sm {
     margin-left: 50px; }
+  /*@property
+				name: marg-right-**--<BRAKEPOINT> *n
+				caption: Добавляет внешние отступы справа
+				при разрешении <BRAKEPOINT>.
+				Парметры указываются в bd{ $horizontal_indents } и 
+				bd{ $grid_prefixes } *n
+		*/
   .marg-right-5--sm {
     margin-right: 5px; }
   .marg-right-10--sm {
@@ -1753,6 +2783,13 @@ a.rev-underline:hover {
     margin-right: 50px; } }
 
 @media (max-width: 480px) {
+  /*@property
+				name: marg-h**--<BRAKEPOINT> *n
+				caption: Добавляет внешние отступы по горизонтали
+				при разрешении <BRAKEPOINT>.
+				Парметры указываются в bd{ $horizontal_indents } и 
+				bd{ $grid_prefixes } *n
+		*/
   .marg-h5--m {
     margin-left: 5px;
     margin-right: 5px; }
@@ -1783,6 +2820,13 @@ a.rev-underline:hover {
   .marg-h50--m {
     margin-left: 50px;
     margin-right: 50px; }
+  /*@property
+				name: marg-v**--<BRAKEPOINT> *n
+				caption: Добавляет внешние отступы по вертикали
+				при разрешении <BRAKEPOINT>.
+				Парметры указываются в bd{ $vertical_indents } и 
+				bd{ $grid_prefixes } *n
+		*/
   .marg-v5--m {
     margin-top: 5px;
     margin-bottom: 5px; }
@@ -1813,6 +2857,13 @@ a.rev-underline:hover {
   .marg-v50--m {
     margin-top: 50px;
     margin-bottom: 50px; }
+  /*@property
+				name: marg-top-**--<BRAKEPOINT> *n
+				caption: Добавляет внешние отступы сверху
+				при разрешении <BRAKEPOINT>.
+				Парметры указываются в bd{ $vertical_indents } и 
+				bd{ $grid_prefixes } *n
+		*/
   .marg-top-5--m {
     margin-top: 5px; }
   .marg-top-10--m {
@@ -1833,6 +2884,13 @@ a.rev-underline:hover {
     margin-top: 45px; }
   .marg-top-50--m {
     margin-top: 50px; }
+  /*@property
+				name: marg-bot-**--<BRAKEPOINT> *n
+				caption: Добавляет внешние отступы снизу
+				при разрешении <BRAKEPOINT>.
+				Парметры указываются в bd{ $vertical_indents } и 
+				bd{ $grid_prefixes } *n
+		*/
   .marg-bot-5--m {
     margin-bottom: 5px; }
   .marg-bot-10--m {
@@ -1853,6 +2911,13 @@ a.rev-underline:hover {
     margin-bottom: 45px; }
   .marg-bot-50--m {
     margin-bottom: 50px; }
+  /*@property
+				name: marg-left-**--<BRAKEPOINT> *n
+				caption: Добавляет внешние отступы слева
+				при разрешении <BRAKEPOINT>.
+				Парметры указываются в bd{ $horizontal_indents } и 
+				bd{ $grid_prefixes } *n
+		*/
   .marg-left-5--m {
     margin-left: 5px; }
   .marg-left-10--m {
@@ -1873,6 +2938,13 @@ a.rev-underline:hover {
     margin-left: 45px; }
   .marg-left-50--m {
     margin-left: 50px; }
+  /*@property
+				name: marg-right-**--<BRAKEPOINT> *n
+				caption: Добавляет внешние отступы справа
+				при разрешении <BRAKEPOINT>.
+				Парметры указываются в bd{ $horizontal_indents } и 
+				bd{ $grid_prefixes } *n
+		*/
   .marg-right-5--m {
     margin-right: 5px; }
   .marg-right-10--m {
@@ -1894,16 +2966,35 @@ a.rev-underline:hover {
   .marg-right-50--m {
     margin-right: 50px; } }
 
+/*--------------------------------------------------------
+												RESETS
+--------------------------------------------------------*/
+/*@property
+		name: no-marg *n
+		caption: Убирает внешние отступы блока. *n
+*/
 .no-marg {
   margin: 0; }
 
+/*@property
+		name: no-pad *n
+		caption: Убирает внутренние отступы блока. *n
+*/
 .no-pad {
   padding: 0; }
 
+/*@property
+		name: exact-fit *n
+		caption: Убирает внутренние и внешние отступы блока. *n
+*/
 .exact-fit {
   margin: 0;
   padding: 0; }
 
+/*@property
+		name: no-marg--<BRAKEPOINT> *n
+		caption: Убирает внешние отступы блока при разрешении <BRAKEPOINT>. *n
+*/
 @media (max-width: 768px) {
   .no-pad--t {
     padding: 0; } }
@@ -1916,6 +3007,10 @@ a.rev-underline:hover {
   .no-pad--m {
     padding: 0; } }
 
+/*@property
+		name: no-pad--<BRAKEPOINT> *n
+		caption: Убирает внутренние отступы блока при разрешении <BRAKEPOINT>. *n
+*/
 @media (max-width: 768px) {
   .no-marg--t {
     margin: 0; } }
@@ -1928,6 +3023,10 @@ a.rev-underline:hover {
   .no-marg--m {
     margin: 0; } }
 
+/*@property
+		name: exact-fit--<BRAKEPOINT> *n
+		caption: Убирает внутренние и внешние отступы блока при разрешении <BRAKEPOINT>. *n
+*/
 @media (max-width: 768px) {
   .exact-fit--t {
     padding: 0;
@@ -1954,4 +3053,8 @@ a.rev-underline:hover {
 */
 /* -----------------------------------------------------
 	media queries
+	@media (max-width: 768px), (max-device-width: 768px) {
+		@import "_media/_768.scss";
+	}
 */
+/* вставить запросы тут */

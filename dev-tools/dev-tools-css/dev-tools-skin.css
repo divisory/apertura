@@ -1,40 +1,211 @@
+@charset "UTF-8";
 @import url(http://fonts.googleapis.com/css?family=Exo+2:400,300,700,100&subset=latin,cyrillic);
-/*-------------------------------------------------------
-	Color Properties
+/*
+	@module
+		title: mixins *n
+		type: scss *n
+		caption:
+			p{ Модуль добавляет в систему заранее подготовленные
+			миксины, которые используются в коде. }p
+			p{ Чтобы использовать миксины - вставвьте нужный миксин
+			в код при помощи директивы bd{ @include my-mixin(mixin-values); }}p
+		*n
 */
-/*-------------------------------------------------------
+/*--------------------------------------------------------------------------
 	Background and Border Properties
-*/
-/*-------------------------------------------------------
-	Basic Box Properties
-*/
-/*-------------------------------------------------------
+--------------------------------------------------------------------------*/
+/*@mixin
+		name: background-clip() *n caption: *n arguments: $clip *n
+		return: -webkit-, -moz-, -ms-, -o- *n */
+/*@mixin
+		name: background-origin() *n caption: *n arguments: $origin *n
+		return: -webkit-, -moz-, -ms-, -o- *n */
+/*@mixin
+		name: background-size() *n caption: *n arguments: $size *n
+		return: -webkit-, -moz-, -ms-, -o- *n */
+/*@mixin
+		name: border-bottom-left-radius() *n caption: *n arguments: $radius *n
+		return: -webkit-, -moz-, -ms- *n */
+/*@mixin
+		name: border-bottom-right-radius() *n caption: *n arguments: $radius *n
+		return: -webkit-, -moz-, -ms- *n */
+/*@mixin
+		name: border-top-right-radius() *n caption: *n arguments: $radius *n
+		return: -webkit-, -moz-, -ms- *n */
+/*@mixin
+		name: border-top-left-radius() *n caption: *n arguments: $radius *n
+		return: -webkit-, -moz-, -ms- *n */
+/*@mixin
+		name: border-radius() *n caption: *n arguments: $radius *n
+		return: -webkit-, -moz-, -ms- *n */
+/*@mixin
+		name: box-shadow() *n caption: *n arguments: $shadow *n
+		return: -webkit-, -moz- *n */
+/*--------------------------------------------------------------------------
 	Flexible Box Layout
-*/
-/*-------------------------------------------------------
+--------------------------------------------------------------------------*/
+/*@mixin
+		name: align-content() *n caption: bd{flexbox} *n arguments: $type *n
+		return: -webkit- *n */
+/*@mixin
+		name: align-items() *n caption: bd{flexbox} *n arguments: $type *n
+		return: -webkit- *n */
+/*@mixin
+		name: align-self() *n caption: bd{flexbox} *n arguments: $type *n
+		return: -webkit- *n */
+/*@mixin
+		name: flex() *n caption: bd{flexbox} *n arguments: $type *n
+		return: -webkit-, -moz-, -ms- *n */
+/*@mixin
+		name: flex-basis() *n caption: bd{flexbox} *n arguments: $type *n
+		return: -webkit-, -moz- *n */
+/*@mixin
+		name: flex-direction() *n caption: bd{flexbox} *n arguments: $direction *n
+		return: -webkit-, -moz- *n */
+/*@mixin
+		name: flex-flow() *n caption: bd{flexbox} *n arguments: $flow *n
+		return: -webkit-, -moz- *n */
+/*@mixin
+		name: flex-grow() *n caption: bd{flexbox} *n arguments: $grow *n
+		return: -webkit-, -moz- *n */
+/*@mixin
+		name: flex-shirk() *n caption: bd{flexbox} *n arguments: $shirk *n
+		return: -webkit-, -moz- *n */
+/*@mixin
+		name: flex-wrap() *n caption: bd{flexbox} *n arguments: $wrap *n
+		return: -webkit-, -moz- *n */
+/*@mixin
+		name: justify-content() *n caption: bd{flexbox} *n arguments: $type *n
+		return: -webkit-, -moz- *n */
+/*@mixin
+		name: order() *n caption: bd{flexbox} *n arguments: $type *n
+		return: -webkit-, -moz- *n */
+/*--------------------------------------------------------------------------
 	Text Properties
-*/
-/*-------------------------------------------------------
-	Text Decoration Properties
-*/
-/*-------------------------------------------------------
+--------------------------------------------------------------------------*/
+/*@mixin
+		name: tab-size() *n caption: bd{flexbox} *n arguments: $type *n
+		return: -o-, -moz- *n */
+/*--------------------------------------------------------------------------
 	Animation Properties
-*/
-/*-------------------------------------------------------
+--------------------------------------------------------------------------*/
+/*@mixin
+		name: keyframes() *n caption: animations *n arguments: $name *n
+		return: -webkit-, -moz-, -o- *n */
+/*@mixin
+		name: animation() *n caption: animations *n arguments: $type *n
+		return: -webkit-, -moz-, -o- *n */
+/*@mixin
+		name: animation-delay() *n caption: animations *n arguments: $type *n
+		return: -webkit-, -moz-, -o- *n */
+/*@mixin
+		name: animation-direction() *n caption: animations *n arguments: $type *n
+		return: -webkit-, -moz-, -o- *n */
+/*@mixin
+		name: animation-duration() *n caption: animations *n arguments: $type *n
+		return: -webkit-, -moz-, -o- *n */
+/*@mixin
+		name: animation-fill-mode() *n caption: animations *n arguments: $type *n
+		return: -webkit-, -moz-, -o- *n */
+/*@mixin
+		name: animation-iteration-count() *n caption: animations *n arguments: $type *n
+		return: -webkit-, -moz-, -o- *n */
+/*@mixin
+		name: animation-timing-function() *n caption: animations *n arguments: $type *n
+		return: -webkit-, -moz-, -o- *n */
+/*@mixin
+		name: animation-play-state() *n caption: animations *n arguments: $type *n
+		return: -webkit-, -moz-, -o- *n */
+/*--------------------------------------------------------------------------
 	Transform Properties
-*/
-/*-------------------------------------------------------
+--------------------------------------------------------------------------*/
+/*@mixin
+		name: backface-visibility() *n caption: transformations *n arguments: $type *n
+		return: -webkit-, -moz- *n */
+/*@mixin
+		name: perspective() *n caption: transformations *n arguments: $type *n
+		return: -webkit-, -moz- *n */
+/*@mixin
+		name: perspective-origin() *n caption: transformations *n arguments: $type *n
+		return: -webkit-, -moz- *n */
+/*@mixin
+		name: transform() *n caption: transformations *n arguments: $type *n
+		return: -webkit-, -moz-, -ms-, -o- *n */
+/*@mixin
+		name: transform-origin() *n caption: transformations *n arguments: $type *n
+		return: -webkit-, -moz-, -ms-, -o- *n */
+/*@mixin
+		name: transform-style() *n caption: transformations *n arguments: $type *n
+		return: -webkit-, -moz- *n */
+/*--------------------------------------------------------------------------
 	Transitions Properties
-*/
-/*-------------------------------------------------------
+--------------------------------------------------------------------------*/
+/*@mixin
+		name: transition() *n caption: transitions *n arguments: $type *n
+		return: -webkit-, -moz-, -o- *n */
+/*@mixin
+		name: transition-property() *n caption: transitions *n arguments: $type *n
+		return: -webkit-, -moz-, -o- *n */
+/*@mixin
+		name: transition-duration() *n caption: transitions *n arguments: $type *n
+		return: -webkit-, -moz-, -o- *n */
+/*@mixin
+		name: transition-timing-function() *n caption: transitions *n arguments: $type *n
+		return: -webkit-, -moz-, -o- *n */
+/*@mixin
+		name: transition-delay() *n caption: transitions *n arguments: $type *n
+		return: -webkit-, -moz-, -o- *n */
+/*--------------------------------------------------------------------------
 	Basic User Interface Properties
-*/
-/*-------------------------------------------------------
+--------------------------------------------------------------------------*/
+/*@mixin
+		name: box-sizing() *n caption: UI *n arguments: $type *n
+		return: -webkit-, -moz- *n */
+/*@mixin
+		name: outline-offset() *n caption: UI *n arguments: $type *n
+		return: -webkit- *n */
+/*@mixin
+		name: resize() *n caption: UI *n arguments: $type *n
+		return: -moz- *n */
+/*@mixin
+		name: text-overflow() *n caption: UI *n arguments: $type *n
+		return: -o- *n */
+/*--------------------------------------------------------------------------
 	Multi-column Layout Properties
-*/
-/*-------------------------------------------------------
+--------------------------------------------------------------------------*/
+/*@mixin
+		name: column-count() *n caption: UI *n arguments: $type *n
+		return: -webkit-, -moz- *n */
+/*@mixin
+		name: column-gap() *n caption: UI *n arguments: $type *n
+		return: -webkit-, -moz- *n */
+/*@mixin
+		name: column-rule() *n caption: UI *n arguments: $type *n
+		return: -webkit-, -moz- *n */
+/*@mixin
+		name: column-rule-color() *n caption: UI *n arguments: $type *n
+		return: -webkit-, -moz- *n */
+/*@mixin
+		name: column-rule-style() *n caption: UI *n arguments: $type *n
+		return: -webkit-, -moz- *n */
+/*@mixin
+		name: column-rule-width() *n caption: UI *n arguments: $type *n
+		return: -webkit-, -moz- *n */
+/*@mixin
+		name: column-rule-span() *n caption: UI *n arguments: $type *n
+		return: -webkit-, -moz- *n */
+/*@mixin
+		name: column-width() *n caption: UI *n arguments: $type *n
+		return: -webkit-, -moz- *n */
+/*@mixin
+		name: columns() *n caption: UI *n arguments: $type *n
+		return: -webkit-, -moz- *n */
+/*--------------------------------------------------------------------------
 	Filter Effects Properties
-*/
+--------------------------------------------------------------------------*/
+/*@mixin
+		name: filter() *n caption: UI *n arguments: $properties *n
+		return: -webkit-, -moz-, -o- *n */
 #dev-pixel-perfect {
   font-family: 'Exo 2', sans-serif;
   position: absolute;
