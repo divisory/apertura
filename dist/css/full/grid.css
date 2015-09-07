@@ -459,10 +459,14 @@
 html.flexbox .g, html.flexbox .g-rev {
   margin: 0 auto;
   display: flex;
+  -webkit-flex-wrap: wrap;
+  -moz-flex-wrap: wrap;
   flex-wrap: wrap; }
 
 html.flexbox .c, html.flexbox .cc, html.flexbox .c-c {
   display: inline-flex;
+  -webkit-flex-wrap: wrap;
+  -moz-flex-wrap: wrap;
   flex-wrap: wrap;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
