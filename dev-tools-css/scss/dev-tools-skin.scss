@@ -1,0 +1,212 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:100,400,300,500,600,700&subset=latin,cyrillic);
+
+@import '../../../scss/_mixins/_mixins.scss';
+@import 'icons.css';
+
+$blue: #435EB6;
+$red: #B64386;
+
+$shadow: 0 1px 5px rgba(0,0,0,.5);
+.adk-fileslist-wrapper {
+	position: fixed;
+	top: 50%; left: 0; right: 0; bottom: 50%;
+	background: rgba(0,0,0,.4);
+	overflow: auto;
+	padding: 30px 0;
+	line-height: 20px;
+	font-family: 'Open Sans', sans-serif;
+	display: block;
+	opacity: 0;
+	z-index: -1;
+	@include transition(.1s linear);
+	&.active {
+		z-index: 9999999;
+		opacity: 1;
+		top: 0;
+		bottom: 0;
+		@include transition(.2s cubic-bezier(0,0,0,1));
+	}
+
+	* {
+		@include box-sizing(border-box);
+	}
+
+	.adk-fileslist {
+		position: relative;
+		width: 400px;
+		background: #fff;
+		left: 50%;
+		margin-left: -200px;
+		padding: 0px;
+		border-radius: 3px;
+		padding-top: 60px;
+		padding-bottom: 10px;
+		box-shadow: 0 1px 5px rgba(0,0,0,.5);
+
+		.adk-filelist-ul {
+			display: block;
+			position: relative;
+			list-style: none;
+			margin: 10px 0;
+			padding: 0 0 0 0;
+			height: auto;
+			@include transition(.2s);
+			&.disabled {
+				height: 0;
+				margin: 0;
+				opacity: 0;
+				overflow: hidden;
+			}
+			&:before {
+				box-sizing: border-box;
+				content: "\e60b";
+				font-family: 'icomoon';
+				text-align: center;
+				color: $blue;
+				speak: none;
+				font-size: 15px;
+				line-height: 1;
+				width: 16px; height: 16px;
+				position: absolute;
+				left: 20px; top: 12px;
+			}
+			li {
+				display: block;
+				&:first-child {
+					color: $blue;
+					margin: 0;
+					font-weight: 600;
+					text-transform: uppercase;
+					font-size: 16px;
+					padding-top: 10px;
+					padding-bottom: 10px;
+					padding-left: 50px;
+				}
+				a {
+					display: block;
+					text-decoration: none;
+					color: #444;
+					font-size: 15px;
+					font-weight: 600;
+					padding: 5px 20px;
+					b {
+						color: #ccc;
+						font-weight: 400;
+					}
+					i {
+						font-style: normal;
+						color: #aaa;
+						font-weight: 400;
+					}
+					&:hover {
+						background: #f0f0f0;
+						b, i {
+							color: #888;
+						}
+					}
+				}
+			}
+		}
+
+		.filelist-header {
+			position: absolute;
+			top: 0; left: 0; right: 0;
+			height: 60px;
+			background: $blue;
+			border-radius: 2px 2px 0 0;
+			clear: both;
+			text-align: left;
+			font-size: 28px;
+			color: #fff;
+			line-height: 60px;
+			padding: 0 20px;
+			text-shadow: 0 1px 2px rgba(0,0,0,.4);
+
+			span {
+				display: block;
+				position: absolute;
+				z-index: 2;
+				right: 20px; top: 40px;
+				border-radius: 50%;
+				width: 40px; height: 40px;
+				font-size: 18px;
+				background: lighten($blue,5);
+				cursor: pointer;
+				line-height: 40px;
+				overflow: hidden;
+				box-shadow: 0 2px 5px rgba(0,0,0,.5);
+				@include transition(.2s cubic-bezier(0,0,0,1));
+				>i {
+					display: block;
+					line-height: 40px;
+					width: 100%;
+					text-align: center;
+					width: 40px; height: 40px;
+					position: absolute;
+					right: 0; top: 0;
+					@include transition(.2s cubic-bezier(0,0,0,1));
+				}
+				hr {
+					display: block;
+					height: 1px;
+					margin: 10px 0;
+					border: none;
+					background: rgba(255,255,255,.1);
+				}
+				a {
+					@include transition(opacity .2s cubic-bezier(0,0,0,1));
+					display: block;
+					position: relative;
+					color: #fff;
+					white-space: nowrap;
+					line-height: 34px;
+					text-decoration: none;
+					font-weight: 600;
+					font-size: 12px;
+					text-align: left;
+					padding: 0 20px;
+					font-weight: 400;
+					opacity: 0;
+					text-transform: uppercase;
+					>i {
+						font-size: 16px;
+						margin-right: 10px;
+						display: inline-block;
+						vertical-align: middle;
+						position: relative;
+						bottom: 2px;
+					}
+					&:first-child {
+						border-radius: 3px 0 0 0;
+					}
+					&:hover {
+						background: rgba(255,255,255,.1);
+					}
+				}
+				&:hover {
+					box-shadow: 0 2px 5px rgba(0,0,0,.5);
+					border-radius: 3px;
+					padding-top: 10px;
+					width: 140px; height: 180px;
+					a {
+						@include transition-delay(.15s);
+						opacity: 1;
+					}
+					>i {
+						@include transform(rotate(45deg));
+						opacity: 0;
+					}
+				}
+			}
+		}
+	}
+}
+@media (max-width: 480px), (max-device-width: 480px){
+	.adk-fileslist-wrapper {
+		.adk-fileslist {
+			width: 90%;
+			margin-left: 5%;
+			left: 0;
+		}
+	}
+}
