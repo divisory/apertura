@@ -1,5 +1,7 @@
 @charset "UTF-8";
-@import url(https://fonts.googleapis.com/css?family=Open+Sans:100,400,300,500,600,700&subset=latin,cyrillic);
+/*@import url(https://fonts.googleapis.com/css?family=Open+Sans:100,400,300,500,600,700&subset=latin,cyrillic);*/
+/*@import url(https://fonts.googleapis.com/css?family=Roboto:400,700,300&subset=latin,cyrillic);*/
+@import url(https://fonts.googleapis.com/css?family=Ubuntu:400,300,700,500&subset=latin,cyrillic);
 /*
 	@module
 		title: mixins *n
@@ -208,95 +210,151 @@
 		return: -webkit-, -moz-, -o- *n */
 @import url(icons.css);
 .adk-fileslist-wrapper {
+  line-height: 22px;
   position: fixed;
-  top: 50%;
-  left: 0;
-  right: 0;
-  bottom: 50%;
-  background: rgba(0, 0, 0, 0.4);
-  overflow: auto;
-  padding: 30px 0;
-  line-height: 20px;
-  font-family: 'Open Sans', sans-serif;
-  display: block;
-  opacity: 0;
+  background: #fff;
+  overflow: hidden;
+  /*font-family: 'Open Sans', sans-serif;*/
+  font-family: 'Ubuntu', sans-serif;
+  display: none;
+  width: 0;
+  visibility: hidden;
   z-index: -1;
-  -webkit-transition: 0.1s linear;
-  -moz-transition: 0.1s linear;
-  -o-transition: 0.1s linear;
-  transition: 0.1s linear; }
+  /*left: 0; top: 0; bottom: 100%; right: 100%;*/
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: auto;
+  border-right: 1px solid #999;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4); }
   .adk-fileslist-wrapper.active {
-    z-index: 9999999;
-    opacity: 1;
+    visibility: visible;
+    display: block;
+    z-index: 99999;
+    width: 320px;
+    left: 0;
     top: 0;
     bottom: 0;
-    -webkit-transition: 0.2s cubic-bezier(0, 0, 0, 1);
-    -moz-transition: 0.2s cubic-bezier(0, 0, 0, 1);
-    -o-transition: 0.2s cubic-bezier(0, 0, 0, 1);
-    transition: 0.2s cubic-bezier(0, 0, 0, 1); }
+    right: auto; }
   .adk-fileslist-wrapper * {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box; }
+  .adk-fileslist-wrapper .filelist-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 28px;
+    text-align: left;
+    font-size: 14px;
+    font-weight: 700;
+    color: #999;
+    background: #f0f0f0;
+    line-height: 30px;
+    padding: 0 10px;
+    border-bottom: 1px solid #ccc; }
+    .adk-fileslist-wrapper .filelist-header span {
+      display: block;
+      position: absolute;
+      z-index: 2;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      left: auto;
+      font-size: 14px;
+      clear: both; }
+      .adk-fileslist-wrapper .filelist-header span a {
+        display: inline-block;
+        position: relative;
+        color: #888;
+        float: right;
+        font-weight: 400;
+        font-size: 12px;
+        height: 28px;
+        white-space: nowrap;
+        text-decoration: none;
+        padding: 0 10px;
+        border-left: 1px solid #ccc;
+        border-bottom: 1px solid #ccc; }
+        .adk-fileslist-wrapper .filelist-header span a > i {
+          display: none; }
+        .adk-fileslist-wrapper .filelist-header span a:hover {
+          color: #444; }
+        .adk-fileslist-wrapper .filelist-header span a.active {
+          color: #DD4814;
+          /*box-shadow: inset 0 0 10px rgba(0,0,0,.1);*/ }
+        .adk-fileslist-wrapper .filelist-header span a.adk-window-place .icon {
+          display: block;
+          width: 20px;
+          height: 20px;
+          margin-top: 4px;
+          opacity: .2;
+          background: url(../dev-tools-img/window-position.png) no-repeat center center;
+          background-position: -40px 0; }
+        .adk-fileslist-wrapper .filelist-header span a.adk-window-place:hover .icon {
+          opacity: .4; }
+  .adk-fileslist-wrapper.bottom-place {
+    top: auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 300px;
+    width: 100%; }
+    .adk-fileslist-wrapper.bottom-place .filelist-header span .adk-window-place .icon {
+      background-position: 0 0; }
   .adk-fileslist-wrapper .adk-fileslist {
-    position: relative;
-    width: 400px;
-    background: #fff;
-    left: 50%;
-    margin-left: -200px;
-    padding: 0px;
-    border-radius: 3px;
-    padding-top: 60px;
-    padding-bottom: 10px;
-    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5); }
+    position: absolute;
+    left: 0;
+    top: 28px;
+    bottom: 0;
+    right: 0;
+    overflow: hidden;
+    overflow-y: auto;
+    background: #fff; }
     .adk-fileslist-wrapper .adk-fileslist .adk-filelist-ul {
       display: block;
       position: relative;
       list-style: none;
-      margin: 10px 0;
-      padding: 0 0 0 0;
+      margin: 0;
+      background: #fff;
+      padding: 10px 0;
       height: auto;
-      -webkit-transition: 0.2s;
-      -moz-transition: 0.2s;
-      -o-transition: 0.2s;
-      transition: 0.2s; }
+      border-bottom: 1px solid #ddd; }
       .adk-fileslist-wrapper .adk-fileslist .adk-filelist-ul.disabled {
-        height: 0;
-        margin: 0;
-        opacity: 0;
-        overflow: hidden; }
+        display: none; }
       .adk-fileslist-wrapper .adk-fileslist .adk-filelist-ul:before {
         box-sizing: border-box;
         content: "\e60b";
         font-family: 'icomoon';
         text-align: center;
-        color: #435EB6;
+        color: #DD4814;
         speak: none;
         font-size: 15px;
         line-height: 1;
         width: 16px;
         height: 16px;
         position: absolute;
-        left: 20px;
+        left: 10px;
         top: 12px; }
       .adk-fileslist-wrapper .adk-fileslist .adk-filelist-ul li {
         display: block; }
         .adk-fileslist-wrapper .adk-fileslist .adk-filelist-ul li:first-child {
-          color: #435EB6;
+          color: #DD4814;
           margin: 0;
           font-weight: 600;
           text-transform: uppercase;
-          font-size: 16px;
-          padding-top: 10px;
-          padding-bottom: 10px;
-          padding-left: 50px; }
+          font-size: 14px;
+          padding-left: 32px;
+          padding-bottom: 4px; }
         .adk-fileslist-wrapper .adk-fileslist .adk-filelist-ul li a {
           display: block;
           text-decoration: none;
           color: #444;
-          font-size: 15px;
-          font-weight: 600;
-          padding: 5px 20px; }
+          font-size: 12px;
+          line-height: 16px;
+          font-weight: 400;
+          padding: 3px 10px 3px 32px; }
           .adk-fileslist-wrapper .adk-fileslist .adk-filelist-ul li a b {
             color: #ccc;
             font-weight: 400; }
@@ -305,114 +363,6 @@
             color: #aaa;
             font-weight: 400; }
           .adk-fileslist-wrapper .adk-fileslist .adk-filelist-ul li a:hover {
-            background: #f0f0f0; }
+            background: #fad1c3; }
             .adk-fileslist-wrapper .adk-fileslist .adk-filelist-ul li a:hover b, .adk-fileslist-wrapper .adk-fileslist .adk-filelist-ul li a:hover i {
               color: #888; }
-    .adk-fileslist-wrapper .adk-fileslist .filelist-header {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 60px;
-      background: #435EB6;
-      border-radius: 2px 2px 0 0;
-      clear: both;
-      text-align: left;
-      font-size: 28px;
-      color: #fff;
-      line-height: 60px;
-      padding: 0 20px;
-      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4); }
-      .adk-fileslist-wrapper .adk-fileslist .filelist-header span {
-        display: block;
-        position: absolute;
-        z-index: 2;
-        right: 20px;
-        top: 40px;
-        border-radius: 50%;
-        width: 40px;
-        height: 40px;
-        font-size: 18px;
-        background: #536cc0;
-        cursor: pointer;
-        line-height: 40px;
-        overflow: hidden;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
-        -webkit-transition: 0.2s cubic-bezier(0, 0, 0, 1);
-        -moz-transition: 0.2s cubic-bezier(0, 0, 0, 1);
-        -o-transition: 0.2s cubic-bezier(0, 0, 0, 1);
-        transition: 0.2s cubic-bezier(0, 0, 0, 1); }
-        .adk-fileslist-wrapper .adk-fileslist .filelist-header span > i {
-          display: block;
-          line-height: 40px;
-          width: 100%;
-          text-align: center;
-          width: 40px;
-          height: 40px;
-          position: absolute;
-          right: 0;
-          top: 0;
-          -webkit-transition: 0.2s cubic-bezier(0, 0, 0, 1);
-          -moz-transition: 0.2s cubic-bezier(0, 0, 0, 1);
-          -o-transition: 0.2s cubic-bezier(0, 0, 0, 1);
-          transition: 0.2s cubic-bezier(0, 0, 0, 1); }
-        .adk-fileslist-wrapper .adk-fileslist .filelist-header span hr {
-          display: block;
-          height: 1px;
-          margin: 10px 0;
-          border: none;
-          background: rgba(255, 255, 255, 0.1); }
-        .adk-fileslist-wrapper .adk-fileslist .filelist-header span a {
-          -webkit-transition: opacity 0.2s cubic-bezier(0, 0, 0, 1);
-          -moz-transition: opacity 0.2s cubic-bezier(0, 0, 0, 1);
-          -o-transition: opacity 0.2s cubic-bezier(0, 0, 0, 1);
-          transition: opacity 0.2s cubic-bezier(0, 0, 0, 1);
-          display: block;
-          position: relative;
-          color: #fff;
-          white-space: nowrap;
-          line-height: 34px;
-          text-decoration: none;
-          font-weight: 600;
-          font-size: 12px;
-          text-align: left;
-          padding: 0 20px;
-          font-weight: 400;
-          opacity: 0;
-          text-transform: uppercase; }
-          .adk-fileslist-wrapper .adk-fileslist .filelist-header span a > i {
-            font-size: 16px;
-            margin-right: 10px;
-            display: inline-block;
-            vertical-align: middle;
-            position: relative;
-            bottom: 2px; }
-          .adk-fileslist-wrapper .adk-fileslist .filelist-header span a:first-child {
-            border-radius: 3px 0 0 0; }
-          .adk-fileslist-wrapper .adk-fileslist .filelist-header span a:hover {
-            background: rgba(255, 255, 255, 0.1); }
-        .adk-fileslist-wrapper .adk-fileslist .filelist-header span:hover {
-          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
-          border-radius: 3px;
-          padding-top: 10px;
-          width: 140px;
-          height: 180px; }
-          .adk-fileslist-wrapper .adk-fileslist .filelist-header span:hover a {
-            -webkit-transition-delay: 0.15s;
-            -moz-transition-delay: 0.15s;
-            -o-transition-delay: 0.15s;
-            transition-delay: 0.15s;
-            opacity: 1; }
-          .adk-fileslist-wrapper .adk-fileslist .filelist-header span:hover > i {
-            -webkit-transform: rotate(45deg);
-            -moz-transform: rotate(45deg);
-            -ms-transform: rotate(45deg);
-            -o-transform: rotate(45deg);
-            transform: rotate(45deg);
-            opacity: 0; }
-
-@media (max-width: 480px), (max-device-width: 480px) {
-  .adk-fileslist-wrapper .adk-fileslist {
-    width: 90%;
-    margin-left: 5%;
-    left: 0; } }

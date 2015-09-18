@@ -1,11 +1,8 @@
 [
-  "dist/index.html",
-  "dist/dsfasdasd.txt",
-  "dist/dsfasdfasd.json",
-  "dist/css/full/grid.css",
-  "dist/css/full/skin.css",
   "dist/css/grid.min.css",
   "dist/css/skin.min.css",
+  "dist/css/full/grid.css",
+  "dist/css/full/skin.css",
   "dist/js/vendor/dfasd/minify.min.js",
   "dist/js/vendor/dfasd/modernizr-2.7.1.min.js",
   "dist/js/vendor/dfasd/no-hover.min.js",
@@ -16,5 +13,8 @@
   "dist/js/vendor/jquery-2.1.0.min.js",
   "dist/js/vendor/minify.min.js",
   "dist/js/vendor/modernizr-2.7.1.min.js",
-  "dist/js/vendor/no-hover.min.js"
+  "dist/js/vendor/no-hover.min.js",
+  "dist/index.html",
+  "dist/dsfasdasd.txt",
+  "dist/dsfasdfasd.json"
 ]

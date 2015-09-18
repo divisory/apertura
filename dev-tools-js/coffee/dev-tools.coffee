@@ -14,10 +14,31 @@ bind = (element, handler)->
 	document.getElementById element
 		.addEventListener 'click', handler
 
+
+classNames = (str, type, clas)->
+	elements = str.split ','
+	for element in elements
+		if type is 'add'
+			document.querySelector(element).classList.add clas
+		else
+			document.querySelector(element).classList.remove clas
+
+showAllCategoriesButtons = ->
+	classNames '#ADKshowRoot, #ADKshowJs, #ADKshowCss, #ADKshowAll', 'remove', 'active'
+
 showAllCategories = ->
-	document.querySelector('.adk-otherfilelist').classList.remove 'disabled'
-	document.querySelector('.adk-cssfilelist').classList.remove 'disabled'
-	document.querySelector('.adk-jsfilelist').classList.remove 'disabled'
+	do showAllCategoriesButtons
+	classNames '.adk-otherfilelist, .adk-cssfilelist, .adk-jsfilelist', 'remove', 'disabled'
+
+
+sortingFunction = (a,b)->
+	A = a.match /\//gim
+	B = b.match /\//gim
+	if A.length > B.length
+		return -1
+	else if A.length < B.length
+		return 1
+	else return 0
 
 # --------------------------------------------------------
 # FILES WATCHER
@@ -46,10 +67,13 @@ otherFiles = []
 for file in files
 	str = renameStr file
 	if str.match /js\//gim
-		jsFiles.push str.replace /js\//gim, ''
+		jsFiles.push str
 	else if str.match /css\//gim
-		cssFiles.push str.replace /css\//gim, ''
+		cssFiles.push str
 	else otherFiles.push str
+
+jsFiles.sort sortingFunction
+cssFiles.sort sortingFunction
 
 filelistWrapper = document.createElement 'div'
 filelistWrapper.setAttribute 'class', 'adk-fileslist-wrapper'
@@ -60,7 +84,7 @@ filelist.setAttribute 'class', 'adk-fileslist'
 createList = (arr, nameClass, name, path)->
 	returned = "<ul class='adk-filelist-ul #{nameClass}'><li>#{name}</li>"
 	for f in arr
-		returned += "<li><a href='#{path}#{f}' target='_blank'>#{parsePath f}</a></li>"
+		returned += "<li><a href='#{f}' target='_blank'>#{parsePath f}</a></li>"
 	returned += "</ul>"
 	returned
 
@@ -68,53 +92,68 @@ createList = (arr, nameClass, name, path)->
 res = "<div class='filelist-header'>
 	Filelist
 	<span>
-		<i class='icon icon-cog'></i>
-		<a href='#' id='showAll'><i class='icon icon-folder'></i>all</a>
-		<hr>
-		<a href='#' id='showJs'><i class='icon icon-js'></i>javascript</a>
-		<a href='#' id='showCss'><i class='icon icon-css'></i>css</a>
-		<a href='#' id='showRoot'><i class='icon icon-html'></i>root</a>
+		<a href='#' id='ADKresizeFilelist' class='adk-window-place'><i class='icon'></i></a>
+		<a href='#' id='ADKshowAll' class='active'><i class='icon icon-folder'></i>all</a>
+		<a href='#' id='ADKshowJs'><i class='icon icon-js'></i>javascript</a>
+		<a href='#' id='ADKshowCss'><i class='icon icon-css'></i>css</a>
+		<a href='#' id='ADKshowRoot'><i class='icon icon-html'></i>root</a>
 	</span>
 	</div>"
+filelistWrapper.innerHTML = res
 
-res += createList jsFiles, 'adk-jsfilelist', 'Javascript', 'js/'
-res += createList cssFiles, 'adk-cssfilelist', 'CSS', 'css/'
+res = ""
+
 res += createList otherFiles, 'adk-otherfilelist', 'Root', '/'
+res += createList cssFiles, 'adk-cssfilelist', 'CSS', 'css/'
+res += createList jsFiles, 'adk-jsfilelist', 'Javascript', 'js/'
 
 filelist.innerHTML = res
 filelistWrapper.appendChild filelist
 document.body.appendChild filelistWrapper
 
-bind 'showRoot', (e)->
-	e = event || window.event; e.preventDefault()
-	do showAllCategories
-	document.querySelector('.adk-jsfilelist').classList.add 'disabled'
-	document.querySelector('.adk-cssfilelist').classList.add 'disabled'
-
-bind 'showJs', (e)->
-	e = event || window.event; e.preventDefault()
-	do showAllCategories
-	document.querySelector('.adk-otherfilelist').classList.add 'disabled'
-	document.querySelector('.adk-cssfilelist').classList.add 'disabled'
-
-bind 'showCss', (e)->
-	e = event || window.event; e.preventDefault()
-	do showAllCategories
-	document.querySelector('.adk-jsfilelist').classList.add 'disabled'
-	document.querySelector('.adk-otherfilelist').classList.add 'disabled'
-
-bind 'showAll', (e)->
-	e = event || window.event; e.preventDefault()
-	do showAllCategories
 
 
+bind 'ADKshowRoot', (e)->
+	e = event || window.event; e.preventDefault(); do showAllCategories
+	classNames '.adk-jsfilelist, .adk-cssfilelist', 'add', 'disabled'
+	classNames '#ADKshowRoot', 'add', 'active'
+
+bind 'ADKshowJs', (e)->
+	e = event || window.event; e.preventDefault(); do showAllCategories
+	classNames '.adk-otherfilelist, .adk-cssfilelist', 'add', 'disabled'
+	classNames '#ADKshowJs', 'add', 'active'
+
+bind 'ADKshowCss', (e)->
+	e = event || window.event; e.preventDefault(); do showAllCategories
+	classNames '.adk-jsfilelist, .adk-otherfilelist', 'add', 'disabled'
+	classNames '#ADKshowCss', 'add', 'active'
+
+bind 'ADKshowAll', (e)->
+	e = event || window.event; e.preventDefault(); do showAllCategories
+	classNames '#ADKshowAll', 'add', 'active'
+
+bind 'ADKresizeFilelist', (e)->
+	e = event || window.event; e.preventDefault();
+	filelistWrapper.classList.toggle 'bottom-place'
+# adkFilelist = document.getElementsByClassName('adk-fileslist')[0]
+
+# stopWheel = (e) ->
+# 	e = window.event  unless e
+# 	e.preventDefault()  if e.preventDefault
+# 	e.returnValue = false
+
+# adkFilelist.addEventListener "mousewheel", (e)->
+# 	delta = e.deltaY or e.detail or e.wheelDelta
+# 	if delta < 0 then adkFilelist.scrollTop -= 50 else adkFilelist.scrollTop += 50
+# , true
 
 
+# adkFilelist.addEventListener 'mouseover', ->
+# 	document.body.onmousewheel = (e)->
+# 		stopWheel()
 
-
-
-
-
+# adkFilelist.addEventListener 'mouseout', ->
+# 	document.body.onmousewheel = null
 
 
 
@@ -130,9 +169,8 @@ bind 'showAll', (e)->
 
 document.onkeydown = (event) ->
 	if event.keyCode is 49
-		document.body.style.overflow = 'hidden'
-		document.getElementsByClassName('adk-fileslist-wrapper')[0]
-			.classList.add 'active'
+		adkFilelist = document.getElementsByClassName('adk-fileslist-wrapper')[0]
+		adkFilelist.classList.toggle 'active'
 	# if event.keyCode is 50
 	# 	grid = select '#dev-grid-block'
 	# 	grid.style.display = 'block'
@@ -145,7 +183,7 @@ document.onkeydown = (event) ->
 	# 		.focus()
 	return
 
-document.onkeyup = ->
-	document.body.style.overflow = ''
-	document.getElementsByClassName('adk-fileslist-wrapper')[0]
-		.classList.remove 'active'
+# document.onkeyup = ->
+# 	document.body.style.overflow = ''
+# 	document.getElementsByClassName('adk-fileslist-wrapper')[0]
+# 		.classList.remove 'active'

@@ -1,94 +1,164 @@
-@import url(https://fonts.googleapis.com/css?family=Open+Sans:100,400,300,500,600,700&subset=latin,cyrillic);
+/*@import url(https://fonts.googleapis.com/css?family=Open+Sans:100,400,300,500,600,700&subset=latin,cyrillic);*/
+/*@import url(https://fonts.googleapis.com/css?family=Roboto:400,700,300&subset=latin,cyrillic);*/
+@import url(https://fonts.googleapis.com/css?family=Ubuntu:400,300,700,500&subset=latin,cyrillic);
 
 @import '../../../scss/_mixins/_mixins.scss';
 @import 'icons.css';
 
 $blue: #435EB6;
 $red: #B64386;
+$light: #e0e0ff;
+$orange: #DD4814;
 
 $shadow: 0 1px 5px rgba(0,0,0,.5);
+
+
 .adk-fileslist-wrapper {
+	line-height: 22px;
 	position: fixed;
-	top: 50%; left: 0; right: 0; bottom: 50%;
-	background: rgba(0,0,0,.4);
-	overflow: auto;
-	padding: 30px 0;
-	line-height: 20px;
-	font-family: 'Open Sans', sans-serif;
-	display: block;
-	opacity: 0;
+	background: #fff;
+	overflow: hidden;
+	/*font-family: 'Open Sans', sans-serif;*/
+	font-family: 'Ubuntu', sans-serif;
+	display: none;
+	width: 0;
+	visibility: hidden;
 	z-index: -1;
-	@include transition(.1s linear);
+	/*left: 0; top: 0; bottom: 100%; right: 100%;*/
+	left: 0; top: 0; bottom: 0; right: auto;
+	border-right: 1px solid #999;
+	box-shadow: 0 0 10px rgba(0,0,0,.4);
 	&.active {
-		z-index: 9999999;
-		opacity: 1;
-		top: 0;
-		bottom: 0;
-		@include transition(.2s cubic-bezier(0,0,0,1));
+		visibility: visible;
+		display: block;
+		z-index: 99999;
+		width: 320px;
+		left: 0; top: 0; bottom: 0; right: auto;
 	}
 
 	* {
 		@include box-sizing(border-box);
 	}
 
+	.filelist-header {
+		position: absolute;
+		top: 0; left: 0; right: 0;
+		height: 28px;
+		text-align: left;
+		font-size: 14px;
+		font-weight: 700;
+		color: #999;
+		background: #f0f0f0;
+		line-height: 30px;
+		padding: 0 10px;
+		border-bottom: 1px solid #ccc;
+
+		span {
+			display: block;
+			position: absolute;
+			z-index: 2;
+			right: 0; top: 0; bottom: 0; left: auto;
+			font-size: 14px;
+			clear: both;
+			a {
+				display: inline-block;
+				position: relative;
+				color: #888;
+				float: right;
+				font-weight: 400;
+				font-size: 12px;
+				height: 28px;
+				white-space: nowrap;
+				text-decoration: none;
+				padding: 0 10px;
+				border-left: 1px solid #ccc;
+				border-bottom: 1px solid #ccc;
+				>i {
+					display: none;
+				}
+				&:hover {
+					color: #444;
+				}
+				&.active {
+					color: $orange;
+					/*box-shadow: inset 0 0 10px rgba(0,0,0,.1);*/
+				}
+				&.adk-window-place {
+					.icon {
+						display: block;
+						width: 20px; height: 20px;
+						margin-top: 4px;
+						opacity: .2;
+						background: url(../dev-tools-img/window-position.png) no-repeat center center;
+						background-position: -40px 0;
+					}
+					&:hover .icon {
+						opacity: .4;
+					}
+				}
+			}
+		}
+	}
+
+	&.bottom-place {
+		top: auto; bottom: 0; left: 0; right: 0;
+		height: 300px; width: 100%;
+		.filelist-header span .adk-window-place .icon {
+			background-position: 0 0;
+		}
+	}
+
 	.adk-fileslist {
-		position: relative;
-		width: 400px;
+		position: absolute;
+		left: 0; top: 28px; bottom: 0; right: 0;
+		overflow: hidden;
+		overflow-y: auto;
 		background: #fff;
-		left: 50%;
-		margin-left: -200px;
-		padding: 0px;
-		border-radius: 3px;
-		padding-top: 60px;
-		padding-bottom: 10px;
-		box-shadow: 0 1px 5px rgba(0,0,0,.5);
 
 		.adk-filelist-ul {
 			display: block;
 			position: relative;
 			list-style: none;
-			margin: 10px 0;
-			padding: 0 0 0 0;
+			margin: 0;
+			background: #fff;
+			padding: 10px 0;
 			height: auto;
-			@include transition(.2s);
+			border-bottom: 1px solid #ddd;
 			&.disabled {
-				height: 0;
-				margin: 0;
-				opacity: 0;
-				overflow: hidden;
+				display: none;
 			}
 			&:before {
 				box-sizing: border-box;
 				content: "\e60b";
 				font-family: 'icomoon';
 				text-align: center;
-				color: $blue;
+				color: $orange;
 				speak: none;
 				font-size: 15px;
 				line-height: 1;
 				width: 16px; height: 16px;
 				position: absolute;
-				left: 20px; top: 12px;
+				left: 10px; top: 12px;
 			}
 			li {
 				display: block;
 				&:first-child {
-					color: $blue;
+					color: $orange;
 					margin: 0;
 					font-weight: 600;
 					text-transform: uppercase;
-					font-size: 16px;
-					padding-top: 10px;
-					padding-bottom: 10px;
-					padding-left: 50px;
+					font-size: 14px;
+					padding-left: 32px;
+					padding-bottom: 4px;
 				}
 				a {
 					display: block;
 					text-decoration: none;
 					color: #444;
-					font-size: 15px;
-					font-weight: 600;
-					padding: 5px 20px;
+					font-size: 12px;
+					line-height: 16px;
+					font-weight: 400;
+					padding: 3px 10px 3px 32px;
 					b {
 						color: #ccc;
 						font-weight: 400;
@@ -99,114 +169,13 @@ $shadow: 0 1px 5px rgba(0,0,0,.5);
 						font-weight: 400;
 					}
 					&:hover {
-						background: #f0f0f0;
+						background: lighten($orange,40);
 						b, i {
 							color: #888;
 						}
 					}
 				}
 			}
-		}
-
-		.filelist-header {
-			position: absolute;
-			top: 0; left: 0; right: 0;
-			height: 60px;
-			background: $blue;
-			border-radius: 2px 2px 0 0;
-			clear: both;
-			text-align: left;
-			font-size: 28px;
-			color: #fff;
-			line-height: 60px;
-			padding: 0 20px;
-			text-shadow: 0 1px 2px rgba(0,0,0,.4);
-
-			span {
-				display: block;
-				position: absolute;
-				z-index: 2;
-				right: 20px; top: 40px;
-				border-radius: 50%;
-				width: 40px; height: 40px;
-				font-size: 18px;
-				background: lighten($blue,5);
-				cursor: pointer;
-				line-height: 40px;
-				overflow: hidden;
-				box-shadow: 0 2px 5px rgba(0,0,0,.5);
-				@include transition(.2s cubic-bezier(0,0,0,1));
-				>i {
-					display: block;
-					line-height: 40px;
-					width: 100%;
-					text-align: center;
-					width: 40px; height: 40px;
-					position: absolute;
-					right: 0; top: 0;
-					@include transition(.2s cubic-bezier(0,0,0,1));
-				}
-				hr {
-					display: block;
-					height: 1px;
-					margin: 10px 0;
-					border: none;
-					background: rgba(255,255,255,.1);
-				}
-				a {
-					@include transition(opacity .2s cubic-bezier(0,0,0,1));
-					display: block;
-					position: relative;
-					color: #fff;
-					white-space: nowrap;
-					line-height: 34px;
-					text-decoration: none;
-					font-weight: 600;
-					font-size: 12px;
-					text-align: left;
-					padding: 0 20px;
-					font-weight: 400;
-					opacity: 0;
-					text-transform: uppercase;
-					>i {
-						font-size: 16px;
-						margin-right: 10px;
-						display: inline-block;
-						vertical-align: middle;
-						position: relative;
-						bottom: 2px;
-					}
-					&:first-child {
-						border-radius: 3px 0 0 0;
-					}
-					&:hover {
-						background: rgba(255,255,255,.1);
-					}
-				}
-				&:hover {
-					box-shadow: 0 2px 5px rgba(0,0,0,.5);
-					border-radius: 3px;
-					padding-top: 10px;
-					width: 140px; height: 180px;
-					a {
-						@include transition-delay(.15s);
-						opacity: 1;
-					}
-					>i {
-						@include transform(rotate(45deg));
-						opacity: 0;
-					}
-				}
-			}
-		}
-	}
-}
-@media (max-width: 480px), (max-device-width: 480px){
-	.adk-fileslist-wrapper {
-		.adk-fileslist {
-			width: 90%;
-			margin-left: 5%;
-			left: 0;
 		}
 	}
 }
