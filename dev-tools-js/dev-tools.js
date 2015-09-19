@@ -1,4 +1,41 @@
-var bind, classNames, config, createList, cssFiles, file, filelist, filelistWrapper, files, i, jsFiles, len, otherFiles, parsePath, renameHref, renameStr, res, showAllCategories, showAllCategoriesButtons, sortingFunction, str;
+var Ajax, Elements, Grid, adkFilelist, adkGrid, bind, classNames, config, createList, cssFiles, drawGrid, drawLine, element, filelist, filelistWrapper, gridCanvas, gridCanvasCtx, gridInfoWrapper, gridWrapper, jsFiles, list, otherFiles, parsePath, parseSubstring, renameHref, renameStr, res, showAllCategories, showAllCategoriesButtons, sortingFunction, updateGridElements;
+
+config = '';
+
+list = [];
+
+Ajax = function(url, callback) {
+  var e, request;
+  request = new XMLHttpRequest();
+  try {
+    request = new XMLHttpRequest();
+  } catch (_error) {
+    e = _error;
+    try {
+      request = new ActiveXObject("Msxml2.XMLHTTP");
+    } catch (_error) {
+      e = _error;
+      try {
+        request = new ActiveXObject("Microsoft.XMLHTTP");
+      } catch (_error) {
+        e = _error;
+      }
+      return false;
+    }
+  }
+  request.onreadystatechange = function() {
+    if (request.readyState === 4) {
+      return callback(request.responseText);
+    }
+  };
+  request.open("GET", url, true);
+  return request.send();
+};
+
+
+/*
+-------------------------------------------------------------
+ */
 
 renameHref = function(str) {
   str = str.replace(/\\/gim, '/');
@@ -19,11 +56,11 @@ bind = function(element, handler) {
 };
 
 classNames = function(str, type, clas) {
-  var element, elements, i, len, results;
+  var element, elements, j, len, results;
   elements = str.split(',');
   results = [];
-  for (i = 0, len = elements.length; i < len; i++) {
-    element = elements[i];
+  for (j = 0, len = elements.length; j < len; j++) {
+    element = elements[j];
     if (type === 'add') {
       results.push(document.querySelector(element).classList.add(clas));
     } else {
@@ -55,9 +92,26 @@ sortingFunction = function(a, b) {
   }
 };
 
-files = ["dist/css/grid.min.css", "dist/css/skin.min.css", "dist/css/full/grid.css", "dist/css/full/skin.css", "dist/js/vendor/dfasd/minify.min.js", "dist/js/vendor/dfasd/modernizr-2.7.1.min.js", "dist/js/vendor/dfasd/no-hover.min.js", "dist/js/dev-tools.js", "dist/js/main.js", "dist/js/script.js", "dist/js/vendor/html5shiv.js", "dist/js/vendor/jquery-2.1.0.min.js", "dist/js/vendor/minify.min.js", "dist/js/vendor/modernizr-2.7.1.min.js", "dist/js/vendor/no-hover.min.js", "dist/index.html", "dist/dsfasdasd.txt", "dist/dsfasdfasd.json"];
+parseSubstring = function(str1, str2) {
+  var cache, cache2;
+  cache = config.match(new RegExp(str1 + "(.+?)" + str2, "g"));
+  if (str1 !== '\\\$grid_calc:') {
+    cache2 = cache[0].replace(/(\s|\t|\n|\r)/gim, '').substr(str1.length - 1);
+  } else {
+    cache2 = cache[0].replace(/(\(|\))/gim, '').substr(str1.length - 1);
+  }
+  cache = cache2.substr(0, cache2.length - str2.length);
+  return cache;
+};
 
-config = "/* @module title: defaults *n type: scss *n caption: p{ Конфигом системы служит .scss-файл, который содержит в себе настройки для всей системы вцелом. Он находится в папке bd{ scss/_config.scss }. }p *n */ /*-------------------------------------------------------------- КОНФИГ --------------------------------------------------------------*/ /*@property name: $gutter *n caption: Отступ по бокам внутри ячейки сетки. [$gutter|<content here>|$gutter]. Если параметр равен 0 - контент прижимается вплотную к соронам блока. По умолчанию задано 10пикс. *n */ $gutter: 							10px; /*@property name: $grid_line_height *n caption: Высота строки или междустрочный интервал. Применяется для bd{ <body> } *n */ $grid_line_height: 		20px; /*@property name: $grid_sizes *n caption: Это массив с размерами шаблона. Если Вам дают макет шириной в 1400 пикселей, то вы указываете 1400. Если в одном шаблоне есть разные ширины сетки, к примеру 1400 и 960 пикселей, то вы указываете их оба через запятую, при чем от меньшего к большему. Допускается произвольное количество размеров (если они Вам нужны). *n */ $grid_sizes:					(720, 960, 1140); /*@property name: $primary_grid *n caption: Основная ширина сетки. *n */ $primary_grid: 				1140; /*@property name: $grid_prefixes *n caption: p{ Это массив, содержащий ассоциативные массивы с брейкпоинтами. Брейкпоинты помогают Вам добиться отображения при разных ширинах дисплея (адаптивный дизайн) иной ширины блоков. }p p{ Здесь x1d4 – ширина ячейки по умолчанию (1/4). на мобильном телефоне мы хотим чтобы она отображалась по-другому (1/2), для этого мы используем брейк-поинт x1d2--m, который на мобильном устройстиве отобразит ячейку шире (1/2). }p p{ Массив состоит из ассоциативных массивов (480, ‘--m’), в которых передается ширина, при которой брейкпоинт должен сработать и префикс, по которому к брейкпоинту можно обратиться. Вы сами можете создать сколько угодно брейкпоинтов. }p *n p{ Создает набор классов типа bd{.x<X>d<D>--<BRAKEPOINT>} }p *n */ $grid_prefixes: 			(768, '--t') (640, '--sm') (480, '--m'); /*@property name: $grid_calc *n caption: p{ Это части, на которые можно “дробить” ячейки в сетке. Мощнейшим преимуществом сетки есть дробление на произвольное количество ячеек, и сетка может разбиваться не на 12 колонок (как в Bootstrap), а на произвольное количество ячеек (например на 100, если это Вам нужно). }p p{ Эти части являются как ширинами блока, так и ширинами ячеек. Это значит, что вам не обязательно указывать постоянную ширину знаменателя (bd{x1d12}, bd{x3d12} и т.д). Это выражение - формирует процент от ширины, соответственно, bd{x1d2} и bd{x6d12} - это одно и то же (50%)) }p p{ Создает набор классов типа bd{.x<X>d<D>} }p *n */ $grid_calc: 					(1 2 3 4 5 6 7 8 9 10 11 12); /*@property name: $fixed_widths *n caption: p{ Содержит массив с фиксированными размерами (в пикселях). }p p{ Аналогично bd{$grid_calc}. }p*n p{ Создает набор классов типа bd{.w-fixed-<WIDTH>} }p *n */ $fixed_widths:        (50,100,150,200,250,300); /*@property name: $islands *n caption: p{ Массив с размерами отступов. Эти отступы означают равные отступы со всех сторон блока (от слова island, остров). То есть указывая 10px – Вы указываете отступ в 10 пикселей со всех сторон. Это есть padding и margin. }p p{ Создает набор классов типа bd{.island-<NUMBER>} }p *n */ $islands: 						(5,10,15,20,25,30,35,40,45,50); /*@property name: $vertical_indents *n caption: p{ Массив с размерами отступов. Аналогично bd{$islands}, за исключением того, что отступы указываются только по вертикали. }p p{ Создает набор классов типа: ul{ li{ bd{.pad-v<NUMBER>} - внутренний отступ сверху и снизу }li li{ bd{.pad-top-<NUMBER>} - внутренний отступ сверху }li li{ bd{.pad-bot-<NUMBER>} - внутренний отступ снизу }li li{ bd{.marg-v<NUMBER>} - внешний отступ сверху и снизу }li li{ bd{.marg-top-<NUMBER>} - внешний отступ сверху }li li{ bd{.marg-bot-<NUMBER>} - внешний отступ снизу }li }ul }p *n */ $vertical_indents: 		(5,10,15,20,25,30,35,40,45,50); /*@property name: $vertical_indents *n caption: p{ Массив с размерами отступов. Аналогично bd{$islands}, за исключением того, что отступы указываются только по горизонтали. }p p{ Создает набор классов типа: ul{ li{ bd{.pad-h<NUMBER>} - внутренний отступ слева и справа }li li{ bd{.pad-left-<NUMBER>} - внутренний отступ слева }li li{ bd{.pad-right-<NUMBER>} - внутренний отступ справа }li li{ bd{.marg-h<NUMBER>} - внешний отступ слева и справа }li li{ bd{.marg-left-<NUMBER>} - внешний отступ слева }li li{ bd{.marg-right-<NUMBER>} - внешний отступ справа }li }ul }p *n *n */ $horizontal_indents: 	(5,10,15,20,25,30,35,40,45,50); /*@property name: $min_font_size, $max_font_size *n caption: p{ Размеры шрифта. Применяются к блоку. }p*n p{ Создает набор классов типа bd{.font-<NUMBER>}, где <NUMBER> - это диапазон от bd{$min_font_size} до bd{$max_font_size} }p *n */ $min_font_size: 			6; $max_font_size: 			60; /*@property name: .YourColor *n caption: Устанавливает цвет текста с названием YourColor. Параметры задаются в bd{ _config.scss }, в объекте bd{ $colors_list } *n */ $colors_list: 				(black, #000000) (white, #ffffff); /*@property name: .bg-YourColor *n caption: Устанавливает фона блока с названием YourColor. Параметры задаются в bd{ _config.scss }, в объекте bd{ $colors_list_bg } *n */ $colors_list_bg: 			(black, #000000) (white, #ffffff); /*-------------------------------------------------------------- ПЕРЕМЕННЫЕ --------------------------------------------------------------*/ /*@property name: $font_size *n caption: Устанавливает размер шрифта по умолчанию для <body> *n */ $font_size: 					14px; /*@property name: $font_family *n caption: Устанавливает шрифт по умолчанию для <body> *n */ $font_family: 				sans-serif;";
+element = function(elem, id, text, clas) {
+  var ele;
+  ele = document.createElement(elem);
+  ele.setAttribute('id', id);
+  ele.setAttribute('class', clas);
+  ele.innerHTML = text;
+  return ele;
+};
 
 jsFiles = [];
 
@@ -65,21 +119,16 @@ cssFiles = [];
 
 otherFiles = [];
 
-for (i = 0, len = files.length; i < len; i++) {
-  file = files[i];
-  str = renameStr(file);
-  if (str.match(/js\//gim)) {
-    jsFiles.push(str);
-  } else if (str.match(/css\//gim)) {
-    cssFiles.push(str);
-  } else {
-    otherFiles.push(str);
+createList = function(arr, nameClass, name, path) {
+  var f, j, len, returned;
+  returned = "<ul class='adk-filelist-ul " + nameClass + "'><li>" + name + "<b>" + arr.length + "</b></li>";
+  for (j = 0, len = arr.length; j < len; j++) {
+    f = arr[j];
+    returned += "<li><a href='" + f + "' target='_blank'>" + (parsePath(f)) + "</a></li>";
   }
-}
-
-jsFiles.sort(sortingFunction);
-
-cssFiles.sort(sortingFunction);
+  returned += "</ul>";
+  return returned;
+};
 
 filelistWrapper = document.createElement('div');
 
@@ -89,37 +138,40 @@ filelist = document.createElement('div');
 
 filelist.setAttribute('class', 'adk-fileslist');
 
-createList = function(arr, nameClass, name, path) {
-  var f, j, len1, returned;
-  returned = "<ul class='adk-filelist-ul " + nameClass + "'><li>" + name + "</li>";
-  for (j = 0, len1 = arr.length; j < len1; j++) {
-    f = arr[j];
-    returned += "<li><a href='" + f + "' target='_blank'>" + (parsePath(f)) + "</a></li>";
-  }
-  returned += "</ul>";
-  return returned;
-};
-
-res = "<div class='filelist-header'> Filelist <span> <a href='#' id='ADKresizeFilelist' class='adk-window-place'><i class='icon'></i></a> <a href='#' id='ADKshowAll' class='active'><i class='icon icon-folder'></i>all</a> <a href='#' id='ADKshowJs'><i class='icon icon-js'></i>javascript</a> <a href='#' id='ADKshowCss'><i class='icon icon-css'></i>css</a> <a href='#' id='ADKshowRoot'><i class='icon icon-html'></i>root</a> </span> </div>";
+res = "<div class='filelist-header'> <span> <a href='#' id='ADKshowAll' class='active'><i class='icon icon-folder'></i>all</a> <a href='#' id='ADKshowJs'><i class='icon icon-js'></i>javascript</a> <a href='#' id='ADKshowCss'><i class='icon icon-css'></i>css</a> <a href='#' id='ADKshowRoot'><i class='icon icon-html'></i>root</a> </span> </div>";
 
 filelistWrapper.innerHTML = res;
 
 res = "";
 
-res += createList(otherFiles, 'adk-otherfilelist', 'Root', '/');
-
-res += createList(cssFiles, 'adk-cssfilelist', 'CSS', 'css/');
-
-res += createList(jsFiles, 'adk-jsfilelist', 'Javascript', 'js/');
-
-filelist.innerHTML = res;
-
 filelistWrapper.appendChild(filelist);
 
 document.body.appendChild(filelistWrapper);
 
+Ajax('list.json', function(data) {
+  var file, files, j, len, str;
+  files = JSON.parse(data);
+  for (j = 0, len = files.length; j < len; j++) {
+    file = files[j];
+    str = renameStr(file);
+    if (str.match(/js\//gim)) {
+      jsFiles.push(str);
+    } else if (str.match(/css\//gim)) {
+      cssFiles.push(str);
+    } else {
+      otherFiles.push(str);
+    }
+  }
+  jsFiles.sort(sortingFunction);
+  cssFiles.sort(sortingFunction);
+  res += createList(otherFiles, 'adk-otherfilelist', 'Root', '/');
+  res += createList(cssFiles, 'adk-cssfilelist', 'CSS', 'css/');
+  res += createList(jsFiles, 'adk-jsfilelist', 'Javascript', 'js/');
+  return filelist.innerHTML = res;
+});
+
 bind('ADKshowRoot', function(e) {
-  e = event || window.event;
+  e = e || window.event;
   e.preventDefault();
   showAllCategories();
   classNames('.adk-jsfilelist, .adk-cssfilelist', 'add', 'disabled');
@@ -127,7 +179,7 @@ bind('ADKshowRoot', function(e) {
 });
 
 bind('ADKshowJs', function(e) {
-  e = event || window.event;
+  e = e || window.event;
   e.preventDefault();
   showAllCategories();
   classNames('.adk-otherfilelist, .adk-cssfilelist', 'add', 'disabled');
@@ -135,7 +187,7 @@ bind('ADKshowJs', function(e) {
 });
 
 bind('ADKshowCss', function(e) {
-  e = event || window.event;
+  e = e || window.event;
   e.preventDefault();
   showAllCategories();
   classNames('.adk-jsfilelist, .adk-otherfilelist', 'add', 'disabled');
@@ -143,22 +195,137 @@ bind('ADKshowCss', function(e) {
 });
 
 bind('ADKshowAll', function(e) {
-  e = event || window.event;
+  e = e || window.event;
   e.preventDefault();
   showAllCategories();
   return classNames('#ADKshowAll', 'add', 'active');
 });
 
-bind('ADKresizeFilelist', function(e) {
-  e = event || window.event;
-  e.preventDefault();
-  return filelistWrapper.classList.toggle('bottom-place');
+Grid = {
+  width: 0,
+  height: 0,
+  gutter: 0,
+  gridCalc: '',
+  columns: 0,
+  columnWidth: 0
+};
+
+updateGridElements = function() {
+  var w;
+  gridWrapper.style.height = '0px';
+  gridWrapper.style.height = document.body.scrollHeight + 'px';
+  if (document.body.clientWidth > parseSubstring('\\\$primary_grid:', ';')) {
+    w = parseSubstring('\\\$primary_grid:', ';');
+  } else {
+    w = document.body.clientWidth;
+  }
+  Elements[0].innerHTML = "<b><i class='icon icon-border_all'></i>Grid</b>" + w;
+  Elements[1].innerHTML = "<b><i class='icon icon-format_align_justify'></i>Line height</b>" + Grid.height;
+  Elements[2].innerHTML = "<b><i class='icon icon-border_left'></i>Gutter</b>" + Grid.gutter;
+  Elements[3].innerHTML = "<b><i class='icon icon-view_comfortable'></i>Grid calc</b>" + Grid.gridCalc;
+  Elements[4].innerHTML = "<b><i class='icon icon-border_inner'></i>Cols</b>" + Grid.columns[Grid.columns.length - 1];
+  Elements[5].innerHTML = "<b><i class='icon icon-border_outer'></i>Col width</b>" + ((w / Grid.columns[Grid.columns.length - 1]).toFixed(1));
+  Grid.columnWidth = w / Grid.columns[Grid.columns.length - 1];
+  return console.log('ADK -> Grid information has been updated');
+};
+
+gridWrapper = element('div', '', '', 'adk-grid-wrapper');
+
+gridInfoWrapper = element('div', '', '', 'adk-gridinfo-wrapper');
+
+document.body.appendChild(gridWrapper);
+
+gridWrapper.style.height = document.body.scrollHeight + 'px';
+
+Elements = [element('div', 'gridWidthElement', 0, ''), element('div', 'gridHeightElement', 0, ''), element('div', 'gridGutterElement', 0, ''), element('div', 'gridCalcElement', 0, ''), element('div', 'gridColumnsElement', 0, ''), element('div', 'gridColumnWidthElement', 0, '')];
+
+gridCanvas = element('canvas', 'ADKGridCanvas', '', 'adk-grid-canvas');
+
+gridCanvasCtx = null;
+
+drawLine = function(x1, y1, x2, y2, type) {
+  var offset;
+  gridCanvasCtx.beginPath();
+  if (type === 'row') {
+    gridCanvasCtx.lineWidth = Grid.height;
+    gridCanvasCtx.strokeStyle = "rgba(31, 37, 61, 0.4)";
+    gridCanvasCtx.moveTo(x1, y1 + Grid.height / 2);
+    gridCanvasCtx.lineTo(x2, y2 + Grid.height / 2);
+  } else {
+    if (document.body.clientWidth > Grid.width) {
+      offset = (document.body.clientWidth - Grid.width) / 2;
+    } else {
+      offset = 0;
+    }
+    gridCanvasCtx.lineWidth = Grid.columnWidth - Grid.gutter * 2;
+    gridCanvasCtx.strokeStyle = "rgba(31, 37, 61, 0.4)";
+    gridCanvasCtx.moveTo(x1 - Grid.columnWidth / 2 + offset, y1);
+    gridCanvasCtx.lineTo(x2 - Grid.columnWidth / 2 + offset, y2);
+  }
+  return gridCanvasCtx.stroke();
+};
+
+drawGrid = function() {
+  var i, j, k, ref, ref1, results;
+  gridCanvas.width = gridWrapper.clientWidth;
+  gridCanvas.height = gridWrapper.clientHeight;
+  gridCanvasCtx.clearRect(0, 0, gridCanvas.width, gridCanvas.height);
+  for (i = j = 0, ref = gridWrapper.clientHeight / Grid.height; 0 <= ref ? j < ref : j > ref; i = 0 <= ref ? ++j : --j) {
+    if (i % 2 === 1) {
+      drawLine(0, i * Grid.height, gridWrapper.clientWidth, i * Grid.height, 'row');
+    }
+  }
+  results = [];
+  for (i = k = 1, ref1 = Grid.columns.length; 1 <= ref1 ? k < ref1 : k > ref1; i = 1 <= ref1 ? ++k : --k) {
+    results.push(drawLine(i * Grid.columnWidth, 0, i * Grid.columnWidth, gridWrapper.clientHeight, 'col'));
+  }
+  return results;
+};
+
+Ajax('_config.scss', function(data) {
+  var elem, j, len;
+  config = data;
+  Grid.width = parseSubstring('\\\$primary_grid:', ';');
+  Grid.height = parseSubstring('\\\$grid_line_height:', 'px;');
+  Grid.gutter = parseSubstring('\\\$gutter:', 'px;');
+  Grid.gridCalc = parseSubstring('\\\$grid_calc:', ';');
+  Grid.columns = (parseSubstring('\\\$grid_calc:', ';')).split(' ');
+  Grid.columnWidth = 0;
+  gridWrapper.appendChild(gridCanvas);
+  for (j = 0, len = Elements.length; j < len; j++) {
+    elem = Elements[j];
+    gridInfoWrapper.appendChild(elem);
+  }
+  gridWrapper.appendChild(gridInfoWrapper);
+  updateGridElements();
+  gridCanvasCtx = gridCanvas.getContext("2d");
+  return drawGrid();
 });
 
+window.addEventListener('resize', function() {
+  if (adkGrid.style.display === 'block') {
+    updateGridElements();
+    return drawGrid();
+  }
+});
+
+adkFilelist = document.getElementsByClassName('adk-fileslist-wrapper')[0];
+
+adkGrid = document.getElementsByClassName('adk-grid-wrapper')[0];
+
 document.onkeydown = function(event) {
-  var adkFilelist;
   if (event.keyCode === 49) {
-    adkFilelist = document.getElementsByClassName('adk-fileslist-wrapper')[0];
+    adkGrid.style.display = '';
     adkFilelist.classList.toggle('active');
+  }
+  if (event.keyCode === 50) {
+    adkFilelist.classList.remove('active');
+    updateGridElements();
+    if (adkGrid.style.display === 'block') {
+      adkGrid.style.display = '';
+    } else {
+      adkGrid.style.display = 'block';
+    }
+    drawGrid();
   }
 };

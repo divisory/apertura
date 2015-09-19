@@ -1,7 +1,7 @@
 @charset "UTF-8";
-/*@import url(https://fonts.googleapis.com/css?family=Open+Sans:100,400,300,500,600,700&subset=latin,cyrillic);*/
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:100,400,300,500,600,700&subset=latin,cyrillic);
 /*@import url(https://fonts.googleapis.com/css?family=Roboto:400,700,300&subset=latin,cyrillic);*/
-@import url(https://fonts.googleapis.com/css?family=Ubuntu:400,300,700,500&subset=latin,cyrillic);
+/*@import url(https://fonts.googleapis.com/css?family=Ubuntu:400,300,700,500&subset=latin,cyrillic);*/
 /*
 	@module
 		title: mixins *n
@@ -209,13 +209,16 @@
 		name: filter() *n caption: UI *n arguments: $properties *n
 		return: -webkit-, -moz-, -o- *n */
 @import url(icons.css);
+/*-------------------------------------------------------------
+	FILELIST
+-------------------------------------------------------------*/
 .adk-fileslist-wrapper {
   line-height: 22px;
   position: fixed;
-  background: #fff;
+  background: #1F253D;
   overflow: hidden;
-  /*font-family: 'Open Sans', sans-serif;*/
-  font-family: 'Ubuntu', sans-serif;
+  font-family: 'Open Sans', sans-serif;
+  /*font-family: 'Ubuntu', sans-serif;*/
   display: none;
   width: 0;
   visibility: hidden;
@@ -225,13 +228,13 @@
   top: 0;
   bottom: 0;
   right: auto;
-  border-right: 1px solid #999;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4); }
+  /*border-right: 1px solid #999;*/
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); }
   .adk-fileslist-wrapper.active {
     visibility: visible;
     display: block;
-    z-index: 99999;
-    width: 320px;
+    z-index: 9999;
+    width: 326px;
     left: 0;
     top: 0;
     bottom: 0;
@@ -239,51 +242,61 @@
   .adk-fileslist-wrapper * {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
-    box-sizing: border-box; }
+    box-sizing: border-box;
+    outline: none !important; }
   .adk-fileslist-wrapper .filelist-header {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
-    height: 28px;
+    height: 40px;
     text-align: left;
     font-size: 14px;
     font-weight: 700;
     color: #999;
-    background: #f0f0f0;
+    background: #394165;
     line-height: 30px;
     padding: 0 10px;
-    border-bottom: 1px solid #ccc; }
+    z-index: 2;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.4); }
     .adk-fileslist-wrapper .filelist-header span {
-      display: block;
+      display: table;
+      border-collapse: collapse;
+      width: 100%;
       position: absolute;
       z-index: 2;
       right: 0;
       top: 0;
       bottom: 0;
       left: auto;
-      font-size: 14px;
+      font-size: 12px;
+      text-transform: uppercase;
       clear: both; }
       .adk-fileslist-wrapper .filelist-header span a {
-        display: inline-block;
+        display: table-cell;
         position: relative;
-        color: #888;
-        float: right;
-        font-weight: 400;
-        font-size: 12px;
-        height: 28px;
+        color: rgba(255, 255, 255, 0.5);
+        font-weight: 900;
+        font-size: 10px;
+        height: 40px;
         white-space: nowrap;
         text-decoration: none;
-        padding: 0 10px;
-        border-left: 1px solid #ccc;
-        border-bottom: 1px solid #ccc; }
+        padding: 5px 25px;
+        /*border-left: 1px solid #f0f0f0;*/
+        /*border-bottom: 1px solid #f0f0f0;*/
+        -webkit-transition: 0.1s;
+        -moz-transition: 0.1s;
+        -o-transition: 0.1s;
+        transition: 0.1s;
+        box-shadow: inset 1px 0 0 0 rgba(255, 255, 255, 0.1), inset 0 0px 0 0 rgba(0, 0, 0, 0.1), 0 1px 0 0 rgba(0, 0, 0, 0.1); }
         .adk-fileslist-wrapper .filelist-header span a > i {
           display: none; }
         .adk-fileslist-wrapper .filelist-header span a:hover {
-          color: #444; }
+          color: #fff; }
         .adk-fileslist-wrapper .filelist-header span a.active {
-          color: #DD4814;
-          /*box-shadow: inset 0 0 10px rgba(0,0,0,.1);*/ }
+          background: rgba(255, 255, 255, 0.1);
+          color: #fff;
+          box-shadow: inset 1px 0 0 0 rgba(255, 255, 255, 0.1), inset 0 0px 0 0 #1599A1, 0 2px 0 0 #1599A1; }
         .adk-fileslist-wrapper .filelist-header span a.adk-window-place .icon {
           display: block;
           width: 20px;
@@ -303,66 +316,236 @@
     width: 100%; }
     .adk-fileslist-wrapper.bottom-place .filelist-header span .adk-window-place .icon {
       background-position: 0 0; }
+  .adk-fileslist-wrapper .adk-fileslist::-webkit-scrollbar {
+    width: 6px;
+    margin-right: 40px; }
+  .adk-fileslist-wrapper .adk-fileslist::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3); }
+  .adk-fileslist-wrapper .adk-fileslist::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background: #1599A1;
+    width: 5px; }
+  .adk-fileslist-wrapper .adk-fileslist::-webkit-scrollbar-thumb:window-inactive {
+    background: rgba(21, 153, 161, 0.5); }
   .adk-fileslist-wrapper .adk-fileslist {
     position: absolute;
     left: 0;
-    top: 28px;
-    bottom: 0;
-    right: 0;
+    top: 50px;
+    bottom: 10px;
+    right: 10px;
     overflow: hidden;
     overflow-y: auto;
-    background: #fff; }
+    background: #1F253D; }
     .adk-fileslist-wrapper .adk-fileslist .adk-filelist-ul {
       display: block;
       position: relative;
       list-style: none;
       margin: 0;
-      background: #fff;
+      /*background: #fff;*/
       padding: 10px 0;
       height: auto;
-      border-bottom: 1px solid #ddd; }
+      -webkit-transition: 0.1s;
+      -moz-transition: 0.1s;
+      -o-transition: 0.1s;
+      transition: 0.1s;
+      -webkit-transform-origin: top left;
+      -moz-transform-origin: top left;
+      -ms-transform-origin: top left;
+      -o-transform-origin: top left;
+      transform-origin: top left; }
       .adk-fileslist-wrapper .adk-fileslist .adk-filelist-ul.disabled {
-        display: none; }
+        height: 0;
+        opacity: 0;
+        padding: 0;
+        -webkit-transform: scale(1, 0);
+        -moz-transform: scale(1, 0);
+        -ms-transform: scale(1, 0);
+        -o-transform: scale(1, 0);
+        transform: scale(1, 0); }
       .adk-fileslist-wrapper .adk-fileslist .adk-filelist-ul:before {
         box-sizing: border-box;
         content: "\e60b";
         font-family: 'icomoon';
         text-align: center;
-        color: #DD4814;
+        color: #1599A1;
         speak: none;
-        font-size: 15px;
+        font-size: 17px;
         line-height: 1;
         width: 16px;
         height: 16px;
         position: absolute;
-        left: 10px;
-        top: 12px; }
+        left: 15px;
+        top: 10px; }
       .adk-fileslist-wrapper .adk-fileslist .adk-filelist-ul li {
         display: block; }
         .adk-fileslist-wrapper .adk-fileslist .adk-filelist-ul li:first-child {
-          color: #DD4814;
+          color: #1599A1;
           margin: 0;
           font-weight: 600;
           text-transform: uppercase;
-          font-size: 14px;
-          padding-left: 32px;
-          padding-bottom: 4px; }
+          font-size: 16px;
+          padding-left: 40px;
+          padding-bottom: 4px;
+          position: relative; }
+          .adk-fileslist-wrapper .adk-fileslist .adk-filelist-ul li:first-child b {
+            position: relative;
+            left: 10px; }
+            .adk-fileslist-wrapper .adk-fileslist .adk-filelist-ul li:first-child b:before {
+              content: '('; }
+            .adk-fileslist-wrapper .adk-fileslist .adk-filelist-ul li:first-child b:after {
+              content: ')'; }
         .adk-fileslist-wrapper .adk-fileslist .adk-filelist-ul li a {
           display: block;
           text-decoration: none;
-          color: #444;
-          font-size: 12px;
+          color: rgba(255, 255, 255, 0.8);
+          font-size: 14px;
           line-height: 16px;
-          font-weight: 400;
-          padding: 3px 10px 3px 32px; }
+          font-weight: 600;
+          padding: 5px 15px 5px 15px; }
           .adk-fileslist-wrapper .adk-fileslist .adk-filelist-ul li a b {
-            color: #ccc;
-            font-weight: 400; }
+            color: rgba(255, 255, 255, 0.5);
+            font-weight: 400;
+            font-size: 12px;
+            display: inline-block;
+            padding-right: 4px; }
           .adk-fileslist-wrapper .adk-fileslist .adk-filelist-ul li a i {
             font-style: normal;
-            color: #aaa;
-            font-weight: 400; }
+            color: rgba(255, 255, 255, 0.5);
+            font-weight: 400;
+            font-size: 12px; }
           .adk-fileslist-wrapper .adk-fileslist .adk-filelist-ul li a:hover {
-            background: #fad1c3; }
+            background: rgba(255, 255, 255, 0.1); }
             .adk-fileslist-wrapper .adk-fileslist .adk-filelist-ul li a:hover b, .adk-fileslist-wrapper .adk-fileslist .adk-filelist-ul li a:hover i {
-              color: #888; }
+              /*color: #888;*/ }
+
+/*-------------------------------------------------------------
+	GRID
+-------------------------------------------------------------*/
+.adk-grid-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(31, 37, 61, 0.3);
+  z-index: 9998;
+  overflow: hidden;
+  white-space: nowrap;
+  overflow: hidden;
+  font-family: 'Open Sans', sans-serif;
+  display: none; }
+  .adk-grid-wrapper * {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    outline: none !important; }
+  .adk-grid-wrapper.active {
+    display: block; }
+  .adk-grid-wrapper .adk-grid-canvas {
+    position: absolute;
+    top: 0;
+    left: 0; }
+    .adk-grid-wrapper .adk-grid-canvas:hover ~ .adk-gridinfo-wrapper {
+      -webkit-transition: 0.4s;
+      -moz-transition: 0.4s;
+      -o-transition: 0.4s;
+      transition: 0.4s;
+      -webkit-transform: translate(0, 100%);
+      -moz-transform: translate(0, 100%);
+      -ms-transform: translate(0, 100%);
+      -o-transform: translate(0, 100%);
+      transform: translate(0, 100%);
+      opacity: 0; }
+  .adk-grid-wrapper .adk-gridinfo-wrapper {
+    position: fixed;
+    z-index: 9999;
+    display: block;
+    width: 500px;
+    height: auto;
+    bottom: 10%;
+    left: 50%;
+    margin-left: -250px;
+    -webkit-transition: 0.2s cubic-bezier(0, 0, 0, 1);
+    -moz-transition: 0.2s cubic-bezier(0, 0, 0, 1);
+    -o-transition: 0.2s cubic-bezier(0, 0, 0, 1);
+    transition: 0.2s cubic-bezier(0, 0, 0, 1); }
+    .adk-grid-wrapper .adk-gridinfo-wrapper:before {
+      position: absolute;
+      display: block;
+      content: '';
+      width: 100%;
+      height: 20%;
+      z-index: 2;
+      background: transparent;
+      bottom: 100%;
+      left: 0; }
+    .adk-grid-wrapper .adk-gridinfo-wrapper:after {
+      position: absolute;
+      display: block;
+      content: '';
+      width: 100%;
+      height: 40%;
+      z-index: 2;
+      background: transparent;
+      top: 100%;
+      left: 0; }
+    .adk-grid-wrapper .adk-gridinfo-wrapper > * {
+      display: block;
+      float: left;
+      width: 33.3333%;
+      text-align: left;
+      color: #fff;
+      position: relative;
+      padding: 25px 20px;
+      font-size: 64px;
+      line-height: 1;
+      font-weight: 100;
+      text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      border-left: 1px solid rgba(255, 255, 255, 0.1);
+      border-right: 1px solid rgba(0, 0, 0, 0.1);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      height: 130px; }
+      .adk-grid-wrapper .adk-gridinfo-wrapper > *:nth-child(1) {
+        background: #00BDE1; }
+      .adk-grid-wrapper .adk-gridinfo-wrapper > *:nth-child(2) {
+        background: #57D998; }
+      .adk-grid-wrapper .adk-gridinfo-wrapper > *:nth-child(3) {
+        background: #7557F7; }
+      .adk-grid-wrapper .adk-gridinfo-wrapper > *:nth-child(4) {
+        background: #E8C14C; }
+      .adk-grid-wrapper .adk-gridinfo-wrapper > *:nth-child(5) {
+        background: #E65679; }
+      .adk-grid-wrapper .adk-gridinfo-wrapper > *:nth-child(6) {
+        background: #CA6ED6; }
+      .adk-grid-wrapper .adk-gridinfo-wrapper > * b {
+        display: block;
+        width: 100%;
+        font-size: 12px;
+        position: absolute;
+        text-transform: uppercase;
+        bottom: 20px;
+        left: 20px; }
+        .adk-grid-wrapper .adk-gridinfo-wrapper > * b .icon {
+          display: none;
+          font-size: 72px; }
+      .adk-grid-wrapper .adk-gridinfo-wrapper > *:nth-child(4) {
+        font-size: 20px;
+        white-space: normal;
+        padding-top: 30px; }
+      .adk-grid-wrapper .adk-gridinfo-wrapper > *:nth-child(1) {
+        font-size: 50px;
+        padding-top: 28px; }
+      .adk-grid-wrapper .adk-gridinfo-wrapper > *:nth-child(6) {
+        padding-top: 30px;
+        font-size: 40px; }
+        .adk-grid-wrapper .adk-gridinfo-wrapper > *:nth-child(6):after {
+          content: 'px';
+          display: inline-block;
+          font-size: 20px; }
+      .adk-grid-wrapper .adk-gridinfo-wrapper > *:nth-child(2):after,
+      .adk-grid-wrapper .adk-gridinfo-wrapper > *:nth-child(3):after {
+        content: 'px';
+        display: inline-block;
+        font-size: 20px; }
