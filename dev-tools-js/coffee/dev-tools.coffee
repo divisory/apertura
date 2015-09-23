@@ -1,7 +1,13 @@
 config = ''
 list = []
 
-Ajax = (url, callback)->
+document.addEventListener "DOMContentLoaded", (event)->
+	link = document.createElement 'link'
+	link.setAttribute 'rel', "stylesheet"
+	link.setAttribute 'href', "dev-tools-css/dev-tools-skin.css"
+	document.body.appendChild link
+
+Ajax = (url, callback, onerror)->
 	request = new XMLHttpRequest()
 	try
 		request = new XMLHttpRequest()
@@ -15,8 +21,11 @@ Ajax = (url, callback)->
 			return false
 
 	request.onreadystatechange = ->
-		if request.readyState is 4
-			callback request.responseText
+		if request.status is 200
+			if request.readyState is 4
+				callback request.responseText, request
+		else if onerror
+			onerror request
 
 	request.open "GET", url, true
 	request.send()
@@ -181,7 +190,7 @@ updateGridElements = ->
 	Elements[4].innerHTML = "<b><i class='icon icon-border_inner'></i>Cols</b>#{Grid.columns[Grid.columns.length-1]}"
 	Elements[5].innerHTML = "<b><i class='icon icon-border_outer'></i>Col width</b>#{(w / Grid.columns[Grid.columns.length-1]).toFixed(1)}"
 	Grid.columnWidth = w / Grid.columns[Grid.columns.length-1]
-	console.log 'ADK -> Grid information has been updated'
+	console.log 'ADK :: GridHightlighter -> Grid information has been updated'
 
 gridWrapper = element 'div', '', '', 'adk-grid-wrapper'
 gridInfoWrapper = element 'div', '', '', 'adk-gridinfo-wrapper'
@@ -238,106 +247,187 @@ Ajax '_config.scss', (data)->
 	Grid.columnWidth = 	0
 
 	gridWrapper.appendChild gridCanvas
-
 	for elem in Elements
 		gridInfoWrapper.appendChild elem
 	gridWrapper.appendChild gridInfoWrapper
 
 	do updateGridElements
 
-
 	gridCanvasCtx = gridCanvas.getContext "2d"
-
 	do drawGrid
+
+
+# --------------------------------------------------------
+# PERFECT PIXEL
+# --------------------------------------------------------
+
+opacity = 40
+
+pixelPerfectWrapper = element 'div', 'pixelPerfectWrapper', '', 'pixel-perfect-wrapper'
+document.body.appendChild pixelPerfectWrapper
+pixelPerfectImage = element 'img', 'pixelPerfectImage', '', 'adk-pixelperfect-image'
+pixelPerfectWrapper.appendChild pixelPerfectImage
+
+pushPixelPerfectImage = (resolution)->
+	Ajax "dev-tools-templates/_#{resolution}.jpg", (data, req)->
+		if req.status is 200
+			pixelPerfectImage.src = req.responseURL
+		else
+			console.log 'ADK :: PerfectPixel -> The \'JPG\'-file not found. Sending request for \'PNG\'-file...'
+			Ajax "dev-tools-templates/_#{resolution}.png", (data, req)->
+				if req.status is 200
+					pixelPerfectImage.src = req.responseURL
+					console.log 'ADK :: PerfectPixel -> \'PNG\'-file loaded [OK]'
+				else console.log 'ADK :: PerfectPixel -> Error. Image not found.'
+
+pixelPerfectInfo = element 'div', 'pixelPerfectInfo', '', 'adk-pixelperfect-info'
+pixelPerfectWrapper.appendChild pixelPerfectInfo
+
+pixelPerfectInput = element 'input', 'pixelPerfectInput', '', 'adk-pixelperfect-input'
+pixelPerfectText = element 'div', 'pixelPerfectText', '<i class="icon icon-image"></i>', 'adk-pixel-perfect-text'
+pixelPerfectBar = element 'div', 'pixelPerfectBar', '', 'adk-pixelperfect-bar'
+pixelPerfectBarInner = element 'div', 'pixelPerfectBarInner', '', 'adk-pixelperfect-bar-inner'
+
+pixelPerfectBar.appendChild pixelPerfectBarInner
+pixelPerfectInfo.appendChild pixelPerfectInput
+pixelPerfectInfo.appendChild pixelPerfectText
+pixelPerfectInfo.appendChild pixelPerfectBar
+
+insertPerfectBar = ->
+	pixelPerfectText.setAttribute 'data-precent', opacity
+	pixelPerfectImage.style.opacity = opacity/100
+	pixelPerfectBarInner.style.width = opacity+'%'
+
+do insertPerfectBar
+
+findoutRect = ->
+	obj = {}
+	obj.iW 	= window.innerWidth
+	obj.oW 	= window.outerWidth
+	obj.iH 	= window.innerHeight
+	obj.oH 	= window.outerHeight
+	obj
+
+pushImage = ->
+	rect = findoutRect()
+	width = if rect.oW > rect.iW then rect.iW else rect.oW
+	if width <= 350
+		pushPixelPerfectImage 320
+	else if width <= 540
+		pushPixelPerfectImage 480
+	else if width <= 760
+		pushPixelPerfectImage 640
+	else if width <= 800
+		pushPixelPerfectImage 768
+	else if width <= 1020
+		pushPixelPerfectImage 992
+	else if width <= 1100
+		pushPixelPerfectImage 1024
+	else if width <= 1260
+		pushPixelPerfectImage 1200
+	else if width <= 1300
+		pushPixelPerfectImage 1280
+	else if width <= 1480
+		pushPixelPerfectImage 1400
+	else if width <= 1650
+		pushPixelPerfectImage 1600
+	else pushPixelPerfectImage 1920
+
+do pushImage
+
+# --------------------------------------------------------
+# LINES
+# --------------------------------------------------------
+
+lines = {}
+lines.wrap = element 'div', 'ADKLinesWrapper', '', 'adk-lines-wrapper'
+lines.x = element 'div', 'ADKLineX', '', 'adk-line-x'
+lines.y = element 'div', 'ADKLineY', '', 'adk-line-y'
+lines.win = element 'div', 'ADKWindow', '', 'adk-line-window'
+
+lines.wrap.appendChild lines.x
+lines.wrap.appendChild lines.y
+lines.wrap.appendChild lines.win
+document.body.appendChild lines.wrap
+
+setWindowSizes = ->
+	rect = document.body.getBoundingClientRect()
+	lines.win.innerHTML = '<span><i class="icon icon-display"></i>'+rect.width+'x'+rect.height+'</span><span><i class="icon icon-tablet"></i>'+window.outerWidth+'x'+window.outerHeight+'</span>'
+do setWindowSizes
+
+
+lines.wrap.addEventListener 'mousemove', (e)->
+	lines.x.setAttribute 'style', "
+		-webkit-transform: translate(0,#{e.pageY-document.body.scrollTop}px);
+		-moz-transform: translate(0,#{e.pageY-document.body.scrollTop}px);
+		-ms-transform: translate(0,#{e.pageY-document.body.scrollTop}px);
+		-o-transform: translate(0,#{e.pageY-document.body.scrollTop}px);
+		transform: translate(0,#{e.pageY-document.body.scrollTop}px);
+	"
+	lines.y.setAttribute 'style', "
+		-webkit-transform: translate(#{e.pageX-document.body.scrollLeft}px,0);
+		-moz-transform: translate(#{e.pageX-document.body.scrollLeft}px,0);
+		-ms-transform: translate(#{e.pageX-document.body.scrollLeft}px,0);
+		-o-transform: translate(#{e.pageX-document.body.scrollLeft}px,0);
+		transform: translate(#{e.pageX-document.body.scrollLeft}px,0);
+	"
+	lines.x.innerHTML = '<span class="'+(if e.pageX-document.body.scrollLeft <= 200 then 'right' else '')+' '+(if e.pageY-document.body.scrollTop >= window.innerHeight / 2 then 'bottom' else '')+'"><b>'+(e.pageY-document.body.scrollTop)+'</b>, <s>'+document.body.scrollTop+'</s>, <i>'+e.pageY+'</i></span>'
+	lines.y.innerHTML = '<span class="'+(if e.pageY-document.body.scrollTop <= 200 then 'bottom' else '')+' '+(if e.pageX-document.body.scrollLeft >= window.innerWidth / 2 then 'right' else '')+'"><b>'+(e.pageX-document.body.scrollLeft)+'</b>, <s>'+document.body.scrollLeft+'</s>, <i>'+e.pageX+'</i></span>'
+
+# --------------------------------------------------------
+# EVENTS
+# --------------------------------------------------------
 
 window.addEventListener 'resize', ->
 	if adkGrid.style.display is 'block'
 		do updateGridElements
+		do updatePixelPerfect
 		do drawGrid
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	do pushImage
+	if lines.wrap.classList.contains 'active'
+		do setWindowSizes
 
 
 adkFilelist = document.getElementsByClassName('adk-fileslist-wrapper')[0]
 adkGrid = document.getElementsByClassName('adk-grid-wrapper')[0]
+
 document.onkeydown = (event) ->
+	# list
 	if event.keyCode is 49
+		lines.wrap.classList.remove 'active'
+		pixelPerfectWrapper.classList.remove 'active'
 		adkGrid.style.display = ''
 		adkFilelist.classList.toggle 'active'
+	# grid
 	if event.keyCode is 50
+		lines.wrap.classList.remove 'active'
+		pixelPerfectWrapper.classList.remove 'active'
 		adkFilelist.classList.remove 'active'
 		do updateGridElements
 		if adkGrid.style.display is 'block'
 			adkGrid.style.display = ''
 		else adkGrid.style.display = 'block'
 		do drawGrid
+	# perfect pixel
+	if event.keyCode is 51
+		adkGrid.style.display = ''
+		adkFilelist.classList.remove 'active'
+		lines.wrap.classList.remove 'active'
+		pixelPerfectWrapper.classList.toggle 'active'
+	if event.keyCode is 38
+		event.preventDefault()
+		if opacity < 100
+			opacity += 20
+			do insertPerfectBar
+	if event.keyCode is 40
+		event.preventDefault()
+		if opacity > 0
+			opacity -= 20
+			do insertPerfectBar
+	# window
+	if event.keyCode is 52
+		pixelPerfectWrapper.classList.remove 'active'
+		adkFilelist.classList.remove 'active'
+		adkGrid.style.display = 'none'
+		lines.wrap.classList.toggle 'active'
 	return
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# document.onkeyup = ->
-# 	document.body.style.overflow = ''
-# 	document.getElementsByClassName('adk-fileslist-wrapper')[0]
-# 		.classList.remove 'active'

@@ -1,10 +1,18 @@
-var Ajax, Elements, Grid, adkFilelist, adkGrid, bind, classNames, config, createList, cssFiles, drawGrid, drawLine, element, filelist, filelistWrapper, gridCanvas, gridCanvasCtx, gridInfoWrapper, gridWrapper, jsFiles, list, otherFiles, parsePath, parseSubstring, renameHref, renameStr, res, showAllCategories, showAllCategoriesButtons, sortingFunction, updateGridElements;
+var Ajax, Elements, Grid, adkFilelist, adkGrid, bind, classNames, config, createList, cssFiles, drawGrid, drawLine, element, filelist, filelistWrapper, findoutRect, gridCanvas, gridCanvasCtx, gridInfoWrapper, gridWrapper, insertPerfectBar, jsFiles, lines, list, opacity, otherFiles, parsePath, parseSubstring, pixelPerfectBar, pixelPerfectBarInner, pixelPerfectImage, pixelPerfectInfo, pixelPerfectInput, pixelPerfectText, pixelPerfectWrapper, pushImage, pushPixelPerfectImage, renameHref, renameStr, res, setWindowSizes, showAllCategories, showAllCategoriesButtons, sortingFunction, updateGridElements;
 
 config = '';
 
 list = [];
 
-Ajax = function(url, callback) {
+document.addEventListener("DOMContentLoaded", function(event) {
+  var link;
+  link = document.createElement('link');
+  link.setAttribute('rel', "stylesheet");
+  link.setAttribute('href', "dev-tools-css/dev-tools-skin.css");
+  return document.body.appendChild(link);
+});
+
+Ajax = function(url, callback, onerror) {
   var e, request;
   request = new XMLHttpRequest();
   try {
@@ -24,8 +32,12 @@ Ajax = function(url, callback) {
     }
   }
   request.onreadystatechange = function() {
-    if (request.readyState === 4) {
-      return callback(request.responseText);
+    if (request.status === 200) {
+      if (request.readyState === 4) {
+        return callback(request.responseText, request);
+      }
+    } else if (onerror) {
+      return onerror(request);
     }
   };
   request.open("GET", url, true);
@@ -226,7 +238,7 @@ updateGridElements = function() {
   Elements[4].innerHTML = "<b><i class='icon icon-border_inner'></i>Cols</b>" + Grid.columns[Grid.columns.length - 1];
   Elements[5].innerHTML = "<b><i class='icon icon-border_outer'></i>Col width</b>" + ((w / Grid.columns[Grid.columns.length - 1]).toFixed(1));
   Grid.columnWidth = w / Grid.columns[Grid.columns.length - 1];
-  return console.log('ADK -> Grid information has been updated');
+  return console.log('ADK :: GridHightlighter -> Grid information has been updated');
 };
 
 gridWrapper = element('div', '', '', 'adk-grid-wrapper');
@@ -302,10 +314,145 @@ Ajax('_config.scss', function(data) {
   return drawGrid();
 });
 
+opacity = 40;
+
+pixelPerfectWrapper = element('div', 'pixelPerfectWrapper', '', 'pixel-perfect-wrapper');
+
+document.body.appendChild(pixelPerfectWrapper);
+
+pixelPerfectImage = element('img', 'pixelPerfectImage', '', 'adk-pixelperfect-image');
+
+pixelPerfectWrapper.appendChild(pixelPerfectImage);
+
+pushPixelPerfectImage = function(resolution) {
+  return Ajax("dev-tools-templates/_" + resolution + ".jpg", function(data, req) {
+    if (req.status === 200) {
+      return pixelPerfectImage.src = req.responseURL;
+    } else {
+      console.log('ADK :: PerfectPixel -> The \'JPG\'-file not found. Sending request for \'PNG\'-file...');
+      return Ajax("dev-tools-templates/_" + resolution + ".png", function(data, req) {
+        if (req.status === 200) {
+          pixelPerfectImage.src = req.responseURL;
+          return console.log('ADK :: PerfectPixel -> \'PNG\'-file loaded [OK]');
+        } else {
+          return console.log('ADK :: PerfectPixel -> Error. Image not found.');
+        }
+      });
+    }
+  });
+};
+
+pixelPerfectInfo = element('div', 'pixelPerfectInfo', '', 'adk-pixelperfect-info');
+
+pixelPerfectWrapper.appendChild(pixelPerfectInfo);
+
+pixelPerfectInput = element('input', 'pixelPerfectInput', '', 'adk-pixelperfect-input');
+
+pixelPerfectText = element('div', 'pixelPerfectText', '<i class="icon icon-image"></i>', 'adk-pixel-perfect-text');
+
+pixelPerfectBar = element('div', 'pixelPerfectBar', '', 'adk-pixelperfect-bar');
+
+pixelPerfectBarInner = element('div', 'pixelPerfectBarInner', '', 'adk-pixelperfect-bar-inner');
+
+pixelPerfectBar.appendChild(pixelPerfectBarInner);
+
+pixelPerfectInfo.appendChild(pixelPerfectInput);
+
+pixelPerfectInfo.appendChild(pixelPerfectText);
+
+pixelPerfectInfo.appendChild(pixelPerfectBar);
+
+insertPerfectBar = function() {
+  pixelPerfectText.setAttribute('data-precent', opacity);
+  pixelPerfectImage.style.opacity = opacity / 100;
+  return pixelPerfectBarInner.style.width = opacity + '%';
+};
+
+insertPerfectBar();
+
+findoutRect = function() {
+  var obj;
+  obj = {};
+  obj.iW = window.innerWidth;
+  obj.oW = window.outerWidth;
+  obj.iH = window.innerHeight;
+  obj.oH = window.outerHeight;
+  return obj;
+};
+
+pushImage = function() {
+  var rect, width;
+  rect = findoutRect();
+  width = rect.oW > rect.iW ? rect.iW : rect.oW;
+  if (width <= 350) {
+    return pushPixelPerfectImage(320);
+  } else if (width <= 540) {
+    return pushPixelPerfectImage(480);
+  } else if (width <= 760) {
+    return pushPixelPerfectImage(640);
+  } else if (width <= 800) {
+    return pushPixelPerfectImage(768);
+  } else if (width <= 1020) {
+    return pushPixelPerfectImage(992);
+  } else if (width <= 1100) {
+    return pushPixelPerfectImage(1024);
+  } else if (width <= 1260) {
+    return pushPixelPerfectImage(1200);
+  } else if (width <= 1300) {
+    return pushPixelPerfectImage(1280);
+  } else if (width <= 1480) {
+    return pushPixelPerfectImage(1400);
+  } else if (width <= 1650) {
+    return pushPixelPerfectImage(1600);
+  } else {
+    return pushPixelPerfectImage(1920);
+  }
+};
+
+pushImage();
+
+lines = {};
+
+lines.wrap = element('div', 'ADKLinesWrapper', '', 'adk-lines-wrapper');
+
+lines.x = element('div', 'ADKLineX', '', 'adk-line-x');
+
+lines.y = element('div', 'ADKLineY', '', 'adk-line-y');
+
+lines.win = element('div', 'ADKWindow', '', 'adk-line-window');
+
+lines.wrap.appendChild(lines.x);
+
+lines.wrap.appendChild(lines.y);
+
+lines.wrap.appendChild(lines.win);
+
+document.body.appendChild(lines.wrap);
+
+setWindowSizes = function() {
+  var rect;
+  rect = document.body.getBoundingClientRect();
+  return lines.win.innerHTML = '<span><i class="icon icon-display"></i>' + rect.width + 'x' + rect.height + '</span><span><i class="icon icon-tablet"></i>' + window.outerWidth + 'x' + window.outerHeight + '</span>';
+};
+
+setWindowSizes();
+
+lines.wrap.addEventListener('mousemove', function(e) {
+  lines.x.setAttribute('style', "-webkit-transform: translate(0," + (e.pageY - document.body.scrollTop) + "px); -moz-transform: translate(0," + (e.pageY - document.body.scrollTop) + "px); -ms-transform: translate(0," + (e.pageY - document.body.scrollTop) + "px); -o-transform: translate(0," + (e.pageY - document.body.scrollTop) + "px); transform: translate(0," + (e.pageY - document.body.scrollTop) + "px);");
+  lines.y.setAttribute('style', "-webkit-transform: translate(" + (e.pageX - document.body.scrollLeft) + "px,0); -moz-transform: translate(" + (e.pageX - document.body.scrollLeft) + "px,0); -ms-transform: translate(" + (e.pageX - document.body.scrollLeft) + "px,0); -o-transform: translate(" + (e.pageX - document.body.scrollLeft) + "px,0); transform: translate(" + (e.pageX - document.body.scrollLeft) + "px,0);");
+  lines.x.innerHTML = '<span class="' + (e.pageX - document.body.scrollLeft <= 200 ? 'right' : '') + ' ' + (e.pageY - document.body.scrollTop >= window.innerHeight / 2 ? 'bottom' : '') + '"><b>' + (e.pageY - document.body.scrollTop) + '</b>, <s>' + document.body.scrollTop + '</s>, <i>' + e.pageY + '</i></span>';
+  return lines.y.innerHTML = '<span class="' + (e.pageY - document.body.scrollTop <= 200 ? 'bottom' : '') + ' ' + (e.pageX - document.body.scrollLeft >= window.innerWidth / 2 ? 'right' : '') + '"><b>' + (e.pageX - document.body.scrollLeft) + '</b>, <s>' + document.body.scrollLeft + '</s>, <i>' + e.pageX + '</i></span>';
+});
+
 window.addEventListener('resize', function() {
   if (adkGrid.style.display === 'block') {
     updateGridElements();
-    return drawGrid();
+    updatePixelPerfect();
+    drawGrid();
+  }
+  pushImage();
+  if (lines.wrap.classList.contains('active')) {
+    return setWindowSizes();
   }
 });
 
@@ -315,10 +462,14 @@ adkGrid = document.getElementsByClassName('adk-grid-wrapper')[0];
 
 document.onkeydown = function(event) {
   if (event.keyCode === 49) {
+    lines.wrap.classList.remove('active');
+    pixelPerfectWrapper.classList.remove('active');
     adkGrid.style.display = '';
     adkFilelist.classList.toggle('active');
   }
   if (event.keyCode === 50) {
+    lines.wrap.classList.remove('active');
+    pixelPerfectWrapper.classList.remove('active');
     adkFilelist.classList.remove('active');
     updateGridElements();
     if (adkGrid.style.display === 'block') {
@@ -327,5 +478,31 @@ document.onkeydown = function(event) {
       adkGrid.style.display = 'block';
     }
     drawGrid();
+  }
+  if (event.keyCode === 51) {
+    adkGrid.style.display = '';
+    adkFilelist.classList.remove('active');
+    lines.wrap.classList.remove('active');
+    pixelPerfectWrapper.classList.toggle('active');
+  }
+  if (event.keyCode === 38) {
+    event.preventDefault();
+    if (opacity < 100) {
+      opacity += 20;
+      insertPerfectBar();
+    }
+  }
+  if (event.keyCode === 40) {
+    event.preventDefault();
+    if (opacity > 0) {
+      opacity -= 20;
+      insertPerfectBar();
+    }
+  }
+  if (event.keyCode === 52) {
+    pixelPerfectWrapper.classList.remove('active');
+    adkFilelist.classList.remove('active');
+    adkGrid.style.display = 'none';
+    lines.wrap.classList.toggle('active');
   }
 };
