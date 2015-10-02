@@ -1,4 +1,4 @@
-var Ajax, Elements, Grid, adkFilelist, adkGrid, bind, classNames, config, createList, cssFiles, drawGrid, drawLine, element, filelist, filelistWrapper, findoutRect, gridCanvas, gridCanvasCtx, gridInfoWrapper, gridWrapper, insertPerfectBar, jsFiles, lines, list, opacity, otherFiles, parsePath, parseSubstring, pixelPerfectBar, pixelPerfectBarInner, pixelPerfectImage, pixelPerfectInfo, pixelPerfectInput, pixelPerfectText, pixelPerfectWrapper, pushImage, pushPixelPerfectImage, renameHref, renameStr, res, setWindowSizes, showAllCategories, showAllCategoriesButtons, sortingFunction, updateGridElements;
+var Ajax, Elements, Grid, adkFilelist, adkGrid, bind, bindHandler, classNames, config, createList, cssFiles, drawGrid, drawLine, element, filelist, filelistWrapper, findoutRect, getPath, gridCanvas, gridCanvasCtx, gridInfoWrapper, gridWrapper, insertPerfectBar, jsFiles, lines, list, opacity, otherFiles, parsePath, parseSubstring, pixelPerfectBar, pixelPerfectBarInner, pixelPerfectImage, pixelPerfectInfo, pixelPerfectInput, pixelPerfectText, pixelPerfectWrapper, pushImage, pushPixelPerfectImage, renameHref, renameStr, res, setWindowSizes, showAllCategories, showAllCategoriesButtons, sortingFunction, unbindHandler, updateGridElements;
 
 config = '';
 
@@ -339,6 +339,8 @@ pushPixelPerfectImage = function(resolution) {
         }
       });
     }
+  }, function(req) {
+    return console.log(req.status);
   });
 };
 
@@ -443,6 +445,116 @@ lines.wrap.addEventListener('mousemove', function(e) {
   lines.x.innerHTML = '<span class="' + (e.pageX - document.body.scrollLeft <= 200 ? 'right' : '') + ' ' + (e.pageY - document.body.scrollTop >= window.innerHeight / 2 ? 'bottom' : '') + '"><b>' + (e.pageY - document.body.scrollTop) + '</b>, <s>' + document.body.scrollTop + '</s>, <i>' + e.pageY + '</i></span>';
   return lines.y.innerHTML = '<span class="' + (e.pageY - document.body.scrollTop <= 200 ? 'bottom' : '') + ' ' + (e.pageX - document.body.scrollLeft >= window.innerWidth / 2 ? 'right' : '') + '"><b>' + (e.pageX - document.body.scrollLeft) + '</b>, <s>' + document.body.scrollLeft + '</s>, <i>' + e.pageX + '</i></span>';
 });
+
+getPath = function(node) {
+  var count;
+  var count;
+  var sibling;
+  var count, path, sibling;
+  path = path || [];
+  if (node.parentNode) {
+    path = getPath(node.parentNode, path);
+  }
+  if (node.previousSibling) {
+    count = 1;
+    sibling = node.previousSibling;
+    while (true) {
+      if (sibling.nodeType === 1 && sibling.nodeName === node.nodeName) {
+        count++;
+      }
+      sibling = sibling.previousSibling;
+      if (!sibling) {
+        break;
+      }
+    }
+    if (count === 1) {
+      count = null;
+    }
+  } else if (node.nextSibling) {
+    sibling = node.nextSibling;
+    while (true) {
+      if (sibling.nodeType === 1 && sibling.nodeName === node.nodeName) {
+        count = 1;
+        sibling = null;
+      } else {
+        count = null;
+        sibling = sibling.previousSibling;
+      }
+      if (!sibling) {
+        break;
+      }
+    }
+  }
+  if (node.nodeType === 1 && node.nodeName.toLowerCase() !== 'html' && node.nodeName.toLowerCase() !== 'body') {
+    path.push(node.nodeName.toLowerCase() + (node.id ? '<s>#' + node.id + '</s>' : node.classList.toString().length >= 1 && node.nodeName.toLowerCase() !== 'html' ? '<b>.' + node.classList.toString().replace(/\s/gim, '.') + '</b>' : ''));
+  }
+  return path;
+};
+
+bindHandler = function(e) {
+  var border, content, hint, info, j, len, margin, p, padding, path, rect, ref, style;
+  if (!e) {
+    e = new MouseEvent('mouseover');
+  }
+  if (e.ctrlKey) {
+    hint = document.createElement('div');
+    hint.setAttribute('class', 'dev-tools-boxer-hint');
+    document.body.appendChild(hint);
+    hint = document.getElementsByClassName('dev-tools-boxer-hint')[0];
+    if (e.ctrlKey && hint !== void 0) {
+      e.target.style.opacity = '0.8';
+      style = getComputedStyle(e.target);
+      rect = e.target.getBoundingClientRect();
+      margin = {
+        w: rect.width + parseFloat(style.marginLeft) + parseFloat(style.marginRight),
+        h: rect.height + parseFloat(style.marginTop) + parseFloat(style.marginBottom)
+      };
+      hint.setAttribute('style', "top:" + (rect.top + rect.height + parseFloat(style.marginBottom) + document.body.scrollTop) + "px; left:" + (rect.left + document.body.scrollLeft - parseFloat(style.marginLeft)) + "px; width:" + margin.w + "px; height:" + margin.h + "px;");
+      border = document.createElement('div');
+      border.setAttribute('class', 'dev-tools-boxer-hint-border');
+      border.setAttribute('style', "top:" + (parseFloat(style.marginTop)) + "px; left:" + (parseFloat(style.marginLeft)) + "px; width:" + (margin.w - parseFloat(style.marginLeft) - parseFloat(style.marginRight)) + "px; height:" + (margin.h - parseFloat(style.marginTop) - parseFloat(style.marginBottom)) + "px;");
+      padding = document.createElement('div');
+      padding.setAttribute('class', 'dev-tools-boxer-hint-padding');
+      padding.setAttribute('style', "top:" + (parseFloat(style.borderTopWidth)) + "px; left:" + (parseFloat(style.borderLeftWidth)) + "px; width:" + (margin.w - parseFloat(style.marginLeft) - parseFloat(style.marginRight) - parseFloat(style.borderLeftWidth) - parseFloat(style.borderRightWidth)) + "px; height:" + (margin.h - parseFloat(style.marginTop) - parseFloat(style.marginBottom) - parseFloat(style.borderTopWidth) - parseFloat(style.borderBottomWidth)) + "px;");
+      content = document.createElement('div');
+      content.setAttribute('class', 'dev-tools-boxer-hint-content');
+      content.setAttribute('style', "top:" + (parseFloat(style.paddingTop)) + "px; left:" + (parseFloat(style.paddingLeft)) + "px; width:" + (margin.w - parseFloat(style.marginLeft) - parseFloat(style.marginRight) - parseFloat(style.borderLeftWidth) - parseFloat(style.borderRightWidth) - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight)) + "px; height:" + (margin.h - parseFloat(style.marginTop) - parseFloat(style.marginBottom) - parseFloat(style.borderTopWidth) - parseFloat(style.borderBottomWidth) - parseFloat(style.paddingTop) - parseFloat(style.paddingBottom)) + "px;");
+      padding.appendChild(content);
+      border.appendChild(padding);
+      hint.appendChild(border);
+      info = document.createElement('div');
+      info.setAttribute('class', 'dev-tools-boxer-hint-info');
+      path = '<b>body</b>';
+      ref = getPath(e.target);
+      for (j = 0, len = ref.length; j < len; j++) {
+        p = ref[j];
+        path += '<i>&gt;</i>' + p.toString();
+      }
+      info.innerHTML = "<div class='dev-tools-info-path'>" + path + "</div> <div class='dev-tools-info-margin'> <span class='t'>" + (parseFloat(style.marginTop)) + "</span> <span class='r'>" + (parseFloat(style.marginRight)) + "</span> <span class='b'>" + (parseFloat(style.marginBottom)) + "</span> <span class='l'>" + (parseFloat(style.marginLeft)) + "</span> </div> <div class='dev-tools-info-border'> <span class='t'>" + (parseFloat(style.borderTopWidth)) + "</span> <span class='r'>" + (parseFloat(style.borderRightWidth)) + "</span> <span class='b'>" + (parseFloat(style.borderBottomWidth)) + "</span> <span class='l'>" + (parseFloat(style.borderLeftWidth)) + "</span> </div> <div class='dev-tools-info-padding'> <span class='t'>" + (parseFloat(style.paddingTop)) + "</span> <span class='r'>" + (parseFloat(style.paddingRight)) + "</span> <span class='b'>" + (parseFloat(style.paddingBottom)) + "</span> <span class='l'>" + (parseFloat(style.paddingLeft)) + "</span> <hr> <div class='padded-box'> " + (margin.w - parseFloat(style.marginLeft) - parseFloat(style.marginRight) - parseFloat(style.borderLeftWidth) - parseFloat(style.borderRightWidth) - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight)) + "x" + (margin.h - parseFloat(style.borderTopWidth) - parseFloat(style.borderBottomWidth)) + " </div> </div> <div class='dev-tools-info-content'> " + (margin.w - parseFloat(style.marginLeft) - parseFloat(style.marginRight) - parseFloat(style.borderLeftWidth) - parseFloat(style.borderRightWidth) - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight)) + "x" + (margin.h - parseFloat(style.marginTop) - parseFloat(style.marginBottom) - parseFloat(style.borderTopWidth) - parseFloat(style.borderBottomWidth) - parseFloat(style.paddingTop) - parseFloat(style.paddingBottom)) + " </div>";
+      return hint.appendChild(info);
+    }
+  }
+};
+
+unbindHandler = function(e) {
+  var h, hint, i, j, len;
+  hint = document.getElementsByClassName('dev-tools-boxer-hint');
+  e.target.style.opacity = '';
+  for (i = j = 0, len = hint.length; j < len; i = ++j) {
+    h = hint[i];
+    if (h !== void 0) {
+      h.parentNode.removeChild(h);
+    }
+  }
+};
+
+document.addEventListener('mouseover', bindHandler);
+
+document.addEventListener('mouseout', unbindHandler);
+
+document.addEventListener('keyup', unbindHandler);
+
+document.addEventListener('keydown', bindHandler);
 
 window.addEventListener('resize', function() {
   if (adkGrid.style.display === 'block') {

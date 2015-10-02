@@ -630,6 +630,7 @@
   position: absolute;
   top: 0;
   left: 0;
+  min-height: 100%;
   width: 100%;
   height: auto;
   background: rgba(31, 37, 61, 0.3);
@@ -829,3 +830,205 @@
         display: inline-block;
         vertical-align: middle;
         color: #CC324C; }
+
+/*$blue: #435EB6;
+$red: #CC324C;
+$light: #e0e0ff;
+$orange: #DD4814;
+$purple: #394165;
+$water: #1599A1;
+$dark: #1F253D;
+
+$color_1: #00BDE1;
+$color_2: #57D998;
+$color_3: #7557F7;
+$color_4: #E8C14C;
+$color_5: #E65679;
+$color_6: #CA6ED6;*/
+.dev-tools-boxer-hint {
+  background: rgba(204, 50, 76, 0.6);
+  color: #fff;
+  position: absolute;
+  z-index: 9999999;
+  pointer-events: none;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700; }
+  .dev-tools-boxer-hint * {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box; }
+  .dev-tools-boxer-hint:before, .dev-tools-boxer-hint:after {
+    content: '';
+    height: 1000px;
+    position: absolute;
+    width: 0;
+    bottom: 100%; }
+  .dev-tools-boxer-hint:before {
+    left: -1px;
+    border-left: 1px dashed #CC324C; }
+  .dev-tools-boxer-hint:after {
+    right: -1px;
+    border-right: 1px dashed #CC324C; }
+  .dev-tools-boxer-hint .dev-tools-boxer-hint-border {
+    position: absolute;
+    background: rgba(221, 72, 20, 0.6); }
+    .dev-tools-boxer-hint .dev-tools-boxer-hint-border:before, .dev-tools-boxer-hint .dev-tools-boxer-hint-border:after {
+      content: '';
+      height: 1000px;
+      position: absolute;
+      width: 0;
+      bottom: 100%; }
+    .dev-tools-boxer-hint .dev-tools-boxer-hint-border:before {
+      left: -1px;
+      border-left: 1px dashed #DD4814; }
+    .dev-tools-boxer-hint .dev-tools-boxer-hint-border:after {
+      right: -1px;
+      border-right: 1px dashed #DD4814; }
+    .dev-tools-boxer-hint .dev-tools-boxer-hint-border .dev-tools-boxer-hint-padding {
+      position: absolute;
+      background: rgba(21, 153, 161, 0.6); }
+      .dev-tools-boxer-hint .dev-tools-boxer-hint-border .dev-tools-boxer-hint-padding:before, .dev-tools-boxer-hint .dev-tools-boxer-hint-border .dev-tools-boxer-hint-padding:after {
+        content: '';
+        height: 1000px;
+        position: absolute;
+        width: 0;
+        bottom: 100%; }
+      .dev-tools-boxer-hint .dev-tools-boxer-hint-border .dev-tools-boxer-hint-padding:before {
+        left: -1px;
+        border-left: 1px dashed #1599A1; }
+      .dev-tools-boxer-hint .dev-tools-boxer-hint-border .dev-tools-boxer-hint-padding:after {
+        right: -1px;
+        border-right: 1px dashed #1599A1; }
+      .dev-tools-boxer-hint .dev-tools-boxer-hint-border .dev-tools-boxer-hint-padding .dev-tools-boxer-hint-content {
+        position: absolute;
+        background: rgba(224, 224, 255, 0.6); }
+        .dev-tools-boxer-hint .dev-tools-boxer-hint-border .dev-tools-boxer-hint-padding .dev-tools-boxer-hint-content:before, .dev-tools-boxer-hint .dev-tools-boxer-hint-border .dev-tools-boxer-hint-padding .dev-tools-boxer-hint-content:after {
+          content: '';
+          height: 1000px;
+          position: absolute;
+          width: 0;
+          bottom: 100%; }
+        .dev-tools-boxer-hint .dev-tools-boxer-hint-border .dev-tools-boxer-hint-padding .dev-tools-boxer-hint-content:before {
+          left: -1px;
+          border-left: 1px dashed #e0e0ff; }
+        .dev-tools-boxer-hint .dev-tools-boxer-hint-border .dev-tools-boxer-hint-padding .dev-tools-boxer-hint-content:after {
+          right: -1px;
+          border-right: 1px dashed #e0e0ff; }
+  .dev-tools-boxer-hint hr {
+    display: block;
+    height: 0;
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2); }
+  .dev-tools-boxer-hint .dev-tools-boxer-hint-info {
+    position: fixed;
+    bottom: 50px;
+    left: 50%;
+    width: 220px;
+    height: 116px;
+    margin-left: -110px;
+    pointer-events: none;
+    background: #1F253D;
+    color: #fff;
+    padding: 10px; }
+    .dev-tools-boxer-hint .dev-tools-boxer-hint-info > div:not(.dev-tools-info-path) {
+      display: block;
+      position: absolute;
+      border: 1px solid rgba(0, 0, 0, 0.2);
+      color: #fff; }
+      .dev-tools-boxer-hint .dev-tools-boxer-hint-info > div:not(.dev-tools-info-path) .t, .dev-tools-boxer-hint .dev-tools-boxer-hint-info > div:not(.dev-tools-info-path) .r, .dev-tools-boxer-hint .dev-tools-boxer-hint-info > div:not(.dev-tools-info-path) .b, .dev-tools-boxer-hint .dev-tools-boxer-hint-info > div:not(.dev-tools-info-path) .l {
+        position: absolute;
+        width: 25px;
+        height: 10px;
+        line-height: 10px;
+        font-size: 10px;
+        font-weight: 400;
+        text-shadow: 0 0 0 #fff;
+        text-align: center; }
+      .dev-tools-boxer-hint .dev-tools-boxer-hint-info > div:not(.dev-tools-info-path) .t {
+        top: 1px;
+        left: 50%;
+        margin-left: -13px; }
+      .dev-tools-boxer-hint .dev-tools-boxer-hint-info > div:not(.dev-tools-info-path) .b {
+        bottom: 1px;
+        left: 50%;
+        margin-left: -13px; }
+      .dev-tools-boxer-hint .dev-tools-boxer-hint-info > div:not(.dev-tools-info-path) .l {
+        top: 50%;
+        left: 2px;
+        margin-top: -5px; }
+      .dev-tools-boxer-hint .dev-tools-boxer-hint-info > div:not(.dev-tools-info-path) .r {
+        top: 50%;
+        right: 2px;
+        margin-top: -5px; }
+    .dev-tools-boxer-hint .dev-tools-boxer-hint-info .dev-tools-info-margin {
+      background: rgba(225, 131, 147, 0.3);
+      z-index: 1;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0; }
+    .dev-tools-boxer-hint .dev-tools-boxer-hint-info .dev-tools-info-border {
+      background: rgba(241, 138, 102, 0.3);
+      z-index: 2;
+      top: 14px;
+      right: 30px;
+      bottom: 14px;
+      left: 30px; }
+      .dev-tools-boxer-hint .dev-tools-boxer-hint-info .dev-tools-info-border .l, .dev-tools-boxer-hint .dev-tools-boxer-hint-info .dev-tools-info-border .r {
+        width: 17px !important; }
+      .dev-tools-boxer-hint .dev-tools-boxer-hint-info .dev-tools-info-border .l {
+        left: 0; }
+      .dev-tools-boxer-hint .dev-tools-boxer-hint-info .dev-tools-info-border .r {
+        right: 0; }
+    .dev-tools-boxer-hint .dev-tools-boxer-hint-info .dev-tools-info-padding {
+      background: rgba(55, 219, 229, 0.3);
+      z-index: 3;
+      top: 28px;
+      right: 50px;
+      bottom: 28px;
+      left: 50px; }
+    .dev-tools-boxer-hint .dev-tools-boxer-hint-info .dev-tools-info-content {
+      background: rgba(173, 173, 255, 0.3);
+      font-size: 10px;
+      font-weight: 700;
+      padding-top: 14px;
+      text-align: center;
+      z-index: 4;
+      top: 42px;
+      right: 80px;
+      bottom: 42px;
+      left: 80px; }
+    .dev-tools-boxer-hint .dev-tools-boxer-hint-info .padded-box, .dev-tools-boxer-hint .dev-tools-boxer-hint-info .nopadded-box {
+      /*background: #900;*/
+      margin-left: 30px;
+      margin-right: 30px;
+      position: relative;
+      z-index: 2;
+      font-size: 10px;
+      font-weight: 700;
+      text-align: center; }
+  .dev-tools-boxer-hint .dev-tools-info-path {
+    position: fixed;
+    z-index: 999999;
+    bottom: 0;
+    left: 0;
+    white-space: nowrap;
+    font-size: 14px;
+    color: #DD4814;
+    padding: 7px 12px;
+    background: #1F253D; }
+    .dev-tools-boxer-hint .dev-tools-info-path b {
+      font-weight: normal;
+      color: #1599A1; }
+    .dev-tools-boxer-hint .dev-tools-info-path s {
+      font-style: normal;
+      text-decoration: none;
+      color: #e0e0ff; }
+    .dev-tools-boxer-hint .dev-tools-info-path i {
+      font-style: normal;
+      text-decoration: none;
+      color: #e0e0ff;
+      padding: 0 2px; }
+
+.dev-tools-active {
+  opacity: .5 !important; }

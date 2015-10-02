@@ -423,6 +423,7 @@ $shadow: 0 1px 5px rgba(0,0,0,.5);
 .pixel-perfect-wrapper {
 	position: absolute;
 	top: 0; left: 0;
+	min-height: 100%;
 	width: 100%; height: auto;
 	background: transparentize($dark, .7);
 	z-index: 9999;
@@ -603,6 +604,171 @@ $shadow: 0 1px 5px rgba(0,0,0,.5);
 		}
 	}
 }
+/*$blue: #435EB6;
+$red: #CC324C;
+$light: #e0e0ff;
+$orange: #DD4814;
+$purple: #394165;
+$water: #1599A1;
+$dark: #1F253D;
 
+$color_1: #00BDE1;
+$color_2: #57D998;
+$color_3: #7557F7;
+$color_4: #E8C14C;
+$color_5: #E65679;
+$color_6: #CA6ED6;*/
+$margin: $red;
+$border: $orange;
+$padding: $water;
+$content: $light;
+@mixin borders($color){
+	&:before, &:after {
+		content: '';
+		height: 1000px;
+		position: absolute;
+		width: 0;
+		bottom: 100%;
+	}
+	&:before {
+		left:-1px;
+		border-left: 1px dashed #{$color};
+	}
+	&:after {
+		right:-1px;
+		border-right: 1px dashed #{$color};
+	}
+}
+@mixin spans(){
+	span {
+		width: 15%;
+		max-width: 50px;
+		display: inline-block;
+		font-size: 10px;
+	}
+	b {
+		font-weight: 400;
+		font-size: 14px;
+		display: inline-block;
+	}
+}
+.dev-tools-boxer-hint {
+	background: transparentize($margin,.4);
+	color: #fff;
+	position: absolute;
+	z-index: 9999999;
+	pointer-events: none;
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 700;
+	* {
+		@include box-sizing(border-box);
+	}
 
+	@include borders($margin);
+	.dev-tools-boxer-hint-border {
+		position: absolute;
+		background: transparentize($border,.4);
+		@include borders($border);
+		.dev-tools-boxer-hint-padding {
+			position: absolute;
+			background: transparentize($padding,.4);
+			@include borders($padding);
+			.dev-tools-boxer-hint-content {
+				position: absolute;
+				background: transparentize($content,.4);
+				@include borders($content);
+			}
+		}
+	}
+	hr {
+		display: block;
+		height: 0;
+		border: none;
+		border-bottom: 1px solid rgba(255,255,255,.2);
+	}
+	.dev-tools-boxer-hint-info {
+		position: fixed;
+		bottom: 50px; left: 50%;
+		width: 220px; height: 116px;
+		margin-left: -110px;
+		pointer-events: none;
+		background: $dark;
+		color: #fff;
+		padding: 10px;
+		>div:not(.dev-tools-info-path) {
+			display: block;
+			position: absolute;
+			border: 1px solid rgba(0,0,0,.2);
+			color: #fff;
+			.t, .r, .b, .l {
+				position: absolute;
+				width: 25px; height: 10px;
+				line-height: 10px;
+				font-size: 10px;
+				font-weight: 400;
+				text-shadow: 0 0 0 #fff;
+				text-align: center;
+			}
 
+			.t {top: 1px; left: 50%; margin-left: -13px;}
+			.b {bottom: 1px; left: 50%; margin-left: -13px;}
+			.l {top: 50%; left: 2px; margin-top: -5px;}
+			.r {top: 50%; right: 2px; margin-top: -5px;}
+		}
+		.dev-tools-info-margin {
+			background: transparentize(lighten($margin,20),.7);
+			z-index: 1;
+			top: 0; right: 0; bottom: 0; left: 0;
+		}
+		.dev-tools-info-border {
+			background: transparentize(lighten($border,20),.7);
+			z-index: 2;
+			top: 14px; right: 30px; bottom: 14px; left: 30px;
+			.l, .r {
+				width: 17px !important;
+			}
+			.l {left: 0;}
+			.r {right: 0;}
+		}
+		.dev-tools-info-padding {
+			background: transparentize(lighten($padding,20),.7);
+			z-index: 3;
+			top: 28px; right: 50px; bottom: 28px; left: 50px;
+		}
+		.dev-tools-info-content {
+			background: transparentize(darken($content,10),.7);
+			font-size: 10px;
+			font-weight: 700;
+			padding-top: 14px;
+			text-align: center;
+			z-index: 4;
+			top: 42px; right: 80px; bottom: 42px; left: 80px;
+		}
+		.padded-box, .nopadded-box {
+			/*background: #900;*/
+			margin-left: 30px;
+			margin-right: 30px;
+			position: relative;
+			z-index: 2;
+			font-size: 10px;
+			font-weight: 700;
+			text-align: center;
+		}
+	}
+	.dev-tools-info-path {
+		position: fixed;
+		z-index: 999999;
+		bottom: 0;left:0;
+		white-space: nowrap;
+		font-size: 14px;
+		color: $border;
+		padding: 7px 12px;
+		background: $dark;
+		b {font-weight:normal;color: $padding;}
+		s {font-style:normal;text-decoration:none;color: $content;}
+		i {font-style:normal;text-decoration:none;color: $content;padding: 0 2px;}
+	}
+}
+.dev-tools-active {
+	opacity: .5 !important;
+}
