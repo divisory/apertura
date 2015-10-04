@@ -444,10 +444,7 @@ figure {
 */
 .clear-input {
   background: none;
-  -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
-  -ms-box-sizing: border-box;
-  -o-box-sizing: border-box;
   box-sizing: border-box;
   border: none;
   padding: 0;
@@ -491,8 +488,6 @@ figure {
   text-align: center;
   font-weight: bold;
   z-index: 100500;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
   border-radius: 3px;
   content: 'This page requires JavaScript for correct performance. 						You must enable Javascript, or update your browser.'; }
 
@@ -546,9 +541,13 @@ figure {
 		зависимости от своей ширины. *n
 */
 img.r {
+  display: block;
   width: 100%;
-  height: auto;
-  display: block; }
+  /*flex: 1 auto;*/
+  -webkit-align-self: flex-start;
+  -ms-flex-item-align: start;
+  align-self: flex-start;
+  height: auto; }
 
 /*--------------------------------------------------------------
 													ВЫРАВНИВАНИЕ
@@ -656,32 +655,48 @@ img.r {
 		name: flex-row *n
 		caption: Строка flexbox.*n */
 .flex-row {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
   -webkit-flex-direction: row;
-  -moz-flex-direction: row;
+  -moz-box-orient: horizontal;
+  -moz-box-direction: normal;
+  -ms-flex-direction: row;
   flex-direction: row; }
 
 /*@property
 		name: flex-row-rev *n
 		caption: Строка flexbox с обратным отображением. *n */
 .flex-row-rev {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
   -webkit-flex-direction: row-reverse;
-  -moz-flex-direction: row-reverse;
+  -moz-box-orient: horizontal;
+  -moz-box-direction: reverse;
+  -ms-flex-direction: row-reverse;
   flex-direction: row-reverse; }
 
 /*@property
 		name: flex-col *n
 		caption: Ячейка flexbox. *n */
 .flex-col {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
   -webkit-flex-direction: column;
-  -moz-flex-direction: column;
+  -moz-box-orient: vertical;
+  -moz-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column; }
 
 /*@property
 		name: flex-col-rev *n
 		caption: Ячейка flexbox с обратным отображением. *n */
 .flex-col-rev {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: reverse;
   -webkit-flex-direction: column-reverse;
-  -moz-flex-direction: column-reverse;
+  -moz-box-orient: vertical;
+  -moz-box-direction: reverse;
+  -ms-flex-direction: column-reverse;
   flex-direction: column-reverse; }
 
 /*--------------------------------------------------------------
@@ -695,7 +710,12 @@ img.r {
   /*@property
 		name: around *n
 		caption: Выравнивает bd{inline-flex}-элементы 
-		по одинкаовой высоте. *n */
+		по одинковой высоте. *n */
+  /*@property
+		name: around *n
+		caption: Выравнивает bd{inline-flex}-элементы 
+		по одинковой высоте, и центрирует их содержимое 
+		вертикально по центру. *n */
   /*@property
 		name: flex-nowrap *n
 		caption: Отключает оборачивание bd{inline-flex}-элементов, 
@@ -709,51 +729,73 @@ img.r {
 		caption: Включает оборачивание bd{inline-flex}-элементов, 
 		лежащих внутри блока изменяя порядок отображения. *n */ }
   .flexbox .left {
+    -webkit-box-pack: start;
     -webkit-justify-content: start;
-    -moz-justify-content: start;
+    -moz-box-pack: start;
+    -ms-flex-pack: start;
     justify-content: start; }
   .flexbox .right {
+    -webkit-box-pack: end;
     -webkit-justify-content: flex-end;
-    -moz-justify-content: flex-end;
+    -moz-box-pack: end;
+    -ms-flex-pack: end;
     justify-content: flex-end; }
   .flexbox .center {
+    -webkit-box-pack: center;
     -webkit-justify-content: center;
-    -moz-justify-content: center;
+    -moz-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center; }
   .flexbox .justify {
+    -webkit-box-pack: justify;
     -webkit-justify-content: space-between;
-    -moz-justify-content: space-between;
+    -moz-box-pack: justify;
+    -ms-flex-pack: justify;
     justify-content: space-between; }
   .flexbox .around {
     -webkit-justify-content: space-around;
-    -moz-justify-content: space-around;
+    -ms-flex-pack: distribute;
     justify-content: space-around; }
   .flexbox .v-top {
-    -webkit-align-items: flex-start;
-    align-items: flex-start; }
+    -webkit-align-self: flex-start;
+    -ms-flex-item-align: start;
+    align-self: flex-start; }
   .flexbox .v-bottom {
-    -webkit-align-items: flex-end;
-    align-items: flex-end; }
+    -webkit-align-self: flex-end;
+    -ms-flex-item-align: end;
+    align-self: flex-end; }
   .flexbox .v-middle {
-    -webkit-align-items: center;
-    align-items: center; }
+    -webkit-align-self: center;
+    -ms-flex-item-align: center;
+    align-self: center; }
   .flexbox .v-baseline {
-    -webkit-align-items: baseline;
-    align-items: baseline; }
+    -webkit-align-self: baseline;
+    -ms-flex-item-align: baseline;
+    align-self: baseline; }
   .flexbox .v-stretch {
-    -webkit-align-items: stretch;
-    align-items: stretch; }
+    -webkit-align-self: stretch;
+    -ms-flex-item-align: stretch;
+    align-self: stretch; }
+  .flexbox .v-center {
+    -webkit-align-self: stretch;
+    -ms-flex-item-align: stretch;
+    align-self: stretch;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -moz-box-align: center;
+    -ms-flex-align: center;
+    align-items: center; }
   .flexbox .flex-nowrap {
     -webkit-flex-wrap: nowrap;
-    -moz-flex-wrap: nowrap;
+    -ms-flex-wrap: nowrap;
     flex-wrap: nowrap; }
   .flexbox .flex-wrap {
     -webkit-flex-wrap: wrap;
-    -moz-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
     flex-wrap: wrap; }
   .flexbox .flex-wrap-rev {
     -webkit-flex-wrap: wrap-reverse;
-    -moz-flex-wrap: wrap-reverse;
+    -ms-flex-wrap: wrap-reverse;
     flex-wrap: wrap-reverse; }
 
 /*--------------------------------------------------------------
@@ -793,16 +835,31 @@ img.r {
 		выравниваются по левому краю.*n
 */
 .flex {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   width: 100%;
+  -webkit-box-pack: start;
   -webkit-justify-content: flex-start;
-  -moz-justify-content: flex-start;
+  -moz-box-pack: start;
+  -ms-flex-pack: start;
   justify-content: flex-start;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
   -webkit-flex-direction: row;
-  -moz-flex-direction: row;
+  -moz-box-orient: horizontal;
+  -moz-box-direction: normal;
+  -ms-flex-direction: row;
   flex-direction: row;
+  -webkit-box-align: stretch;
   -webkit-align-items: stretch;
+  -moz-box-align: stretch;
+  -ms-flex-align: stretch;
   align-items: stretch; }
 
 /*@property
@@ -810,9 +867,14 @@ img.r {
 		caption: Inline-flex-блок.*n
 */
 .inline-flex {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -moz-inline-box;
+  display: -ms-inline-flexbox;
   display: inline-flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
-  -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box; }
 
@@ -965,10 +1027,6 @@ img.r {
 		заполняло фон по вертикали и по горизонтали. *n
 */
 .bg-cover {
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  -ms-background-size: cover;
   background-size: cover; }
 
 /*@property
@@ -978,10 +1036,6 @@ img.r {
 		по ширине или высоте блока. *n
 */
 .bg-contain {
-  -webkit-background-size: contain;
-  -moz-background-size: contain;
-  -o-background-size: contain;
-  -ms-background-size: contain;
   background-size: contain; }
 
 /*@property
@@ -1320,6 +1374,28 @@ a.rev-underline:hover {
 			внешними и внутренними отступами. }p
 		*n
 */
+/*@property
+		name: no-marg *n
+		caption: Убирает внешние отступы блока. *n
+*/
+.no-marg {
+  margin: 0; }
+
+/*@property
+		name: no-pad *n
+		caption: Убирает внутренние отступы блока. *n
+*/
+.no-pad {
+  padding: 0; }
+
+/*@property
+		name: exact-fit *n
+		caption: Убирает внутренние и внешние отступы блока. *n
+*/
+.exact-fit {
+  margin: 0;
+  padding: 0; }
+
 /*@property
 		name: island-** *n
 		caption: Добавляет внутренние отступы со всех сторон.
@@ -2969,28 +3045,6 @@ a.rev-underline:hover {
 /*--------------------------------------------------------
 												RESETS
 --------------------------------------------------------*/
-/*@property
-		name: no-marg *n
-		caption: Убирает внешние отступы блока. *n
-*/
-.no-marg {
-  margin: 0; }
-
-/*@property
-		name: no-pad *n
-		caption: Убирает внутренние отступы блока. *n
-*/
-.no-pad {
-  padding: 0; }
-
-/*@property
-		name: exact-fit *n
-		caption: Убирает внутренние и внешние отступы блока. *n
-*/
-.exact-fit {
-  margin: 0;
-  padding: 0; }
-
 /*@property
 		name: no-marg--<BRAKEPOINT> *n
 		caption: Убирает внешние отступы блока при разрешении <BRAKEPOINT>. *n

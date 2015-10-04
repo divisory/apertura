@@ -150,212 +150,6 @@
 		caption: Устанавливает шрифт по умолчанию для <body> *n
 */
 /*
-	@module
-		title: mixins *n
-		type: scss *n
-		caption:
-			p{ Модуль добавляет в систему заранее подготовленные
-			миксины, которые используются в коде. }p
-			p{ Чтобы использовать миксины - вставвьте нужный миксин
-			в код при помощи директивы bd{ @include my-mixin(mixin-values); }}p
-		*n
-*/
-/*--------------------------------------------------------------------------
-	Background and Border Properties
---------------------------------------------------------------------------*/
-/*@mixin
-		name: background-clip() *n caption: *n arguments: $clip *n
-		return: -webkit-, -moz-, -ms-, -o- *n */
-/*@mixin
-		name: background-origin() *n caption: *n arguments: $origin *n
-		return: -webkit-, -moz-, -ms-, -o- *n */
-/*@mixin
-		name: background-size() *n caption: *n arguments: $size *n
-		return: -webkit-, -moz-, -ms-, -o- *n */
-/*@mixin
-		name: border-bottom-left-radius() *n caption: *n arguments: $radius *n
-		return: -webkit-, -moz-, -ms- *n */
-/*@mixin
-		name: border-bottom-right-radius() *n caption: *n arguments: $radius *n
-		return: -webkit-, -moz-, -ms- *n */
-/*@mixin
-		name: border-top-right-radius() *n caption: *n arguments: $radius *n
-		return: -webkit-, -moz-, -ms- *n */
-/*@mixin
-		name: border-top-left-radius() *n caption: *n arguments: $radius *n
-		return: -webkit-, -moz-, -ms- *n */
-/*@mixin
-		name: border-radius() *n caption: *n arguments: $radius *n
-		return: -webkit-, -moz-, -ms- *n */
-/*@mixin
-		name: box-shadow() *n caption: *n arguments: $shadow *n
-		return: -webkit-, -moz- *n */
-/*--------------------------------------------------------------------------
-	Flexible Box Layout
---------------------------------------------------------------------------*/
-/*@mixin
-		name: align-content() *n caption: bd{flexbox} *n arguments: $type *n
-		return: -webkit- *n */
-/*@mixin
-		name: align-items() *n caption: bd{flexbox} *n arguments: $type *n
-		return: -webkit- *n */
-/*@mixin
-		name: align-self() *n caption: bd{flexbox} *n arguments: $type *n
-		return: -webkit- *n */
-/*@mixin
-		name: flex() *n caption: bd{flexbox} *n arguments: $type *n
-		return: -webkit-, -moz-, -ms- *n */
-/*@mixin
-		name: flex-basis() *n caption: bd{flexbox} *n arguments: $type *n
-		return: -webkit-, -moz- *n */
-/*@mixin
-		name: flex-direction() *n caption: bd{flexbox} *n arguments: $direction *n
-		return: -webkit-, -moz- *n */
-/*@mixin
-		name: flex-flow() *n caption: bd{flexbox} *n arguments: $flow *n
-		return: -webkit-, -moz- *n */
-/*@mixin
-		name: flex-grow() *n caption: bd{flexbox} *n arguments: $grow *n
-		return: -webkit-, -moz- *n */
-/*@mixin
-		name: flex-shirk() *n caption: bd{flexbox} *n arguments: $shirk *n
-		return: -webkit-, -moz- *n */
-/*@mixin
-		name: flex-wrap() *n caption: bd{flexbox} *n arguments: $wrap *n
-		return: -webkit-, -moz- *n */
-/*@mixin
-		name: justify-content() *n caption: bd{flexbox} *n arguments: $type *n
-		return: -webkit-, -moz- *n */
-/*@mixin
-		name: order() *n caption: bd{flexbox} *n arguments: $type *n
-		return: -webkit-, -moz- *n */
-/*--------------------------------------------------------------------------
-	Text Properties
---------------------------------------------------------------------------*/
-/*@mixin
-		name: tab-size() *n caption: bd{flexbox} *n arguments: $type *n
-		return: -o-, -moz- *n */
-/*--------------------------------------------------------------------------
-	Animation Properties
---------------------------------------------------------------------------*/
-/*@mixin
-		name: keyframes() *n caption: animations *n arguments: $name *n
-		return: -webkit-, -moz-, -o- *n */
-/*@mixin
-		name: animation() *n caption: animations *n arguments: $type *n
-		return: -webkit-, -moz-, -o- *n */
-/*@mixin
-		name: animation-delay() *n caption: animations *n arguments: $type *n
-		return: -webkit-, -moz-, -o- *n */
-/*@mixin
-		name: animation-direction() *n caption: animations *n arguments: $type *n
-		return: -webkit-, -moz-, -o- *n */
-/*@mixin
-		name: animation-duration() *n caption: animations *n arguments: $type *n
-		return: -webkit-, -moz-, -o- *n */
-/*@mixin
-		name: animation-fill-mode() *n caption: animations *n arguments: $type *n
-		return: -webkit-, -moz-, -o- *n */
-/*@mixin
-		name: animation-iteration-count() *n caption: animations *n arguments: $type *n
-		return: -webkit-, -moz-, -o- *n */
-/*@mixin
-		name: animation-timing-function() *n caption: animations *n arguments: $type *n
-		return: -webkit-, -moz-, -o- *n */
-/*@mixin
-		name: animation-play-state() *n caption: animations *n arguments: $type *n
-		return: -webkit-, -moz-, -o- *n */
-/*--------------------------------------------------------------------------
-	Transform Properties
---------------------------------------------------------------------------*/
-/*@mixin
-		name: backface-visibility() *n caption: transformations *n arguments: $type *n
-		return: -webkit-, -moz- *n */
-/*@mixin
-		name: perspective() *n caption: transformations *n arguments: $type *n
-		return: -webkit-, -moz- *n */
-/*@mixin
-		name: perspective-origin() *n caption: transformations *n arguments: $type *n
-		return: -webkit-, -moz- *n */
-/*@mixin
-		name: transform() *n caption: transformations *n arguments: $type *n
-		return: -webkit-, -moz-, -ms-, -o- *n */
-/*@mixin
-		name: transform-origin() *n caption: transformations *n arguments: $type *n
-		return: -webkit-, -moz-, -ms-, -o- *n */
-/*@mixin
-		name: transform-style() *n caption: transformations *n arguments: $type *n
-		return: -webkit-, -moz- *n */
-/*--------------------------------------------------------------------------
-	Transitions Properties
---------------------------------------------------------------------------*/
-/*@mixin
-		name: transition() *n caption: transitions *n arguments: $type *n
-		return: -webkit-, -moz-, -o- *n */
-/*@mixin
-		name: transition-property() *n caption: transitions *n arguments: $type *n
-		return: -webkit-, -moz-, -o- *n */
-/*@mixin
-		name: transition-duration() *n caption: transitions *n arguments: $type *n
-		return: -webkit-, -moz-, -o- *n */
-/*@mixin
-		name: transition-timing-function() *n caption: transitions *n arguments: $type *n
-		return: -webkit-, -moz-, -o- *n */
-/*@mixin
-		name: transition-delay() *n caption: transitions *n arguments: $type *n
-		return: -webkit-, -moz-, -o- *n */
-/*--------------------------------------------------------------------------
-	Basic User Interface Properties
---------------------------------------------------------------------------*/
-/*@mixin
-		name: box-sizing() *n caption: UI *n arguments: $type *n
-		return: -webkit-, -moz- *n */
-/*@mixin
-		name: outline-offset() *n caption: UI *n arguments: $type *n
-		return: -webkit- *n */
-/*@mixin
-		name: resize() *n caption: UI *n arguments: $type *n
-		return: -moz- *n */
-/*@mixin
-		name: text-overflow() *n caption: UI *n arguments: $type *n
-		return: -o- *n */
-/*--------------------------------------------------------------------------
-	Multi-column Layout Properties
---------------------------------------------------------------------------*/
-/*@mixin
-		name: column-count() *n caption: UI *n arguments: $type *n
-		return: -webkit-, -moz- *n */
-/*@mixin
-		name: column-gap() *n caption: UI *n arguments: $type *n
-		return: -webkit-, -moz- *n */
-/*@mixin
-		name: column-rule() *n caption: UI *n arguments: $type *n
-		return: -webkit-, -moz- *n */
-/*@mixin
-		name: column-rule-color() *n caption: UI *n arguments: $type *n
-		return: -webkit-, -moz- *n */
-/*@mixin
-		name: column-rule-style() *n caption: UI *n arguments: $type *n
-		return: -webkit-, -moz- *n */
-/*@mixin
-		name: column-rule-width() *n caption: UI *n arguments: $type *n
-		return: -webkit-, -moz- *n */
-/*@mixin
-		name: column-rule-span() *n caption: UI *n arguments: $type *n
-		return: -webkit-, -moz- *n */
-/*@mixin
-		name: column-width() *n caption: UI *n arguments: $type *n
-		return: -webkit-, -moz- *n */
-/*@mixin
-		name: columns() *n caption: UI *n arguments: $type *n
-		return: -webkit-, -moz- *n */
-/*--------------------------------------------------------------------------
-	Filter Effects Properties
---------------------------------------------------------------------------*/
-/*@mixin
-		name: filter() *n caption: UI *n arguments: $properties *n
-		return: -webkit-, -moz-, -o- *n */
-/*
 	Приватный модуль для генерации брейкпоинтов.
 */
 /*@property
@@ -373,6 +167,7 @@
 */
 .g,
 .g--rev {
+  -moz-box-sizing: border-box;
   box-sizing: border-box;
   display: block;
   margin: 0 auto;
@@ -424,6 +219,7 @@
 .c,
 .cc,
 .cd {
+  -moz-box-sizing: border-box;
   box-sizing: border-box;
   display: inline-block;
   vertical-align: top;
@@ -456,19 +252,68 @@
   padding-right: 0 !important; }
 
 /* внутренние фцнкции - переключение в режим flexbox \ inline-block */
-html.flexbox .g, html.flexbox .g-rev {
+.flexbox article,
+.flexbox aside,
+.flexbox details,
+.flexbox figcaption,
+.flexbox figure,
+.flexbox footer,
+.flexbox header,
+.flexbox hgroup,
+.flexbox main,
+.flexbox menu,
+.flexbox nav,
+.flexbox section,
+.flexbox summary,
+.flexbox div,
+.flexbox ul {
+  /*align-self: flex-start;*/
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 auto;
+  -moz-box-flex: 1;
+  -ms-flex: 1 auto;
+  flex: 1 auto;
+  /*@include align-items(center);*/ }
+
+.flexbox .g, .flexbox .g-rev {
   margin: 0 auto;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: stretch;
+  -webkit-align-items: stretch;
+  -moz-box-align: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-box-align: top;
+  -webkit-align-items: top;
+  -moz-box-align: top;
+  -ms-flex-align: top;
+  align-items: top;
+  -webkit-align-content: flex-start;
+  -ms-flex-line-pack: start;
+  align-content: flex-start;
   -webkit-flex-wrap: wrap;
-  -moz-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
   flex-wrap: wrap; }
 
-html.flexbox .c, html.flexbox .cc, html.flexbox .c-c {
+.flexbox .c, .flexbox .cc, .flexbox .c-c {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -moz-inline-box;
+  display: -ms-inline-flexbox;
   display: inline-flex;
+  /*align-items: center;*/
+  -webkit-align-self: flex-start;
+  -ms-flex-item-align: start;
+  align-self: flex-start;
   -webkit-flex-wrap: wrap;
-  -moz-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
-  -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box; }
 
@@ -477,6 +322,10 @@ html.flexbox .c, html.flexbox .cc, html.flexbox .c-c {
 		caption: Ширина обертки. Формирует список классов типа 
 		w<WIDTH> исходя из значений параметра bd{ $grid_sizes } *n
 */
+.g.w400,
+.g--rev.w400 {
+  max-width: 400px; }
+
 .g.w720,
 .g--rev.w720 {
   max-width: 720px; }
@@ -488,6 +337,14 @@ html.flexbox .c, html.flexbox .cc, html.flexbox .c-c {
 .g.w1140,
 .g--rev.w1140 {
   max-width: 1140px; }
+
+.lt-ie9 .g.w400,
+.lt-ie9 .g--rev.w400 {
+  max-width: 400px; }
+
+.no-js .g.w400,
+.no-js .g--rev.w400 {
+  max-width: 400px; }
 
 .lt-ie9 .g.w720,
 .lt-ie9 .g--rev.w720 {
@@ -517,144 +374,379 @@ html.flexbox .c, html.flexbox .cc, html.flexbox .c-c {
 	grid calc
 */
 .x1d1 {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 100%;
+  -moz-box-flex: 1;
+  -ms-flex: 1 100%;
+  flex: 1 100%;
   width: 100%; }
 
 .x0d1 {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 0%;
+  -moz-box-flex: 1;
+  -ms-flex: 1 0%;
+  flex: 1 0%;
   width: 0%; }
 
 .x1d2, .x2d4, .x3d6, .x4d8, .x5d10, .x6d12 {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 50%;
+  -moz-box-flex: 1;
+  -ms-flex: 1 50%;
+  flex: 1 50%;
   width: 50%; }
 
 .x1d3, .x2d6, .x3d9, .x4d12 {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 33.33333%;
+  -moz-box-flex: 1;
+  -ms-flex: 1 33.33333%;
+  flex: 1 33.33333%;
   width: 33.33333%; }
 
 .x2d3, .x4d6, .x6d9, .x8d12 {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 66.66667%;
+  -moz-box-flex: 1;
+  -ms-flex: 1 66.66667%;
+  flex: 1 66.66667%;
   width: 66.66667%; }
 
 .x1d4, .x2d8, .x3d12 {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 25%;
+  -moz-box-flex: 1;
+  -ms-flex: 1 25%;
+  flex: 1 25%;
   width: 25%; }
 
 .x3d4, .x6d8, .x9d12 {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 75%;
+  -moz-box-flex: 1;
+  -ms-flex: 1 75%;
+  flex: 1 75%;
   width: 75%; }
 
 .x1d5, .x2d10 {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 20%;
+  -moz-box-flex: 1;
+  -ms-flex: 1 20%;
+  flex: 1 20%;
   width: 20%; }
 
 .x2d5, .x4d10 {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 40%;
+  -moz-box-flex: 1;
+  -ms-flex: 1 40%;
+  flex: 1 40%;
   width: 40%; }
 
 .x3d5, .x6d10 {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 60%;
+  -moz-box-flex: 1;
+  -ms-flex: 1 60%;
+  flex: 1 60%;
   width: 60%; }
 
 .x4d5, .x8d10 {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 80%;
+  -moz-box-flex: 1;
+  -ms-flex: 1 80%;
+  flex: 1 80%;
   width: 80%; }
 
 .x1d6, .x2d12 {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 16.66667%;
+  -moz-box-flex: 1;
+  -ms-flex: 1 16.66667%;
+  flex: 1 16.66667%;
   width: 16.66667%; }
 
 .x5d6, .x10d12 {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 83.33333%;
+  -moz-box-flex: 1;
+  -ms-flex: 1 83.33333%;
+  flex: 1 83.33333%;
   width: 83.33333%; }
 
 .x1d7 {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 14.28571%;
+  -moz-box-flex: 1;
+  -ms-flex: 1 14.28571%;
+  flex: 1 14.28571%;
   width: 14.28571%; }
 
 .x2d7 {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 28.57143%;
+  -moz-box-flex: 1;
+  -ms-flex: 1 28.57143%;
+  flex: 1 28.57143%;
   width: 28.57143%; }
 
 .x3d7 {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 42.85714%;
+  -moz-box-flex: 1;
+  -ms-flex: 1 42.85714%;
+  flex: 1 42.85714%;
   width: 42.85714%; }
 
 .x4d7 {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 57.14286%;
+  -moz-box-flex: 1;
+  -ms-flex: 1 57.14286%;
+  flex: 1 57.14286%;
   width: 57.14286%; }
 
 .x5d7 {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 71.42857%;
+  -moz-box-flex: 1;
+  -ms-flex: 1 71.42857%;
+  flex: 1 71.42857%;
   width: 71.42857%; }
 
 .x6d7 {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 85.71429%;
+  -moz-box-flex: 1;
+  -ms-flex: 1 85.71429%;
+  flex: 1 85.71429%;
   width: 85.71429%; }
 
 .x1d8 {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 12.5%;
+  -moz-box-flex: 1;
+  -ms-flex: 1 12.5%;
+  flex: 1 12.5%;
   width: 12.5%; }
 
 .x3d8 {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 37.5%;
+  -moz-box-flex: 1;
+  -ms-flex: 1 37.5%;
+  flex: 1 37.5%;
   width: 37.5%; }
 
 .x5d8 {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 62.5%;
+  -moz-box-flex: 1;
+  -ms-flex: 1 62.5%;
+  flex: 1 62.5%;
   width: 62.5%; }
 
 .x7d8 {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 87.5%;
+  -moz-box-flex: 1;
+  -ms-flex: 1 87.5%;
+  flex: 1 87.5%;
   width: 87.5%; }
 
 .x1d9 {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 11.11111%;
+  -moz-box-flex: 1;
+  -ms-flex: 1 11.11111%;
+  flex: 1 11.11111%;
   width: 11.11111%; }
 
 .x2d9 {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 22.22222%;
+  -moz-box-flex: 1;
+  -ms-flex: 1 22.22222%;
+  flex: 1 22.22222%;
   width: 22.22222%; }
 
 .x4d9 {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 44.44444%;
+  -moz-box-flex: 1;
+  -ms-flex: 1 44.44444%;
+  flex: 1 44.44444%;
   width: 44.44444%; }
 
 .x5d9 {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 55.55556%;
+  -moz-box-flex: 1;
+  -ms-flex: 1 55.55556%;
+  flex: 1 55.55556%;
   width: 55.55556%; }
 
 .x7d9 {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 77.77778%;
+  -moz-box-flex: 1;
+  -ms-flex: 1 77.77778%;
+  flex: 1 77.77778%;
   width: 77.77778%; }
 
 .x8d9 {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 88.88889%;
+  -moz-box-flex: 1;
+  -ms-flex: 1 88.88889%;
+  flex: 1 88.88889%;
   width: 88.88889%; }
 
 .x1d10 {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 10%;
+  -moz-box-flex: 1;
+  -ms-flex: 1 10%;
+  flex: 1 10%;
   width: 10%; }
 
 .x3d10 {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 30%;
+  -moz-box-flex: 1;
+  -ms-flex: 1 30%;
+  flex: 1 30%;
   width: 30%; }
 
 .x7d10 {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 70%;
+  -moz-box-flex: 1;
+  -ms-flex: 1 70%;
+  flex: 1 70%;
   width: 70%; }
 
 .x9d10 {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 90%;
+  -moz-box-flex: 1;
+  -ms-flex: 1 90%;
+  flex: 1 90%;
   width: 90%; }
 
 .x1d11 {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 9.09091%;
+  -moz-box-flex: 1;
+  -ms-flex: 1 9.09091%;
+  flex: 1 9.09091%;
   width: 9.09091%; }
 
 .x2d11 {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 18.18182%;
+  -moz-box-flex: 1;
+  -ms-flex: 1 18.18182%;
+  flex: 1 18.18182%;
   width: 18.18182%; }
 
 .x3d11 {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 27.27273%;
+  -moz-box-flex: 1;
+  -ms-flex: 1 27.27273%;
+  flex: 1 27.27273%;
   width: 27.27273%; }
 
 .x4d11 {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 36.36364%;
+  -moz-box-flex: 1;
+  -ms-flex: 1 36.36364%;
+  flex: 1 36.36364%;
   width: 36.36364%; }
 
 .x5d11 {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 45.45455%;
+  -moz-box-flex: 1;
+  -ms-flex: 1 45.45455%;
+  flex: 1 45.45455%;
   width: 45.45455%; }
 
 .x6d11 {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 54.54545%;
+  -moz-box-flex: 1;
+  -ms-flex: 1 54.54545%;
+  flex: 1 54.54545%;
   width: 54.54545%; }
 
 .x7d11 {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 63.63636%;
+  -moz-box-flex: 1;
+  -ms-flex: 1 63.63636%;
+  flex: 1 63.63636%;
   width: 63.63636%; }
 
 .x8d11 {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 72.72727%;
+  -moz-box-flex: 1;
+  -ms-flex: 1 72.72727%;
+  flex: 1 72.72727%;
   width: 72.72727%; }
 
 .x9d11 {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 81.81818%;
+  -moz-box-flex: 1;
+  -ms-flex: 1 81.81818%;
+  flex: 1 81.81818%;
   width: 81.81818%; }
 
 .x10d11 {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 90.90909%;
+  -moz-box-flex: 1;
+  -ms-flex: 1 90.90909%;
+  flex: 1 90.90909%;
   width: 90.90909%; }
 
 .x1d12 {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 8.33333%;
+  -moz-box-flex: 1;
+  -ms-flex: 1 8.33333%;
+  flex: 1 8.33333%;
   width: 8.33333%; }
 
 .x5d12 {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 41.66667%;
+  -moz-box-flex: 1;
+  -ms-flex: 1 41.66667%;
+  flex: 1 41.66667%;
   width: 41.66667%; }
 
 .x7d12 {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 58.33333%;
+  -moz-box-flex: 1;
+  -ms-flex: 1 58.33333%;
+  flex: 1 58.33333%;
   width: 58.33333%; }
 
 .x11d12 {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 91.66667%;
+  -moz-box-flex: 1;
+  -ms-flex: 1 91.66667%;
+  flex: 1 91.66667%;
   width: 91.66667%; }
 
 /* -----------------------------------------------------
@@ -685,292 +777,997 @@ html.flexbox .c, html.flexbox .cc, html.flexbox .c-c {
   .x1--t {
     width: 100%; }
   .x1d1--t {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 100%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 100%;
+    flex: 1 100%;
     width: 100%; }
   .x0d1--t {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 0%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 0%;
+    flex: 1 0%;
     width: 0%; }
   .x1d2--t, .x2d4--t, .x3d6--t, .x4d8--t, .x5d10--t, .x6d12--t {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 50%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 50%;
+    flex: 1 50%;
     width: 50%; }
   .x1d3--t, .x2d6--t, .x3d9--t, .x4d12--t {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 33.33333%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 33.33333%;
+    flex: 1 33.33333%;
     width: 33.33333%; }
   .x2d3--t, .x4d6--t, .x6d9--t, .x8d12--t {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 66.66667%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 66.66667%;
+    flex: 1 66.66667%;
     width: 66.66667%; }
   .x1d4--t, .x2d8--t, .x3d12--t {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 25%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 25%;
+    flex: 1 25%;
     width: 25%; }
   .x3d4--t, .x6d8--t, .x9d12--t {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 75%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 75%;
+    flex: 1 75%;
     width: 75%; }
   .x1d5--t, .x2d10--t {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 20%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 20%;
+    flex: 1 20%;
     width: 20%; }
   .x2d5--t, .x4d10--t {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 40%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 40%;
+    flex: 1 40%;
     width: 40%; }
   .x3d5--t, .x6d10--t {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 60%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 60%;
+    flex: 1 60%;
     width: 60%; }
   .x4d5--t, .x8d10--t {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 80%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 80%;
+    flex: 1 80%;
     width: 80%; }
   .x1d6--t, .x2d12--t {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 16.66667%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 16.66667%;
+    flex: 1 16.66667%;
     width: 16.66667%; }
   .x5d6--t, .x10d12--t {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 83.33333%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 83.33333%;
+    flex: 1 83.33333%;
     width: 83.33333%; }
   .x1d7--t {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 14.28571%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 14.28571%;
+    flex: 1 14.28571%;
     width: 14.28571%; }
   .x2d7--t {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 28.57143%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 28.57143%;
+    flex: 1 28.57143%;
     width: 28.57143%; }
   .x3d7--t {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 42.85714%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 42.85714%;
+    flex: 1 42.85714%;
     width: 42.85714%; }
   .x4d7--t {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 57.14286%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 57.14286%;
+    flex: 1 57.14286%;
     width: 57.14286%; }
   .x5d7--t {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 71.42857%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 71.42857%;
+    flex: 1 71.42857%;
     width: 71.42857%; }
   .x6d7--t {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 85.71429%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 85.71429%;
+    flex: 1 85.71429%;
     width: 85.71429%; }
   .x1d8--t {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 12.5%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 12.5%;
+    flex: 1 12.5%;
     width: 12.5%; }
   .x3d8--t {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 37.5%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 37.5%;
+    flex: 1 37.5%;
     width: 37.5%; }
   .x5d8--t {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 62.5%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 62.5%;
+    flex: 1 62.5%;
     width: 62.5%; }
   .x7d8--t {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 87.5%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 87.5%;
+    flex: 1 87.5%;
     width: 87.5%; }
   .x1d9--t {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 11.11111%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 11.11111%;
+    flex: 1 11.11111%;
     width: 11.11111%; }
   .x2d9--t {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 22.22222%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 22.22222%;
+    flex: 1 22.22222%;
     width: 22.22222%; }
   .x4d9--t {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 44.44444%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 44.44444%;
+    flex: 1 44.44444%;
     width: 44.44444%; }
   .x5d9--t {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 55.55556%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 55.55556%;
+    flex: 1 55.55556%;
     width: 55.55556%; }
   .x7d9--t {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 77.77778%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 77.77778%;
+    flex: 1 77.77778%;
     width: 77.77778%; }
   .x8d9--t {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 88.88889%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 88.88889%;
+    flex: 1 88.88889%;
     width: 88.88889%; }
   .x1d10--t {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 10%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 10%;
+    flex: 1 10%;
     width: 10%; }
   .x3d10--t {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 30%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 30%;
+    flex: 1 30%;
     width: 30%; }
   .x7d10--t {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 70%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 70%;
+    flex: 1 70%;
     width: 70%; }
   .x9d10--t {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 90%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 90%;
+    flex: 1 90%;
     width: 90%; }
   .x1d11--t {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 9.09091%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 9.09091%;
+    flex: 1 9.09091%;
     width: 9.09091%; }
   .x2d11--t {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 18.18182%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 18.18182%;
+    flex: 1 18.18182%;
     width: 18.18182%; }
   .x3d11--t {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 27.27273%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 27.27273%;
+    flex: 1 27.27273%;
     width: 27.27273%; }
   .x4d11--t {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 36.36364%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 36.36364%;
+    flex: 1 36.36364%;
     width: 36.36364%; }
   .x5d11--t {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 45.45455%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 45.45455%;
+    flex: 1 45.45455%;
     width: 45.45455%; }
   .x6d11--t {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 54.54545%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 54.54545%;
+    flex: 1 54.54545%;
     width: 54.54545%; }
   .x7d11--t {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 63.63636%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 63.63636%;
+    flex: 1 63.63636%;
     width: 63.63636%; }
   .x8d11--t {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 72.72727%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 72.72727%;
+    flex: 1 72.72727%;
     width: 72.72727%; }
   .x9d11--t {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 81.81818%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 81.81818%;
+    flex: 1 81.81818%;
     width: 81.81818%; }
   .x10d11--t {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 90.90909%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 90.90909%;
+    flex: 1 90.90909%;
     width: 90.90909%; }
   .x1d12--t {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 8.33333%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 8.33333%;
+    flex: 1 8.33333%;
     width: 8.33333%; }
   .x5d12--t {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 41.66667%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 41.66667%;
+    flex: 1 41.66667%;
     width: 41.66667%; }
   .x7d12--t {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 58.33333%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 58.33333%;
+    flex: 1 58.33333%;
     width: 58.33333%; }
   .x11d12--t {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 91.66667%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 91.66667%;
+    flex: 1 91.66667%;
     width: 91.66667%; } }
 
 @media (max-width: 640px) {
   .x1--sm {
     width: 100%; }
   .x1d1--sm {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 100%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 100%;
+    flex: 1 100%;
     width: 100%; }
   .x0d1--sm {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 0%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 0%;
+    flex: 1 0%;
     width: 0%; }
   .x1d2--sm, .x2d4--sm, .x3d6--sm, .x4d8--sm, .x5d10--sm, .x6d12--sm {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 50%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 50%;
+    flex: 1 50%;
     width: 50%; }
   .x1d3--sm, .x2d6--sm, .x3d9--sm, .x4d12--sm {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 33.33333%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 33.33333%;
+    flex: 1 33.33333%;
     width: 33.33333%; }
   .x2d3--sm, .x4d6--sm, .x6d9--sm, .x8d12--sm {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 66.66667%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 66.66667%;
+    flex: 1 66.66667%;
     width: 66.66667%; }
   .x1d4--sm, .x2d8--sm, .x3d12--sm {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 25%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 25%;
+    flex: 1 25%;
     width: 25%; }
   .x3d4--sm, .x6d8--sm, .x9d12--sm {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 75%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 75%;
+    flex: 1 75%;
     width: 75%; }
   .x1d5--sm, .x2d10--sm {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 20%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 20%;
+    flex: 1 20%;
     width: 20%; }
   .x2d5--sm, .x4d10--sm {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 40%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 40%;
+    flex: 1 40%;
     width: 40%; }
   .x3d5--sm, .x6d10--sm {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 60%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 60%;
+    flex: 1 60%;
     width: 60%; }
   .x4d5--sm, .x8d10--sm {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 80%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 80%;
+    flex: 1 80%;
     width: 80%; }
   .x1d6--sm, .x2d12--sm {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 16.66667%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 16.66667%;
+    flex: 1 16.66667%;
     width: 16.66667%; }
   .x5d6--sm, .x10d12--sm {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 83.33333%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 83.33333%;
+    flex: 1 83.33333%;
     width: 83.33333%; }
   .x1d7--sm {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 14.28571%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 14.28571%;
+    flex: 1 14.28571%;
     width: 14.28571%; }
   .x2d7--sm {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 28.57143%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 28.57143%;
+    flex: 1 28.57143%;
     width: 28.57143%; }
   .x3d7--sm {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 42.85714%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 42.85714%;
+    flex: 1 42.85714%;
     width: 42.85714%; }
   .x4d7--sm {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 57.14286%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 57.14286%;
+    flex: 1 57.14286%;
     width: 57.14286%; }
   .x5d7--sm {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 71.42857%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 71.42857%;
+    flex: 1 71.42857%;
     width: 71.42857%; }
   .x6d7--sm {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 85.71429%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 85.71429%;
+    flex: 1 85.71429%;
     width: 85.71429%; }
   .x1d8--sm {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 12.5%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 12.5%;
+    flex: 1 12.5%;
     width: 12.5%; }
   .x3d8--sm {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 37.5%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 37.5%;
+    flex: 1 37.5%;
     width: 37.5%; }
   .x5d8--sm {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 62.5%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 62.5%;
+    flex: 1 62.5%;
     width: 62.5%; }
   .x7d8--sm {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 87.5%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 87.5%;
+    flex: 1 87.5%;
     width: 87.5%; }
   .x1d9--sm {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 11.11111%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 11.11111%;
+    flex: 1 11.11111%;
     width: 11.11111%; }
   .x2d9--sm {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 22.22222%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 22.22222%;
+    flex: 1 22.22222%;
     width: 22.22222%; }
   .x4d9--sm {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 44.44444%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 44.44444%;
+    flex: 1 44.44444%;
     width: 44.44444%; }
   .x5d9--sm {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 55.55556%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 55.55556%;
+    flex: 1 55.55556%;
     width: 55.55556%; }
   .x7d9--sm {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 77.77778%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 77.77778%;
+    flex: 1 77.77778%;
     width: 77.77778%; }
   .x8d9--sm {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 88.88889%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 88.88889%;
+    flex: 1 88.88889%;
     width: 88.88889%; }
   .x1d10--sm {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 10%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 10%;
+    flex: 1 10%;
     width: 10%; }
   .x3d10--sm {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 30%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 30%;
+    flex: 1 30%;
     width: 30%; }
   .x7d10--sm {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 70%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 70%;
+    flex: 1 70%;
     width: 70%; }
   .x9d10--sm {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 90%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 90%;
+    flex: 1 90%;
     width: 90%; }
   .x1d11--sm {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 9.09091%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 9.09091%;
+    flex: 1 9.09091%;
     width: 9.09091%; }
   .x2d11--sm {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 18.18182%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 18.18182%;
+    flex: 1 18.18182%;
     width: 18.18182%; }
   .x3d11--sm {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 27.27273%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 27.27273%;
+    flex: 1 27.27273%;
     width: 27.27273%; }
   .x4d11--sm {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 36.36364%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 36.36364%;
+    flex: 1 36.36364%;
     width: 36.36364%; }
   .x5d11--sm {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 45.45455%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 45.45455%;
+    flex: 1 45.45455%;
     width: 45.45455%; }
   .x6d11--sm {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 54.54545%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 54.54545%;
+    flex: 1 54.54545%;
     width: 54.54545%; }
   .x7d11--sm {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 63.63636%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 63.63636%;
+    flex: 1 63.63636%;
     width: 63.63636%; }
   .x8d11--sm {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 72.72727%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 72.72727%;
+    flex: 1 72.72727%;
     width: 72.72727%; }
   .x9d11--sm {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 81.81818%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 81.81818%;
+    flex: 1 81.81818%;
     width: 81.81818%; }
   .x10d11--sm {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 90.90909%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 90.90909%;
+    flex: 1 90.90909%;
     width: 90.90909%; }
   .x1d12--sm {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 8.33333%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 8.33333%;
+    flex: 1 8.33333%;
     width: 8.33333%; }
   .x5d12--sm {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 41.66667%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 41.66667%;
+    flex: 1 41.66667%;
     width: 41.66667%; }
   .x7d12--sm {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 58.33333%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 58.33333%;
+    flex: 1 58.33333%;
     width: 58.33333%; }
   .x11d12--sm {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 91.66667%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 91.66667%;
+    flex: 1 91.66667%;
     width: 91.66667%; } }
 
 @media (max-width: 480px) {
   .x1--m {
     width: 100%; }
   .x1d1--m {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 100%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 100%;
+    flex: 1 100%;
     width: 100%; }
   .x0d1--m {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 0%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 0%;
+    flex: 1 0%;
     width: 0%; }
   .x1d2--m, .x2d4--m, .x3d6--m, .x4d8--m, .x5d10--m, .x6d12--m {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 50%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 50%;
+    flex: 1 50%;
     width: 50%; }
   .x1d3--m, .x2d6--m, .x3d9--m, .x4d12--m {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 33.33333%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 33.33333%;
+    flex: 1 33.33333%;
     width: 33.33333%; }
   .x2d3--m, .x4d6--m, .x6d9--m, .x8d12--m {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 66.66667%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 66.66667%;
+    flex: 1 66.66667%;
     width: 66.66667%; }
   .x1d4--m, .x2d8--m, .x3d12--m {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 25%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 25%;
+    flex: 1 25%;
     width: 25%; }
   .x3d4--m, .x6d8--m, .x9d12--m {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 75%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 75%;
+    flex: 1 75%;
     width: 75%; }
   .x1d5--m, .x2d10--m {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 20%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 20%;
+    flex: 1 20%;
     width: 20%; }
   .x2d5--m, .x4d10--m {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 40%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 40%;
+    flex: 1 40%;
     width: 40%; }
   .x3d5--m, .x6d10--m {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 60%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 60%;
+    flex: 1 60%;
     width: 60%; }
   .x4d5--m, .x8d10--m {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 80%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 80%;
+    flex: 1 80%;
     width: 80%; }
   .x1d6--m, .x2d12--m {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 16.66667%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 16.66667%;
+    flex: 1 16.66667%;
     width: 16.66667%; }
   .x5d6--m, .x10d12--m {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 83.33333%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 83.33333%;
+    flex: 1 83.33333%;
     width: 83.33333%; }
   .x1d7--m {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 14.28571%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 14.28571%;
+    flex: 1 14.28571%;
     width: 14.28571%; }
   .x2d7--m {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 28.57143%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 28.57143%;
+    flex: 1 28.57143%;
     width: 28.57143%; }
   .x3d7--m {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 42.85714%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 42.85714%;
+    flex: 1 42.85714%;
     width: 42.85714%; }
   .x4d7--m {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 57.14286%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 57.14286%;
+    flex: 1 57.14286%;
     width: 57.14286%; }
   .x5d7--m {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 71.42857%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 71.42857%;
+    flex: 1 71.42857%;
     width: 71.42857%; }
   .x6d7--m {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 85.71429%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 85.71429%;
+    flex: 1 85.71429%;
     width: 85.71429%; }
   .x1d8--m {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 12.5%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 12.5%;
+    flex: 1 12.5%;
     width: 12.5%; }
   .x3d8--m {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 37.5%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 37.5%;
+    flex: 1 37.5%;
     width: 37.5%; }
   .x5d8--m {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 62.5%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 62.5%;
+    flex: 1 62.5%;
     width: 62.5%; }
   .x7d8--m {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 87.5%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 87.5%;
+    flex: 1 87.5%;
     width: 87.5%; }
   .x1d9--m {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 11.11111%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 11.11111%;
+    flex: 1 11.11111%;
     width: 11.11111%; }
   .x2d9--m {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 22.22222%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 22.22222%;
+    flex: 1 22.22222%;
     width: 22.22222%; }
   .x4d9--m {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 44.44444%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 44.44444%;
+    flex: 1 44.44444%;
     width: 44.44444%; }
   .x5d9--m {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 55.55556%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 55.55556%;
+    flex: 1 55.55556%;
     width: 55.55556%; }
   .x7d9--m {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 77.77778%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 77.77778%;
+    flex: 1 77.77778%;
     width: 77.77778%; }
   .x8d9--m {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 88.88889%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 88.88889%;
+    flex: 1 88.88889%;
     width: 88.88889%; }
   .x1d10--m {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 10%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 10%;
+    flex: 1 10%;
     width: 10%; }
   .x3d10--m {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 30%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 30%;
+    flex: 1 30%;
     width: 30%; }
   .x7d10--m {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 70%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 70%;
+    flex: 1 70%;
     width: 70%; }
   .x9d10--m {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 90%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 90%;
+    flex: 1 90%;
     width: 90%; }
   .x1d11--m {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 9.09091%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 9.09091%;
+    flex: 1 9.09091%;
     width: 9.09091%; }
   .x2d11--m {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 18.18182%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 18.18182%;
+    flex: 1 18.18182%;
     width: 18.18182%; }
   .x3d11--m {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 27.27273%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 27.27273%;
+    flex: 1 27.27273%;
     width: 27.27273%; }
   .x4d11--m {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 36.36364%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 36.36364%;
+    flex: 1 36.36364%;
     width: 36.36364%; }
   .x5d11--m {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 45.45455%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 45.45455%;
+    flex: 1 45.45455%;
     width: 45.45455%; }
   .x6d11--m {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 54.54545%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 54.54545%;
+    flex: 1 54.54545%;
     width: 54.54545%; }
   .x7d11--m {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 63.63636%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 63.63636%;
+    flex: 1 63.63636%;
     width: 63.63636%; }
   .x8d11--m {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 72.72727%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 72.72727%;
+    flex: 1 72.72727%;
     width: 72.72727%; }
   .x9d11--m {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 81.81818%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 81.81818%;
+    flex: 1 81.81818%;
     width: 81.81818%; }
   .x10d11--m {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 90.90909%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 90.90909%;
+    flex: 1 90.90909%;
     width: 90.90909%; }
   .x1d12--m {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 8.33333%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 8.33333%;
+    flex: 1 8.33333%;
     width: 8.33333%; }
   .x5d12--m {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 41.66667%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 41.66667%;
+    flex: 1 41.66667%;
     width: 41.66667%; }
   .x7d12--m {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 58.33333%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 58.33333%;
+    flex: 1 58.33333%;
     width: 58.33333%; }
   .x11d12--m {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 91.66667%;
+    -moz-box-flex: 1;
+    -ms-flex: 1 91.66667%;
+    flex: 1 91.66667%;
     width: 91.66667%; } }

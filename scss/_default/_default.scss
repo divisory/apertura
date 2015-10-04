@@ -83,10 +83,6 @@ figure {
 */
 .clear-input {
 	background: none;
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	-ms-box-sizing: border-box;
-	-o-box-sizing: border-box;
 	box-sizing: border-box;
 	border: none;
 	padding: 0;
@@ -194,9 +190,11 @@ figure {
 		зависимости от своей ширины. *n
 */
 img.r {
-	width: 100%;
-	height: auto;
 	display: block;
+	width: 100%;
+	/*flex: 1 auto;*/
+	align-self: flex-start;
+	height: auto;
 }
 
 /*--------------------------------------------------------------
@@ -320,28 +318,28 @@ img.r {
 		name: flex-row *n
 		caption: Строка flexbox.*n */
 .flex-row {
-	@include flex-direction(row);
+	flex-direction: row;
 }
 
 /*@property
 		name: flex-row-rev *n
 		caption: Строка flexbox с обратным отображением. *n */
 .flex-row-rev {
-	@include flex-direction(row-reverse);
+	flex-direction: row-reverse;
 }
 
 /*@property
 		name: flex-col *n
 		caption: Ячейка flexbox. *n */
 .flex-col {
-	@include flex-direction(column);
+	flex-direction: column;
 }
 
 /*@property
 		name: flex-col-rev *n
 		caption: Ячейка flexbox с обратным отображением. *n */
 .flex-col-rev {
-	@include flex-direction(column-reverse);
+	flex-direction: column-reverse;
 }
 
 /*--------------------------------------------------------------
@@ -351,16 +349,16 @@ img.r {
 .flexbox {
 
 	.left {
-		@include justify-content(start);
+		justify-content: start;
 	}
 	.right {
-		@include justify-content(flex-end);
+		justify-content: flex-end;
 	}
 	.center {
-		@include justify-content(center);
+		justify-content: center;
 	}
 	.justify {
-		@include justify-content(space-between);
+		justify-content: space-between;
 	}
 
 	/*@property
@@ -368,28 +366,38 @@ img.r {
 		caption: Выравнивает bd{inline-flex}-элементы с 
 		отутупами снаружи по краям bd{flex}-родителя. *n */
 	.around {
-		@include justify-content(space-around);
+		justify-content: space-around;
 	}
 
 	.v-top {
-		@include align-items(flex-start);
+		align-self: flex-start;
 	}
 	.v-bottom {
-		@include align-items(flex-end);
+		align-self: flex-end;
 	}
 	.v-middle {
-		@include align-items(center);
+		align-self: center;
 	}
 	.v-baseline {
-		@include align-items(baseline);
+		align-self: baseline;
 	}
 
 	/*@property
 		name: around *n
 		caption: Выравнивает bd{inline-flex}-элементы 
-		по одинкаовой высоте. *n */
+		по одинковой высоте. *n */
 	.v-stretch {
-		@include align-items(stretch);
+		align-self: stretch;
+	}
+
+	/*@property
+		name: around *n
+		caption: Выравнивает bd{inline-flex}-элементы 
+		по одинковой высоте, и центрирует их содержимое 
+		вертикально по центру. *n */
+	.v-center {
+		align-self: stretch;
+		align-items: center;
 	}
 
 	/*@property
@@ -397,21 +405,23 @@ img.r {
 		caption: Отключает оборачивание bd{inline-flex}-элементов, 
 		лежащих внутри блока. *n */
 	.flex-nowrap {
-		@include flex-wrap(nowrap);
+		flex-wrap: nowrap;
 	}
+
 	/*@property
 		name: flex-wrap *n
 		caption: Включает оборачивание bd{inline-flex}-элементов, 
 		лежащих внутри блока. *n */
 	.flex-wrap {
-		@include flex-wrap(wrap);
+		flex-wrap: wrap;
 	}
+
 	/*@property
 		name: flex-wrap-rev *n
 		caption: Включает оборачивание bd{inline-flex}-элементов, 
 		лежащих внутри блока изменяя порядок отображения. *n */
 	.flex-wrap-rev {
-		@include flex-wrap(wrap-reverse);
+		flex-wrap: wrap-reverse;
 	}
 }
 
@@ -460,9 +470,9 @@ img.r {
 	display: flex;
 	flex-wrap: wrap;
 	width: 100%;
-	@include justify-content(flex-start);
-	@include flex-direction(row);
-	@include align-items(stretch);
+	justify-content: flex-start;
+	flex-direction: row;
+	align-items: stretch;
 }
 
 /*@property
@@ -472,7 +482,7 @@ img.r {
 .inline-flex {
 	display: inline-flex;
 	flex-wrap: wrap;
-	@include box-sizing(border-box);
+	box-sizing: border-box;
 }
 
 /*@property
@@ -644,10 +654,6 @@ img.r {
 		заполняло фон по вертикали и по горизонтали. *n
 */
 .bg-cover {
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	-ms-background-size: cover;
 	background-size: cover;
 }
 
@@ -658,10 +664,6 @@ img.r {
 		по ширине или высоте блока. *n
 */
 .bg-contain {
-	-webkit-background-size: contain;
-	-moz-background-size: contain;
-	-o-background-size: contain;
-	-ms-background-size: contain;
 	background-size: contain;
 }
 

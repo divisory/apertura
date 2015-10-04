@@ -36,6 +36,7 @@
 					@extend .x#{$i-r}d#{$n-r}#{$modifier};
 				}
 				@else {
+					flex: 1 percentage($i / $n);
 					width: percentage($i / $n);
 				}
 			}

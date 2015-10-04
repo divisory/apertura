@@ -8,7 +8,29 @@
 		*n
 */
 
+/*@property
+		name: no-marg *n
+		caption: Убирает внешние отступы блока. *n
+*/
+.no-marg {
+	margin: 0;
+}
+/*@property
+		name: no-pad *n
+		caption: Убирает внутренние отступы блока. *n
+*/
+.no-pad {
+	padding: 0;
+}
 
+/*@property
+		name: exact-fit *n
+		caption: Убирает внутренние и внешние отступы блока. *n
+*/
+.exact-fit {
+	margin: 0;
+	padding: 0;
+}
 /*@property
 		name: island-** *n
 		caption: Добавляет внутренние отступы со всех сторон.
@@ -333,28 +355,6 @@
 												RESETS
 --------------------------------------------------------*/
 
-/*@property
-		name: no-marg *n
-		caption: Убирает внешние отступы блока. *n
-*/
-.no-marg {
-	margin: 0;
-}
-/*@property
-		name: no-pad *n
-		caption: Убирает внутренние отступы блока. *n
-*/
-.no-pad {
-	padding: 0;
-}
-/*@property
-		name: exact-fit *n
-		caption: Убирает внутренние и внешние отступы блока. *n
-*/
-.exact-fit {
-	margin: 0;
-	padding: 0;
-}
 /*@property
 		name: no-marg--<BRAKEPOINT> *n
 		caption: Убирает внешние отступы блока при разрешении <BRAKEPOINT>. *n

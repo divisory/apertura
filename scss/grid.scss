@@ -8,7 +8,6 @@
 */
 
 @import "config.scss";
-@import "_mixins/_mixins.scss";
 @import "_calc.scss";
 
 /*@property
@@ -115,16 +114,42 @@
 }
 
 /* внутренние фцнкции - переключение в режим flexbox \ inline-block */
-html.flexbox {
+.flexbox {
+	article,
+	aside,
+	details,
+	figcaption,
+	figure,
+	footer,
+	header,
+	hgroup,
+	main,
+	menu,
+	nav,
+	section,
+	summary,
+	div,
+	ul {
+		/*align-self: flex-start;*/
+		flex: 1 auto;
+		/*@include align-items(center);*/
+	}
+
 	.g, .g-rev {
 		margin: 0 auto;
 		display: flex;
-		@include flex-wrap(wrap);
+		align-items: stretch;
+		box-sizing: border-box;
+		align-items: top;
+		align-content: flex-start;
+		flex-wrap: wrap;
 	}
 	.c, .cc, .c-c {
 		display: inline-flex;
-		@include flex-wrap(wrap);
-		@include box-sizing(border-box);
+		/*align-items: center;*/
+		align-self: flex-start;
+		flex-wrap: wrap;
+		box-sizing: border-box;
 	}
 }
 

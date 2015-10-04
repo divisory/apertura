@@ -243,6 +243,7 @@ map 				= require 'map-stream'
 		*n
 ###
 plumber 		= require 'gulp-plumber'
+autoprefixer 		= require 'gulp-autoprefixer'
 
 ###
 	@plugin
@@ -476,6 +477,9 @@ gulp.task ' coffee', ->
 	log = gulp.src PATH+'dev-tools/dev-tools-js/coffee/*coffee'
 	_writeLog log, 'file'
 	log
+		.pipe plumber
+			errorHandler: (err)->
+				_CoffeeConsole err
 		.pipe do fileinclude
 		.pipe coffee
 			bare: true
@@ -510,17 +514,26 @@ gulp.task '   sass', ->
 			errorHandler: (err)->
 				_SASSConsole err
 		.pipe do sass
+		.pipe autoprefixer
+			cascade: off
+			browsers: [
+				'Chrome > 30', 'Firefox > 20', 'iOS > 5', 'Opera > 12',
+				'Explorer > 8', 'Edge > 10']
 		.pipe gulp.dest PATH+'dist/css/full'
 		.pipe do cssmin
 		.pipe rename
 			suffix: '.min'
 		.pipe gulp.dest PATH+'dist/css'
 		.pipe do connect.reload
+
 	log = gulp.src PATH+'dev-tools/dev-tools-css/scss/*.scss'
 	_writeLog log, 'file'
-	log.pipe do sass
+	log
+		.pipe plumber
+			errorHandler: (err)->
+				_SASSConsole err
+		.pipe do sass
 		.pipe gulp.dest PATH+'dev-tools/dev-tools-css/'
-		.pipe do cssmin
 		.pipe do connect.reload
 
 ###
@@ -627,11 +640,11 @@ gulp.task '   list', ->
 	_writeLog log, 'file'
 	log.pipe do clean
 	gulp.src [
+			PATH+'dist/css/**/*css',
+			PATH+'dist/js/**/*js'
 			PATH+'dist/*html',
 			PATH+'dist/*txt',
 			PATH+'dist/*json',
-			PATH+'dist/css/**/*css',
-			PATH+'dist/js/**/*js'
 		]
 		.pipe filelist 'list.json'
 		.pipe gulp.dest PATH+'dev-tools/'
@@ -659,6 +672,7 @@ gulp.task '  watch', ->
 	gulp.watch PATH+'html/*html', 						['IncHTML']
 	gulp.watch PATH+'html/includes/*html', 		['IncHTML']
 	gulp.watch PATH+'dist/css/*css', 					['    css']
+	gulp.watch PATH+'dist/js/*/*js', 					['     Js']
 	gulp.watch PATH+'dist/js/*js', 						['     Js']
 	gulp.watch PATH+'dist/**/*', 							['   list']
 
