@@ -243,7 +243,26 @@ map 				= require 'map-stream'
 		*n
 ###
 plumber 		= require 'gulp-plumber'
+
+###
+	@plugin
+		name: gulp-autoprefixer *n
+		caption:
+			p{ Автопрефиксер. Позволяет не прописывать вручную вендорные префиксы. }p
+			a{ https://www.npmjs.com/package/gulp-autoprefixer }
+		*n
+###
 autoprefixer 		= require 'gulp-autoprefixer'
+
+###
+	@plugin
+		name: gulp-uncss *n
+		caption:
+			p{ Удаляет неиспользуемые стили со страницы, что уменьшает размер css-файлов. }p
+			a{ https://www.npmjs.com/package/gulp-uncss }
+		*n
+###
+uncss 		= require 'gulp-uncss'
 
 ###
 	@plugin
@@ -520,6 +539,8 @@ gulp.task '   sass', ->
 				'Chrome > 30', 'Firefox > 20', 'iOS > 5', 'Opera > 12',
 				'Explorer > 8', 'Edge > 10']
 		.pipe gulp.dest PATH+'dist/css/full'
+		.pipe uncss
+			html: [PATH+'dist/*.html']
 		.pipe do cssmin
 		.pipe rename
 			suffix: '.min'
