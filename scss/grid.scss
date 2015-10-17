@@ -129,7 +129,8 @@
 	section,
 	summary,
 	div,
-	ul {
+	ul,
+	h1, h2, h3, h4, h5, h6 {
 		/*align-self: flex-start;*/
 		flex: 1 auto;
 		/*@include align-items(center);*/
