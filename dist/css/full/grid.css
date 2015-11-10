@@ -9,7 +9,7 @@
 */
 /*
 	@module
-		title: defaults *n
+		title: config *n
 		type: scss *n
 		caption:
 			p{ Конфигом системы служит .scss-файл, который содержит 
@@ -266,7 +266,8 @@
 .flexbox section,
 .flexbox summary,
 .flexbox div,
-.flexbox ul {
+.flexbox ul,
+.flexbox h1, .flexbox h2, .flexbox h3, .flexbox h4, .flexbox h5, .flexbox h6 {
   /*align-self: flex-start;*/
   -webkit-box-flex: 1;
   -webkit-flex: 1 auto;

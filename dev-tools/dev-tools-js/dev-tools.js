@@ -13,20 +13,20 @@ document.addEventListener("DOMContentLoaded", function(event) {
 });
 
 Ajax = function(url, callback, onerror) {
-  var e, request;
+  var e, error, error1, error2, request;
   request = new XMLHttpRequest();
   try {
     request = new XMLHttpRequest();
-  } catch (_error) {
-    e = _error;
+  } catch (error) {
+    e = error;
     try {
       request = new ActiveXObject("Msxml2.XMLHTTP");
-    } catch (_error) {
-      e = _error;
+    } catch (error1) {
+      e = error1;
       try {
         request = new ActiveXObject("Microsoft.XMLHTTP");
-      } catch (_error) {
-        e = _error;
+      } catch (error2) {
+        e = error2;
       }
       return false;
     }
