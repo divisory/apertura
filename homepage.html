@@ -1,0 +1,70 @@
+<div class="center pad-top-50">
+	<img src="img/logo.svg" alt="">
+	<h1>Apertura</h1>
+</div>
+<p>
+	Apertura – это целый копмлекс инструментов и решений, которые направлены на упрощение жизни разработчика. Мы собрали самые нужные дополнения по разработке и отладке для FrontEnd-разработчика и запаковали это все в единую систему.
+</p>
+<h2>Apertura раскрывает свой потенциал при наличии:</h2>
+<ol>
+	<li>
+		<a href="https://nodejs.org">NodeJs</a> - платформы для установки <b>Gulp.js</b>
+	</li>
+	<li>
+		<a href="http://gulpjs.com">Gulp.Js</a> - для компиляции, конкатенации и сборки проекта, частью которго она является.
+	</li>
+	<li>
+		Сторонних модулей <b>Nodejs</b>, а именно:
+		<ul>
+			<li>coffee-script</li>
+			<li>gulp-coffee</li>
+			<li>gulp-connect</li>
+			<li>gulp-clean</li>
+			<li>gulp-uglify</li>
+			<li>gulp-sass</li>
+			<li>colors</li>
+			<li>gulp-include</li>
+			<li>gulp-cssmin</li>
+			<li>gulp-rename</li>
+			<li>gulp-filelist</li>
+			<li>gulp-using</li>
+			<li>map-stream</li>
+			<li>gulp-plumber</li>
+		</ul>
+	</li>
+</ol>
+<h3>Чтобы начать работу</h3>
+<p>
+	Нужно установить <b>NodeJs</b>, <b>Gulp.js</b>, а так же модули.
+</p>
+<p>
+	Установка NodeJs и Gulp.js описана <a href="https://nodejs.org/en/download/package-manager/">здесь</a> и <a href="https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md">здесь</a> соответственно. При этом следует учесть, что <b>NodeJs</b> нужно устанавливать глобально, так же как и <b>Gulp.js</b>.
+	Однако, <b>Gulp.js</b> следует установить еще раз, но уже локально, в директорию с Вашими проектами.
+</p>
+<p>
+	Рекомендуемый вариант расположения папок и установки следующий:
+	<ul>
+		<li>Влюбом месте вашей файловой системы создать папку <b>node</b>(название может быть произвольным) и перейти в нее.</li>
+		<li>
+			Установить локально все необходимые модули командой
+			<code>
+				sudo npm i gulp coffee-script gulp-coffee gulp-connect gulp-clean gulp-uglify gulp-sass colors gulp-include gulp-cssmin gulp-rename gulp-filelist gulp-using map-stream gulp-plumber
+			</code>
+			, если Вы пользователь Linux (MacOS), или открыть командную строку от имени администратора (Shift + правая клавиша мыши) и ввести
+			<code>
+				npm i gulp coffee-script gulp-coffee gulp-connect gulp-clean gulp-uglify gulp-sass colors gulp-include gulp-cssmin gulp-rename gulp-filelist gulp-using map-stream gulp-plumber
+			</code>
+			После этого создать папку <b>work</b>(название может быть произвольным). Эта папка будет содержать ваши проекты.
+		</li>
+	</ul>
+</p>
+<p>
+	После этих манипуляций структура папки <b>node</b> будет выглядеть так:
+	<code>
+		user@pc:~/node$ ls <br>
+		node_modules  work
+	</code>
+</p>
+<p>
+	Теперь Вы можете скачать <b>Apertura</b> <a href="https://github.com/divisory/apertura">отсюда</a> из нужной ветки, скопировать содержимое архива в папку <b>work</b> и приступать к работе.
+</p>

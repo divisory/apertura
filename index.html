@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" class="flexbox">
+<head>
+  <title>Apertura Documentation</title>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  
+  <link href="css/grid.min.css" rel="stylesheet">
+  <link href="css/skin.min.css" rel="stylesheet">
+
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,300italic,400italic,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+</head>
+
+<body ng-app="dockApp">
+
+  <div class="page-main" ng-controller="dockCtrl">
+
+    <div class="g w960">
+      <div class="cd x1d4 x1d1--m nav-col clearfix">
+        <div class="logo-col">
+          <a href="#home" class="logo">
+            <img src="img/logo.svg" alt="">
+            <small>apertura</small>
+          </a>
+        </div>
+        <div class="none menu-btn">
+          <a href="#" id="toggleMenu" ng-click="toggleMenu(); $event.preventDefault()" ng-class="{'active': isMenuOpened, '': !isMenuOpened}" prevent-default>
+            <i></i>
+            <i></i>
+            <i></i>
+          </a>
+        </div>
+        <nav ng-class="{'active': isMenuOpened, '': !isMenuOpened}">
+          <ul class="clear-list main-list">
+            <li><a href="#/structure">Структура</a></li>
+            <li><a href="#/grid">Сетка</a></li>
+            <li><a href="#/adk">ADK</a></li>
+          </ul>
+          <ul class="clear-list modules-list">
+            <li ng-repeat="module in modules">
+              <a href="#/dock/{{module.title.trim().toLowerCase()}}" ng-bind-html='parseTags(module.title)'>{{getName(module.title)}}</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+      <div class="cd x3d4 x1d1--m content-col">
+        <div ng-view>
+          <div class="pad-top-40">
+            <p>
+              loading, please wait...
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <script src="js/vendor/modernizr-2.7.1.min.js"></script>
+  <script src="js/vendor/minify.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+  <!-- // <script src="js/ngRoute/route.js"></script> -->
+  <script src="js/main.js"></script>
+</body>
+</html>

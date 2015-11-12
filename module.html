@@ -1,0 +1,78 @@
+<article>
+  <div class="title">
+    <h1>{{module.title}}</h1>
+  </div>
+  <div class="font-12 bold pad-v20">{{module.file}} <span class="regular">({{module.length}})</span></div>
+  <div ng-bind-html-unsafe="parseTags(module.caption)"  class="module-caption"></div>
+
+  <h3 ng-show="isProperties">Свойства</h3>
+  <table  ng-show="isProperties" class="x1d1 properties-list">
+    <tr class="head">
+      <td>Имя</td>
+      <td>Описание</td>
+    </tr>
+    <tr ng-repeat="property in module.properties">
+      <td class="x1d4 v-top">{{property.name}}</td>
+      <td class="v-top" ng-bind-html-unsafe="parseTags(property.caption, true)"></td>
+    </tr>
+  </table>
+
+  <h3 ng-show="isPlugins">Плагины</h3>
+  <table  ng-show="isPlugins" class="x1d1 plugins-list">
+    <tr class="head">
+      <td>Имя</td>
+      <td>Описание</td>
+    </tr>
+    <tr ng-repeat="plugin in module.plugins">
+      <td class="x1d4 v-top">{{plugin.name}}</td>
+      <td class="v-top" ng-bind-html-unsafe="parseTags(plugin.caption, true)"></td>
+    </tr>
+  </table>
+
+  <h3 ng-show="isMixins">Миксины</h3>
+  <table  ng-show="isMixins" class="x1d1 mixins-list">
+    <tr class="head">
+      <td>Имя</td>
+      <td>Описание</td>
+      <td>Аргументы</td>
+      <td>Возвращает</td>
+    </tr>
+    <tr ng-repeat="mixin in module.mixins">
+      <td class="x1d4 v-top">{{mixin.name}}</td>
+      <td class="x1d4 v-top" ng-bind-html-unsafe="parseTags(mixin.caption, true)"></td>
+      <td class="x1d4 v-top">{{mixin.arguments}}</td>
+      <td class="v-top">{{mixin.returns}}</td>
+    </tr>
+  </table>
+
+  <h3 ng-show="isMethods">Методы</h3>
+  <table  ng-show="isMethods" class="x1d1 methods-list">
+    <tr class="head">
+      <td>Имя</td>
+      <td>Описание</td>
+      <td>Аргументы</td>
+    </tr>
+    <tr ng-repeat="method in module.methods">
+      <td class="x1d4 v-top">{{method.name}}</td>
+      <td class="v-top" ng-bind-html-unsafe="parseTags(method.caption, true)"></td>
+      <td class="x1d10 v-top">{{method.arguments}}</td>
+      <!-- <td class="v-top">{{method.returns}}</td> -->
+    </tr>
+  </table>
+
+
+  <p ng-show="!isProperties">
+    Модуль не имеет свойств.
+  </p>
+  <p ng-show="!isPlugins">
+    Модуль не имеет плагинов.
+  </p>
+  <p ng-show="!isMethods">
+    Модуль не имеет методов.
+  </p>
+  <p ng-show="!isMixins">
+    Модуль не имеет миксинов.
+  </p>
+
+
+</article>
