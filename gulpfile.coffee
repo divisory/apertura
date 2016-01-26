@@ -538,9 +538,9 @@ gulp.task '   sass', ->
 			browsers: [
 				'Chrome > 30', 'Firefox > 20', 'iOS > 5', 'Opera > 12',
 				'Explorer > 8', 'Edge > 10']
+		# .pipe uncss
+		# 	html: [PATH+'dist/*.html']
 		.pipe gulp.dest PATH+'dist/css/full'
-		.pipe uncss
-			html: [PATH+'dist/*.html']
 		.pipe do cssmin
 		.pipe rename
 			suffix: '.min'

@@ -10,45 +10,51 @@
 @import "config.scss";
 @import "_calc.scss";
 
+html, body {
+	width: 100%; height: 100px;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
 /*@property
-		name: g *n
-		caption: p{ Класс bd{ .g } означает обертку. bd{ .g.w960 } - обертку 
-			шириной в w960 пикселей, если скрин пользователя шире данного 
+		name: box *n
+		caption: p{ Класс bd{ .box } означает обертку. bd{ .box.width-960 } - обертку 
+			шириной в width-960 пикселей, если скрин пользователя шире данного 
 			значения, – блок позиционируется по центру, если меньше – 
 			растягивается на всю ширину скрина. Ширина задается один раз и 
 			берется из конфига (параметр bd{ $grid_sizes }). Каждое из этих 
 			значений - это ширина обертки, которую Вы можете использовать. 
-			Это и обертка шириной в 1400 пикселей (bd{ w1400 }), и в 960 (bd{ w960 }) 
+			Это и обертка шириной в 1400 пикселей (bd{ width-1400 }), и в 960 (bd{ width-960 }) 
 		}p
 		p{ Обертка является оболочкой, внутри которой должны размещаться ячейки. }p
+		p{ bd{ .box-rev } - отображает ячейки внутри себя в обратном порядке. }p
 		*n
 */
-.g,
-.g--rev {
-	box-sizing:border-box;
-	display: block;
-	margin: 0 auto;
-	padding: 0;
-	list-style-type: none;
+.box {
+	display: flex;
+	width: 100%;
+	flex: 0 1 auto;
+	flex-direction: row;
+	flex-wrap: wrap;
+	margin-left: auto;
+	margin-right: auto;
+
+	&.box-rev {
+		flex-direction: row-reverse;
+	}
 }
-.g {
-	direction: ltr;
+@each $greed in $grid_sizes {
+	.box.width-#{$greed} {
+		max-width: #{$greed}px;
+	}
 }
 
 /*@property
-		name: g--rev *n
-		caption: Обертка с обратным расположением ячеек 
-		(только для inline-block-элементов). *n
-*/
-.g--rev {
-	direction: rtl;
-}
-
-/*@property
-		name: c, cc, cd *n
+		name: col, clear-col, double-col *n
 		caption: p{ Для того, чтобы раздробить блок на условные ячейки, 
-			внутрь нужно поместить блок с классом bd{.c} или bd{.cc}. Класс 
-			bd{.c} обозначает инлайн-блок, с внутренним отступом по бокам в 
+			внутрь нужно поместить блок с классом bd{.col} или bd{.clear-col}. Класс 
+			bd{.col} обозначает инлайн-блок, с внутренним отступом по бокам в 
 			заданную величину пикселей (параметр bd{ $gutter }). 
 		}p
 		p{ [$gutter|<content here>|$gutter] }p
@@ -67,7 +73,7 @@
 			bd{ $grid_calc }.
 		}p
 		p{ Так же, существует возможность задать фиксированную ширину, 
-			используя классы типа bd{ .w-fixed-50 }, bd{ .w-fixed-150 }, 
+			используя классы типа bd{ .width-fixed-50 }, bd{ .width-fixed-150 }, 
 			которые обозначают фиксированную ширину блока в пикселях. 
 			Значения берутся из параметра bd{ $fixed_widths }.
 		}p
@@ -75,130 +81,42 @@
 			размещаться ячейки. }p
 		*n
 */
-.c,
-.cc,
-.cd {
-	box-sizing:border-box;
+.col {
 	display: inline-block;
-	vertical-align: top;
-	padding: 0 $gutter;
+	box-sizing: border-box;
+	flex: 0 -1 auto;
+	padding-left: $gutter;
+	padding-right: $gutter;
+	max-width: 100%;
+	flex-basis: 100%;
 }
 
 /*@property
-		name: cc *n
-		caption: Ячейка без отступов - [<content here>]*n
+		name: offset-xXdD *n
+		caption: p{ Задает смещение для элемента сетки относительно левого
+			края. bd{xXdD} - обозначает величину отступа.
+		}p
 */
-.cc {
-	padding: 0;
-}
+@include grid-calc($grid_calc, '', on);
 
 /*@property
-		name: cc *n
-		caption: Ячейка с отступами в два раза больше обычного: 
-		p{ [$gutter*2|<content here>|$gutter*2] }p *n
+		name: offset-off-[BRAKEPOINT] *n
+		caption: p{ Убирает смещение элемента при заданой ширине страницы 
+			bd{BRAKEPOINT}
+		}p
 */
-.cd {
-	padding: 0 $gutter*2;
-}
-
-/* внутренние фцнкции - поддержка javascript */
-.lt-ie9 .c,
-.lt-ie9 .cc,
-.no-js .c,
-.no-js .cc,
-.no-js .c-c{
-	display: block !important;
-	width: 100% !important;
-	padding-left: 0 !important;
-	padding-right: 0 !important;
-}
-
-/* внутренние фцнкции - переключение в режим flexbox \ inline-block */
-.flexbox {
-	article,
-	aside,
-	details,
-	figcaption,
-	figure,
-	footer,
-	header,
-	hgroup,
-	main,
-	menu,
-	nav,
-	section,
-	summary,
-	div,
-	ul,
-	h1, h2, h3, h4, h5, h6 {
-		/*align-self: flex-start;*/
-		flex: 1 auto;
-		/*@include align-items(center);*/
-	}
-
-	.g, .g-rev {
-		margin: 0 auto;
-		display: flex;
-		align-items: stretch;
-		box-sizing: border-box;
-		align-items: top;
-		align-content: flex-start;
-		flex-wrap: wrap;
-	}
-	.c, .cc, .c-c {
-		display: inline-flex;
-		/*align-items: center;*/
-		align-self: flex-start;
-		flex-wrap: wrap;
-		box-sizing: border-box;
-	}
-}
-
-/*@property
-		name: w<WIDTH> *n
-		caption: Ширина обертки. Формирует список классов типа 
-		w<WIDTH> исходя из значений параметра bd{ $grid_sizes } *n
-*/
-@each $greed in $grid_sizes {
-	.g.w#{$greed},
-	.g--rev.w#{$greed}{
-		max-width: #{$greed}px;
-	}
-}
-
-@each $greed in $grid_sizes {
-	.lt-ie9 .g.w#{$greed},
-	.lt-ie9 .g--rev.w#{$greed}{
-		max-width: #{$greed}px;
-	}
-	.no-js .g.w#{$greed},
-	.no-js .g--rev.w#{$greed}{
-		max-width: #{$greed}px;
-	}
-}
-
-/* -----------------------------------------------------
-	grid calc
-*/
-
-@include grid-calc($grid_calc);
-
-/* -----------------------------------------------------
-	fixed widths
-*/
-
-@each $width in $fixed_widths {
-	.w-fixed-#{$width} {
-		width: #{$width}px;
-	}
-}
-
-/* -----------------------------------------------------
-	MEDIA queries
-*/
-
 @each $prefix in $grid_prefixes {
 	@media (max-width: #{nth($prefix,1)}px) {
 		@include grid-calc($grid-calc, #{nth($prefix,2)});
+		.offset-off#{nth($prefix,2)} {
+			margin-left: 0;
+		}
+	}
+}
+
+@each $width in $fixed_widths {
+	.width-fixed-#{$width} {
+		width: #{$width}px;
+		max-width: #{$width}px;
 	}
 }

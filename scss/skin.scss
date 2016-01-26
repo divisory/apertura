@@ -18,13 +18,11 @@
 
 @import "_config.scss";
 @import "_func.scss";
-@import "_mixins/_mixins.scss";
 
 /* -----------------------------------------------------
 	include default styles, fonts, indents, and so on...
 */
 
-/*@import "_default/_normalize.scss";*/
 @import "_default/_default.scss";
 @import "_default/_fonts.scss";
 @import "_default/_indents.scss";

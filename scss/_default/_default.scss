@@ -113,29 +113,6 @@ figure {
 	list-style: none;
 }
 
-/*
-	для броузеров, которые не поддерживают javascript 
-	выводится сообщение.
-*/
-.no-js body:after{
-	display: block;
-	position: fixed;
-	top: 5px;
-	left: 5%;
-	right: 5%;
-	padding: 10px 0;
-	background: firebrick;
-	color: lightyellow;
-	text-align: center;
-	font-weight: bold;
-	z-index: 100500;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	border-radius: 3px;
-	content: 'This page requires JavaScript for correct performance.
-						You must enable Javascript, or update your browser.';
-}
-
 /*@property
 		name: disable-hover *n
 		caption: Убирает pointer-events (события ховера, 
@@ -184,16 +161,14 @@ figure {
 }
 
 /*@property
-		name: r *n
+		name: adaptive *n
 		caption: Применяется для <img>, указывает ширину 100%. 
 		Картинка будет автоматически увеличивать высоту, в 
 		зависимости от своей ширины. *n
 */
-img.r {
+img.adaptive {
 	display: block;
 	width: 100%;
-	/*flex: 1 auto;*/
-	align-self: flex-start;
 	height: auto;
 }
 
@@ -245,42 +220,42 @@ img.r {
 }
 
 /*@property
-		name: v-top *n
+		name: align-top *n
 		caption: Выравнивает bd{inline-block}-элементы 
 		по верхней грани. Выравнивает bd{inline-flex}-элементы 
 		по верхней грани.*n
 */
-.v-top {
+.align-top {
 	vertical-align: top;
 }
 
 /*@property
-		name: v-middle *n
+		name: align-middle *n
 		caption: Выравнивает bd{inline-block}-элементы 
 		вертикально по середине. Выравнивает bd{inline-flex}-элементы 
 		вертикально по середине.*n
 */
-.v-middle {
+.align-middle {
 	vertical-align: middle;
 }
 
 /*@property
-		name: v-bottom *n
+		name: align-bottom *n
 		caption: Выравнивает bd{inline-block}-элементы 
 		по нижней грани. Выравнивает bd{inline-flex}-элементы 
 		по нижней грани.*n
 */
-.v-bottom {
+.align-bottom {
 	vertical-align: bottom;
 }
 
 /*@property
-		name: v-baseline *n
+		name: align-baseline *n
 		caption: Выравнивает bd{inline-block}-элементы 
 		базовой линии текста. Выравнивает bd{inline-flex}-элементы 
 		базовой линии текста.*n
 */
-.v-baseline {
+.align-baseline {
 	vertical-align: baseline;
 }
 
@@ -369,34 +344,33 @@ img.r {
 		justify-content: space-around;
 	}
 
-	.v-top {
+	.align-top {
 		align-self: flex-start;
 	}
-	.v-bottom {
+	.align-bottom {
 		align-self: flex-end;
 	}
-	.v-middle {
+	.align-middle {
 		align-self: center;
 	}
-	.v-baseline {
+	.align-baseline {
 		align-self: baseline;
 	}
 
 	/*@property
-		name: around *n
+		name: align-stretch *n
 		caption: Выравнивает bd{inline-flex}-элементы 
 		по одинковой высоте. *n */
-	.v-stretch {
+	.align-stretch {
 		align-self: stretch;
 	}
 
 	/*@property
-		name: around *n
+		name: align-center *n
 		caption: Выравнивает bd{inline-flex}-элементы 
 		по одинковой высоте, и центрирует их содержимое 
-		вертикально по центру. *n */
-	.v-center {
-		align-self: stretch;
+		горизонтально по центру. *n */
+	.align-center {
 		align-items: center;
 	}
 
@@ -438,7 +412,7 @@ img.r {
 }
 
 /*@property
-		name: block *n
+		name: inline *n
 		caption: Строчный блок (inline-block) *n
 */
 .inline {
@@ -446,7 +420,7 @@ img.r {
 }
 
 /*@property
-		name: block *n
+		name: block-extra *n
 		caption: Блочный элемент (!important). *n
 */
 .block-extra {
@@ -454,35 +428,11 @@ img.r {
 }
 
 /*@property
-		name: block *n
+		name: inline-extra *n
 		caption: Строчный блок (inline-block !important) *n
 */
 .inline-extra {
 	display: inline-block !important;
-}
-
-/*@property
-		name: flex *n
-		caption: Flex-блок. По умолчанию ширина 100%, потомки 
-		выравниваются по левому краю.*n
-*/
-.flex {
-	display: flex;
-	flex-wrap: wrap;
-	width: 100%;
-	justify-content: flex-start;
-	flex-direction: row;
-	align-items: stretch;
-}
-
-/*@property
-		name: inline-flex *n
-		caption: Inline-flex-блок.*n
-*/
-.inline-flex {
-	display: inline-flex;
-	flex-wrap: wrap;
-	box-sizing: border-box;
 }
 
 /*@property
@@ -503,10 +453,10 @@ img.r {
 }
 
 /*@property
-		name: row *n
+		name: trow *n
 		caption: Строка таблицы. *n
 */
-.row {
+.trow {
 	display: table-row;
 }
 
@@ -535,7 +485,7 @@ img.r {
 }
 
 /*@property
-		name: table-cell *n
+		name: cell *n
 		caption: Ячейка таблицы. *n
 */
 .cell {
@@ -548,91 +498,6 @@ img.r {
 */
 .list-item {
 	display: list-item;
-}
-
-/*--------------------------------------------------------------
-													ОБРЕЗАНИЕ
---------------------------------------------------------------*/
-
-/*@property
-		name: o-hid *n
-		caption: Скрывает содержимое блока, выходящее за 
-		его грани. *n
-*/
-.o-hid {
-	overflow: hidden;
-}
-
-/*@property
-		name: o-hid-y *n
-		caption: Скрывает содержимое блока, выходящее за 
-		его грани по вертикали. *n
-*/
-.o-hid-y {
-	overflow: hidden;
-}
-
-/*@property
-		name: o-hid-x *n
-		caption: Скрывает содержимое блока, выходящее за 
-		его грани по горизонтали. *n
-*/
-.o-hid-x {
-	overflow-x: hidden;
-}
-
-/*@property
-		name: o-hid-x *n
-		caption: Автоматически добавляет прокрутку, если 
-		содержимое блока выходит за грани. *n
-*/
-.o-auto {
-	overflow: auto;
-}
-
-/*@property
-		name: o-auto-x *n
-		caption: Автоматически добавляет прокрутку, если 
-		содержимое блока выходит за грани по горизонтали. *n
-*/
-.o-auto-x {
-	overflow-x: auto;
-}
-
-/*@property
-		name: o-auto-y *n
-		caption: Автоматически добавляет прокрутку, если 
-		содержимое блока выходит за грани по вертикали. *n
-*/
-.o-auto-y {
-	overflow-y: auto;
-}
-
-/*@property
-		name: o-visbl *n
-		caption: Не обрезает содержимое, если оно выходит 
-		за грани блока. *n
-*/
-.o-visbl {
-	overflow: visible;
-}
-
-/*@property
-		name: o-visbl-x *n
-		caption: Не обрезает содержимое, если оно выходит 
-		за грани блока по горизонтали. *n
-*/
-.o-visbl-x {
-	overflow-x: visible;
-}
-
-/*@property
-		name: o-visbl-y *n
-		caption: Не обрезает содержимое, если оно выходит 
-		за грани блока по вертикали. *n
-*/
-.o-visbl-y {
-	overflow-y: visible;
 }
 
 /*@property
@@ -680,7 +545,7 @@ img.r {
 --------------------------------------------------------------*/
 
 /*@property
-		name: .YourColor *n
+		name: .example-color *n
 		caption: Устанавливает цвет текста с названием YourColor.
 		Параметры задаются в bd{ _config.scss }, в объекте 
 		bd{ $colors_list } *n
@@ -692,7 +557,7 @@ img.r {
 }
 
 /*@property
-		name: .bg-YourColor *n
+		name: .bg-example-color *n
 		caption: Устанавливает фона блока с названием YourColor.
 		Параметры задаются в bd{ _config.scss }, в объекте 
 		bd{ $colors_list_bg } *n

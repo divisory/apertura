@@ -160,216 +160,9 @@
 /*
 	Приватный модуль для генерации брейкпоинтов.
 */
-/*
-	@module
-		title: mixins *n
-		type: scss *n
-		caption:
-			p{ Модуль добавляет в систему заранее подготовленные
-			миксины, которые используются в коде. }p
-			p{ Чтобы использовать миксины - вставвьте нужный миксин
-			в код при помощи директивы bd{ @include my-mixin(mixin-values); }}p
-		*n
-*/
-/*--------------------------------------------------------------------------
-	Background and Border Properties
---------------------------------------------------------------------------*/
-/*@mixin
-		name: background-clip() *n caption: *n arguments: $clip *n
-		return: -webkit-, -moz-, -ms-, -o- *n */
-/*@mixin
-		name: background-origin() *n caption: *n arguments: $origin *n
-		return: -webkit-, -moz-, -ms-, -o- *n */
-/*@mixin
-		name: background-size() *n caption: *n arguments: $size *n
-		return: -webkit-, -moz-, -ms-, -o- *n */
-/*@mixin
-		name: border-bottom-left-radius() *n caption: *n arguments: $radius *n
-		return: -webkit-, -moz-, -ms- *n */
-/*@mixin
-		name: border-bottom-right-radius() *n caption: *n arguments: $radius *n
-		return: -webkit-, -moz-, -ms- *n */
-/*@mixin
-		name: border-top-right-radius() *n caption: *n arguments: $radius *n
-		return: -webkit-, -moz-, -ms- *n */
-/*@mixin
-		name: border-top-left-radius() *n caption: *n arguments: $radius *n
-		return: -webkit-, -moz-, -ms- *n */
-/*@mixin
-		name: border-radius() *n caption: *n arguments: $radius *n
-		return: -webkit-, -moz-, -ms- *n */
-/*@mixin
-		name: box-shadow() *n caption: *n arguments: $shadow *n
-		return: -webkit-, -moz- *n */
-/*--------------------------------------------------------------------------
-	Flexible Box Layout
---------------------------------------------------------------------------*/
-/*@mixin
-		name: align-content() *n caption: bd{flexbox} *n arguments: $type *n
-		return: -webkit- *n */
-/*@mixin
-		name: align-items() *n caption: bd{flexbox} *n arguments: $type *n
-		return: -webkit- *n */
-/*@mixin
-		name: align-self() *n caption: bd{flexbox} *n arguments: $type *n
-		return: -webkit- *n */
-/*@mixin
-		name: flex() *n caption: bd{flexbox} *n arguments: $type *n
-		return: -webkit-, -moz-, -ms- *n */
-/*@mixin
-		name: flex-basis() *n caption: bd{flexbox} *n arguments: $type *n
-		return: -webkit-, -moz- *n */
-/*@mixin
-		name: flex-direction() *n caption: bd{flexbox} *n arguments: $direction *n
-		return: -webkit-, -moz- *n */
-/*@mixin
-		name: flex-flow() *n caption: bd{flexbox} *n arguments: $flow *n
-		return: -webkit-, -moz- *n */
-/*@mixin
-		name: flex-grow() *n caption: bd{flexbox} *n arguments: $grow *n
-		return: -webkit-, -moz- *n */
-/*@mixin
-		name: flex-shirk() *n caption: bd{flexbox} *n arguments: $shirk *n
-		return: -webkit-, -moz- *n */
-/*@mixin
-		name: flex-wrap() *n caption: bd{flexbox} *n arguments: $wrap *n
-		return: -webkit-, -moz- *n */
-/*@mixin
-		name: justify-content() *n caption: bd{flexbox} *n arguments: $type *n
-		return: -webkit-, -moz- *n */
-/*@mixin
-		name: order() *n caption: bd{flexbox} *n arguments: $type *n
-		return: -webkit-, -moz- *n */
-/*--------------------------------------------------------------------------
-	Text Properties
---------------------------------------------------------------------------*/
-/*@mixin
-		name: tab-size() *n caption: bd{flexbox} *n arguments: $type *n
-		return: -o-, -moz- *n */
-/*--------------------------------------------------------------------------
-	Animation Properties
---------------------------------------------------------------------------*/
-/*@mixin
-		name: keyframes() *n caption: animations *n arguments: $name *n
-		return: -webkit-, -moz-, -o- *n */
-/*@mixin
-		name: animation() *n caption: animations *n arguments: $type *n
-		return: -webkit-, -moz-, -o- *n */
-/*@mixin
-		name: animation-delay() *n caption: animations *n arguments: $type *n
-		return: -webkit-, -moz-, -o- *n */
-/*@mixin
-		name: animation-direction() *n caption: animations *n arguments: $type *n
-		return: -webkit-, -moz-, -o- *n */
-/*@mixin
-		name: animation-duration() *n caption: animations *n arguments: $type *n
-		return: -webkit-, -moz-, -o- *n */
-/*@mixin
-		name: animation-fill-mode() *n caption: animations *n arguments: $type *n
-		return: -webkit-, -moz-, -o- *n */
-/*@mixin
-		name: animation-iteration-count() *n caption: animations *n arguments: $type *n
-		return: -webkit-, -moz-, -o- *n */
-/*@mixin
-		name: animation-timing-function() *n caption: animations *n arguments: $type *n
-		return: -webkit-, -moz-, -o- *n */
-/*@mixin
-		name: animation-play-state() *n caption: animations *n arguments: $type *n
-		return: -webkit-, -moz-, -o- *n */
-/*--------------------------------------------------------------------------
-	Transform Properties
---------------------------------------------------------------------------*/
-/*@mixin
-		name: backface-visibility() *n caption: transformations *n arguments: $type *n
-		return: -webkit-, -moz- *n */
-/*@mixin
-		name: perspective() *n caption: transformations *n arguments: $type *n
-		return: -webkit-, -moz- *n */
-/*@mixin
-		name: perspective-origin() *n caption: transformations *n arguments: $type *n
-		return: -webkit-, -moz- *n */
-/*@mixin
-		name: transform() *n caption: transformations *n arguments: $type *n
-		return: -webkit-, -moz-, -ms-, -o- *n */
-/*@mixin
-		name: transform-origin() *n caption: transformations *n arguments: $type *n
-		return: -webkit-, -moz-, -ms-, -o- *n */
-/*@mixin
-		name: transform-style() *n caption: transformations *n arguments: $type *n
-		return: -webkit-, -moz- *n */
-/*--------------------------------------------------------------------------
-	Transitions Properties
---------------------------------------------------------------------------*/
-/*@mixin
-		name: transition() *n caption: transitions *n arguments: $type *n
-		return: -webkit-, -moz-, -o- *n */
-/*@mixin
-		name: transition-property() *n caption: transitions *n arguments: $type *n
-		return: -webkit-, -moz-, -o- *n */
-/*@mixin
-		name: transition-duration() *n caption: transitions *n arguments: $type *n
-		return: -webkit-, -moz-, -o- *n */
-/*@mixin
-		name: transition-timing-function() *n caption: transitions *n arguments: $type *n
-		return: -webkit-, -moz-, -o- *n */
-/*@mixin
-		name: transition-delay() *n caption: transitions *n arguments: $type *n
-		return: -webkit-, -moz-, -o- *n */
-/*--------------------------------------------------------------------------
-	Basic User Interface Properties
---------------------------------------------------------------------------*/
-/*@mixin
-		name: box-sizing() *n caption: UI *n arguments: $type *n
-		return: -webkit-, -moz- *n */
-/*@mixin
-		name: outline-offset() *n caption: UI *n arguments: $type *n
-		return: -webkit- *n */
-/*@mixin
-		name: resize() *n caption: UI *n arguments: $type *n
-		return: -moz- *n */
-/*@mixin
-		name: text-overflow() *n caption: UI *n arguments: $type *n
-		return: -o- *n */
-/*--------------------------------------------------------------------------
-	Multi-column Layout Properties
---------------------------------------------------------------------------*/
-/*@mixin
-		name: column-count() *n caption: UI *n arguments: $type *n
-		return: -webkit-, -moz- *n */
-/*@mixin
-		name: column-gap() *n caption: UI *n arguments: $type *n
-		return: -webkit-, -moz- *n */
-/*@mixin
-		name: column-rule() *n caption: UI *n arguments: $type *n
-		return: -webkit-, -moz- *n */
-/*@mixin
-		name: column-rule-color() *n caption: UI *n arguments: $type *n
-		return: -webkit-, -moz- *n */
-/*@mixin
-		name: column-rule-style() *n caption: UI *n arguments: $type *n
-		return: -webkit-, -moz- *n */
-/*@mixin
-		name: column-rule-width() *n caption: UI *n arguments: $type *n
-		return: -webkit-, -moz- *n */
-/*@mixin
-		name: column-rule-span() *n caption: UI *n arguments: $type *n
-		return: -webkit-, -moz- *n */
-/*@mixin
-		name: column-width() *n caption: UI *n arguments: $type *n
-		return: -webkit-, -moz- *n */
-/*@mixin
-		name: columns() *n caption: UI *n arguments: $type *n
-		return: -webkit-, -moz- *n */
-/*--------------------------------------------------------------------------
-	Filter Effects Properties
---------------------------------------------------------------------------*/
-/*@mixin
-		name: filter() *n caption: UI *n arguments: $properties *n
-		return: -webkit-, -moz-, -o- *n */
 /* -----------------------------------------------------
 	include default styles, fonts, indents, and so on...
 */
-/*@import "_default/_normalize.scss";*/
 /*
 	@module
 		title: defaults *n
@@ -472,25 +265,6 @@ figure {
   list-style-type: none;
   list-style: none; }
 
-/*
-	для броузеров, которые не поддерживают javascript 
-	выводится сообщение.
-*/
-.no-js body:after {
-  display: block;
-  position: fixed;
-  top: 5px;
-  left: 5%;
-  right: 5%;
-  padding: 10px 0;
-  background: firebrick;
-  color: lightyellow;
-  text-align: center;
-  font-weight: bold;
-  z-index: 100500;
-  border-radius: 3px;
-  content: 'This page requires JavaScript for correct performance. 						You must enable Javascript, or update your browser.'; }
-
 /*@property
 		name: disable-hover *n
 		caption: Убирает pointer-events (события ховера, 
@@ -535,18 +309,14 @@ figure {
   text-indent: -1000%; }
 
 /*@property
-		name: r *n
+		name: adaptive *n
 		caption: Применяется для <img>, указывает ширину 100%. 
 		Картинка будет автоматически увеличивать высоту, в 
 		зависимости от своей ширины. *n
 */
-img.r {
+img.adaptive {
   display: block;
   width: 100%;
-  /*flex: 1 auto;*/
-  -webkit-align-self: flex-start;
-  -ms-flex-item-align: start;
-  align-self: flex-start;
   height: auto; }
 
 /*--------------------------------------------------------------
@@ -591,39 +361,39 @@ img.r {
   text-align: justify; }
 
 /*@property
-		name: v-top *n
+		name: align-top *n
 		caption: Выравнивает bd{inline-block}-элементы 
 		по верхней грани. Выравнивает bd{inline-flex}-элементы 
 		по верхней грани.*n
 */
-.v-top {
+.align-top {
   vertical-align: top; }
 
 /*@property
-		name: v-middle *n
+		name: align-middle *n
 		caption: Выравнивает bd{inline-block}-элементы 
 		вертикально по середине. Выравнивает bd{inline-flex}-элементы 
 		вертикально по середине.*n
 */
-.v-middle {
+.align-middle {
   vertical-align: middle; }
 
 /*@property
-		name: v-bottom *n
+		name: align-bottom *n
 		caption: Выравнивает bd{inline-block}-элементы 
 		по нижней грани. Выравнивает bd{inline-flex}-элементы 
 		по нижней грани.*n
 */
-.v-bottom {
+.align-bottom {
   vertical-align: bottom; }
 
 /*@property
-		name: v-baseline *n
+		name: align-baseline *n
 		caption: Выравнивает bd{inline-block}-элементы 
 		базовой линии текста. Выравнивает bd{inline-flex}-элементы 
 		базовой линии текста.*n
 */
-.v-baseline {
+.align-baseline {
   vertical-align: baseline; }
 
 /*@property
@@ -708,14 +478,14 @@ img.r {
 		caption: Выравнивает bd{inline-flex}-элементы с 
 		отутупами снаружи по краям bd{flex}-родителя. *n */
   /*@property
-		name: around *n
+		name: align-stretch *n
 		caption: Выравнивает bd{inline-flex}-элементы 
 		по одинковой высоте. *n */
   /*@property
-		name: around *n
+		name: align-center *n
 		caption: Выравнивает bd{inline-flex}-элементы 
 		по одинковой высоте, и центрирует их содержимое 
-		вертикально по центру. *n */
+		горизонтально по центру. *n */
   /*@property
 		name: flex-nowrap *n
 		caption: Отключает оборачивание bd{inline-flex}-элементов, 
@@ -756,30 +526,27 @@ img.r {
     -webkit-justify-content: space-around;
     -ms-flex-pack: distribute;
     justify-content: space-around; }
-  .flexbox .v-top {
+  .flexbox .align-top {
     -webkit-align-self: flex-start;
     -ms-flex-item-align: start;
     align-self: flex-start; }
-  .flexbox .v-bottom {
+  .flexbox .align-bottom {
     -webkit-align-self: flex-end;
     -ms-flex-item-align: end;
     align-self: flex-end; }
-  .flexbox .v-middle {
+  .flexbox .align-middle {
     -webkit-align-self: center;
     -ms-flex-item-align: center;
     align-self: center; }
-  .flexbox .v-baseline {
+  .flexbox .align-baseline {
     -webkit-align-self: baseline;
     -ms-flex-item-align: baseline;
     align-self: baseline; }
-  .flexbox .v-stretch {
+  .flexbox .align-stretch {
     -webkit-align-self: stretch;
     -ms-flex-item-align: stretch;
     align-self: stretch; }
-  .flexbox .v-center {
-    -webkit-align-self: stretch;
-    -ms-flex-item-align: stretch;
-    align-self: stretch;
+  .flexbox .align-center {
     -webkit-box-align: center;
     -webkit-align-items: center;
     -moz-box-align: center;
@@ -809,74 +576,25 @@ img.r {
   display: block; }
 
 /*@property
-		name: block *n
+		name: inline *n
 		caption: Строчный блок (inline-block) *n
 */
 .inline {
   display: inline-block; }
 
 /*@property
-		name: block *n
+		name: block-extra *n
 		caption: Блочный элемент (!important). *n
 */
 .block-extra {
   display: block !important; }
 
 /*@property
-		name: block *n
+		name: inline-extra *n
 		caption: Строчный блок (inline-block !important) *n
 */
 .inline-extra {
   display: inline-block !important; }
-
-/*@property
-		name: flex *n
-		caption: Flex-блок. По умолчанию ширина 100%, потомки 
-		выравниваются по левому краю.*n
-*/
-.flex {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-  width: 100%;
-  -webkit-box-pack: start;
-  -webkit-justify-content: flex-start;
-  -moz-box-pack: start;
-  -ms-flex-pack: start;
-  justify-content: flex-start;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-  -webkit-flex-direction: row;
-  -moz-box-orient: horizontal;
-  -moz-box-direction: normal;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-box-align: stretch;
-  -webkit-align-items: stretch;
-  -moz-box-align: stretch;
-  -ms-flex-align: stretch;
-  align-items: stretch; }
-
-/*@property
-		name: inline-flex *n
-		caption: Inline-flex-блок.*n
-*/
-.inline-flex {
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -moz-inline-box;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box; }
 
 /*@property
 		name: none *n
@@ -894,10 +612,10 @@ img.r {
   display: table; }
 
 /*@property
-		name: row *n
+		name: trow *n
 		caption: Строка таблицы. *n
 */
-.row {
+.trow {
   display: table-row; }
 
 /*@property
@@ -922,7 +640,7 @@ img.r {
   display: table-column-group; }
 
 /*@property
-		name: table-cell *n
+		name: cell *n
 		caption: Ячейка таблицы. *n
 */
 .cell {
@@ -934,81 +652,6 @@ img.r {
 */
 .list-item {
   display: list-item; }
-
-/*--------------------------------------------------------------
-													ОБРЕЗАНИЕ
---------------------------------------------------------------*/
-/*@property
-		name: o-hid *n
-		caption: Скрывает содержимое блока, выходящее за 
-		его грани. *n
-*/
-.o-hid {
-  overflow: hidden; }
-
-/*@property
-		name: o-hid-y *n
-		caption: Скрывает содержимое блока, выходящее за 
-		его грани по вертикали. *n
-*/
-.o-hid-y {
-  overflow: hidden; }
-
-/*@property
-		name: o-hid-x *n
-		caption: Скрывает содержимое блока, выходящее за 
-		его грани по горизонтали. *n
-*/
-.o-hid-x {
-  overflow-x: hidden; }
-
-/*@property
-		name: o-hid-x *n
-		caption: Автоматически добавляет прокрутку, если 
-		содержимое блока выходит за грани. *n
-*/
-.o-auto {
-  overflow: auto; }
-
-/*@property
-		name: o-auto-x *n
-		caption: Автоматически добавляет прокрутку, если 
-		содержимое блока выходит за грани по горизонтали. *n
-*/
-.o-auto-x {
-  overflow-x: auto; }
-
-/*@property
-		name: o-auto-y *n
-		caption: Автоматически добавляет прокрутку, если 
-		содержимое блока выходит за грани по вертикали. *n
-*/
-.o-auto-y {
-  overflow-y: auto; }
-
-/*@property
-		name: o-visbl *n
-		caption: Не обрезает содержимое, если оно выходит 
-		за грани блока. *n
-*/
-.o-visbl {
-  overflow: visible; }
-
-/*@property
-		name: o-visbl-x *n
-		caption: Не обрезает содержимое, если оно выходит 
-		за грани блока по горизонтали. *n
-*/
-.o-visbl-x {
-  overflow-x: visible; }
-
-/*@property
-		name: o-visbl-y *n
-		caption: Не обрезает содержимое, если оно выходит 
-		за грани блока по вертикали. *n
-*/
-.o-visbl-y {
-  overflow-y: visible; }
 
 /*@property
 		name: bg-none *n
@@ -1049,7 +692,7 @@ img.r {
 												ЦВЕТА ТЕКСТА И ФОНА
 --------------------------------------------------------------*/
 /*@property
-		name: .YourColor *n
+		name: .example-color *n
 		caption: Устанавливает цвет текста с названием YourColor.
 		Параметры задаются в bd{ _config.scss }, в объекте 
 		bd{ $colors_list } *n
@@ -1061,7 +704,7 @@ img.r {
   color: #ffffff; }
 
 /*@property
-		name: .bg-YourColor *n
+		name: .bg-example-color *n
 		caption: Устанавливает фона блока с названием YourColor.
 		Параметры задаются в bd{ _config.scss }, в объекте 
 		bd{ $colors_list_bg } *n
@@ -1104,10 +747,10 @@ img.r {
 
 /*@property
 		name: semibold *n
-		caption: Полужирное начертание шрифта (500) *n
+		caption: Полужирное начертание шрифта (600) *n
 */
 .semibold {
-  font-weight: 500; }
+  font-weight: 600; }
 
 /*@property
 		name: bold *n

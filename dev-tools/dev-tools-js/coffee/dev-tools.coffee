@@ -234,7 +234,8 @@ drawGrid = ->
 	for i in [0...gridWrapper.clientHeight/Grid.height]
 		if i%2 is 1
 			drawLine 0, i*Grid.height, gridWrapper.clientWidth, i*Grid.height, 'row'
-	for i in [1...Grid.columns.length]
+	# console.log Grid.columns[Grid.columns.length-1]
+	for i in [1..parseInt(Grid.columns[Grid.columns.length-1])]
 		drawLine i*Grid.columnWidth, 0, i*Grid.columnWidth, gridWrapper.clientHeight, 'col'
 
 Ajax '_config.scss', (data)->
@@ -256,6 +257,9 @@ Ajax '_config.scss', (data)->
 	gridCanvasCtx = gridCanvas.getContext "2d"
 	do drawGrid
 
+
+window.addEventListener 'resize', ->
+	do drawGrid
 
 # --------------------------------------------------------
 # PERFECT PIXEL
@@ -475,29 +479,29 @@ bindHandler = (e)->
 			info.innerHTML = "
 				<div class='dev-tools-info-path'>#{path}</div>
 				<div class='dev-tools-info-margin'>
-					<span class='t'>#{parseFloat(style.marginTop)}</span>
-					<span class='r'>#{parseFloat(style.marginRight)}</span>
-					<span class='b'>#{parseFloat(style.marginBottom)}</span>
-					<span class='l'>#{parseFloat(style.marginLeft)}</span>
+					<span class='t'>#{parseFloat(style.marginTop).toFixed(1)}</span>
+					<span class='r'>#{parseFloat(style.marginRight).toFixed(1)}</span>
+					<span class='b'>#{parseFloat(style.marginBottom).toFixed(1)}</span>
+					<span class='l'>#{parseFloat(style.marginLeft).toFixed(1)}</span>
 				</div>
 				<div class='dev-tools-info-border'>
-					<span class='t'>#{parseFloat(style.borderTopWidth)}</span>
-					<span class='r'>#{parseFloat(style.borderRightWidth)}</span>
-					<span class='b'>#{parseFloat(style.borderBottomWidth)}</span>
-					<span class='l'>#{parseFloat(style.borderLeftWidth)}</span>
+					<span class='t'>#{parseFloat(style.borderTopWidth).toFixed(1)}</span>
+					<span class='r'>#{parseFloat(style.borderRightWidth).toFixed(1)}</span>
+					<span class='b'>#{parseFloat(style.borderBottomWidth).toFixed(1)}</span>
+					<span class='l'>#{parseFloat(style.borderLeftWidth).toFixed(1)}</span>
 				</div>
 				<div class='dev-tools-info-padding'>
-					<span class='t'>#{parseFloat(style.paddingTop)}</span>
-					<span class='r'>#{parseFloat(style.paddingRight)}</span>
-					<span class='b'>#{parseFloat(style.paddingBottom)}</span>
-					<span class='l'>#{parseFloat(style.paddingLeft)}</span>
+					<span class='t'>#{parseFloat(style.paddingTop).toFixed(1)}</span>
+					<span class='r'>#{parseFloat(style.paddingRight).toFixed(1)}</span>
+					<span class='b'>#{parseFloat(style.paddingBottom).toFixed(1)}</span>
+					<span class='l'>#{parseFloat(style.paddingLeft).toFixed(1)}</span>
 					<hr>
 					<div class='padded-box'>
-						#{margin.w-parseFloat(style.marginLeft)-parseFloat(style.marginRight)-parseFloat(style.borderLeftWidth)-parseFloat(style.borderRightWidth)-parseFloat(style.paddingLeft)-parseFloat(style.paddingRight)}x#{margin.h-parseFloat(style.borderTopWidth)-parseFloat(style.borderBottomWidth)}
+						#{(margin.w-parseFloat(style.marginLeft)-parseFloat(style.marginRight)-parseFloat(style.borderLeftWidth)-parseFloat(style.borderRightWidth)-parseFloat(style.paddingLeft)-parseFloat(style.paddingRight)).toFixed(1)}x#{(margin.h-parseFloat(style.borderTopWidth)-parseFloat(style.borderBottomWidth)).toFixed(1)}
 					</div>
 				</div>
 				<div class='dev-tools-info-content'>
-					#{margin.w-parseFloat(style.marginLeft)-parseFloat(style.marginRight)-parseFloat(style.borderLeftWidth)-parseFloat(style.borderRightWidth)-parseFloat(style.paddingLeft)-parseFloat(style.paddingRight)}x#{margin.h-parseFloat(style.marginTop)-parseFloat(style.marginBottom)-parseFloat(style.borderTopWidth)-parseFloat(style.borderBottomWidth)-parseFloat(style.paddingTop)-parseFloat(style.paddingBottom)}
+					#{(margin.w-parseFloat(style.marginLeft)-parseFloat(style.marginRight)-parseFloat(style.borderLeftWidth)-parseFloat(style.borderRightWidth)-parseFloat(style.paddingLeft)-parseFloat(style.paddingRight)).toFixed(1)}x#{(margin.h-parseFloat(style.marginTop)-parseFloat(style.marginBottom)-parseFloat(style.borderTopWidth)-parseFloat(style.borderBottomWidth)-parseFloat(style.paddingTop)-parseFloat(style.paddingBottom)).toFixed(1)}
 				</div>
 			"
 			hint.appendChild info
@@ -522,7 +526,6 @@ document.addEventListener 'keydown', bindHandler
 window.addEventListener 'resize', ->
 	if adkGrid.style.display is 'block'
 		do updateGridElements
-		do updatePixelPerfect
 		do drawGrid
 	do pushImage
 	if lines.wrap.classList.contains 'active'

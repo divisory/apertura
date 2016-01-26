@@ -12,13 +12,7 @@
 	@else { @return $list == $value; }
 }
 
-@mixin grid-calc($units, $modifier: '') {
-
-	@if $modifier != '' {
-		.x1#{$modifier}{
-			width: 100%;
-		}
-	}
+@mixin grid-calc($units, $modifier: '', $isMedia: off) {
 
 	@each $n in $units {
 		$x: $n - 1;
@@ -36,8 +30,15 @@
 					@extend .x#{$i-r}d#{$n-r}#{$modifier};
 				}
 				@else {
-					flex: 1 percentage($i / $n);
-					width: percentage($i / $n);
+					max-width: percentage($i / $n);
+					flex-basis: percentage($i / $n);
+				}
+			}
+			@if $isMedia == on {
+				@if $offsets == on {
+					.offset-x#{$i}d#{$n} {
+						margin-left: percentage($i / $n);
+					}
 				}
 			}
 		}

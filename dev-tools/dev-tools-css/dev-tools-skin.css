@@ -1,213 +1,6 @@
-@charset "UTF-8";
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:100,400,300,500,600,700&subset=latin,cyrillic);
 /*@import url(https://fonts.googleapis.com/css?family=Roboto:400,700,300&subset=latin,cyrillic);*/
 /*@import url(https://fonts.googleapis.com/css?family=Ubuntu:400,300,700,500&subset=latin,cyrillic);*/
-/*
-	@module
-		title: mixins *n
-		type: scss *n
-		caption:
-			p{ Модуль добавляет в систему заранее подготовленные
-			миксины, которые используются в коде. }p
-			p{ Чтобы использовать миксины - вставвьте нужный миксин
-			в код при помощи директивы bd{ @include my-mixin(mixin-values); }}p
-		*n
-*/
-/*--------------------------------------------------------------------------
-	Background and Border Properties
---------------------------------------------------------------------------*/
-/*@mixin
-		name: background-clip() *n caption: *n arguments: $clip *n
-		return: -webkit-, -moz-, -ms-, -o- *n */
-/*@mixin
-		name: background-origin() *n caption: *n arguments: $origin *n
-		return: -webkit-, -moz-, -ms-, -o- *n */
-/*@mixin
-		name: background-size() *n caption: *n arguments: $size *n
-		return: -webkit-, -moz-, -ms-, -o- *n */
-/*@mixin
-		name: border-bottom-left-radius() *n caption: *n arguments: $radius *n
-		return: -webkit-, -moz-, -ms- *n */
-/*@mixin
-		name: border-bottom-right-radius() *n caption: *n arguments: $radius *n
-		return: -webkit-, -moz-, -ms- *n */
-/*@mixin
-		name: border-top-right-radius() *n caption: *n arguments: $radius *n
-		return: -webkit-, -moz-, -ms- *n */
-/*@mixin
-		name: border-top-left-radius() *n caption: *n arguments: $radius *n
-		return: -webkit-, -moz-, -ms- *n */
-/*@mixin
-		name: border-radius() *n caption: *n arguments: $radius *n
-		return: -webkit-, -moz-, -ms- *n */
-/*@mixin
-		name: box-shadow() *n caption: *n arguments: $shadow *n
-		return: -webkit-, -moz- *n */
-/*--------------------------------------------------------------------------
-	Flexible Box Layout
---------------------------------------------------------------------------*/
-/*@mixin
-		name: align-content() *n caption: bd{flexbox} *n arguments: $type *n
-		return: -webkit- *n */
-/*@mixin
-		name: align-items() *n caption: bd{flexbox} *n arguments: $type *n
-		return: -webkit- *n */
-/*@mixin
-		name: align-self() *n caption: bd{flexbox} *n arguments: $type *n
-		return: -webkit- *n */
-/*@mixin
-		name: flex() *n caption: bd{flexbox} *n arguments: $type *n
-		return: -webkit-, -moz-, -ms- *n */
-/*@mixin
-		name: flex-basis() *n caption: bd{flexbox} *n arguments: $type *n
-		return: -webkit-, -moz- *n */
-/*@mixin
-		name: flex-direction() *n caption: bd{flexbox} *n arguments: $direction *n
-		return: -webkit-, -moz- *n */
-/*@mixin
-		name: flex-flow() *n caption: bd{flexbox} *n arguments: $flow *n
-		return: -webkit-, -moz- *n */
-/*@mixin
-		name: flex-grow() *n caption: bd{flexbox} *n arguments: $grow *n
-		return: -webkit-, -moz- *n */
-/*@mixin
-		name: flex-shirk() *n caption: bd{flexbox} *n arguments: $shirk *n
-		return: -webkit-, -moz- *n */
-/*@mixin
-		name: flex-wrap() *n caption: bd{flexbox} *n arguments: $wrap *n
-		return: -webkit-, -moz- *n */
-/*@mixin
-		name: justify-content() *n caption: bd{flexbox} *n arguments: $type *n
-		return: -webkit-, -moz- *n */
-/*@mixin
-		name: order() *n caption: bd{flexbox} *n arguments: $type *n
-		return: -webkit-, -moz- *n */
-/*--------------------------------------------------------------------------
-	Text Properties
---------------------------------------------------------------------------*/
-/*@mixin
-		name: tab-size() *n caption: bd{flexbox} *n arguments: $type *n
-		return: -o-, -moz- *n */
-/*--------------------------------------------------------------------------
-	Animation Properties
---------------------------------------------------------------------------*/
-/*@mixin
-		name: keyframes() *n caption: animations *n arguments: $name *n
-		return: -webkit-, -moz-, -o- *n */
-/*@mixin
-		name: animation() *n caption: animations *n arguments: $type *n
-		return: -webkit-, -moz-, -o- *n */
-/*@mixin
-		name: animation-delay() *n caption: animations *n arguments: $type *n
-		return: -webkit-, -moz-, -o- *n */
-/*@mixin
-		name: animation-direction() *n caption: animations *n arguments: $type *n
-		return: -webkit-, -moz-, -o- *n */
-/*@mixin
-		name: animation-duration() *n caption: animations *n arguments: $type *n
-		return: -webkit-, -moz-, -o- *n */
-/*@mixin
-		name: animation-fill-mode() *n caption: animations *n arguments: $type *n
-		return: -webkit-, -moz-, -o- *n */
-/*@mixin
-		name: animation-iteration-count() *n caption: animations *n arguments: $type *n
-		return: -webkit-, -moz-, -o- *n */
-/*@mixin
-		name: animation-timing-function() *n caption: animations *n arguments: $type *n
-		return: -webkit-, -moz-, -o- *n */
-/*@mixin
-		name: animation-play-state() *n caption: animations *n arguments: $type *n
-		return: -webkit-, -moz-, -o- *n */
-/*--------------------------------------------------------------------------
-	Transform Properties
---------------------------------------------------------------------------*/
-/*@mixin
-		name: backface-visibility() *n caption: transformations *n arguments: $type *n
-		return: -webkit-, -moz- *n */
-/*@mixin
-		name: perspective() *n caption: transformations *n arguments: $type *n
-		return: -webkit-, -moz- *n */
-/*@mixin
-		name: perspective-origin() *n caption: transformations *n arguments: $type *n
-		return: -webkit-, -moz- *n */
-/*@mixin
-		name: transform() *n caption: transformations *n arguments: $type *n
-		return: -webkit-, -moz-, -ms-, -o- *n */
-/*@mixin
-		name: transform-origin() *n caption: transformations *n arguments: $type *n
-		return: -webkit-, -moz-, -ms-, -o- *n */
-/*@mixin
-		name: transform-style() *n caption: transformations *n arguments: $type *n
-		return: -webkit-, -moz- *n */
-/*--------------------------------------------------------------------------
-	Transitions Properties
---------------------------------------------------------------------------*/
-/*@mixin
-		name: transition() *n caption: transitions *n arguments: $type *n
-		return: -webkit-, -moz-, -o- *n */
-/*@mixin
-		name: transition-property() *n caption: transitions *n arguments: $type *n
-		return: -webkit-, -moz-, -o- *n */
-/*@mixin
-		name: transition-duration() *n caption: transitions *n arguments: $type *n
-		return: -webkit-, -moz-, -o- *n */
-/*@mixin
-		name: transition-timing-function() *n caption: transitions *n arguments: $type *n
-		return: -webkit-, -moz-, -o- *n */
-/*@mixin
-		name: transition-delay() *n caption: transitions *n arguments: $type *n
-		return: -webkit-, -moz-, -o- *n */
-/*--------------------------------------------------------------------------
-	Basic User Interface Properties
---------------------------------------------------------------------------*/
-/*@mixin
-		name: box-sizing() *n caption: UI *n arguments: $type *n
-		return: -webkit-, -moz- *n */
-/*@mixin
-		name: outline-offset() *n caption: UI *n arguments: $type *n
-		return: -webkit- *n */
-/*@mixin
-		name: resize() *n caption: UI *n arguments: $type *n
-		return: -moz- *n */
-/*@mixin
-		name: text-overflow() *n caption: UI *n arguments: $type *n
-		return: -o- *n */
-/*--------------------------------------------------------------------------
-	Multi-column Layout Properties
---------------------------------------------------------------------------*/
-/*@mixin
-		name: column-count() *n caption: UI *n arguments: $type *n
-		return: -webkit-, -moz- *n */
-/*@mixin
-		name: column-gap() *n caption: UI *n arguments: $type *n
-		return: -webkit-, -moz- *n */
-/*@mixin
-		name: column-rule() *n caption: UI *n arguments: $type *n
-		return: -webkit-, -moz- *n */
-/*@mixin
-		name: column-rule-color() *n caption: UI *n arguments: $type *n
-		return: -webkit-, -moz- *n */
-/*@mixin
-		name: column-rule-style() *n caption: UI *n arguments: $type *n
-		return: -webkit-, -moz- *n */
-/*@mixin
-		name: column-rule-width() *n caption: UI *n arguments: $type *n
-		return: -webkit-, -moz- *n */
-/*@mixin
-		name: column-rule-span() *n caption: UI *n arguments: $type *n
-		return: -webkit-, -moz- *n */
-/*@mixin
-		name: column-width() *n caption: UI *n arguments: $type *n
-		return: -webkit-, -moz- *n */
-/*@mixin
-		name: columns() *n caption: UI *n arguments: $type *n
-		return: -webkit-, -moz- *n */
-/*--------------------------------------------------------------------------
-	Filter Effects Properties
---------------------------------------------------------------------------*/
-/*@mixin
-		name: filter() *n caption: UI *n arguments: $properties *n
-		return: -webkit-, -moz-, -o- *n */
 @import url(icons.css);
 /*-------------------------------------------------------------
 	FILELIST
@@ -215,10 +8,6 @@
 .adk-fileslist-wrapper {
   line-height: 22px;
   position: fixed;
-  -webkit-transform: translate3d(0, 0, 0);
-  -moz-transform: translate3d(0, 0, 0);
-  -ms-transform: translate3d(0, 0, 0);
-  -o-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
   backface-visibility: hidden;
   background: #1F253D;
@@ -234,32 +23,16 @@
   opacity: 0;
   visibility: hidden;
   display: none;
-  -webkit-transform: translate(-100%, 0) translate3d(0, 0, 0);
-  -moz-transform: translate(-100%, 0) translate3d(0, 0, 0);
-  -ms-transform: translate(-100%, 0) translate3d(0, 0, 0);
-  -o-transform: translate(-100%, 0) translate3d(0, 0, 0);
   transform: translate(-100%, 0) translate3d(0, 0, 0);
-  -webkit-transition: 0.2s;
-  -moz-transition: 0.2s;
-  -o-transition: 0.2s;
-  transition: 0.2s; }
+  transition: .2s; }
   .adk-fileslist-wrapper.active {
     display: block;
     visibility: visible;
     z-index: 9999;
     opacity: 1;
-    -webkit-transition: 0.3s cubic-bezier(0, 0, 0, 1);
-    -moz-transition: 0.3s cubic-bezier(0, 0, 0, 1);
-    -o-transition: 0.3s cubic-bezier(0, 0, 0, 1);
     transition: 0.3s cubic-bezier(0, 0, 0, 1);
-    -webkit-transform: translate3d(0, 0, 0);
-    -moz-transform: translate3d(0, 0, 0);
-    -ms-transform: translate3d(0, 0, 0);
-    -o-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0); }
   .adk-fileslist-wrapper * {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
     box-sizing: border-box;
     outline: none !important; }
   .adk-fileslist-wrapper .filelist-header {
@@ -302,10 +75,7 @@
         padding: 5px 25px;
         /*border-left: 1px solid #f0f0f0;*/
         /*border-bottom: 1px solid #f0f0f0;*/
-        -webkit-transition: 0.1s;
-        -moz-transition: 0.1s;
-        -o-transition: 0.1s;
-        transition: 0.1s;
+        transition: .1s;
         box-shadow: inset 1px 0 0 0 rgba(255, 255, 255, 0.1), inset 0 0px 0 0 rgba(0, 0, 0, 0.1), 0 1px 0 0 rgba(0, 0, 0, 0.1); }
         .adk-fileslist-wrapper .filelist-header span a > i {
           display: none; }
@@ -363,23 +133,12 @@
       /*background: #fff;*/
       padding: 10px 0;
       height: auto;
-      -webkit-transition: 0.1s;
-      -moz-transition: 0.1s;
-      -o-transition: 0.1s;
-      transition: 0.1s;
-      -webkit-transform-origin: top left;
-      -moz-transform-origin: top left;
-      -ms-transform-origin: top left;
-      -o-transform-origin: top left;
+      transition: .1s;
       transform-origin: top left; }
       .adk-fileslist-wrapper .adk-fileslist .adk-filelist-ul.disabled {
         height: 0;
         opacity: 0;
         padding: 0;
-        -webkit-transform: scale(1, 0);
-        -moz-transform: scale(1, 0);
-        -ms-transform: scale(1, 0);
-        -o-transform: scale(1, 0);
         transform: scale(1, 0); }
       .adk-fileslist-wrapper .adk-fileslist .adk-filelist-ul:before {
         box-sizing: border-box;
@@ -454,54 +213,29 @@
   font-family: 'Open Sans', sans-serif;
   visibility: hidden;
   display: none;
-  -webkit-transition: 0.1s;
-  -moz-transition: 0.1s;
-  -o-transition: 0.1s;
-  transition: 0.1s; }
+  transition: .1s; }
   .adk-grid-wrapper * {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
     box-sizing: border-box;
     outline: none !important; }
   .adk-grid-wrapper.active, .adk-grid-wrapper[style*="block"] {
     visibility: visible;
-    -webkit-transition: 0.3s;
-    -moz-transition: 0.3s;
-    -o-transition: 0.3s;
-    transition: 0.3s;
+    transition: .3s;
     opacity: 1;
     display: block; }
     .adk-grid-wrapper.active .adk-gridinfo-wrapper, .adk-grid-wrapper[style*="block"] .adk-gridinfo-wrapper {
-      -webkit-transition-delay: 0.3s;
-      -moz-transition-delay: 0.3s;
-      -o-transition-delay: 0.3s;
-      transition-delay: 0.3s;
+      transition-delay: .3s;
       opacity: 1; }
   .adk-grid-wrapper .adk-grid-canvas {
     position: absolute;
     top: 0;
     left: 0; }
     .adk-grid-wrapper .adk-grid-canvas:hover ~ .adk-gridinfo-wrapper {
-      -webkit-transition: 0.4s;
-      -moz-transition: 0.4s;
-      -o-transition: 0.4s;
-      transition: 0.4s;
-      -webkit-transition-delay: 0s;
-      -moz-transition-delay: 0s;
-      -o-transition-delay: 0s;
+      transition: .4s;
       transition-delay: 0s;
-      -webkit-transform: translate(0, 100%);
-      -moz-transform: translate(0, 100%);
-      -ms-transform: translate(0, 100%);
-      -o-transform: translate(0, 100%);
       transform: translate(0, 100%);
       opacity: 0; }
   .adk-grid-wrapper .adk-gridinfo-wrapper {
     position: fixed;
-    -webkit-transform: translate3d(0, 0, 0);
-    -moz-transform: translate3d(0, 0, 0);
-    -ms-transform: translate3d(0, 0, 0);
-    -o-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
     backface-visibility: hidden;
     z-index: 9999;
@@ -511,9 +245,6 @@
     bottom: 10%;
     left: 50%;
     margin-left: -250px;
-    -webkit-transition: 0.2s cubic-bezier(0, 0, 0, 1);
-    -moz-transition: 0.2s cubic-bezier(0, 0, 0, 1);
-    -o-transition: 0.2s cubic-bezier(0, 0, 0, 1);
     transition: 0.2s cubic-bezier(0, 0, 0, 1);
     opacity: 0; }
     .adk-grid-wrapper .adk-gridinfo-wrapper:before {
@@ -640,15 +371,10 @@
   display: none;
   white-space: nowrap;
   font-family: 'Open Sans', sans-serif;
-  -webkit-transition: 0.1s;
-  -moz-transition: 0.1s;
-  -o-transition: 0.1s;
-  transition: 0.1s; }
+  transition: .1s; }
   .pixel-perfect-wrapper.active {
     display: block; }
   .pixel-perfect-wrapper * {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
     box-sizing: border-box;
     outline: none !important; }
   .pixel-perfect-wrapper .adk-pixelperfect-image {
@@ -657,21 +383,10 @@
     left: 50%;
     display: block;
     margin: 0;
-    -webkit-transition: 0.2s;
-    -moz-transition: 0.2s;
-    -o-transition: 0.2s;
-    transition: 0.2s;
-    -webkit-transform: translate(-50%, 0);
-    -moz-transform: translate(-50%, 0);
-    -ms-transform: translate(-50%, 0);
-    -o-transform: translate(-50%, 0);
+    transition: .2s;
     transform: translate(-50%, 0); }
   .pixel-perfect-wrapper .adk-pixelperfect-info {
     position: fixed;
-    -webkit-transform: translate3d(0, 0, 0);
-    -moz-transform: translate3d(0, 0, 0);
-    -ms-transform: translate3d(0, 0, 0);
-    -o-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
     backface-visibility: hidden;
     bottom: 20%;
@@ -719,9 +434,6 @@
       .pixel-perfect-wrapper .adk-pixelperfect-info .adk-pixelperfect-bar .adk-pixelperfect-bar-inner {
         z-index: 2;
         position: relative;
-        -webkit-transition: 0.2s cubic-bezier(0, 0, 0, 1.5);
-        -moz-transition: 0.2s cubic-bezier(0, 0, 0, 1.5);
-        -o-transition: 0.2s cubic-bezier(0, 0, 0, 1.5);
         transition: 0.2s cubic-bezier(0, 0, 0, 1.5);
         height: 20px;
         width: 40%;
@@ -743,8 +455,6 @@
   .adk-lines-wrapper.active {
     display: block; }
   .adk-lines-wrapper * {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
     box-sizing: border-box; }
   .adk-lines-wrapper .adk-line-x, .adk-lines-wrapper .adk-line-y {
     position: absolute;
@@ -780,10 +490,6 @@
           color: #1599A1;
           bottom: 100%;
           left: 50%;
-          -webkit-transform: translate(-50%, 0);
-          -moz-transform: translate(-50%, 0);
-          -ms-transform: translate(-50%, 0);
-          -o-transform: translate(-50%, 0);
           transform: translate(-50%, 0); }
       .adk-lines-wrapper .adk-line-x span b:before, .adk-lines-wrapper .adk-line-y span b:before {
         content: 'win'; }
@@ -854,8 +560,6 @@ $color_6: #CA6ED6;*/
   font-family: 'Open Sans', sans-serif;
   font-weight: 700; }
   .dev-tools-boxer-hint * {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
     box-sizing: border-box; }
   .dev-tools-boxer-hint:before, .dev-tools-boxer-hint:after {
     content: '';
@@ -923,9 +627,9 @@ $color_6: #CA6ED6;*/
     position: fixed;
     bottom: 50px;
     left: 50%;
-    width: 220px;
+    width: 240px;
     height: 116px;
-    margin-left: -110px;
+    margin-left: -120px;
     pointer-events: none;
     background: #1F253D;
     color: #fff;
@@ -999,7 +703,6 @@ $color_6: #CA6ED6;*/
       bottom: 42px;
       left: 80px; }
     .dev-tools-boxer-hint .dev-tools-boxer-hint-info .padded-box, .dev-tools-boxer-hint .dev-tools-boxer-hint-info .nopadded-box {
-      /*background: #900;*/
       margin-left: 30px;
       margin-right: 30px;
       position: relative;

@@ -22,6 +22,8 @@
 */
 $gutter: 							10px;
 
+$offsets: 						on;
+
 /*@property
 		name: $grid_line_height *n
 		caption: Высота строки или междустрочный интервал. Применяется 
@@ -38,13 +40,13 @@ $grid_line_height: 		20px;
 			большему. Допускается произвольное количество размеров 
 			(если они Вам нужны). *n
 */
-$grid_sizes:					(400, 720, 960, 1140);
+$grid_sizes:					(400, 720, 960, 1200);
 
 /*@property
 		name: $primary_grid *n
 		caption: Основная ширина сетки. *n
 */
-$primary_grid: 				1140;
+$primary_grid: 				1200;
 
 /*@property
 		name: $grid_prefixes *n
@@ -78,7 +80,7 @@ $grid_prefixes: 			(768, '--t') (640, '--sm') (480, '--m');
 			одно и то же (50%)) }p
 			p{ Создает набор классов типа bd{.x<X>d<D>} }p *n
 */
-$grid_calc: 					(1 2 3 4 5 6 7 8 9 10 11 12);
+$grid_calc: 					(1 2 3 4 5 6 7 8 9 10 11 12 14 16 18 20 24);
 
 /*@property
 		name: $fixed_widths *n

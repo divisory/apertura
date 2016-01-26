@@ -288,7 +288,7 @@ drawGrid = function() {
     }
   }
   results = [];
-  for (i = k = 1, ref1 = Grid.columns.length; 1 <= ref1 ? k < ref1 : k > ref1; i = 1 <= ref1 ? ++k : --k) {
+  for (i = k = 1, ref1 = parseInt(Grid.columns[Grid.columns.length - 1]); 1 <= ref1 ? k <= ref1 : k >= ref1; i = 1 <= ref1 ? ++k : --k) {
     results.push(drawLine(i * Grid.columnWidth, 0, i * Grid.columnWidth, gridWrapper.clientHeight, 'col'));
   }
   return results;
@@ -311,6 +311,10 @@ Ajax('_config.scss', function(data) {
   gridWrapper.appendChild(gridInfoWrapper);
   updateGridElements();
   gridCanvasCtx = gridCanvas.getContext("2d");
+  return drawGrid();
+});
+
+window.addEventListener('resize', function() {
   return drawGrid();
 });
 
@@ -530,7 +534,7 @@ bindHandler = function(e) {
         p = ref[j];
         path += '<i>&gt;</i>' + p.toString();
       }
-      info.innerHTML = "<div class='dev-tools-info-path'>" + path + "</div> <div class='dev-tools-info-margin'> <span class='t'>" + (parseFloat(style.marginTop)) + "</span> <span class='r'>" + (parseFloat(style.marginRight)) + "</span> <span class='b'>" + (parseFloat(style.marginBottom)) + "</span> <span class='l'>" + (parseFloat(style.marginLeft)) + "</span> </div> <div class='dev-tools-info-border'> <span class='t'>" + (parseFloat(style.borderTopWidth)) + "</span> <span class='r'>" + (parseFloat(style.borderRightWidth)) + "</span> <span class='b'>" + (parseFloat(style.borderBottomWidth)) + "</span> <span class='l'>" + (parseFloat(style.borderLeftWidth)) + "</span> </div> <div class='dev-tools-info-padding'> <span class='t'>" + (parseFloat(style.paddingTop)) + "</span> <span class='r'>" + (parseFloat(style.paddingRight)) + "</span> <span class='b'>" + (parseFloat(style.paddingBottom)) + "</span> <span class='l'>" + (parseFloat(style.paddingLeft)) + "</span> <hr> <div class='padded-box'> " + (margin.w - parseFloat(style.marginLeft) - parseFloat(style.marginRight) - parseFloat(style.borderLeftWidth) - parseFloat(style.borderRightWidth) - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight)) + "x" + (margin.h - parseFloat(style.borderTopWidth) - parseFloat(style.borderBottomWidth)) + " </div> </div> <div class='dev-tools-info-content'> " + (margin.w - parseFloat(style.marginLeft) - parseFloat(style.marginRight) - parseFloat(style.borderLeftWidth) - parseFloat(style.borderRightWidth) - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight)) + "x" + (margin.h - parseFloat(style.marginTop) - parseFloat(style.marginBottom) - parseFloat(style.borderTopWidth) - parseFloat(style.borderBottomWidth) - parseFloat(style.paddingTop) - parseFloat(style.paddingBottom)) + " </div>";
+      info.innerHTML = "<div class='dev-tools-info-path'>" + path + "</div> <div class='dev-tools-info-margin'> <span class='t'>" + (parseFloat(style.marginTop).toFixed(1)) + "</span> <span class='r'>" + (parseFloat(style.marginRight).toFixed(1)) + "</span> <span class='b'>" + (parseFloat(style.marginBottom).toFixed(1)) + "</span> <span class='l'>" + (parseFloat(style.marginLeft).toFixed(1)) + "</span> </div> <div class='dev-tools-info-border'> <span class='t'>" + (parseFloat(style.borderTopWidth).toFixed(1)) + "</span> <span class='r'>" + (parseFloat(style.borderRightWidth).toFixed(1)) + "</span> <span class='b'>" + (parseFloat(style.borderBottomWidth).toFixed(1)) + "</span> <span class='l'>" + (parseFloat(style.borderLeftWidth).toFixed(1)) + "</span> </div> <div class='dev-tools-info-padding'> <span class='t'>" + (parseFloat(style.paddingTop).toFixed(1)) + "</span> <span class='r'>" + (parseFloat(style.paddingRight).toFixed(1)) + "</span> <span class='b'>" + (parseFloat(style.paddingBottom).toFixed(1)) + "</span> <span class='l'>" + (parseFloat(style.paddingLeft).toFixed(1)) + "</span> <hr> <div class='padded-box'> " + ((margin.w - parseFloat(style.marginLeft) - parseFloat(style.marginRight) - parseFloat(style.borderLeftWidth) - parseFloat(style.borderRightWidth) - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight)).toFixed(1)) + "x" + ((margin.h - parseFloat(style.borderTopWidth) - parseFloat(style.borderBottomWidth)).toFixed(1)) + " </div> </div> <div class='dev-tools-info-content'> " + ((margin.w - parseFloat(style.marginLeft) - parseFloat(style.marginRight) - parseFloat(style.borderLeftWidth) - parseFloat(style.borderRightWidth) - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight)).toFixed(1)) + "x" + ((margin.h - parseFloat(style.marginTop) - parseFloat(style.marginBottom) - parseFloat(style.borderTopWidth) - parseFloat(style.borderBottomWidth) - parseFloat(style.paddingTop) - parseFloat(style.paddingBottom)).toFixed(1)) + " </div>";
       return hint.appendChild(info);
     }
   }
@@ -559,7 +563,6 @@ document.addEventListener('keydown', bindHandler);
 window.addEventListener('resize', function() {
   if (adkGrid.style.display === 'block') {
     updateGridElements();
-    updatePixelPerfect();
     drawGrid();
   }
   pushImage();
