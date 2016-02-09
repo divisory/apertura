@@ -81,7 +81,7 @@ html, body {
 			размещаться ячейки. }p
 		*n
 */
-.col {
+.col, .clear-col, .double-col {
 	display: inline-block;
 	box-sizing: border-box;
 	flex: 0 -1 auto;
@@ -89,6 +89,14 @@ html, body {
 	padding-right: $gutter;
 	max-width: 100%;
 	flex-basis: 100%;
+}
+.clear-col {
+	padding-left: 0;
+	padding-right: 0;
+}
+.double-col {
+	padding-left: #{$gutter*2};
+	padding-right: #{$gutter*2};
 }
 
 /*@property

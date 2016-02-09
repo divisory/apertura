@@ -250,7 +250,7 @@ html, body {
 			размещаться ячейки. }p
 		*n
 */
-.col {
+.col, .clear-col, .double-col {
   display: inline-block;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -265,6 +265,14 @@ html, body {
   -webkit-flex-basis: 100%;
   -ms-flex-preferred-size: 100%;
   flex-basis: 100%; }
+
+.clear-col {
+  padding-left: 0;
+  padding-right: 0; }
+
+.double-col {
+  padding-left: 20px;
+  padding-right: 20px; }
 
 /*@property
 		name: offset-xXdD *n
