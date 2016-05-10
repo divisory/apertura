@@ -25,22 +25,21 @@
 				$n-r: $n/$g;
 			}
 			$canreduce: contains($units, $n-r);
-			.#{$modifier}x#{$i}d#{$n} {
+			.x#{$i}d#{$n}#{$modifier} {
 				@if $canreduce {
-					@extend .#{$modifier}x#{$i-r}d#{$n-r};
+					@extend .x#{$i-r}d#{$n-r}#{$modifier};
 				}
 				@else {
 					max-width: percentage($i / $n);
 					flex-basis: percentage($i / $n);
 				}
 			}
-			@if $offsets == on {
-				.#{$modifier}offset-x#{$i}d#{$n} {
-					margin-left: percentage($i / $n);
+			@if $isMedia == on {
+				@if $offsets == on {
+					.offset-x#{$i}d#{$n} {
+						margin-left: percentage($i / $n);
+					}
 				}
-			}
-			.#{$modifier}hide {
-				display: none;
 			}
 		}
 	}

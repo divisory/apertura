@@ -1,0 +1,569 @@
+/*
+	@module
+		title: defaults *n
+		type: scss *n
+		caption:
+			p{ Модуль по минимуму сбрасывает глобальные стили (по 
+			типу normalize.css), указывает начальные настройки для
+			шрифтов, а так же вносит ряд заранее щаготовленных классов
+			для манипуляции и кастомизации элементов. }p
+		*n
+*/
+
+/*--------------------------------------------------------------
+													M A I N
+--------------------------------------------------------------*/
+
+html {
+	font-size: $font_size;
+	font-family: $font_family;
+}
+
+html,
+body {
+	margin: 0;
+	height: 100%;
+	width: 100%;
+}
+
+button,
+input,
+textarea {
+	font-family: $font_family;
+}
+figure {
+	margin: 0;
+	padding: 0;
+}
+
+/*--------------------------------------------------------------
+													ПОЗИЦИОНИРОВАНИЕ
+--------------------------------------------------------------*/
+
+/*@property
+		name: relative *n
+		caption: Относительное позиционирование *n
+*/
+.relative {
+	position: relative;
+}
+
+/*@property
+		name: absolute *n
+		caption: Абсолютное позиционирование *n
+*/
+.absolute {
+	position: absolute;
+}
+
+/*@property
+		name: fixed *n
+		caption: Фиксированный блок *n
+*/
+.fixed {
+	position: fixed;
+}
+
+/*@property
+		name: static *n
+		caption: Относительное позиционирование *n
+*/
+.static {
+	position: static;
+}
+
+/*--------------------------------------------------------------
+													СБРОС
+--------------------------------------------------------------*/
+
+/*@property
+		name: clear-input *n
+		caption: Сброс стилей bd{<input>}. Убирает рамку, фон
+		отступы, устанавливает ширину в 100%. *n
+*/
+.clear-input {
+	background: none;
+	box-sizing: border-box;
+	border: none;
+	padding: 0;
+	margin: 0;
+	width: 100%;
+}
+
+/*@property
+		name: noresize *n
+		caption: Убирает возможность изменения размера для
+		 bd{<textarea>}. *n
+*/
+.noresize {
+	resize: none;
+}
+
+/*@property
+		name: clear-list, unstyled-list, clear-ul *n
+		caption: Убирает отступы для bd{<ul>}, как внешние, так
+		и внутренние. Убирает маркеры списка. *n
+*/
+.clear-list,
+.unstyled-list,
+.clear-ul {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+	list-style: none;
+}
+
+/*@property
+		name: disable-hover *n
+		caption: Убирает pointer-events (события ховера, 
+		фокуса и т.д) для элемента, которому непосредственно 
+		добавляется класс. *n
+*/
+.disable-hover {
+	pointer-events: none !important;
+}
+
+/*@property
+		name: disable-hover-childs *n
+		caption: Убирает pointer-events (события ховера, 
+		фокуса и т.д) для элементов, строго лежащим внутри 
+		элемента, которому добавляется класс. *n
+*/
+.disable-hover-childs>* {
+	pointer-events: none !important;
+}
+
+/*@property
+		name: disable-hover-allchilds *n
+		caption: Убирает pointer-events (события ховера, 
+		фокуса и т.д) для любых потомков, лежащих внутри 
+		элемента, которому добавляется класс. *n
+*/
+.disable-hover-allchilds * {
+	pointer-events: none !important;
+}
+
+/*@property
+		name: ultra-hide *n
+		caption: Устанавливает для элемента абсолютное 
+		позиционирование, задает ширину и высоту в 1пикс,
+		и скрывает элемент со страницы путем отрицательного
+		отступа вверх-влево. *n
+*/
+.ultra-hide {
+	position: absolute;
+	overflow: hidden;
+	width: 1px;
+	height: 1px;
+	left: -1000%;
+	top: -1000%;
+	text-indent: -1000%;
+}
+
+/*@property
+		name: adaptive *n
+		caption: Применяется для <img>, указывает ширину 100%. 
+		Картинка будет автоматически увеличивать высоту, в 
+		зависимости от своей ширины. *n
+*/
+img.adaptive {
+	display: block;
+	width: 100%;
+	height: auto;
+}
+
+/*--------------------------------------------------------------
+													ВЫРАВНИВАНИЕ
+--------------------------------------------------------------*/
+
+/*@property
+		name: center *n
+		caption: Выравнивает текст по центру блока. Выравнивает
+		bd{inline-block}-элементы по центру родителя. Выравнивает 
+		bd{inline-flex}-элементы по центру bd{flex}-родителя. *n
+*/
+.center {
+	text-align: center;
+}
+
+/*@property
+		name: right *n
+		caption: Выравнивает текст по правой стороне блока. 
+		Выравнивает bd{inline-block}-элементы по правой стороне 
+		родителя. Выравнивает bd{inline-flex}-элементы по правой 
+		стороне bd{flex}-родителя. *n
+*/
+.right {
+	text-align: right;
+}
+
+/*@property
+		name: left *n
+		caption: Выравнивает текст по левой стороне блока. 
+		Выравнивает bd{inline-block}-элементы по левой стороне 
+		родителя. Выравнивает bd{inline-flex}-элементы по левой 
+		стороне bd{flex}-родителя. *n
+*/
+.left {
+	text-align: left;
+}
+
+
+/*@property
+		name: justify *n
+		caption: Выравнивает текст по краям для блока. 
+		Выравнивает bd{inline-flex}-элементы по краям 
+		bd{flex}-родителя. *n
+*/
+.justify {
+	text-align: justify;
+}
+
+/*@property
+		name: align-top *n
+		caption: Выравнивает bd{inline-block}-элементы 
+		по верхней грани. Выравнивает bd{inline-flex}-элементы 
+		по верхней грани.*n
+*/
+.align-top {
+	vertical-align: top;
+}
+
+/*@property
+		name: align-middle *n
+		caption: Выравнивает bd{inline-block}-элементы 
+		вертикально по середине. Выравнивает bd{inline-flex}-элементы 
+		вертикально по середине.*n
+*/
+.align-middle {
+	vertical-align: middle;
+}
+
+/*@property
+		name: align-bottom *n
+		caption: Выравнивает bd{inline-block}-элементы 
+		по нижней грани. Выравнивает bd{inline-flex}-элементы 
+		по нижней грани.*n
+*/
+.align-bottom {
+	vertical-align: bottom;
+}
+
+/*@property
+		name: align-baseline *n
+		caption: Выравнивает bd{inline-block}-элементы 
+		базовой линии текста. Выравнивает bd{inline-flex}-элементы 
+		базовой линии текста.*n
+*/
+.align-baseline {
+	vertical-align: baseline;
+}
+
+/*@property
+		name: pull-left *n
+		caption: Обтекание блока слева (float).*n
+*/
+.pull-left {
+	float: left;
+}
+
+
+/*@property
+		name: pull-right *n
+		caption: Обтекание блока справа (float).*n
+*/
+.pull-right {
+	float: right;
+}
+
+/*@property
+		name: clearfix, pull-clear *n
+		caption: Очистка обтеканий (floats).*n
+*/
+.clearfix, .pull-clear {
+	clear: both;
+	&:after {
+		display: table;
+		content: '';
+		clear: both;
+	}
+}
+
+/*@property
+		name: flex-row *n
+		caption: Строка flexbox.*n */
+.flex-row {
+	flex-direction: row;
+}
+
+/*@property
+		name: flex-row-rev *n
+		caption: Строка flexbox с обратным отображением. *n */
+.flex-row-rev {
+	flex-direction: row-reverse;
+}
+
+/*@property
+		name: flex-col *n
+		caption: Ячейка flexbox. *n */
+.flex-col {
+	flex-direction: column;
+}
+
+/*@property
+		name: flex-col-rev *n
+		caption: Ячейка flexbox с обратным отображением. *n */
+.flex-col-rev {
+	flex-direction: column-reverse;
+}
+
+/*--------------------------------------------------------------
+											FLEXIBLE BOX LAYOUT
+--------------------------------------------------------------*/
+
+.flexbox {
+
+	.left {
+		justify-content: start;
+	}
+	.right {
+		justify-content: flex-end;
+	}
+	.center {
+		justify-content: center;
+	}
+	.justify {
+		justify-content: space-between;
+	}
+
+	/*@property
+		name: around *n
+		caption: Выравнивает bd{inline-flex}-элементы с 
+		отутупами снаружи по краям bd{flex}-родителя. *n */
+	.around {
+		justify-content: space-around;
+	}
+
+	.align-top {
+		align-self: flex-start;
+	}
+	.align-bottom {
+		align-self: flex-end;
+	}
+	.align-middle {
+		align-self: center;
+	}
+	.align-baseline {
+		align-self: baseline;
+	}
+
+	/*@property
+		name: align-stretch *n
+		caption: Выравнивает bd{inline-flex}-элементы 
+		по одинковой высоте. *n */
+	.align-stretch {
+		align-self: stretch;
+	}
+
+	/*@property
+		name: align-center *n
+		caption: Выравнивает bd{inline-flex}-элементы 
+		по одинковой высоте, и центрирует их содержимое 
+		горизонтально по центру. *n */
+	.align-center {
+		align-items: center;
+	}
+
+	/*@property
+		name: flex-nowrap *n
+		caption: Отключает оборачивание bd{inline-flex}-элементов, 
+		лежащих внутри блока. *n */
+	.flex-nowrap {
+		flex-wrap: nowrap;
+	}
+
+	/*@property
+		name: flex-wrap *n
+		caption: Включает оборачивание bd{inline-flex}-элементов, 
+		лежащих внутри блока. *n */
+	.flex-wrap {
+		flex-wrap: wrap;
+	}
+
+	/*@property
+		name: flex-wrap-rev *n
+		caption: Включает оборачивание bd{inline-flex}-элементов, 
+		лежащих внутри блока изменяя порядок отображения. *n */
+	.flex-wrap-rev {
+		flex-wrap: wrap-reverse;
+	}
+}
+
+/*--------------------------------------------------------------
+													ОТОБРАЖЕНИЕ
+--------------------------------------------------------------*/
+
+/*@property
+		name: block *n
+		caption: Блочный элемент. *n
+*/
+.block {
+	display: block;
+}
+
+/*@property
+		name: inline *n
+		caption: Строчный блок (inline-block) *n
+*/
+.inline {
+	display: inline-block;
+}
+
+/*@property
+		name: block-extra *n
+		caption: Блочный элемент (!important). *n
+*/
+.block-extra {
+	display: block !important;
+}
+
+/*@property
+		name: inline-extra *n
+		caption: Строчный блок (inline-block !important) *n
+*/
+.inline-extra {
+	display: inline-block !important;
+}
+
+/*@property
+		name: none *n
+		caption: Скрытый блок.*n
+*/
+.none {
+	display: none;
+}
+
+/*@property
+		name: table *n
+		caption: Таблица. По умолчанию ширина 100%. *n
+*/
+.table {
+	width: 100%;
+	display: table;
+}
+
+/*@property
+		name: trow *n
+		caption: Строка таблицы. *n
+*/
+.trow {
+	display: table-row;
+}
+
+/*@property
+		name: thead *n
+		caption: Шапка таблицы (table-header-group). *n
+*/
+.thead {
+	display: table-header-group;
+}
+
+/*@property
+		name: tfoot *n
+		caption: Подвал таблицы (table-footer-group). *n
+*/
+.tfoot {
+	display: table-footer-group;
+}
+
+/*@property
+		name: tbody *n
+		caption: Контент таблицы (table-column-group). *n
+*/
+.tbody {
+	display: table-column-group;
+}
+
+/*@property
+		name: cell *n
+		caption: Ячейка таблицы. *n
+*/
+.cell {
+	display: table-cell;
+}
+
+/*@property
+		name: list-item *n
+		caption: Элемент списка. *n
+*/
+.list-item {
+	display: list-item;
+}
+
+/*@property
+		name: bg-none *n
+		caption: Удаляет фон блока. *n
+*/
+.bg-none {
+	background: none;
+}
+
+/*--------------------------------------------------------------
+													ФОН БЛОКА
+--------------------------------------------------------------*/
+
+/*@property
+		name: bg-cover *n
+		caption: Устанавливает заполнение фоновым изображением 
+		фона блока таким образом, чтобы изображение полностью 
+		заполняло фон по вертикали и по горизонтали. *n
+*/
+.bg-cover {
+	background-size: cover;
+}
+
+/*@property
+		name: bg-contain *n
+		caption: Устанавливает заполнение фоновым изображением 
+		фона блока таким образом, чтобы изображение равнялось
+		по ширине или высоте блока. *n
+*/
+.bg-contain {
+	background-size: contain;
+}
+
+/*@property
+		name: circle-item *n
+		caption: Устанавливает скругление блока в 50%. *n
+*/
+.circle-item {
+	border-radius: 50%;
+}
+
+/*--------------------------------------------------------------
+												ЦВЕТА ТЕКСТА И ФОНА
+--------------------------------------------------------------*/
+
+/*@property
+		name: .example-color *n
+		caption: Устанавливает цвет текста с названием YourColor.
+		Параметры задаются в bd{ _config.scss }, в объекте 
+		bd{ $colors_list } *n
+*/
+@each $color in $colors_list {
+	.#{nth($color,1)} {
+		color: #{nth($color,2)};
+	}
+}
+
+/*@property
+		name: .bg-example-color *n
+		caption: Устанавливает фона блока с названием YourColor.
+		Параметры задаются в bd{ _config.scss }, в объекте 
+		bd{ $colors_list_bg } *n
+*/
+@each $color in $colors_list_bg {
+	.bg-#{nth($color,1)} {
+		background-color: #{nth($color,2)};
+	}
+}

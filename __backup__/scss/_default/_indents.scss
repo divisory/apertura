@@ -1,0 +1,391 @@
+/*
+	@module
+		title: indents *n
+		type: scss *n
+		caption:
+			p{ Модуль добавляет классы для работы с 
+			внешними и внутренними отступами. }p
+		*n
+*/
+
+/*@property
+		name: no-marg *n
+		caption: Убирает внешние отступы блока. *n
+*/
+.no-marg {
+	margin: 0;
+}
+/*@property
+		name: no-pad *n
+		caption: Убирает внутренние отступы блока. *n
+*/
+.no-pad {
+	padding: 0;
+}
+
+/*@property
+		name: exact-fit *n
+		caption: Убирает внутренние и внешние отступы блока. *n
+*/
+.exact-fit {
+	margin: 0;
+	padding: 0;
+}
+/*@property
+		name: island-** *n
+		caption: Добавляет внутренние отступы со всех сторон.
+		Парметры указываются в bd{ $islands } *n
+*/
+@each $indent in $islands {
+	.island-#{$indent} {
+		padding: #{$indent}px;
+	}
+}
+
+/*--------------------------------------------------------
+												PADDINGS
+--------------------------------------------------------*/
+
+/*@property
+		name: pad-h** *n
+		caption: Добавляет внутренние отступы по горизонтали.
+		Парметры указываются в bd{ $horizontal_indents } *n
+*/
+@each $indent in $horizontal_indents {
+	.pad-h#{$indent} {
+		padding-left: #{$indent}px;
+		padding-right: #{$indent}px;
+	}
+}
+/*@property
+		name: pad-v** *n
+		caption: Добавляет внутренние отступы по вертикали.
+		Парметры указываются в bd{ $vertical_indents } *n
+*/
+@each $indent in $vertical_indents {
+	.pad-v#{$indent} {
+		padding-top: #{$indent}px;
+		padding-bottom: #{$indent}px;
+	}
+}
+/*@property
+		name: pad-top-** *n
+		caption: Добавляет внутренний отступ сверху.
+		Парметры указываются в bd{ $vertical_indents } *n
+*/
+@each $indent in $vertical_indents {
+	.pad-top-#{$indent} {
+		padding-top: #{$indent}px;
+	}
+}
+/*@property
+		name: pad-bot-** *n
+		caption: Добавляет внутренний отступ снизу.
+		Парметры указываются в bd{ $vertical_indents } *n
+*/
+@each $indent in $vertical_indents {
+	.pad-bot-#{$indent} {
+		padding-bottom: #{$indent}px;
+	}
+}
+/*@property
+		name: pad-left-** *n
+		caption: Добавляет внутренний отступ слева.
+		Парметры указываются в bd{ $horizontal_indents } *n
+*/
+@each $indent in $horizontal_indents {
+	.pad-left-#{$indent} {
+		padding-left: #{$indent}px;
+	}
+}
+/*@property
+		name: pad-right-** *n
+		caption: Добавляет внутренний отступ справа.
+		Парметры указываются в bd{ $horizontal_indents } *n
+*/
+@each $indent in $horizontal_indents {
+	.pad-right-#{$indent} {
+		padding-right: #{$indent}px;
+	}
+}
+
+/*--------------------------------------------------------
+								PADDINGS - MEDIA QUERIES
+--------------------------------------------------------*/
+
+@each $prefix in $grid_prefixes {
+	@media (max-width: #{nth($prefix,1)}px) {
+		/*@property
+				name: pad-h**--<BRAKEPOINT> *n
+				caption: Добавляет внутренние отступы по горизонтали 
+				при разрешении <BRAKEPOINT>.
+				Парметры указываются в bd{ $horizontal_indents } и 
+				bd{ $grid_prefixes } *n
+		*/
+		@each $indent in $horizontal_indents {
+			.pad-h#{$indent}#{nth($prefix,2)} {
+				padding-left: #{$indent}px;
+				padding-right: #{$indent}px;
+			}
+		}
+		/*@property
+				name: pad-v**--<BRAKEPOINT> *n
+				caption: Добавляет внутренние отступы по вертикали
+				при разрешении <BRAKEPOINT>.
+				Парметры указываются в bd{ $vertical_indents } и 
+				bd{ $grid_prefixes } *n
+		*/
+		@each $indent in $vertical_indents {
+			.pad-v#{$indent}#{nth($prefix,2)} {
+				padding-top: #{$indent}px;
+				padding-bottom: #{$indent}px;
+			}
+		}
+		/*@property
+				name: pad-top-**--<BRAKEPOINT> *n
+				caption: Добавляет внутренний отступ сверху
+				при разрешении <BRAKEPOINT>.
+				Парметры указываются в bd{ $vertical_indents } и 
+				bd{ $grid_prefixes } *n
+		*/
+		@each $indent in $vertical_indents {
+			.pad-top-#{$indent}#{nth($prefix,2)} {
+				padding-top: #{$indent}px;
+			}
+		}
+		/*@property
+				name: pad-bot-**--<BRAKEPOINT> *n
+				caption: Добавляет внутренний отступ снизу
+				при разрешении <BRAKEPOINT>.
+				Парметры указываются в bd{ $vertical_indents } и 
+				bd{ $grid_prefixes } *n
+		*/
+		@each $indent in $vertical_indents {
+			.pad-bot-#{$indent}#{nth($prefix,2)} {
+				padding-bottom: #{$indent}px;
+			}
+		}
+		/*@property
+				name: pad-left-**--<BRAKEPOINT> *n
+				caption: Добавляет внутренний отступ слева
+				при разрешении <BRAKEPOINT>.
+				Парметры указываются в bd{ $horizontal_indents } и 
+				bd{ $grid_prefixes } *n
+		*/
+		@each $indent in $horizontal_indents {
+			.pad-left-#{$indent}#{nth($prefix,2)} {
+				padding-left: #{$indent}px;
+			}
+		}
+		/*@property
+				name: pad-right-**--<BRAKEPOINT> *n
+				caption: Добавляет внутренний отступ справа
+				при разрешении <BRAKEPOINT>.
+				Парметры указываются в bd{ $horizontal_indents } и 
+				bd{ $grid_prefixes } *n
+		*/
+		@each $indent in $horizontal_indents {
+			.pad-right-#{$indent}#{nth($prefix,2)} {
+				padding-right: #{$indent}px;
+			}
+		}
+	}
+}
+
+/*--------------------------------------------------------
+												MARGINS
+--------------------------------------------------------*/
+/*@property
+		name: marg-** *n
+		caption: Добавляет внешние отступы со всех сторон.
+		Парметры указываются в bd{ $islands } *n
+*/
+@each $indent in $islands {
+	.marg-#{$indent} {
+		margin: #{$indent}px;
+	}
+}
+/*@property
+		name: marg-h** *n
+		caption: Добавляет внешние отступы по горизонтали.
+		Парметры указываются в bd{ $horizontal_indents } *n
+*/
+@each $indent in $horizontal_indents {
+	.marg-h#{$indent} {
+		margin-left: #{$indent}px;
+		margin-right: #{$indent}px;
+	}
+}
+/*@property
+		name: marg-v** *n
+		caption: Добавляет внешние отступы по вертикали.
+		Парметры указываются в bd{ $vertical_indents } *n
+*/
+@each $indent in $vertical_indents {
+	.marg-v#{$indent} {
+		margin-top: #{$indent}px;
+		margin-bottom: #{$indent}px;
+	}
+}
+/*@property
+		name: marg-top-** *n
+		caption: Добавляет внешние отступы сверху.
+		Парметры указываются в bd{ $vertical_indents } *n
+*/
+@each $indent in $vertical_indents {
+	.marg-top-#{$indent} {
+		margin-top: #{$indent}px;
+	}
+}
+/*@property
+		name: marg-bot-** *n
+		caption: Добавляет внешние отступы снизу.
+		Парметры указываются в bd{ $vertical_indents } *n
+*/
+@each $indent in $vertical_indents {
+	.marg-bot-#{$indent} {
+		margin-bottom: #{$indent}px;
+	}
+}
+/*@property
+		name: marg-left-** *n
+		caption: Добавляет внешние отступы слева.
+		Парметры указываются в bd{ $horizontal_indents } *n
+*/
+@each $indent in $horizontal_indents {
+	.marg-left-#{$indent} {
+		margin-left: #{$indent}px;
+	}
+}
+/*@property
+		name: marg-right-** *n
+		caption: Добавляет внешние отступы справа.
+		Парметры указываются в bd{ $horizontal_indents } *n
+*/
+@each $indent in $horizontal_indents {
+	.marg-right-#{$indent} {
+		margin-right: #{$indent}px;
+	}
+}
+
+/*--------------------------------------------------------
+									MARGINS MEDIA QUERIES
+--------------------------------------------------------*/
+
+@each $prefix in $grid_prefixes {
+	@media (max-width: #{nth($prefix,1)}px) {
+		/*@property
+				name: marg-h**--<BRAKEPOINT> *n
+				caption: Добавляет внешние отступы по горизонтали
+				при разрешении <BRAKEPOINT>.
+				Парметры указываются в bd{ $horizontal_indents } и 
+				bd{ $grid_prefixes } *n
+		*/
+		@each $indent in $horizontal_indents {
+			.marg-h#{$indent}#{nth($prefix,2)} {
+				margin-left: #{$indent}px;
+				margin-right: #{$indent}px;
+			}
+		}
+		/*@property
+				name: marg-v**--<BRAKEPOINT> *n
+				caption: Добавляет внешние отступы по вертикали
+				при разрешении <BRAKEPOINT>.
+				Парметры указываются в bd{ $vertical_indents } и 
+				bd{ $grid_prefixes } *n
+		*/
+		@each $indent in $vertical_indents {
+			.marg-v#{$indent}#{nth($prefix,2)} {
+				margin-top: #{$indent}px;
+				margin-bottom: #{$indent}px;
+			}
+		}
+		/*@property
+				name: marg-top-**--<BRAKEPOINT> *n
+				caption: Добавляет внешние отступы сверху
+				при разрешении <BRAKEPOINT>.
+				Парметры указываются в bd{ $vertical_indents } и 
+				bd{ $grid_prefixes } *n
+		*/
+		@each $indent in $vertical_indents {
+			.marg-top-#{$indent}#{nth($prefix,2)} {
+				margin-top: #{$indent}px;
+			}
+		}
+		/*@property
+				name: marg-bot-**--<BRAKEPOINT> *n
+				caption: Добавляет внешние отступы снизу
+				при разрешении <BRAKEPOINT>.
+				Парметры указываются в bd{ $vertical_indents } и 
+				bd{ $grid_prefixes } *n
+		*/
+		@each $indent in $vertical_indents {
+			.marg-bot-#{$indent}#{nth($prefix,2)} {
+				margin-bottom: #{$indent}px;
+			}
+		}
+		/*@property
+				name: marg-left-**--<BRAKEPOINT> *n
+				caption: Добавляет внешние отступы слева
+				при разрешении <BRAKEPOINT>.
+				Парметры указываются в bd{ $horizontal_indents } и 
+				bd{ $grid_prefixes } *n
+		*/
+		@each $indent in $horizontal_indents {
+			.marg-left-#{$indent}#{nth($prefix,2)} {
+				margin-left: #{$indent}px;
+			}
+		}
+		/*@property
+				name: marg-right-**--<BRAKEPOINT> *n
+				caption: Добавляет внешние отступы справа
+				при разрешении <BRAKEPOINT>.
+				Парметры указываются в bd{ $horizontal_indents } и 
+				bd{ $grid_prefixes } *n
+		*/
+		@each $indent in $horizontal_indents {
+			.marg-right-#{$indent}#{nth($prefix,2)} {
+				margin-right: #{$indent}px;
+			}
+		}
+	}
+}
+
+/*--------------------------------------------------------
+												RESETS
+--------------------------------------------------------*/
+
+/*@property
+		name: no-marg--<BRAKEPOINT> *n
+		caption: Убирает внешние отступы блока при разрешении <BRAKEPOINT>. *n
+*/
+@each $prefix in $grid_prefixes {
+	@media (max-width: #{nth($prefix,1)}px) {
+		.no-pad#{nth($prefix,2)} {
+			padding: 0;
+		}
+	}
+}
+/*@property
+		name: no-pad--<BRAKEPOINT> *n
+		caption: Убирает внутренние отступы блока при разрешении <BRAKEPOINT>. *n
+*/
+@each $prefix in $grid_prefixes {
+	@media (max-width: #{nth($prefix,1)}px) {
+		.no-marg#{nth($prefix,2)} {
+			margin: 0;
+		}
+	}
+}
+/*@property
+		name: exact-fit--<BRAKEPOINT> *n
+		caption: Убирает внутренние и внешние отступы блока при разрешении <BRAKEPOINT>. *n
+*/
+@each $prefix in $grid_prefixes {
+	@media (max-width: #{nth($prefix,1)}px) {
+		.exact-fit#{nth($prefix,2)} {
+			padding: 0;
+			margin: 0;
+		}
+	}
+}

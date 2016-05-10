@@ -1,0 +1,21 @@
+[
+  "dist/css/flex.min.css",
+  "dist/css/flex.min.scss",
+  "dist/css/grid.min.css",
+  "dist/css/grid_.min.css",
+  "dist/css/skin.min.css",
+  "dist/css/full/flex.css",
+  "dist/css/full/flex.scss",
+  "dist/css/full/grid.css",
+  "dist/css/full/grid_.css",
+  "dist/css/full/skin.css",
+  "dist/js/dev-tools.js",
+  "dist/js/main.js",
+  "dist/js/script.js",
+  "dist/js/vendor/html5shiv.js",
+  "dist/js/vendor/jquery-2.1.0.min.js",
+  "dist/js/vendor/minify.min.js",
+  "dist/js/vendor/modernizr-2.7.1.min.js",
+  "dist/js/vendor/no-hover.min.js",
+  "dist/index.html"
+]

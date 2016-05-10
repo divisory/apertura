@@ -114,8 +114,11 @@ html, body {
 		}p
 */
 @each $prefix in $grid_prefixes {
-	@media (min-width: #{nth($prefix,1)+1}px) {
+	@media (max-width: #{nth($prefix,1)}px) {
 		@include grid-calc($grid-calc, #{nth($prefix,2)});
+		.offset-off#{nth($prefix,2)} {
+			margin-left: 0;
+		}
 	}
 }
 

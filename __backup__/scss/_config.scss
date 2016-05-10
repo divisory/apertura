@@ -20,7 +20,7 @@
 			контент прижимается вплотную к соронам блока. По умолчанию 
 			задано 10пикс. *n
 */
-$gutter: 							15px;
+$gutter: 							10px;
 
 $offsets: 						on;
 
@@ -40,7 +40,7 @@ $grid_line_height: 		20px;
 			большему. Допускается произвольное количество размеров 
 			(если они Вам нужны). *n
 */
-$grid_sizes:					(960, 1200);
+$grid_sizes:					(400, 720, 960, 1200);
 
 /*@property
 		name: $primary_grid *n
@@ -64,7 +64,7 @@ $primary_grid: 				1200;
 			Вы сами можете создать сколько угодно брейкпоинтов. }p *n
 			p{ Создает набор классов типа bd{.x<X>d<D>--<BRAKEPOINT>} }p *n
 */
-$grid_prefixes: 			(480, 'tablet--') (768, 'big-tablet--') (1200, 'desktop--');
+$grid_prefixes: 			(768, '--t') (640, '--sm') (480, '--m');
 
 /*@property
 		name: $grid_calc *n
