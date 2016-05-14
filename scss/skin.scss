@@ -23,9 +23,17 @@
 	include default styles, fonts, indents, and so on...
 */
 
-@import "_default/_default.scss";
-@import "_default/_fonts.scss";
-@import "_default/_indents.scss";
+@each $module in $exports {
+	@if $module == 'default' {
+		@import "_modules/_default.scss";
+	}
+	@if $module == 'indents' {
+		@import "_modules/_indents.scss";
+	}
+	@if $module == 'fonts' {
+		@import "_modules/_fonts.scss";
+	}
+}
 
 /* -----------------------------------------------------
 	<HEADER> styles

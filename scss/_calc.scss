@@ -39,8 +39,22 @@
 					margin-left: percentage($i / $n);
 				}
 			}
-			.#{$modifier}hide {
-				display: none;
+			@if $modifier != '' {
+				.#{$modifier}hide {
+					display: none;
+				}
+				.#{$modifier}inline {
+					display: inline-block;
+				}
+				.#{$modifier}block {
+					display: block;
+				}
+				.#{$modifier}table {
+					display: block;
+				}
+				.#{$modifier}cell {
+					display: cell;
+				}
 			}
 		}
 	}

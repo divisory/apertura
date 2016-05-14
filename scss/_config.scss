@@ -80,7 +80,7 @@ $grid_prefixes: 			(480, 'tablet--') (768, 'big-tablet--') (1200, 'desktop--');
 			одно и то же (50%)) }p
 			p{ Создает набор классов типа bd{.x<X>d<D>} }p *n
 */
-$grid_calc: 					(1 2 3 4 5 6 7 8 9 10 11 12 14 16 18 20 24);
+$grid_calc: 					(1 2 3 4 5 6 7 8 9 10 11 12);
 
 /*@property
 		name: $fixed_widths *n
@@ -160,6 +160,12 @@ $colors_list: 				(black, #000000) (white, #ffffff);
 */
 $colors_list_bg: 			(black, #000000) (white, #ffffff);
 
+/*@property
+		name: $exports *n
+		caption: Указывает какие модули необходимо подключить. *n
+*/
+$exports: (default);
+
 /*--------------------------------------------------------------
 												ПЕРЕМЕННЫЕ
 --------------------------------------------------------------*/
@@ -169,8 +175,3 @@ $colors_list_bg: 			(black, #000000) (white, #ffffff);
 		caption: Устанавливает размер шрифта по умолчанию для <body> *n
 */
 $font_size: 					14px;
-/*@property
-		name: $font_family *n
-		caption: Устанавливает шрифт по умолчанию для <body> *n
-*/
-$font_family: 				sans-serif;
