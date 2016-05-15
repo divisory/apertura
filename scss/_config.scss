@@ -164,7 +164,7 @@ $colors_list_bg: 			(black, #000000) (white, #ffffff);
 		name: $exports *n
 		caption: Указывает какие модули необходимо подключить. *n
 */
-$exports: (default);
+$exports: (default, indents, fonts);
 
 /*--------------------------------------------------------------
 												ПЕРЕМЕННЫЕ
