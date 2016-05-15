@@ -26,8 +26,34 @@ var gulp = require('gulp'),
 
 var execute = function(command, callback){
 	exec(command, function(error, stdout, stderr){
-		callback(stdout);
+		if (callback){
+			callback(stdout);
+		}
 	});
+};
+
+execute("notify-send 'Gulp.js' 'Система сборки успешно запущена.' -i dialog-apply");
+
+var logSASS = function(err) {
+	var mess = err.message.replace(/(\n|\r|Current dir:)/gim, '');
+	if (OPTIONS.notices === true) {
+		execute("notify-send 'SASS' '" + mess + "' -i dialog-no", function() {});
+	}
+	return console.log("\n\r"+
+		colors.grey("[ ")+(colors.red('ERROR!'))+colors.grey(" ]")+" SASS\r\n"+
+		(colors.red(mess))+"\r\n"
+	);
+};
+
+var logCoffeeScript = function(err) {
+	var mess = err.message.replace(/(\n|\r|Current dir:)/gim, '');
+	if (OPTIONS.notices === true) {
+		execute("notify-send 'Coffeescript' '" + err.message + "\r\n → " + (err.stack.substr(0, err.stack.indexOf('error:'))) + "'  -i dialog-no", function() {});
+	}
+	return console.log("\n\r"+
+		colors.grey("[ ")+(colors.red('ERROR!'))+colors.grey(" ]")+" CoffeeScript\r\n"+
+		colors.red(mess)+colors.red(err.stack)+"\n\r"
+	);
 };
 
 gulp.task('connect', function(){
@@ -45,14 +71,18 @@ gulp.task(' coffee', function(){
 		.pipe(fileinclude());
 	if (OPTIONS.coffeeWraping === true){
 		src
-			.pipe(plumber())
+			.pipe(plumber({
+				errorHandler: function(err){
+					logCoffeeScript(err);
+				}
+			}))
 			.pipe(coffee({bare: true}))
 			.pipe(gulp.dest(PATH+'dist/js'));
 	} else {
 		src
 			.pipe(plumber({
 				errorHandler: function(err){
-
+					logCoffeeScript(err);
 				}
 			}))
 			.pipe(coffee())
@@ -64,7 +94,11 @@ gulp.task(' coffee', function(){
 gulp.task('   sass', function(){
 	var src = gulp.src(PATH+'scss/*.scss');
 	src
-		.pipe(plumber())
+		.pipe(plumber({
+			errorHandler: function(err){
+				logSASS(err);
+			}
+		}))
 		.pipe(sass())
 		.pipe(autoprefixer({
 			cascade: false,
@@ -95,13 +129,6 @@ gulp.task('    css', function(){
 	src.pipe(connect.reload());
 });
 
-// gulp.task('   HTML', function(){
-// 	src = gulp.src(PATH+'dist/*.html');
-// 	src
-// 		.pipe(plumber())
-// 		.pipe(connect.reload());
-// });
-
 gulp.task('     Js', function(){
 	src = gulp.src(PATH+'dist/js/*.js');
 	src.pipe(connect.reload());
@@ -110,25 +137,16 @@ gulp.task('     Js', function(){
 gulp.task('  watch', function(){
 	gulp.watch(PATH+'coffee/*coffee', 				[' coffee']);
 	gulp.watch(PATH+'coffee/*/*coffee',				[' coffee']);
-	// gulp.watch(PATH+'dev-tools/*/*/*coffee',	[' coffee']);
 	gulp.watch(PATH+'scss/*.scss', 						['   sass']);
 	gulp.watch(PATH+'scss/*/*scss', 					['   sass']);
-	// gulp.watch(PATH+'dev-tools/*/*/*scss', 		['   sass']);
-	// gulp.watch(PATH+'dist/*html', 						['   HTML']);
 	gulp.watch(PATH+'html/*html', 						['IncHTML']);
 	gulp.watch(PATH+'html/includes/*html', 		['IncHTML']);
-	// gulp.watch(PATH+'dist/css/*css', 					['    css']);
-	// gulp.watch(PATH+'dist/js/*/*js', 					['     Js']);
-	// gulp.watch(PATH+'dist/js/*js', 						['     Js']);
 });
 
 gulp.task('default', [
 	' coffee',
 	'  watch',
 	'   sass',
-	// '   HTML',
 	'IncHTML',
-	// '    css',
-	// '     Js',
 	'connect'
 ]);
