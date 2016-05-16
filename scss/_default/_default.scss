@@ -73,8 +73,7 @@ figure {
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
 	border-radius: 3px;
-	content: 'This page requires JavaScript for correct performance.
-						You must enable Javascript, or update your browser.';
+	content: 'This page requires JavaScript for correct performance';
 }
 
 .disable-hover,
@@ -134,7 +133,7 @@ img.r {
 .pull-right {
 	float: right;
 }
-.clearfix, .pull-clear {
+.clearfix {
 	clear: both;
 	&:after {
 		display: table;
@@ -155,19 +154,6 @@ img.r {
 }
 .inline-extra {
 	display: inline-block !important;
-}
-.flex {
-	display: flex;
-	flex-wrap: wrap;
-	width: 100%;
-	@include justify-content(flex-start);
-	@include flex-direction(row);
-	@include align-items(stretch);
-}
-.inline-flex {
-	display: inline-flex;
-	flex-wrap: wrap;
-	@include box-sizing(border-box);
 }
 
 .none {
@@ -248,70 +234,6 @@ img.r {
 /*border-radius*/
 .circle-item {
 	border-radius: 50%;
-}
-
-/*flexbox*/
-
-/*flex-direction*/
-.flex-row {
-	@include flex-direction(row);
-}
-.flex-row-rev {
-	@include flex-direction(row-reverse);
-}
-.flex-col {
-	@include flex-direction(column);
-}
-.flex-col-rev {
-	@include flex-direction(column-reverse);
-}
-
-/*justify content*/
-.flexbox {
-	.left {
-		@include justify-content(start);
-	}
-	.right {
-		@include justify-content(flex-end);
-	}
-	.center {
-		@include justify-content(center);
-	}
-	/*only for flexbox*/
-	.justify {
-		@include justify-content(space-between);
-	}
-	.around {
-		@include justify-content(space-around);
-	}
-
-	/*align items*/
-	.v-top {
-		@include align-items(flex-start);
-	}
-	.v-bottom {
-		@include align-items(flex-end);
-	}
-	.v-middle {
-		@include align-items(center);
-	}
-	.v-baseline {
-		@include align-items(baseline);
-	}
-	.v-stretch {
-		@include align-items(stretch);
-	}
-
-	/*wraps*/
-	.flex-nowrap {
-		@include flex-wrap(nowrap);
-	}
-	.flex-wrap {
-		@include flex-wrap(wrap);
-	}
-	.flex-wrap-rev {
-		@include flex-wrap(wrap-reverse);
-	}
 }
 
 @each $color in $colors_list {

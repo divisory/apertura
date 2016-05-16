@@ -96,7 +96,8 @@ OPTIONS 	=
 	serverHost: 				'localhost'
 	serverPort: 				1111
 	serverLivereload: 	on
-	coffeeWraping: 			false
+	coffeeWraping: 			true
+	notices: 						true
 
 # -------------------------------------------------------------
 # MODULES
@@ -199,6 +200,9 @@ map 				= require 'map-stream'
 # * https://www.npmjs.com/package/gulp-plumber *
 plumber 		= require 'gulp-plumber'
 
+# shell = require 'shelljs'
+# shell.echo 'hello world'
+
 # -----------------------------------------------------------------------------
 # CONSOLE
 # -----------------------------------------------------------------------------
@@ -210,13 +214,32 @@ consol = (str, str2, str3) ->
 		#{colors.grey(str3)}
 	"
 
+execute = (command, callback) ->
+	exec command, (error, stdout, stderr) ->
+		callback stdout
+
+exec = require("child_process").exec
+
+
 _CoffeeConsole = (err)->
+	if OPTIONS.notices is on
+		execute "
+			notify-send
+			'☢ ERROR :: Coffeescript'
+			'ⓘ #{err.message}\r\n → #{err.stack.substr(0,err.stack.indexOf('error:'))}'
+		", ->
 	console.log "
 		#{colors.red('ERROR')}::#{colors.green('CoffeeScript')} #{colors.blue(err.message)}\r\n
 		#{colors.gray(err.stack)}
 	"
 
 _SASSConsole = (err)->
+	if OPTIONS.notices is on
+		execute "
+			notify-send
+			'☢ ERROR :: SASS'
+			'ⓘ #{err.message}'
+		", ->
 	console.log "
 		#{colors.red('ERROR')}::#{colors.green('SASS')} #{colors.blue(err.message)}\r\n
 		#{colors.grey('File:')} #{colors.grey(err.fileName)} #{colors.grey(', line')} #{colors.grey(err.lineNumber)}
@@ -297,11 +320,17 @@ gulp.task ' coffee', ->
 		.pipe do fileinclude
 	if OPTIONS.coffeeWraping is true
 		log
+			.pipe plumber
+				errorHandler: (err)->
+					_CoffeeConsole err
 			.pipe coffee
 				bare: true
 			.pipe gulp.dest PATH+'dist/js'
 	else
 		log
+			.pipe plumber
+				errorHandler: (err)->
+					_CoffeeConsole err
 			.pipe do coffee
 			.pipe gulp.dest PATH+'dist/js'
 	log

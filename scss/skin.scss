@@ -27,6 +27,7 @@
 
 @import "_pages/_typical.scss";
 @import "_pages/_main.scss";
+@import "_pages/_anim.scss";
 
 /* -----------------------------------------------------
 	<FOOTER> styles
@@ -37,10 +38,3 @@
 /* -----------------------------------------------------
 	media queries
 */
-
-@media (max-width: 768px) {
-	@import "_media/_768.scss";
-}
-@media (max-width: 480px) {
-	@import "_media/_480.scss";
-}

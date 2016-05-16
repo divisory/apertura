@@ -45,43 +45,6 @@
 	}
 }
 
-@each $prefix in $grid_prefixes {
-	@media (max-width: #{nth($prefix,1)}px) {
-		@each $indent in $horizontal_indents {
-			.pad-h#{$indent}#{nth($prefix,2)} {
-				padding-left: #{$indent}px;
-				padding-right: #{$indent}px;
-			}
-		}
-		@each $indent in $vertical_indents {
-			.pad-v#{$indent}#{nth($prefix,2)} {
-				padding-top: #{$indent}px;
-				padding-bottom: #{$indent}px;
-			}
-		}
-		@each $indent in $vertical_indents {
-			.pad-top-#{$indent}#{nth($prefix,2)} {
-				padding-top: #{$indent}px;
-			}
-		}
-		@each $indent in $vertical_indents {
-			.pad-bot-#{$indent}#{nth($prefix,2)} {
-				padding-bottom: #{$indent}px;
-			}
-		}
-		@each $indent in $horizontal_indents {
-			.pad-left-#{$indent}#{nth($prefix,2)} {
-				padding-left: #{$indent}px;
-			}
-		}
-		@each $indent in $horizontal_indents {
-			.pad-right-#{$indent}#{nth($prefix,2)} {
-				padding-right: #{$indent}px;
-			}
-		}
-	}
-}
-
 /* -----------------------------------------------------
 	MARGINS
 */
@@ -124,43 +87,6 @@
 	}
 }
 
-@each $prefix in $grid_prefixes {
-	@media (max-width: #{nth($prefix,1)}px) {
-		@each $indent in $horizontal_indents {
-			.marg-h#{$indent}#{nth($prefix,2)} {
-				margin-left: #{$indent}px;
-				margin-right: #{$indent}px;
-			}
-		}
-		@each $indent in $vertical_indents {
-			.marg-v#{$indent}#{nth($prefix,2)} {
-				margin-top: #{$indent}px;
-				margin-bottom: #{$indent}px;
-			}
-		}
-		@each $indent in $vertical_indents {
-			.marg-top-#{$indent}#{nth($prefix,2)} {
-				margin-top: #{$indent}px;
-			}
-		}
-		@each $indent in $vertical_indents {
-			.marg-bot-#{$indent}#{nth($prefix,2)} {
-				margin-bottom: #{$indent}px;
-			}
-		}
-		@each $indent in $horizontal_indents {
-			.marg-left-#{$indent}#{nth($prefix,2)} {
-				margin-left: #{$indent}px;
-			}
-		}
-		@each $indent in $horizontal_indents {
-			.marg-right-#{$indent}#{nth($prefix,2)} {
-				margin-right: #{$indent}px;
-			}
-		}
-	}
-}
-
 
 .no-marg {
 	margin: 0;
@@ -171,27 +97,4 @@
 .exact-fit {
 	margin: 0;
 	padding: 0;
-}
-
-@each $prefix in $grid_prefixes {
-	@media (max-width: #{nth($prefix,1)}px) {
-		.no-pad#{nth($prefix,2)} {
-			padding: 0;
-		}
-	}
-}
-@each $prefix in $grid_prefixes {
-	@media (max-width: #{nth($prefix,1)}px) {
-		.no-marg#{nth($prefix,2)} {
-			margin: 0;
-		}
-	}
-}
-@each $prefix in $grid_prefixes {
-	@media (max-width: #{nth($prefix,1)}px) {
-		.exact-fit#{nth($prefix,2)} {
-			padding: 0;
-			margin: 0;
-		}
-	}
 }

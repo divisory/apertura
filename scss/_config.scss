@@ -9,21 +9,20 @@ $grid_line_height: 		20px;
 
 // GRID:: boxes widths
 $grid_sizes:					(720, 960, 1140);
-$primary_grid: 				1140;
 
 // GRID:: boxes widths
-$grid_prefixes: 			(768, '--t') (640, '--sm') (480, '--m');
+$grid_prefixes: 			(1400, '--n') (768, '--t') (480, '--m');
 
 // GRID:: grid calc
-$grid_calc: 					(1 2 3 4 5 6 7 8 9 10 11 12);
+$grid_calc: 					(1 2 3 4 5 6 7 8 9 10 11 12 14 16 18 20);
 
 // GRID:: fixed widths
-$fixed_widths:        (50,100,150,200,250,300);
+$fixed_widths:        (10,20,50,100,150,190,200,250,300);
 
 // indents
-$islands: 						(5,10,15,20,25,30,35,40,45,50);
-$vertical_indents: 		(5,10,15,20,25,30,35,40,45,50);
-$horizontal_indents: 	(5,10,15,20,25,30,35,40,45,50);
+$islands: 						(5,8,10,12,15,16,18,20,25,30,35,40,45,50,55,60,70,80,90,100,120,150);
+$vertical_indents: 		(5,8,10,12,15,16,18,20,25,30,35,40,45,50,55,60,70,80,90,100,120,150);
+$horizontal_indents: 	(5,8,10,12,15,16,18,20,25,30,35,40,45,50,55,60,70,80,90,100,120,150);
 
 // FONTS:: min font size
 $min_font_size: 			6;
@@ -41,4 +40,4 @@ $colors_list_bg: 			(black, #000000) (white, #ffffff);
 $font_size: 					14px;
 
 // SKIN:: font-family
-$font_family: 				sans-serif;
+$font_family: 				'Roboto', sans-serif;
